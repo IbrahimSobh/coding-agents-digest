@@ -11,9 +11,11 @@ GitHub Pages publishes `docs/` to https://ibrahimsobh.github.io/coding-agents-we
 
 The value of the digest is not the list of changes. It is:
 - **Selection**: the few changes that matter, out of hundreds of lines.
-- **Explanation**: for each change, What / Why it matters / When to use / Example.
-- **Action needed**: breaking changes, removals and deadlines, at the top.
+- **Explanation**: one short sentence per change: what it does, why it matters, or when to use it.
+- **Action needed first**: breaking changes, removals and deadlines lead the list, marked ⚠️.
 - **Cross-tool view**: real themes across tools.
+
+The digest is ONE list ("In one minute"). No per-tool sections, no long items.
 
 ## Step by step
 
@@ -75,7 +77,7 @@ git push origin main
 - Push to `main` directly. Do not open a pull request. Do not push to another branch.
 - If the push fails, retry once. If it still fails, end with the exact error
   (for example the 403 text). Never report success without a successful push.
-- End with a short run log: covered range, releases per tool, items selected,
+- End with a short run log: covered range, releases per tool, bullets written,
   number of "(verify)" marks, and the commit SHA.
 
 ## Digest format
@@ -92,7 +94,7 @@ summary: "<one sentence, max ~20 words, the 2 or 3 biggest changes>"
 ---
 ```
 
-Then the body:
+Then the body. This is the whole body, nothing else:
 
 ```
 # Coding agents update
@@ -100,36 +102,25 @@ Then the body:
 **<range>** · <tools with releases, comma separated> · <N> releases, <N> bug fixes
 
 ## In one minute
-- 2 to 5 bullets. One per busy tool, or group small ones.
-- A "Shared theme" bullet ONLY if one really exists across 2+ tools.
-  It may link to an earlier digest when it continues a trend: [earlier](YYYY-MM-DD.html).
 
-## ⚠️ Action needed
-- **<Tool>: <short title>** ([<version>](<release URL>)). What changed, what to do.
-(Omit this whole section if there is nothing.)
-
-## <Tool> · <first> to <last version> · <N> releases, <N> bug fixes
-
-### <Change title> (<version>)
-**What:** ...
-
-**Why it matters:** ...
-
-**When to use:** ...
-
-**Example:** ...
-
-[Source](<release URL>)
+- ⚠️ **<Tool>: <what changed>** (<version>). <One sentence: what to do about it.> [Source](<release URL>)
+- **<Tool>: <what changed>** (<version>). <One sentence: what it does, why it matters, or when to use it.> [Source](<release URL>)
+- **Shared theme: <theme>.** <One sentence naming the tools and changes.> Sources: [<Tool>](<URL>), [<Tool>](<URL>)
 
 No release: <tool>, <tool>
 ```
 
 Format details:
+- Each bullet = a bold title + the version in brackets + exactly ONE sentence + the source link.
+  The sentence can use a semicolon, but keep it under ~35 words.
+- Order: ⚠️ items first (breaking changes, removals, deadlines, changed defaults that need
+  action), then the most useful features, then a shared theme bullet last, if any.
+- Number of bullets follows the amount of news: 1 to 3 for a quiet day, up to ~10 for a
+  busy week. Max ~3 bullets per tool, except ⚠️ items.
+- A "Shared theme" bullet ONLY if one really exists across 2+ tools. It may link to an
+  earlier digest when it continues a trend: [earlier digest](YYYY-MM-DD.html).
 - `range` = from `last_digest_date` in `state.json` to today. After skipped days, the range is longer.
-- Keep a blank line between the What / Why / When / Example / Source lines (each is its own paragraph).
-- One section per tool with releases, in this order: Claude Code, Antigravity CLI,
-  Codex CLI, Cline, Kilo Code. Cline covers both tracks in one section.
-- Release links: use `tag_url` from `sources.yml`.
+- Release links: use `tag_url` from `sources.yml`. Link the release that introduced the change.
 - Last line: tools with no new release, e.g. `No release: Codex CLI, Kilo Code`.
   Omit it if all tools released.
 
@@ -139,10 +130,10 @@ Format details:
   version must appear in the source text. If an example needs a detail that is not
   in the source, mark it `(verify)`. Prefer a plainer example over a guessed one.
 - **Bug fixes:** count them, don't list them. Exception: a fix that unblocks something
-  major (a model or provider that did not work at all) can be an item.
-- **Select:** max ~7 items for a busy tool, fewer for others.
-  Order: breaking changes > features most users touch > the rest.
-- **Short coverage = short digest.** A daily run with 2 changes gives 2 items.
+  major (a model or provider that did not work at all) can be a bullet.
+- **Select hard.** Breaking changes > features most users touch > the rest.
+  A tool can have releases and still get zero bullets if nothing matters; it still counts in the header.
+- **Short coverage = short digest.** A daily run with 2 changes gives 2 bullets.
   Never stretch content to look like a weekly. Never pad a quiet tool.
 - **Skip platform-specific items** (only Bedrock, only Slack, only one IDE, only
   self-hosted runners, admin consoles) unless they are big.
@@ -154,19 +145,11 @@ Format details:
   count, say "N listed bug fixes" or give your best count.
 - Language: English.
 
-## Example of a good item
+## Example of good bullets
 
 ```
-### `/compact` command (1.3.5)
-**What:** Compacts the conversation on demand to free the context window.
-
-**Why it matters:** You control when to summarize, instead of waiting for automatic compaction.
-
-**When to use:** Before starting a new sub-task in a long session.
-
-**Example:** `/compact` summarizes and ends the turn. `/compact <message>` summarizes, then answers your message.
-
-[Source](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5)
+- ⚠️ **Claude Code: MCP allow rules now match only the exact server** (2.1.299). A rule `mcp__a` no longer allows a server named `a__b`, so write `mcp__<server>__*` with the full server name or some tools will start asking for approval. [Source](https://github.com/anthropics/claude-code/releases/tag/v2.1.299)
+- **Antigravity CLI: Auto mode** (1.3.5). It approves edits and safe commands without asking, and a separate agent reviews commands that would leave the sandbox; pick it with `--mode auto` or `Shift+Tab`. [Source](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5)
 ```
 
 See `docs/digests/` for full earlier digests.

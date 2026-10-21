@@ -48,7 +48,7 @@ a { color: var(--accent); text-underline-offset: 2px; }
 .digest h3 + p { margin-top: 0; }
 .digest p { margin: 6px 0; }
 .digest ul { padding-left: 20px; }
-.digest li { margin: 6px 0; }
+.digest li { margin: 12px 0; }
 code {
   font: .86em/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   background: var(--code-bg); padding: 1px 5px; border-radius: 4px;
@@ -56,13 +56,6 @@ code {
 }
 pre { background: var(--code-bg); padding: 12px; border-radius: 6px; overflow-x: auto; }
 pre code { padding: 0; background: none; }
-
-/* "Action needed" block: the h2 that contains the warning sign and the list after it */
-.digest h2[id$="action-needed"] { border-top-color: var(--warn-line); }
-.digest h2[id$="action-needed"] + ul {
-  background: var(--warn-bg); border-left: 3px solid var(--warn-line);
-  padding: 10px 14px 10px 30px; border-radius: 4px;
-}
 
 .archive { margin-top: 56px; border-top: 2px solid var(--line); padding-top: 8px; }
 .archive h2 { font-size: 1.1rem; }

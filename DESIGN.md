@@ -142,3 +142,8 @@ Results of the setup run, recorded so later edits have the facts.
 
 **Site**
 - Jekyll on GitHub Pages. `docs/index.html` lists `docs/digests/*.md` automatically and shows the latest one in full, so the task does not edit the index.
+
+**Format change (2026-10-21, after launch)**
+- Digests now contain only the "In one minute" list. Each bullet: bold title + version + one sentence (what / why / when to use) + source link.
+- No separate "Action needed" section and no per-tool sections. Breaking changes, removals and deadlines lead the list, marked ⚠️.
+- Bullet count follows the news: 1 to 3 on a quiet day, up to ~10 for a busy week, max ~3 per tool except ⚠️ items.

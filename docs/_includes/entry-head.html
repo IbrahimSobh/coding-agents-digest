@@ -1,0 +1,4 @@
+<header class="run-head">
+  <h2><a href="{{ include.e.url | relative_url }}">{{ include.e.run }}</a></h2>
+  <span class="since">{% if include.e.quiet %}No new releases · {% endif %}since {{ include.e.since }}</span>
+</header>

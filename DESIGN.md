@@ -147,3 +147,4 @@ Results of the setup run, recorded so later edits have the facts.
 - Digests now contain only the "In one minute" list. Each bullet: bold title + version + one sentence (what / why / when to use) + source link.
 - No separate "Action needed" section and no per-tool sections. Breaking changes, removals and deadlines lead the list, marked ⚠️.
 - Bullet count follows the news: 1 to 3 on a quiet day, up to ~10 for a busy week, max ~3 per tool except ⚠️ items.
+- Update: the list is grouped by tool, in a fixed order: Claude Code, Antigravity CLI, Codex CLI, Cline, Kilo Code, then "Across tools". ⚠️ bullets come first inside each tool. PROMPT.md has a test for when to use ⚠️.

@@ -44,7 +44,8 @@ a { color: var(--accent); text-underline-offset: 2px; }
   font-size: 1.3rem; margin: 40px 0 12px; padding-top: 16px;
   border-top: 1px solid var(--line);
 }
-.digest h3 { font-size: 1.05rem; margin: 28px 0 6px; }
+.digest h3 { font-size: 1.05rem; margin: 28px 0 4px; color: var(--accent); }
+.digest h3 + ul { margin-top: 0; }
 .digest h3 + p { margin-top: 0; }
 .digest p { margin: 6px 0; }
 .digest ul { padding-left: 20px; }

@@ -15,7 +15,7 @@ The value of the digest is not the list of changes. It is:
 - **Action needed first**: breaking changes, removals and deadlines lead the list, marked ⚠️.
 - **Cross-tool view**: real themes across tools.
 
-The digest is ONE list ("In one minute"). No per-tool sections, no long items.
+The digest is ONE short list ("In one minute"), grouped by tool. No long items.
 
 ## Step by step
 
@@ -103,26 +103,54 @@ Then the body. This is the whole body, nothing else:
 
 ## In one minute
 
-- ⚠️ **<Tool>: <what changed>** (<version>). <One sentence: what to do about it.> [Source](<release URL>)
-- **<Tool>: <what changed>** (<version>). <One sentence: what it does, why it matters, or when to use it.> [Source](<release URL>)
-- **Shared theme: <theme>.** <One sentence naming the tools and changes.> Sources: [<Tool>](<URL>), [<Tool>](<URL>)
+### Claude Code
+- ⚠️ **<What changed>** (<version>). <One sentence: what to do about it.> [Source](<release URL>)
+- **<What changed>** (<version>). <One sentence: what it does, why it matters, or when to use it.> [Source](<release URL>)
+
+### Antigravity CLI
+- ...
+
+### Codex CLI
+- ...
+
+### Cline
+- ...
+
+### Kilo Code
+- ...
+
+### Across tools
+- **<Theme>.** <One sentence naming the tools and changes.> Sources: [<Tool>](<URL>), [<Tool>](<URL>)
 
 No release: <tool>, <tool>
 ```
 
 Format details:
+- **Tool order is fixed:** Claude Code, Antigravity CLI, Codex CLI, Cline, Kilo Code.
+  Cline covers both tracks (extension and CLI) under one heading.
+- A tool with no new release gets **no heading**; it goes in the `No release:` line at the end.
+  Omit that line if all tools released.
+- A tool with releases but nothing worth a bullet gets one line under its heading:
+  `- Bug fixes only (<N> fixes).` or `- Minor changes only.`
 - Each bullet = a bold title + the version in brackets + exactly ONE sentence + the source link.
-  The sentence can use a semicolon, but keep it under ~35 words.
-- Order: ⚠️ items first (breaking changes, removals, deadlines, changed defaults that need
-  action), then the most useful features, then a shared theme bullet last, if any.
-- Number of bullets follows the amount of news: 1 to 3 for a quiet day, up to ~10 for a
-  busy week. Max ~3 bullets per tool, except ⚠️ items.
-- A "Shared theme" bullet ONLY if one really exists across 2+ tools. It may link to an
-  earlier digest when it continues a trend: [earlier digest](YYYY-MM-DD.html).
+  The sentence can use a semicolon, but keep it under ~35 words. No tool name in the
+  title (the heading already says it).
+- Inside each tool: ⚠️ bullets first, then the most useful features.
+- Number of bullets follows the amount of news: 1 to 3 in total for a quiet day, up to
+  ~10 for a busy week. Max ~3 bullets per tool, not counting ⚠️ bullets.
+- `### Across tools` ONLY if a real theme exists across 2+ tools; otherwise omit the heading.
+  It may link to an earlier digest when it continues a trend: [earlier digest](YYYY-MM-DD.html).
 - `range` = from `last_digest_date` in `state.json` to today. After skipped days, the range is longer.
 - Release links: use `tag_url` from `sources.yml`. Link the release that introduced the change.
-- Last line: tools with no new release, e.g. `No release: Codex CLI, Kilo Code`.
-  Omit it if all tools released.
+
+### When to use ⚠️
+Ask: "If the user updates and does nothing, will something break, change behind their
+back in a harmful way, or end on a date?"
+- **Yes → ⚠️.** Examples: a removed flag or setting, a permission rule that matches less,
+  a URL or config that is now read differently, a service shutdown date, a new default that
+  can raise cost or change results (e.g. a different default model).
+- **No → no ⚠️.** Examples: a new command, a new opt-in mode, a new default that only helps
+  and breaks nothing (e.g. automatic compaction that saves cost).
 
 ## Writing rules
 
@@ -148,8 +176,11 @@ Format details:
 ## Example of good bullets
 
 ```
-- ⚠️ **Claude Code: MCP allow rules now match only the exact server** (2.1.299). A rule `mcp__a` no longer allows a server named `a__b`, so write `mcp__<server>__*` with the full server name or some tools will start asking for approval. [Source](https://github.com/anthropics/claude-code/releases/tag/v2.1.299)
-- **Antigravity CLI: Auto mode** (1.3.5). It approves edits and safe commands without asking, and a separate agent reviews commands that would leave the sandbox; pick it with `--mode auto` or `Shift+Tab`. [Source](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5)
+### Claude Code
+- ⚠️ **MCP allow rules now match only the exact server** (2.1.299). A rule `mcp__a` no longer allows a server named `a__b`, so write `mcp__<server>__*` with the full server name or some tools will start asking for approval. [Source](https://github.com/anthropics/claude-code/releases/tag/v2.1.299)
+
+### Antigravity CLI
+- **Auto mode** (1.3.5). It approves edits and safe commands without asking, and a separate agent reviews commands that would leave the sandbox; pick it with `--mode auto` or `Shift+Tab`. [Source](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5)
 ```
 
 See `docs/digests/` for full earlier digests.

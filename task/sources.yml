@@ -1,0 +1,69 @@
+# Tools tracked by the digest. Verified 2026-10-21.
+#
+# Fields:
+#   id            key used in task/state.json
+#   releases      GitHub Releases page: the source of versions and dates
+#   tag_pattern   which release tags count (others are ignored)
+#   full_text     where the full change text lives
+#   tag_url       link pattern for a single release (replace {tag})
+#
+# Global rule: skip alpha, beta, rc, nightly and any release marked "Pre-release".
+
+tools:
+  - id: claude-code
+    name: Claude Code
+    repo: anthropics/claude-code
+    releases: https://github.com/anthropics/claude-code/releases
+    tag_pattern: "v2.*"            # e.g. v2.1.307
+    full_text: https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md
+    full_text_note: "Headings are '## 2.1.307' (no 'v', no dates). Dates come from the Releases page."
+    tag_url: https://github.com/anthropics/claude-code/releases/tag/{tag}
+
+  - id: antigravity-cli
+    name: Antigravity CLI (agy)
+    repo: google-antigravity/antigravity-cli
+    releases: https://github.com/google-antigravity/antigravity-cli/releases
+    tag_pattern: "1.*"             # e.g. 1.4.4 (no 'v' prefix)
+    full_text: https://raw.githubusercontent.com/google-antigravity/antigravity-cli/main/CHANGELOG.md
+    full_text_note: "Headings are '## 1.4.4' (no dates). Dates come from the Releases page."
+    tag_url: https://github.com/google-antigravity/antigravity-cli/releases/tag/{tag}
+
+  - id: codex
+    name: OpenAI Codex CLI
+    repo: openai/codex
+    releases: https://github.com/openai/codex/releases
+    tag_pattern: "rust-v0.*"       # e.g. rust-v0.163.0. The first page is often all alpha tags.
+    full_text: release notes on each stable release page
+    full_text_note: "Find the newest stable tag with https://github.com/openai/codex/releases/latest or git ls-remote. Skip every -alpha tag."
+    tag_url: https://github.com/openai/codex/releases/tag/{tag}
+
+  - id: cline
+    name: Cline
+    repo: cline/cline
+    releases: https://github.com/cline/cline/releases
+    # One repo, several products. Track the extension and the CLI only.
+    tracks:
+      - id: extension
+        tag_pattern: "v4.*"        # e.g. v4.1.25
+      - id: cli
+        tag_pattern: "cli-v3.*"    # e.g. cli-v3.0.73
+    ignored_tags: ["sdk/*", "desktop-v*"]
+    full_text: release notes on each release page
+    tag_url: https://github.com/cline/cline/releases/tag/{tag}
+
+  - id: kilo-code
+    name: Kilo Code
+    repo: Kilo-Org/kilocode
+    releases: https://github.com/Kilo-Org/kilocode/releases
+    tag_pattern: "v7.*"            # e.g. v7.8.15. Active: v7.8.15 on 2026-10-19.
+    ignored_tags: ["jetbrains/*"]  # JetBrains plugin: platform-specific, skip unless big
+    full_text: release notes on each release page
+    full_text_note: >
+      Many v7.x tags are marked Pre-release. Skip them. A stable release page
+      repeats the notes of the pre-releases before it (e.g. v7.8.12 lists 7.8.9,
+      7.8.10, 7.8.12). Cover those notes once, under the stable release.
+    tag_url: https://github.com/Kilo-Org/kilocode/releases/tag/{tag}
+
+not_tracked:
+  - name: Gemini CLI
+    reason: Replaced by Antigravity CLI (agy) on 2026-06-18 for unpaid and Google One users.

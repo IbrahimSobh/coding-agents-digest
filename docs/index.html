@@ -1,0 +1,23 @@
+---
+layout: default
+title: Latest
+---
+{% assign digests = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" | reverse %}
+{% assign latest = digests | first %}
+{% if latest %}
+<p class="label">Latest digest · {{ latest.range }}</p>
+<article class="digest">
+  {{ latest.content | markdownify }}
+</article>
+{% endif %}
+<section class="archive">
+  <h2>All digests</h2>
+  <ul>
+  {% for d in digests %}
+    <li>
+      <a href="{{ d.url | relative_url }}">{{ d.range }}</a>
+      {% if d.summary %}<span class="summary">{{ d.summary }}</span>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</section>

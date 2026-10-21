@@ -1,0 +1,8 @@
+title: Coding Agents Weekly
+description: What changed in AI coding agents, selected and explained.
+baseurl: /coding-agents-weekly
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+exclude: []

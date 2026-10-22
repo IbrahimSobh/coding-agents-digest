@@ -129,8 +129,12 @@ details[open] .chev{transform:rotate(90deg)}
 
 html,body{width:1920px;height:1080px;overflow:hidden}
 body{font-size:14px}
-.slide{display:grid;grid-template-columns:1.12fr 1fr;gap:36px;padding:22px 40px 0;height:calc(1080px - 64px)}
-.col{min-width:0;overflow:hidden}
+.slide{display:grid;grid-template-columns:1.12fr 1fr;gap:36px;padding:20px 40px 24px;height:calc(1080px - 64px)}
+.col{min-width:0;overflow:hidden;display:flex;flex-direction:column}
+.col>#weekly{flex:1;display:flex}
+.col>#weekly .hero{flex:1;display:flex}
+.col>#weekly .hero-in{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.col>.daily{flex:1}
 .sbar{display:flex;align-items:center;gap:14px;height:64px;padding:0 40px;border-bottom:1px solid var(--line)}
 .sbar .brand{font-size:20px}
 .sbar .tag{margin-left:auto;font-size:13px;color:var(--muted)}
@@ -147,14 +151,20 @@ section{margin-top:0}
 .act p{font-size:13px;margin-top:4px}
 .daily{margin-top:0;padding-top:0;border:none;border-left:3px solid transparent;border-image:linear-gradient(180deg,var(--cyan),var(--violet),var(--orange)) 1;padding-left:30px}
 .daily::before{content:none}
-.dhead{margin-bottom:10px}
+.dhead{margin-bottom:8px}
+.dhead h2{font-size:22px}
+.dicon{width:42px;height:42px}
 .tl{margin-top:8px}
-.day{margin:12px 0 8px}
-.card{padding:12px 14px}
-.tool ul{font-size:13.5px}
+.day{margin:10px 0 6px}
+.card{padding:10px 14px}
+.sbar .tag{font-size:12.5px}
+.tool ul{font-size:13.5px;padding-top:6px;padding-bottom:8px}
 .qrows{margin-top:8px}
+.tl details.run{margin-bottom:6px}
+.tl .day{margin:6px 0 4px}
+.foot{position:fixed;right:40px;bottom:10px;font-size:11.5px;color:var(--soft)}
 </style></head><body>
-<div class="sbar"><div class="brand">🤖 Coding Agents <span class="g">Digest</span></div><span class="tag">New home page design · summary on the left, details on the right · ibrahimsobh.github.io/coding-agents-digest</span></div>
+<div class="sbar"><div class="brand">🤖 Coding Agents <span class="g">Digest</span></div><span class="tag">New home page design · summary left, details right · runs before Oct 22 are samples built from real releases · ibrahimsobh.github.io/coding-agents-digest</span></div>
 <div class="slide">
  <div class="col">
   <section id="weekly">
@@ -234,28 +244,25 @@ section{margin-top:0}
         <div class="tool" data-tool="oc"><div class="h"><i class="d" style="background:var(--t-oc)"></i>OpenCode</div>
           <ul><li><span class="warn">⚠</span> <b>Session sharing discontinued</b> (1.19.1). Existing share links stop working and share URLs can no longer be imported. <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.1">Source</a></li>
               <li><b>Configurable reasoning variants</b> (1.19.3). Set reasoning options to generate variants; your overrides are kept. <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.3">Source</a></li></ul></div>
-        <div class="qrows"><span class="q">Claude Code · no updates</span><span class="q">Antigravity CLI · no updates</span><span class="q">Codex CLI · no updates</span><span class="q">Kilo Code · no updates</span></div>
+        
       </div></div>
 
       <div class="quiet" data-quiet>04:09 to 05:20 · 5 checks, no updates</div>
 
       
-      <details class="run" data-tools="cc agy codex kilo old"><summary class="card sum">
-        <span class="t">01:50</span><span class="m">First digest · Oct 14 to 21</span>
-        <span class="dots"><i style="background:var(--t-cc)"></i><i style="background:var(--t-agy)"></i><i style="background:var(--t-codex)"></i><i style="background:var(--t-kilo)"></i></span>
-        <span class="cnt">11 items · <b class="warnc">⚠ 3</b></span><span class="chev">▸</span></summary>
-        <div class="card" style="margin-top:6px"><div class="tool" data-tool="cc"><div class="h"><i class="d" style="background:var(--t-cc)"></i>Claude Code</div>
-          <ul><li><span class="warn">⚠</span> <b>MCP allow rules now match only the exact server</b> (2.1.299). Write <code>mcp__&lt;server&gt;__*</code> with the full server name. <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">Source</a></li>
-              <li><span class="warn">⚠</span> <b>Standalone Claude Design closes on December 14, 2026</b> (2.1.302). <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">Source</a></li>
-              <li><b>Idle compaction</b> (2.1.299). Idle 200K+ token conversations are compacted before the cache expires. <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">Source</a></li></ul></div>
+      <div class="day">YESTERDAY · TUE, OCT 21</div>
+      <div class="run" data-tools="agy"><div class="card">
+        <div class="rh"><span class="t">19:41</span><span class="m">Antigravity CLI · 1 release, 9 bug fixes</span></div>
         <div class="tool" data-tool="agy"><div class="h"><i class="d" style="background:var(--t-agy)"></i>Antigravity CLI</div>
-          <ul><li><b>Auto mode</b> (1.3.5). Approves edits and safe commands; a separate agent reviews risky ones. <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5">Source</a></li></ul></div>
-        <div class="tool" data-tool="codex"><div class="h"><i class="d" style="background:var(--t-codex)"></i>Codex CLI</div>
-          <ul><li><b>Steer Codex mid-answer, plus a searchable <code>/config</code></b> (0.163.0). <a href="https://github.com/openai/codex/releases/tag/rust-v0.163.0">Source</a></li></ul></div>
-        <div class="tool" data-tool="kilo"><div class="h"><i class="d" style="background:var(--t-kilo)"></i>Kilo Code</div>
-          <ul><li><b>New Agent Manager worktree dialog</b> (v7.8.15). <a href="https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.15">Source</a></li></ul></div>
-        <a class="more" href="#">Show all 11 items →</a></div>
-      </details>
+          <ul><li><b>Auto mode on Windows</b> (1.4.4). Now on Windows 11 24H2+ for personal Google Accounts; pick it with <code>--mode auto</code> or <code>Shift+Tab</code>. <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.4">Source</a></li></ul></div>
+      </div></div>
+      <details class="run" data-tools="cc"><summary class="card sum"><span class="t">07:41</span><span class="m">Claude Code 2.1.305, 2.1.306 · /usage fixes</span><span class="dots"><i style="background:var(--t-cc)"></i></span><span class="cnt">2 items</span><span class="chev">▸</span></summary></details>
+      <div class="day">MON, OCT 20</div>
+      <details class="run" data-tools="kilo cc agy"><summary class="card sum"><span class="t">07:41</span><span class="m">Kilo Code v7.8.15 · Claude Code 2.1.304 · agy 1.4.3</span><span class="dots"><i style="background:var(--t-kilo)"></i><i style="background:var(--t-cc)"></i><i style="background:var(--t-agy)"></i></span><span class="cnt">5 items</span><span class="chev">▸</span></summary></details>
+      <div class="day">THU, OCT 16</div>
+      <details class="run" data-tools="codex"><summary class="card sum"><span class="t">07:41</span><span class="m">Codex CLI 0.163.0 · steer mid-answer</span><span class="dots"><i style="background:var(--t-codex)"></i></span><span class="cnt">3 items</span><span class="chev">▸</span></summary></details>
+
+
     </div>
   </section>
  </div>

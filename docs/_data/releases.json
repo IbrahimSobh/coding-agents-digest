@@ -113,5 +113,7 @@
   "tool": "opencode",
   "tag": "v1.19.3",
   "date": "2026-10-16"
- }
+ },
+  {"tool": "antigravity-cli", "tag": "1.4.5", "date": "2026-10-22"},
+  {"tool": "opencode", "tag": "v1.19.4", "date": "2026-10-22"}
 ]

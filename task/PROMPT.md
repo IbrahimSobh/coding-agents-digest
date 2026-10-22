@@ -130,6 +130,8 @@ The brief covers the **last 7 days** up to now. Read the entries in `docs/digest
 }
 ```
 - `window`: from 7 days ago to today, e.g. "Oct 15 to Oct 22, 2026".
+- `headline`: when writing it, consider the dates of the entries: give more weight to the newest
+  ones, but keep the week's biggest change.
 - Themes are real patterns from the last 7 days, best across 2+ tools. If the week has fewer
   than 3 real cross-tool themes, use the biggest single-tool changes. Never invent.
 - Use only facts that are in the entries (and their sources). Every fact keeps its link.

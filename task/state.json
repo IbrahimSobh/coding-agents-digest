@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-10-22T05:23+03:00",
-  "last_entry_file": "docs/digests/2026-10-22-0523.md",
+  "last_run": "2026-10-22T05:33+03:00",
+  "last_entry_file": "docs/digests/2026-10-22-0533.md",
   "timezone": "Africa/Cairo",
   "tools": {
     "claude-code": {
@@ -20,7 +20,7 @@
       "last_release_date": "2026-10-19"
     },
     "opencode": {
-      "last_tag": "v1.19.2",
+      "last_tag": "v1.19.3",
       "last_release_date": "2026-10-16"
     }
   }

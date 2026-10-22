@@ -14,7 +14,7 @@ changes that matter, one sentence each with a source link, breaking changes firs
 
 ## How it works
 
-A Claude scheduled task runs twice a day (07:41 and 19:41 Cairo). Each run:
+A Claude scheduled task runs twice a day (08:00 and 20:00 Cairo). Each run:
 
 1. Reads `task/state.json` (last run, last tag per tool, last snapshot date).
 2. Checks the sources in `task/sources.yml` for newer stable releases.

@@ -6,7 +6,7 @@ title: Latest
 {% for e in entries limit: 14 %}
 <section class="run{% if e.quiet %} quiet{% endif %}">
   {% include entry-head.html e=e %}
-  {% unless e.quiet %}<div class="run-body">{{ e.content | markdownify }}</div>{% endunless %}
+  {% if e.quiet == false or e.content contains "Could not read" %}<div class="run-body{% if e.quiet %} small{% endif %}">{{ e.content | markdownify }}</div>{% endif %}
 </section>
 {% endfor %}
 {% if entries.size > 14 %}

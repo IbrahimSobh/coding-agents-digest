@@ -44,6 +44,8 @@ a { color: var(--accent); text-underline-offset: 2px; }
 .run-head h2 a { color: var(--fg); text-decoration: none; }
 .run.quiet .run-head h2 { font-size: .92rem; font-weight: 600; }
 .since { color: var(--muted); font-size: .85rem; }
+.status.failed { color: #c2410c; font-weight: 600; }
+.run-body.small p { font-size: .82rem; color: var(--muted); margin: 2px 0; }
 .run-body > p:first-child { color: var(--muted); font-size: .88rem; margin: 4px 0 0; }
 .run-body p { margin: 8px 0; }
 

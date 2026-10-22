@@ -31,24 +31,31 @@ The value of an entry is not the list of changes. It is:
   (Cline has two tracks: `extension` and `cli`).
 
 ### 2. Find new releases
-For each tool (and each Cline track), read its Releases page and list the releases
-that match `tag_pattern` and are **newer than `last_tag`** in `state.json`
-(compare by version number, not by date).
+For each tool (and each Cline track), list the releases that match `tag_pattern` and are
+**newer than `last_tag`** in `state.json` (compare by version number, not by date).
 
-- Skip alpha, beta, rc, nightly, and any release marked "Pre-release".
+**How to read the sources. Read this carefully.**
+- **Do NOT use `gh` or the GitHub API (`api.github.com`) for the 5 tool repos.** They are
+  not attached to your session, so those calls fail with 403. A 403 from `gh` does NOT mean
+  the source is unreadable. Use the methods below instead; they work.
+- Method A, tags (always works): `git ls-remote --tags https://github.com/<owner>/<repo>`
+  Example: `git ls-remote --tags https://github.com/anthropics/claude-code | grep -v '\^{}' | awk '{print $2}' | sort -V | tail -5`
+- Method B, changelog text: `curl -sS <full_text URL from sources.yml>`
+  (Claude Code and Antigravity CLI; files on `raw.githubusercontent.com`).
+- Method C, release pages with dates and notes: your web fetch tool on
+  `https://github.com/<owner>/<repo>/releases` or `.../releases/tag/<tag>`.
+- Start with Method A for every tool. Only tags newer than `last_tag` need Methods B and C.
+- A source counts as "could not read" only if **all** methods that apply to it failed.
+
+Rules:
+- Skip alpha, beta, rc, nightly, and any release marked "Pre-release" (check the release
+  page with Method C for tools whose tags do not show it, e.g. Kilo Code).
 - Skip tags listed under `ignored_tags`.
-- Codex: the first Releases page is often only alpha tags. Use
-  `https://github.com/openai/codex/releases/latest`, or list tags with
-  `git ls-remote --tags https://github.com/openai/codex 'rust-v0.*'` and drop `-alpha` tags.
-- Release dates come from the Releases page. The page often shows no year:
+- Codex: stable tags are `rust-v0.x.y` without `-alpha`. Method A shows them.
+- Release dates come from the release page. The page often shows no year:
   use the current year, unless that puts the date in the future (then use last year).
-- How to read sources (some access paths may be blocked in your environment; use the next one):
-  1. Fetch the Releases page or a release page (`.../releases/tag/<tag>`) with your web fetch tool.
-  2. Fetch `CHANGELOG.md` files from `raw.githubusercontent.com` (URLs in `sources.yml`).
-  3. `git ls-remote --tags <repo URL>` lists all tags (no dates).
-  4. The GitHub API, if available.
 - If a source fails, do not guess. Add a line at the end of the entry:
-  `Could not read: <tool> (<what failed>)`, and say it in the run log.
+  `Could not read: <tool> (<what failed, per method>)`, and say it in the run log.
 
 ### 3. Read the full text (only if there are new releases)
 - Claude Code and Antigravity CLI: take the sections of `CHANGELOG.md` for each new
@@ -59,8 +66,13 @@ that match `tag_pattern` and are **newer than `last_tag`** in `state.json`
 
 ### 4. Write the entry
 File: `docs/digests/YYYY-MM-DD-HHMM.md`, using the Cairo run time (e.g. `2026-10-22-0800.md`).
-Use the "News entry" format below if any tool has a new release, otherwise the
-"Quiet entry" format.
+- Any tool has a new release → "News entry" format.
+- All tools were read and none has a new release → "Quiet entry" format.
+- **Some tools could not be read** and none of the others has news → "Quiet entry", but write
+  `No new releases found for the tools that could be read.` plus the `Could not read:` lines.
+- **No tool could be read** → "Quiet entry" with `summary: "Check failed."` and body
+  `Check failed: no source could be read.` plus the `Could not read:` lines.
+  Never write "No new releases" for a tool you did not read.
 
 ### 5. Update `task/state.json`
 - Always: set `last_run` to the run time (`YYYY-MM-DDTHH:MM+03:00`, with the real offset

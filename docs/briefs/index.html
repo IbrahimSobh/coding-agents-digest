@@ -1,0 +1,14 @@
+---
+layout: default
+title: Archive
+---
+<section>
+  <span class="k">📚 Archive</span>
+  <h1 style="font-size:26px;margin:6px 0 4px">Weekly snapshots</h1>
+  <p style="color:var(--muted);font-size:14px">A copy of the live 7-day brief, saved about once a week.</p>
+  <div class="list">
+    {% assign snaps = site.pages | where_exp: "p", "p.path contains 'briefs/'" | where_exp: "p", "p.name != 'index.html'" | sort: "date" | reverse %}
+    {% for s in snaps %}<a href="{{ s.url | relative_url }}"><b>{{ s.window }}</b><span>{{ s.summary }}</span></a>{% endfor %}
+    {% if snaps.size == 0 %}<p style="color:var(--soft)">No snapshots yet.</p>{% endif %}
+  </div>
+</section>

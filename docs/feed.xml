@@ -3,10 +3,12 @@ layout: null
 ---
 <?xml version="1.0" encoding="utf-8"?>
 {% comment %}
-  Atom feed: one item per news run (quiet runs are skipped), latest 20.
+  Atom feed: one item per news run (quiet runs are skipped) plus each weekly snapshot, latest 20.
   Tool boxes that only say "No updates since ..." are left out of each item.
 {% endcomment %}
-{% assign entries = site.pages | where_exp: "p", "p.path contains 'digests/'" | where_exp: "p", "p.quiet == false" | sort: "path" | reverse %}
+{% assign news = site.pages | where_exp: "p", "p.path contains 'digests/'" | where_exp: "p", "p.quiet == false" %}
+{% assign snaps = site.pages | where_exp: "p", "p.path contains 'briefs/'" | where_exp: "p", "p.name != 'index.html'" %}
+{% assign entries = news | concat: snaps | sort: "date" | reverse %}
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ site.title | xml_escape }}</title>
   <subtitle>{{ site.description | xml_escape }}</subtitle>
@@ -20,7 +22,7 @@ layout: null
   {% assign parts = html | split: "<h3" %}
   {% capture body %}{{ parts[0] }}{% for part in parts offset: 1 %}{% unless part contains "No updates since" %}<h3{{ part }}{% endunless %}{% endfor %}<p><a href="{{ e.url | absolute_url }}">Read on the website →</a></p>{% endcapture %}
   <entry>
-    <title>{{ e.run | remove: " (Cairo)" | append: " · " | append: e.summary | xml_escape }}</title>
+    <title>{% if e.path contains "briefs/" %}{{ "📊 Weekly snapshot · " | append: e.window | append: " · " | append: e.summary | xml_escape }}{% else %}{{ e.run | remove: " (Cairo)" | append: " · " | append: e.summary | xml_escape }}{% endif %}</title>
     <link href="{{ e.url | absolute_url }}" rel="alternate" type="text/html"/>
     <id>{{ e.url | absolute_url }}</id>
     <updated>{{ e.date | date_to_xmlschema }}</updated>

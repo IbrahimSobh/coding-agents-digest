@@ -1,26 +1,77 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.summary | default: site.description }}">
+  <script>try{var t=localStorage.getItem('cad-theme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: light)').matches)document.documentElement.dataset.theme='light';}catch(e){}</script>
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="brand" href="{{ '/' | relative_url }}">Coding Agents Digest</a>
-      <span class="tagline">Claude Code · Antigravity CLI · Codex CLI · Kilo Code · OpenCode · <a href="{{ '/feed.xml' | relative_url }}">Subscribe (RSS)</a></span>
-    </div>
-  </header>
+  <header class="site"><div class="wrap hbar">
+    <a class="brand" href="{{ '/' | relative_url }}">🤖 Coding Agents <span class="g">Digest</span></a>
+    <nav>
+      <a {% if page.url == '/' %}class="on" {% endif %}href="{{ '/' | relative_url }}">Latest</a>
+      <a {% if page.url contains '/briefs/' %}class="on" {% endif %}href="{{ '/briefs/' | relative_url }}">Archive</a>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </nav>
+    <button class="tbtn" id="theme" title="Light / dark">🌓</button>
+  </div></header>
   <main class="wrap">
     {{ content }}
   </main>
-  <footer class="wrap site-footer">
-    Checked twice a day (08:00 and 20:00 Cairo) by a Claude scheduled task from official changelogs and release notes. Each item links to its source.
-    Items marked "(verify)" contain a detail not found in the source.
+  <footer class="wrap site">
+    <span>Checked twice a day by a Claude scheduled task. Every item links its source.</span>
+    <span>Claude Code · Antigravity CLI · Codex CLI · Kilo Code · OpenCode · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></span>
   </footer>
+  <script>
+  (function(){
+    var root=document.documentElement, DAY=864e5;
+    // Light / dark toggle, remembered per browser
+    var tb=document.getElementById('theme');
+    if(tb) tb.onclick=function(){root.dataset.theme=root.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('cad-theme',root.dataset.theme)}catch(e){}};
+    function d0(s){return new Date(s+'T00:00:00')}
+    var today=new Date(); today.setHours(0,0,0,0);
+    // Countdowns and "flagged N days ago"
+    document.querySelectorAll('[data-deadline]').forEach(function(el){
+      var d=Math.round((d0(el.dataset.deadline)-today)/DAY);
+      el.textContent=d>1?d+' days left':d===1?'1 day left':d===0?'today':'passed';
+    });
+    document.querySelectorAll('[data-flagged]').forEach(function(el){
+      var d=Math.round((today-d0(el.dataset.flagged))/DAY);
+      el.textContent=d<=0?'flagged today':d===1?'flagged yesterday':'flagged '+d+' days ago';
+    });
+    // Day headings: Today / Yesterday
+    document.querySelectorAll('.day[data-date]').forEach(function(el){
+      var d=Math.round((today-d0(el.dataset.date))/DAY);
+      if(d===0) el.textContent='Today · '+el.textContent;
+      else if(d===1) el.textContent='Yesterday · '+el.textContent;
+    });
+    // "Show all" on the board
+    var mb=document.getElementById('moreActions');
+    if(mb) mb.onclick=function(){document.querySelectorAll('.act.extra').forEach(function(a){a.classList.remove('hidden')});mb.remove();};
+    // Tool filter
+    var chips=[].slice.call(document.querySelectorAll('#filters .chip'));
+    function apply(f){
+      chips.forEach(function(c){c.classList.toggle('on',c.dataset.f===f)});
+      document.querySelectorAll('.tl .run').forEach(function(r){
+        var tools=(r.dataset.tools||'').split(' ');
+        r.classList.toggle('hidden',f!=='all'&&tools.indexOf(f)<0);
+        r.querySelectorAll('.tool').forEach(function(t){t.classList.toggle('hidden',f!=='all'&&t.dataset.tool!==f)});
+        r.querySelectorAll('.qrows').forEach(function(q){q.classList.toggle('hidden',f!=='all')});
+      });
+      document.querySelectorAll('.tl .quiet').forEach(function(q){q.classList.toggle('hidden',f!=='all')});
+      try{localStorage.setItem('cad-filter',f)}catch(e){}
+    }
+    if(chips.length){
+      chips.forEach(function(c){c.onclick=function(){apply(c.dataset.f)}});
+      var saved='all';try{saved=localStorage.getItem('cad-filter')||'all'}catch(e){}
+      if(!chips.some(function(c){return c.dataset.f===saved})) saved='all';
+      apply(saved);
+    }
+  })();
+  </script>
 </body>
 </html>

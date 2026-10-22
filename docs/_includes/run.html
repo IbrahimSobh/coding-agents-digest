@@ -1,0 +1,41 @@
+{% comment %}
+  One news run. include.e = the entry page, include.html = its rendered HTML,
+  include.open = true (card) or false (collapsed line).
+  Tools with news become colored boxes; "No updates" / "Not checked" tools become small pills.
+{% endcomment %}
+{% assign parts = include.html | split: "<h3" %}
+{% assign rp_news = "" %}{% assign rp_quiet = "" %}{% assign rp_tools = "" %}{% assign rp_names = "" %}{% assign rp_colors = "" %}
+{% for part in parts offset: 1 %}
+  {% assign name = part | split: "</h3>" | first | split: ">" | last | strip %}
+  {% assign body = part | split: "</h3>" | last %}
+  {% assign items = part | split: "<li>" %}
+  {% assign t = site.data.tools | where: "name", name | first %}
+  {% if items.size == 2 and part contains "No updates since" or items.size == 2 and part contains "Not checked" %}
+    {% capture rp_quiet %}{{ rp_quiet }}<span class="q">{{ name }} · {% if part contains "Not checked" %}not checked{% else %}no updates{% endif %}</span>{% endcapture %}
+  {% elsif t %}
+    {% capture rp_news %}{{ rp_news }}<div class="tool" data-tool="{{ t.id }}" style="--tc:{{ t.color }}"><div class="h"><i class="d" style="background:{{ t.color }}"></i>{{ name }}</div>{{ body }}</div>{% endcapture %}
+    {% assign rp_tools = rp_tools | append: t.id | append: "|" %}
+    {% assign rp_names = rp_names | append: name | append: "|" %}
+    {% assign rp_colors = rp_colors | append: t.color | append: "|" %}
+  {% else %}
+    {% capture rp_news %}{{ rp_news }}<div class="tool across"><div class="h">{{ name }}</div>{{ body }}</div>{% endcapture %}
+  {% endif %}
+{% endfor %}
+{% assign cl = rp_colors | split: "|" %}
+{% if cl.size == 1 %}{% assign dotbg = cl[0] %}{% elsif cl.size > 1 %}{% capture dotbg %}conic-gradient({% for c in cl %}{% assign s0 = forloop.index0 | times: 100 | divided_by: cl.size %}{% assign s1 = forloop.index | times: 100 | divided_by: cl.size %}{{ c }} {{ s0 }}% {{ s1 }}%{% unless forloop.last %},{% endunless %}{% endfor %}){% endcapture %}{% else %}{% assign dotbg = "var(--soft)" %}{% endif %}
+{% assign tools_attr = rp_tools | split: "|" | join: " " %}
+{% assign n_items = rp_news | split: "<li>" | size | minus: 1 %}
+{% assign n_warn = rp_news | split: "⚠" | size | minus: 1 %}
+{% assign counts = parts[0] | strip_html | strip %}
+{% assign rtime = include.e.date | date: "%H:%M" %}
+{% capture inner %}{{ rp_news }}{% if rp_quiet != "" %}<div class="qrows">{{ rp_quiet }}</div>{% endif %}{% endcapture %}
+{% if include.open %}
+<div class="run" data-tools="{{ tools_attr }}"><i class="rdot" style="background:{{ dotbg }}"></i><div class="card">
+  <div class="rh"><a class="t" href="{{ include.e.url | relative_url }}">{{ rtime }}</a><span class="m">{{ counts }}</span></div>
+  {{ inner }}
+</div></div>
+{% else %}
+<details class="run" data-tools="{{ tools_attr }}"><summary class="card sum"><i class="rdot" style="background:{{ dotbg }}"></i><span class="t">{{ rtime }}</span><span class="m">{{ rp_names | split: "|" | join: " · " }}</span><span class="dots">{% for c in cl %}<i class="d" style="background:{{ c }}"></i>{% endfor %}</span><span class="cnt">{{ n_items }} item{% if n_items != 1 %}s{% endif %}{% if n_warn > 0 %} · <b class="warnc">⚠ {{ n_warn }}</b>{% endif %}</span><span class="chev">▸</span></summary>
+  <div class="card"><div class="rh"><a class="t" href="{{ include.e.url | relative_url }}">{{ rtime }}</a><span class="m">{{ counts }}</span></div>{{ inner }}</div>
+</details>
+{% endif %}

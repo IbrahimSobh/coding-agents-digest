@@ -1,8 +1,14 @@
 ---
 layout: default
 ---
-<p class="back"><a href="{{ '/' | relative_url }}">← All checks</a></p>
-<section class="run{% if page.quiet %} quiet{% endif %}">
-  {% include entry-head.html e=page %}
-  {% unless page.quiet %}{% include entry-body.html html=content %}{% endunless %}
+<p class="back"><a href="{{ '/' | relative_url }}">← Latest</a></p>
+<section class="daily" style="margin-top:24px">
+  <div class="dhead"><div class="dicon">📰</div><div><h2>Check · {{ page.date | date: "%a, %b %-d, %Y" }}</h2><p>{{ page.summary }}</p></div></div>
+  <div class="tl">
+    {% if page.quiet %}
+    <div class="quiet">{{ page.date | date: "%H:%M" }} · {{ content | strip_html | strip }}</div>
+    {% else %}
+    {% include run.html e=page html=content open=true %}
+    {% endif %}
+  </div>
 </section>

@@ -1,0 +1,9 @@
+<section id="actions">
+  <div class="shd"><span class="k">⚠ Action needed · {{ board_count }} open</span><small>updated every run · last 7 days, plus items with a date still ahead</small></div>
+  {% if board_count == 0 %}
+  <div class="empty">✅ Nothing needs action right now <span>· checked {{ site.data.brief.updated_label }}</span></div>
+  {% else %}
+  <div class="actions">{{ board_cards }}</div>
+  {% if board_count > 6 %}<button class="morebtn" id="moreActions">Show all {{ board_count }} ▸</button>{% endif %}
+  {% endif %}
+</section>

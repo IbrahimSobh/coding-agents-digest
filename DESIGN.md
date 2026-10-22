@@ -165,3 +165,9 @@ Results of the setup run, recorded so later edits have the facts.
 - Fix (same day): OpenCode moved to `anomalyco/opencode` and has two lines. Track 1.x (marked Latest, has notes); skip 2.x ("OpenCode 2", opt-in, no release notes yet). The first `v2.*` choice made a run mark OpenCode "Not checked".
 - Update: in news runs, a tool with no updates (or not checked) renders as one thin gray row instead of a box, so tools with news stand out. Done in the site template (`docs/_includes/entry-body.html`); the entry Markdown format is unchanged.
 - Update: on the page, tools with news (and "Across tools") come first; gray "No updates" / "Not checked" rows come last. Display-only (template), the entry order and the task are unchanged.
+
+**Home page redesign (2026-10-22)**
+- Top: a live "Last 7 days" brief (`docs/_data/brief.json`), rebuilt on every run: the week in one line, 3 themes with "So what", release bars, "Watch next". Bars count releases only (from `releases.json`, computed in Liquid), no ⚠ counts, so they never disagree with the board.
+- Action board (`docs/_data/actions.json`): one item per ⚠️ bullet. Shows "Affects you if" / "Do this". Stays 7 days, or until its deadline. Dated items first, then newest. 6 shown, then "Show all". Empty state: "Nothing needs action right now". No separate deadlines section.
+- Archive: schedule-free rule. If the last snapshot (`last_snapshot` in `state.json`) is 7+ days old, the run also saves the brief to `docs/briefs/`. Snapshots go in RSS.
+- Daily section below a strong separator: tool filter chips, a timeline by day (newest day open, older days collapsed), quiet runs grouped into one line, dots and bullets in the tool color, split dot for multi-tool runs.

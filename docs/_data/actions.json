@@ -1,0 +1,38 @@
+[
+ {
+  "id": "claude-code-2.1.299-mcp-allow-rules",
+  "tool": "claude-code",
+  "version": "2.1.299",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.299",
+  "title": "MCP allow rules now match exact server names",
+  "affects": "your settings allow MCP tools with short rules like `mcp__a`.",
+  "do": "write `mcp__<server>__*` with the full server name, or those tools will start asking for approval.",
+  "deadline": null,
+  "flagged": "2026-10-14",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.302-claude-design-closes",
+  "tool": "claude-code",
+  "version": "2.1.302",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.302",
+  "title": "Standalone Claude Design closes",
+  "affects": "you keep designs in claude.ai/design.",
+  "do": "move the work you want to keep before Dec 14.",
+  "deadline": "2026-12-14",
+  "flagged": "2026-10-16",
+  "dismissed": false
+ },
+ {
+  "id": "opencode-1.19.1-session-sharing",
+  "tool": "opencode",
+  "version": "1.19.1",
+  "url": "https://github.com/anomalyco/opencode/releases/tag/v1.19.1",
+  "title": "Session sharing removed",
+  "affects": "you shared sessions or saved share links.",
+  "do": "nothing to rescue, old links already stopped working; use another way to share sessions.",
+  "deadline": null,
+  "flagged": "2026-10-15",
+  "dismissed": false
+ }
+]

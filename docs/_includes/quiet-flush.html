@@ -1,0 +1,1 @@
+{% if qcount > 0 %}<div class="quiet">{% if qcount == 1 %}{{ qlast }} · no updates{% else %}{{ qfirst }} to {{ qlast }} · {{ qcount }} checks, no updates{% endif %}{% if qnc %} · some sources not checked{% endif %}</div>{% assign qcount = 0 %}{% assign qnc = false %}{% endif %}

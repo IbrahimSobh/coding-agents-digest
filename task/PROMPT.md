@@ -18,6 +18,13 @@ The value of an entry is not the list of changes. It is:
 - **Action needed first**: breaking changes, removals and deadlines lead each tool, marked ⚠️.
 - **Cross-tool view**: real themes across tools.
 
+Each run updates 4 things on the site:
+1. a new **entry** in `docs/digests/` (step 4),
+2. the **release list** `docs/_data/releases.json` (step 5a),
+3. the **action board** `docs/_data/actions.json` (step 5b),
+4. the **7-day brief** `docs/_data/brief.json`, rebuilt on EVERY run, quiet runs too (step 5c),
+   plus an archive snapshot about once a week (step 5d).
+
 ## Step by step
 
 ### 1. Get the repo and read the state
@@ -71,16 +78,88 @@ File: `docs/digests/YYYY-MM-DD-HHMM.md`, using the Cairo run time (e.g. `2026-10
   Mention it in ONE short line only (see the formats). No error wording, no per-method details
   in the entry; those go in the run log.
 
-### 5. Update `task/state.json`
+### 5a. Add new releases to `docs/_data/releases.json`
+For every release you covered in this run, append one object to the list:
+`{"tool": "<tool id>", "tag": "<tag exactly as in git>", "date": "YYYY-MM-DD"}`.
+Tool ids: `claude-code`, `antigravity-cli`, `codex`, `kilo-code`, `opencode`.
+Never remove or change old items. No duplicates (same tool + tag). The site counts the
+release bars from this file, so do not count anything yourself.
+
+### 5b. Add ⚠️ items to `docs/_data/actions.json`
+For EVERY ⚠️ bullet you wrote in this run's entry, append exactly one item (1:1, no more, no less):
+```
+{
+ "id": "<tool id>-<version>-<2 to 4 words, kebab-case>",
+ "tool": "<tool id>",
+ "version": "<version as in the bullet>",
+ "url": "<the bullet's source link>",
+ "title": "<the bullet's bold title>",
+ "affects": "<who is hit, ends with a full stop>",
+ "do": "<what to do, one sentence, ends with a full stop>",
+ "deadline": "YYYY-MM-DD" or null,
+ "flagged": "<today's date, YYYY-MM-DD>",
+ "dismissed": false
+}
+```
+- The site prints `affects` after "Affects you if" and `do` after "Do this". Write them to fit:
+  affects = "your settings allow MCP tools with short rules like `mcp__a`."
+  do = "write `mcp__<server>__*` with the full server name, or those tools will start asking for approval."
+- `deadline`: ONLY if the source gives a date (a shutdown, a removal date). Never guess one. Otherwise `null`.
+- `id` must be unique. If an item with the same id already exists, do not add it again.
+- Never delete or edit old items. The site hides items by itself (after 7 days, or after the
+  deadline). `dismissed` is only changed by the owner.
+- No ⚠️ bullet in this run → do not touch the file.
+
+### 5c. Rebuild `docs/_data/brief.json` (EVERY run, also quiet runs)
+The brief covers the **last 7 days** up to now. Read the entries in `docs/digests/` from the last
+7 days (by file name date) plus this run's entry. Write the whole file again:
+```
+{
+ "updated": "YYYY-MM-DDTHH:MM+03:00",
+ "updated_label": "<Mon D, HH:MM>",
+ "window": "<Mon D> to <Mon D, YYYY>",
+ "headline": "<the week in ONE sentence, max ~20 words>",
+ "themes": [
+  {"tag": "<1 word>", "title": "<short title>",
+   "facts": "<1 or 2 sentences with the facts, Markdown, each fact links its release: ([2.1.304](URL))>",
+   "so_what": "<one short sentence: what it means for the reader, lower-case start>"},
+  ... exactly 3 themes ...
+ ],
+ "watch_next": "<1 or 2 sentences: what to look for next>"
+}
+```
+- `window`: from 7 days ago to today, e.g. "Oct 15 to Oct 22, 2026".
+- Themes are real patterns from the last 7 days, best across 2+ tools. If the week has fewer
+  than 3 real cross-tool themes, use the biggest single-tool changes. Never invent.
+- Use only facts that are in the entries (and their sources). Every fact keeps its link.
+- If nothing changed this run, still update `updated`, `updated_label` and `window`, and
+  drop facts that are now older than 7 days (replace those themes).
+- Do not count releases or actions here. The site does that from the other files.
+- No em dash character. Keep the JSON valid: check with `python3 -m json.tool docs/_data/brief.json`
+  (also check `releases.json` and `actions.json` the same way if you changed them).
+
+### 5d. Archive snapshot (only if 7+ days since the last one)
+Read `last_snapshot` in `task/state.json`. If it is missing, or today is 7 or more days after it,
+also save the current brief to the archive:
+- File `docs/briefs/YYYY-MM-DD.md` (today's Cairo date). Copy the format of the newest file in
+  `docs/briefs/`: front matter (`layout: brief`, `title: "Weekly snapshot: <window>"`, `date`,
+  `window`, `summary` = the headline), then the headline as `#`, the 3 themes as `## 1.` to `## 3.`
+  with **So what:**, "## Releases in these 7 days" (count per tool from `releases.json`, dates
+  in the window, biggest first), "## Action needed at the time" (open board items, or "None."),
+  and **👀 Watch next:**.
+- Set `last_snapshot` in `state.json` to today's date.
+Otherwise skip this step.
+
+### 5e. Update `task/state.json`
 - Always: set `last_run` to the run time (`YYYY-MM-DDTHH:MM+03:00`, with the real offset
   from the `date` command) and `last_entry_file` to the new file.
 - For every tool with new releases: set `last_tag` and `last_release_date`
   to the newest release you covered. Leave other tools as they were.
-- Do **not** edit `docs/index.html`. It lists entries automatically.
+- Do **not** edit `docs/index.html` or anything outside the files named here. The site lists entries automatically.
 
 ### 6. Commit and push
 ```
-git add docs/digests task/state.json
+git add docs/digests docs/_data docs/briefs task/state.json
 git commit -m "Check YYYY-MM-DD HH:MM: <tools with releases, or 'no new releases'>"
 git push origin main
 ```
@@ -100,7 +179,8 @@ Use the `PushNotification` tool. If it is not loaded, load it first with ToolSea
 (query `select:PushNotification`). If no notification tool exists, say so in the run log.
 
 ### 8. Run log
-End with a short run log: time range, releases per tool, bullets written,
+End with a short run log: time range, releases per tool, bullets written, actions added,
+whether brief.json was rebuilt and a snapshot was saved,
 number of "(verify)" marks, the commit SHA, and whether a notification was sent.
 
 ## Entry formats
@@ -183,6 +263,9 @@ back in a harmful way, or end on a date?"
   can raise cost or change results (e.g. a different default model).
 - **No → no ⚠️.** Examples: a new command, a new opt-in mode, a new default that only helps
   and breaks nothing (e.g. automatic compaction that saves cost).
+- **When unsure, no ⚠️.** Each ⚠️ becomes a card on the action board, so a false alarm costs
+  the reader time. Not ⚠️: a deprecation warning with no removal yet, a fix, a renamed label in
+  the UI, a change that only affects one platform you would skip anyway.
 
 ## Writing rules
 

@@ -1,0 +1,26 @@
+# Display data for each tool: name as written in entry headings, id, color, order.
+# "tracked: false" keeps old entries readable after a tool is removed.
+- id: claude-code
+  name: Claude Code
+  color: "#e07a5f"
+  tracked: true
+- id: antigravity-cli
+  name: Antigravity CLI
+  color: "#5b8def"
+  tracked: true
+- id: codex
+  name: Codex CLI
+  color: "#2fb38a"
+  tracked: true
+- id: kilo-code
+  name: Kilo Code
+  color: "#e3b341"
+  tracked: true
+- id: opencode
+  name: OpenCode
+  color: "#a78bfa"
+  tracked: true
+- id: cline
+  name: Cline
+  color: "#8b93a3"
+  tracked: false

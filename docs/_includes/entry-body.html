@@ -1,9 +1,0 @@
-{% comment %}
-  Renders a news entry. Tools with news keep their box and come first (then "Across tools");
-  a tool whose only line is "No updates since ..." or "Not checked ..." becomes one thin
-  gray row, and those rows come last. Within each group the entry's own order is kept.
-{% endcomment %}
-{% assign parts = include.html | split: "<h3" %}
-{% capture news %}{% endcapture %}{% capture quiet %}{% endcapture %}
-{% for part in parts offset: 1 %}{% assign items = part | split: "<li>" %}{% if items.size == 2 and part contains "No updates since" or items.size == 2 and part contains "Not checked" %}{% assign name = part | split: "</h3>" | first | split: ">" | last %}{% assign note = items[1] | split: "</li>" | first | strip %}{% capture quiet %}{{ quiet }}<div class="tool-quiet"><span class="tool-name">{{ name }}</span><span class="tool-note">{{ note }}</span></div>{% endcapture %}{% else %}{% capture news %}{{ news }}<h3{{ part }}{% endcapture %}{% endif %}{% endfor %}
-<div class="run-body">{{ parts[0] }}{{ news }}{% if quiet != "" %}<div class="quiet-rows">{{ quiet }}</div>{% endif %}</div>

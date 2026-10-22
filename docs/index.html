@@ -2,49 +2,45 @@
 layout: default
 title: Latest
 ---
-{% comment %}
-  Newest first. Back-to-back quiet checks collapse into one line.
-  Only news entries count toward the limit; older news goes to the list below.
-{% endcomment %}
-{% assign entries = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" | reverse %}
-{% assign max_news = 10 %}
-{% assign news_seen = 0 %}
-{% assign qcount = 0 %}
-{% for e in entries %}
-  {% if e.quiet %}
-    {% if news_seen < max_news %}
-      {% assign rparts = e.run | remove: " (Cairo)" | split: ", " %}
-      {% assign lbl = rparts[0] | append: ", " | append: rparts[2] %}
-      {% if qcount == 0 %}{% assign qnewest = e %}{% assign qnc = false %}{% assign qtimes = lbl %}{% else %}{% assign qtimes = lbl | append: "|" | append: qtimes %}{% endif %}
-      {% if e.content contains "Not checked" %}{% assign qnc = true %}{% endif %}
-      {% assign qoldest = e %}
-      {% assign qcount = qcount | plus: 1 %}
-    {% endif %}
-  {% else %}
-    {% if qcount > 0 %}
-      {% include quiet-group.html count=qcount newest=qnewest oldest=qoldest nc=qnc times=qtimes %}
-      {% assign qcount = 0 %}
-    {% endif %}
-    {% if news_seen < max_news %}
-<section class="run">
-  {% include entry-head.html e=e %}
-  {% assign html = e.content | markdownify %}{% include entry-body.html html=html %}
-</section>
-    {% endif %}
-    {% assign news_seen = news_seen | plus: 1 %}
-  {% endif %}
-{% endfor %}
-{% if qcount > 0 %}{% include quiet-group.html count=qcount newest=qnewest oldest=qoldest nc=qnc times=qtimes %}{% endif %}
+{% comment %} Dates are compared at build time (each run pushes, so the site rebuilds after every run). {% endcomment %}
+{% assign today_s = site.time | date: "%Y-%m-%d" | date: "%s" | plus: 0 %}
+{% assign cutoff_s = today_s | minus: 604800 %}
+{% include board.html %}
+{% include brief.html %}
+{% include board-section.html %}
 
-{% if news_seen > max_news %}
-<section class="archive">
-  <h2>Older updates</h2>
-  <ul>
-  {% assign n = 0 %}
-  {% for e in entries %}{% unless e.quiet %}
-    {% assign n = n | plus: 1 %}
-    {% if n > max_news %}<li><a href="{{ e.url | relative_url }}">{{ e.run }}</a> <span class="summary">{{ e.summary }}</span></li>{% endif %}
-  {% endunless %}{% endfor %}
-  </ul>
+<section class="daily">
+  <div class="dhead">
+    <div class="dicon">📰</div>
+    <div><h2>Daily updates</h2><p>The details: every check, newest first. Each item links its source.</p></div>
+  </div>
+  <div class="filters" id="filters">
+    <span class="chip on" data-f="all">All tools</span>
+    {% assign tracked = site.data.tools | where: "tracked", true %}
+    {% for t in tracked %}<span class="chip" data-f="{{ t.id }}"><i class="d" style="background:{{ t.color }}"></i>{{ t.name }}</span>{% endfor %}
+  </div>
+  <div class="tl">
+    {% assign entries = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" | reverse %}
+    {% assign newest_day = entries.first.date | date: "%Y-%m-%d" %}
+    {% assign cur_day = "" %}{% assign qcount = 0 %}{% assign qnc = false %}
+    {% for e in entries limit: 120 %}
+      {% assign d = e.date | date: "%Y-%m-%d" %}
+      {% if d != cur_day %}
+        {% include quiet-flush.html %}
+        <div class="day" data-date="{{ d }}">{{ e.date | date: "%a, %b %-d" }}</div>
+        {% assign cur_day = d %}
+      {% endif %}
+      {% if e.quiet %}
+        {% assign tm = e.date | date: "%H:%M" %}
+        {% if qcount == 0 %}{% assign qlast = tm %}{% endif %}
+        {% assign qfirst = tm %}{% assign qcount = qcount | plus: 1 %}
+        {% if e.content contains "Not checked" %}{% assign qnc = true %}{% endif %}
+      {% else %}
+        {% include quiet-flush.html %}
+        {% assign html = e.content | markdownify %}
+        {% if d == newest_day %}{% include run.html e=e html=html open=true %}{% else %}{% include run.html e=e html=html open=false %}{% endif %}
+      {% endif %}
+    {% endfor %}
+    {% include quiet-flush.html %}
+  </div>
 </section>
-{% endif %}

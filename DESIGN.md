@@ -155,3 +155,4 @@ Results of the setup run, recorded so later edits have the facts.
 - Entry files: `docs/digests/YYYY-MM-DD-HHMM.md` (Cairo time). `state.json` tracks `last_run` instead of `last_digest_date`.
 - Site: a feed of the latest 14 checks, one box per tool, a strong line between runs, quiet checks shown as one small line.
 - Update: quiet runs say "No updates since <time>" (no error styling). Unreadable sources get one neutral "Not checked" line. News entries show all 5 tool boxes; a box with no news says "No updates since <time>". Back-to-back quiet runs collapse into one line on the home page, which shows the last 10 news runs.
+- RSS: `docs/feed.xml` (Atom, built by Jekyll, no plugin). One item per news run, latest 20; quiet runs are skipped; tool boxes that only say "No updates since ..." are left out of the item. "Subscribe (RSS)" link in the page header.

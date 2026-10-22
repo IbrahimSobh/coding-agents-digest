@@ -2,6 +2,7 @@
 
 A digest of what changed in AI coding agents, selected and explained.
 Site: https://ibrahimsobh.github.io/coding-agents-weekly/
+RSS (Atom): https://ibrahimsobh.github.io/coding-agents-weekly/feed.xml
 
 Tracked: Claude Code, Antigravity CLI (`agy`), OpenAI Codex CLI, Cline, Kilo Code.
 

@@ -6,6 +6,7 @@ title: Latest
 {% assign today_s = site.time | date: "%Y-%m-%d" | date: "%s" | plus: 0 %}
 {% assign cutoff_s = today_s | minus: 604800 %}
 {% include board.html %}
+{% include history.html %}
 {% include brief.html %}
 {% include board-section.html %}
 

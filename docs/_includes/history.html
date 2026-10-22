@@ -1,0 +1,21 @@
+{% comment %}
+  Release history chart, drawn in the browser by assets/history.js from _data/releases.json.
+  Every run appends to releases.json and pushes, so the chart updates with each rebuild.
+{% endcomment %}
+{% assign hist_tools = site.data.tools | where: "tracked", true %}
+{% assign hist_digests = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" %}
+<section id="history" class="hist card">
+  <div class="k" id="histTitle">Release activity</div>
+  <div class="hctl">
+    <div class="hgrp" id="histRange"></div>
+    <span class="hsep"></span>
+    <div class="hgrp" id="histMode"></div>
+    <div class="hgrp" id="histShape"></div>
+  </div>
+  <div class="hlegend" id="histLegend"></div>
+  <div class="hbox"><canvas id="histChart" role="img" aria-label="Stable releases per tool over time"></canvas></div>
+  <p class="hnote">Stable releases only. A release count does not mean importance.{% if hist_digests.size > 0 %} Daily updates start {{ hist_digests.first.date | date: "%-d %b %Y" }}.{% endif %}</p>
+  <script type="application/json" id="histData">{"today": {{ site.time | date: "%Y-%m-%d" | jsonify }}, "tools": {{ hist_tools | jsonify }}, "releases": {{ site.data.releases | jsonify }}}</script>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+<script src="{{ '/assets/history.js' | relative_url }}" defer></script>

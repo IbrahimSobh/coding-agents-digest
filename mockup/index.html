@@ -54,7 +54,7 @@ section{margin-top:28px}
 .srow{display:grid;grid-template-columns:120px 1fr 54px;gap:10px;align-items:center;font-size:13px}
 .bar{height:8px;border-radius:99px;background:var(--card2);overflow:hidden;border:1px solid var(--line)}
 .bar i{display:block;height:100%;border-radius:99px}
-.srow .w{color:var(--amber);font-weight:700;text-align:right}
+.srow .w{color:var(--ink);font-weight:700;text-align:right}
 .hero-foot{display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}
 
 /* Actions */
@@ -63,7 +63,11 @@ section{margin-top:28px}
 .act .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
 .act b{font-size:14.5px;line-height:1.3}
 .act p{font-size:13.5px;color:var(--ink);margin-top:6px;line-height:1.45}
-.act .src{font-size:12.5px;color:var(--muted);margin-top:2px}
+.act .src{font-size:12.5px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.act .src .d{width:9px;height:9px;border-radius:50%;display:inline-block}
+.demo{margin-left:auto;font-size:12px;color:var(--soft)}
+.empty{margin-top:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:700;font-size:15px}
+.empty span{font-weight:500;color:var(--muted);font-size:13.5px}
 .lab{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-right:6px}
 .lab.do{color:var(--amber)}
 .lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-top:14px}
@@ -135,7 +139,7 @@ details[open] .chev{transform:rotate(90deg)}
   <!-- WEEKLY HERO -->
   <section id="weekly">
     <div class="hero"><div class="hero-in">
-      <div class="hero-top"><span class="k">📊 Last 7 days · Oct 15 to 22 · <span class="upd">updated today 07:42</span></span><span class="pill">21 releases · 5 tools · <a href="#actions">4 open actions ↓</a></span></div>
+      <div class="hero-top"><span class="k">📊 Last 7 days · Oct 15 to 22 · <span class="upd">updated today 07:42</span></span><span class="pill">21 releases · 5 tools · <a href="#actions">3 open actions ↓</a></span></div>
       <div class="lbl">The week in one line</div>
       <h1>The agents got more autonomous and more careful, and their plugins started to converge.</h1>
       <p class="sub">Busiest: Claude Code (8 releases). Quietest: Codex CLI (1 stable, ~10 alphas). Rebuilt on every run.</p>
@@ -151,10 +155,10 @@ details[open] .chev{transform:rotate(90deg)}
           <p class="so"><i>So what:</i> an agent session open all day is becoming normal.</p></div>
       </div>
       <div class="score">
-        <div class="shead"><span>Releases in the last 7 days</span><span class="lg">bar = releases · <b class="warnc">⚠</b> = needs action</span></div>
-        <div class="srow"><span>Claude Code</span><span class="bar"><i style="width:100%;background:var(--t-cc)"></i></span><span class="w">8 · ⚠ 1</span></div>
-        <div class="srow"><span>Antigravity CLI</span><span class="bar"><i style="width:88%;background:var(--t-agy)"></i></span><span class="w">7 · ⚠ 1</span></div>
-        <div class="srow"><span>OpenCode</span><span class="bar"><i style="width:38%;background:var(--t-oc)"></i></span><span class="w">3 · ⚠ 1</span></div>
+        <div class="shead"><span>Releases in the last 7 days</span></div>
+        <div class="srow"><span>Claude Code</span><span class="bar"><i style="width:100%;background:var(--t-cc)"></i></span><span class="w">8</span></div>
+        <div class="srow"><span>Antigravity CLI</span><span class="bar"><i style="width:88%;background:var(--t-agy)"></i></span><span class="w">7</span></div>
+        <div class="srow"><span>OpenCode</span><span class="bar"><i style="width:38%;background:var(--t-oc)"></i></span><span class="w">3</span></div>
         <div class="srow"><span>Kilo Code</span><span class="bar"><i style="width:25%;background:var(--t-kilo)"></i></span><span class="w">2</span></div>
         <div class="srow"><span>Codex CLI</span><span class="bar"><i style="width:13%;background:var(--t-codex)"></i></span><span class="w">1</span></div>
       </div>
@@ -164,22 +168,19 @@ details[open] .chev{transform:rotate(90deg)}
 
   <!-- ACTION NEEDED -->
   <section id="actions">
-    <div class="shd"><span class="k">⚠ Action needed</span><small>updated every run · items stay until their deadline, or about 30 days</small></div>
-    <div class="actions">
+    <div class="shd"><span class="k">⚠ Action needed · 3 open</span><small>updated every run · last 7 days, plus items with a date still ahead</small><a class="demo" href="#" id="demoEmpty">preview: empty board</a></div>
+    <div class="empty hidden" id="emptyBoard">✅ Nothing needs action right now <span>· checked today 07:42</span></div>
+    <div class="actions" id="board">
       <div class="act" data-tools="cc"><div class="top"><b>Standalone Claude Design closes</b><span class="cd" data-deadline="2026-12-14">Dec 14</span></div>
-        <div class="src">Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">2.1.302</a></div>
+        <div class="src"><i class="d" style="background:var(--t-cc)"></i>Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">2.1.302</a> · flagged Oct 16</div>
         <p><span class="lab">Affects you if</span> you keep designs in claude.ai/design.</p>
         <p><span class="lab do">Do this</span> move the work you want to keep before Dec 14.</p></div>
-      <div class="act" data-tools="cc"><div class="top"><b>MCP allow rules now match exact server names</b><span class="cd done">since Oct 14</span></div>
-        <div class="src">Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">2.1.299</a></div>
-        <p><span class="lab">Affects you if</span> your settings allow MCP tools with short rules like <code>mcp__a</code>.</p>
-        <p><span class="lab do">Do this</span> write <code>mcp__&lt;server&gt;__*</code> with the full server name, or those tools will start asking for approval.</p></div>
-      <div class="act" data-tools="agy"><div class="top"><b>Recurring schedules now fire at an offset <span class="new">NEW</span></b><span class="cd done">since Oct 22</span></div>
-        <div class="src">Antigravity CLI <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a></div>
+      <div class="act" data-tools="agy"><div class="top"><b>Recurring schedules now fire at an offset</b><span class="cd done">flagged today</span></div>
+        <div class="src"><i class="d" style="background:var(--t-agy)"></i>Antigravity CLI <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a></div>
         <p><span class="lab">Affects you if</span> you use the agent's <code>schedule</code> tool for jobs that must run exactly on the hour.</p>
         <p><span class="lab do">Do this</span> ask the agent for exact timing for those jobs.</p></div>
-      <div class="act" data-tools="oc"><div class="top"><b>Session sharing removed</b><span class="cd done">since Oct 15</span></div>
-        <div class="src">OpenCode <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.1">1.19.1</a></div>
+      <div class="act" data-tools="oc"><div class="top"><b>Session sharing removed</b><span class="cd done">flagged 7 days ago</span></div>
+        <div class="src"><i class="d" style="background:var(--t-oc)"></i>OpenCode <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.1">1.19.1</a></div>
         <p><span class="lab">Affects you if</span> you shared sessions or saved share links.</p>
         <p><span class="lab do">Do this</span> nothing to rescue, old links already stopped working; use another way to share sessions.</p></div>
     </div>
@@ -247,6 +248,8 @@ details[open] .chev{transform:rotate(90deg)}
   try{const t=localStorage.getItem('cad-theme'); if(t) root.dataset.theme=t; else if(matchMedia('(prefers-color-scheme: light)').matches) root.dataset.theme='light';}catch(e){}
   document.getElementById('theme').onclick=()=>{root.dataset.theme=root.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('cad-theme',root.dataset.theme)}catch(e){}};
 })();
+// Mockup only: preview the empty board
+document.getElementById('demoEmpty').onclick=e=>{e.preventDefault();const b=document.getElementById('board'),em=document.getElementById('emptyBoard');const on=b.classList.toggle('hidden');em.classList.toggle('hidden',!on);e.target.textContent=on?'preview: board with items':'preview: empty board';};
 // Deadline countdowns
 document.querySelectorAll('[data-deadline]').forEach(el=>{
   const d=Math.ceil((new Date(el.dataset.deadline+'T00:00:00')-new Date())/864e5);

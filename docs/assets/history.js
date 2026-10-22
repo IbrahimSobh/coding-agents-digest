@@ -44,7 +44,8 @@
 
   function draw(){
     group('histRange',[['1 Day',1],['1 Week',7],['1 Month',30],['All since '+fmt(start,true),'all']],range,function(v){range=v;draw()});
-    var len=range==='all'?N:Math.min(range,N);
+    // 1 Week = the same day last week to today, like the brief's 7-day window (8 calendar days)
+    var len=range==='all'?N:Math.min(range===1?1:range+1,N);
     group('histMode',[['Cumulative','cum'],['Daily','day']],mode,function(v){mode=v;draw()},len>1);
     group('histShape',[['Smooth','smooth'],['Steps','steps']],shape,function(v){shape=v;draw()},len>1&&mode==='cum');
 

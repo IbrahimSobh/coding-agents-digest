@@ -103,11 +103,28 @@ section{margin-top:28px}
 .more{display:inline-block;margin-top:10px;font-size:13px;font-weight:600}
 footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .hidden{display:none!important}
+.upd{color:var(--green);text-transform:none;letter-spacing:0}
+.pill a{color:var(--amber);text-decoration:none}
+.shd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.shd small{font-size:12.5px;color:var(--soft)}
+.new{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;background:var(--amber);color:#111;border-radius:6px;padding:1px 6px;vertical-align:2px;margin-left:4px}
+.sep{display:flex;align-items:center;gap:12px;margin-top:8px}
+.sep::before,.sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.sep span{font-weight:800;font-size:15px}
+.sep small{font-size:12.5px;color:var(--soft)}
+.note{font-size:12.5px;color:var(--soft);margin:4px 0 8px}
+details.run summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 16px}
+details.run summary::-webkit-details-marker{display:none}
+.sum .t{font-weight:800} .sum .m{color:var(--muted);font-size:13.5px}
+.dots{display:flex;gap:4px} .dots i{width:9px;height:9px;border-radius:50%;display:block}
+.cnt{margin-left:auto;font-size:13px;color:var(--muted)}
+.chev{color:var(--soft);transition:transform .15s}
+details[open] .chev{transform:rotate(90deg)}
 @media (max-width:720px){ .actions{grid-template-columns:1fr} .themes{grid-template-columns:1fr} .srow{grid-template-columns:96px 1fr 62px} .srow .w{white-space:nowrap} .hero h1{font-size:23px} nav a:not(.on){display:none} }
 </style>
 </head>
 <body>
-<div class="mock">MOCKUP · real entries from Oct 14 to 22 · the weekly review is a sample · not the live site</div>
+<div class="mock">MOCKUP · real entries from Oct 14 to 22 · the 7-day brief is a sample · not the live site</div>
 <header><div class="wrap hbar">
   <div class="brand">🤖 Coding Agents <span class="g">Digest</span></div>
   <nav><a class="on" href="#">Latest</a><a href="#weekly">Weekly</a><a href="#actions">Action needed</a><a href="#">RSS</a></nav>
@@ -118,36 +135,36 @@ footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font
   <!-- WEEKLY HERO -->
   <section id="weekly">
     <div class="hero"><div class="hero-in">
-      <div class="hero-top"><span class="k">📊 Week in review · Oct 14 to 22, 2026</span><span class="pill">24 releases · 5 tools · 4 actions</span></div>
+      <div class="hero-top"><span class="k">📊 Last 7 days · Oct 15 to 22 · <span class="upd">updated today 07:42</span></span><span class="pill">21 releases · 5 tools · <a href="#actions">4 open actions ↓</a></span></div>
       <div class="lbl">The week in one line</div>
       <h1>The agents got more autonomous and more careful, and their plugins started to converge.</h1>
-      <p class="sub">Busiest: Claude Code (10 releases). Quietest: Codex CLI (1 stable, ~10 alphas).</p>
+      <p class="sub">Busiest: Claude Code (8 releases). Quietest: Codex CLI (1 stable, ~10 alphas). Rebuilt on every run.</p>
       <div class="themes">
         <div class="theme" data-tools="cc agy"><span class="n">1 · AUTONOMY</span><b>Autonomy, with a guard in front</b>
-          <p>agy launched Auto mode with a review agent (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5">1.3.5</a>); Claude Code added <code>/auto-mode-setup</code> (<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.304">2.1.304</a>).</p>
+          <p>agy extended Auto mode, where a review agent checks risky commands, to subagents (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.3">1.4.3</a>) and Windows (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.4">1.4.4</a>); Claude Code added <code>/auto-mode-setup</code> (<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.304">2.1.304</a>).</p>
           <p class="so"><i>So what:</i> “approve every command” is ending; the safety check is the new battleground.</p></div>
         <div class="theme" data-tools="agy cc"><span class="n">2 · PLUGINS</span><b>Plugins are becoming portable</b>
           <p>agy accepts plugins “written for other tools” (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a>) and flags Claude Code-style hook keys (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.3">1.4.3</a>).</p>
           <p class="so"><i>So what:</i> one plugin may soon run in several agents.</p></div>
         <div class="theme" data-tools="cc agy"><span class="n">3 · COST</span><b>Long sessions got cheaper</b>
-          <p>Claude Code compacts idle conversations before the cache expires (<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">2.1.299</a>); agy halved idle CPU (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a>).</p>
+          <p>Claude Code made idle compaction a <code>/config</code> switch (<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">2.1.302</a>); agy halved idle CPU (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a>).</p>
           <p class="so"><i>So what:</i> an agent session open all day is becoming normal.</p></div>
       </div>
       <div class="score">
-        <div class="shead"><span>Releases this week</span><span class="lg">bar = releases · <b class="warnc">⚠</b> = needs action</span></div>
-        <div class="srow"><span>Claude Code</span><span class="bar"><i style="width:100%;background:var(--t-cc)"></i></span><span class="w">10 · ⚠ 2</span></div>
-        <div class="srow"><span>Antigravity CLI</span><span class="bar"><i style="width:80%;background:var(--t-agy)"></i></span><span class="w">8 · ⚠ 1</span></div>
-        <div class="srow"><span>OpenCode</span><span class="bar"><i style="width:30%;background:var(--t-oc)"></i></span><span class="w">3 · ⚠ 1</span></div>
-        <div class="srow"><span>Kilo Code</span><span class="bar"><i style="width:20%;background:var(--t-kilo)"></i></span><span class="w">2</span></div>
-        <div class="srow"><span>Codex CLI</span><span class="bar"><i style="width:10%;background:var(--t-codex)"></i></span><span class="w">1</span></div>
+        <div class="shead"><span>Releases in the last 7 days</span><span class="lg">bar = releases · <b class="warnc">⚠</b> = needs action</span></div>
+        <div class="srow"><span>Claude Code</span><span class="bar"><i style="width:100%;background:var(--t-cc)"></i></span><span class="w">8 · ⚠ 1</span></div>
+        <div class="srow"><span>Antigravity CLI</span><span class="bar"><i style="width:88%;background:var(--t-agy)"></i></span><span class="w">7 · ⚠ 1</span></div>
+        <div class="srow"><span>OpenCode</span><span class="bar"><i style="width:38%;background:var(--t-oc)"></i></span><span class="w">3 · ⚠ 1</span></div>
+        <div class="srow"><span>Kilo Code</span><span class="bar"><i style="width:25%;background:var(--t-kilo)"></i></span><span class="w">2</span></div>
+        <div class="srow"><span>Codex CLI</span><span class="bar"><i style="width:13%;background:var(--t-codex)"></i></span><span class="w">1</span></div>
       </div>
-      <div class="hero-foot"><span>👀 Next week: OpenCode 2 becoming “Latest”, and a large Codex 0.164 (10 alphas so far).</span><a href="#">All weekly reviews →</a></div>
+      <div class="hero-foot"><span>👀 Watch next: OpenCode 2 becoming “Latest”, and a large Codex 0.164 (10 alphas so far).</span><a href="#">Archive: weekly snapshots →</a></div>
     </div></div>
   </section>
 
   <!-- ACTION NEEDED -->
   <section id="actions">
-    <div class="k">⚠ Action needed</div>
+    <div class="shd"><span class="k">⚠ Action needed</span><small>updated every run · items stay until their deadline, or about 30 days</small></div>
     <div class="actions">
       <div class="act" data-tools="cc"><div class="top"><b>Standalone Claude Design closes</b><span class="cd" data-deadline="2026-12-14">Dec 14</span></div>
         <div class="src">Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">2.1.302</a></div>
@@ -157,7 +174,7 @@ footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font
         <div class="src">Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">2.1.299</a></div>
         <p><span class="lab">Affects you if</span> your settings allow MCP tools with short rules like <code>mcp__a</code>.</p>
         <p><span class="lab do">Do this</span> write <code>mcp__&lt;server&gt;__*</code> with the full server name, or those tools will start asking for approval.</p></div>
-      <div class="act" data-tools="agy"><div class="top"><b>Recurring schedules now fire at an offset</b><span class="cd done">since Oct 22</span></div>
+      <div class="act" data-tools="agy"><div class="top"><b>Recurring schedules now fire at an offset <span class="new">NEW</span></b><span class="cd done">since Oct 22</span></div>
         <div class="src">Antigravity CLI <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a></div>
         <p><span class="lab">Affects you if</span> you use the agent's <code>schedule</code> tool for jobs that must run exactly on the hour.</p>
         <p><span class="lab do">Do this</span> ask the agent for exact timing for those jobs.</p></div>
@@ -170,7 +187,7 @@ footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font
 
   <!-- TIMELINE -->
   <section>
-    <div class="k">Latest updates</div>
+    <div class="sep"><span>📰 Daily updates</span><small>every check, newest first</small></div>
     <div class="filters" id="filters">
       <span class="chip on" data-f="all">All tools</span>
       <span class="chip" data-f="cc"><i class="d" style="background:var(--t-cc)"></i>Claude Code</span>
@@ -200,9 +217,12 @@ footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font
 
       <div class="quiet" data-quiet>04:09 to 05:20 · 5 checks, no updates</div>
 
-      <div class="run" data-tools="cc agy codex kilo old"><div class="card">
-        <div class="rh"><span class="t">01:50</span><span class="m">First digest · Oct 14 to 21 · 22 releases, 456 bug fixes · highlights</span></div>
-        <div class="tool" data-tool="cc"><div class="h"><i class="d" style="background:var(--t-cc)"></i>Claude Code</div>
+      <p class="note">Runs from earlier days appear collapsed, like this one. Click to expand.</p>
+      <details class="run" data-tools="cc agy codex kilo old"><summary class="card sum">
+        <span class="t">01:50</span><span class="m">First digest · Oct 14 to 21</span>
+        <span class="dots"><i style="background:var(--t-cc)"></i><i style="background:var(--t-agy)"></i><i style="background:var(--t-codex)"></i><i style="background:var(--t-kilo)"></i></span>
+        <span class="cnt">11 items · <b class="warnc">⚠ 3</b></span><span class="chev">▸</span></summary>
+        <div class="card" style="margin-top:6px"><div class="tool" data-tool="cc"><div class="h"><i class="d" style="background:var(--t-cc)"></i>Claude Code</div>
           <ul><li><span class="warn">⚠</span> <b>MCP allow rules now match only the exact server</b> (2.1.299). Write <code>mcp__&lt;server&gt;__*</code> with the full server name. <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">Source</a></li>
               <li><span class="warn">⚠</span> <b>Standalone Claude Design closes on December 14, 2026</b> (2.1.302). <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">Source</a></li>
               <li><b>Idle compaction</b> (2.1.299). Idle 200K+ token conversations are compacted before the cache expires. <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">Source</a></li></ul></div>
@@ -212,8 +232,8 @@ footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font
           <ul><li><b>Steer Codex mid-answer, plus a searchable <code>/config</code></b> (0.163.0). <a href="https://github.com/openai/codex/releases/tag/rust-v0.163.0">Source</a></li></ul></div>
         <div class="tool" data-tool="kilo"><div class="h"><i class="d" style="background:var(--t-kilo)"></i>Kilo Code</div>
           <ul><li><b>New Agent Manager worktree dialog</b> (v7.8.15). <a href="https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.15">Source</a></li></ul></div>
-        <a class="more" href="#">Show the full entry (11 items) →</a>
-      </div></div>
+        <a class="more" href="#">Show all 11 items →</a></div>
+      </details>
     </div>
   </section>
 

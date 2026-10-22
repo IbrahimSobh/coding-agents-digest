@@ -4,18 +4,18 @@
 {% endcomment %}
 {% assign b = site.data.brief %}
 {% assign tracked = site.data.tools | where: "tracked", true %}
-{% assign rel_list = "" %}{% assign rel_total = 0 %}{% assign rel_max = 1 %}
+{% assign rel_list = "" %}{% assign rel_total = 0 %}{% assign rel_max = 1 %}{% assign rel_active = 0 %}
 {% for t in tracked %}
   {% assign c = 0 %}
   {% for r in site.data.releases %}{% if r.tool == t.id %}{% assign r_s = r.date | date: "%s" | plus: 0 %}{% if r_s >= cutoff_s %}{% assign c = c | plus: 1 %}{% endif %}{% endif %}{% endfor %}
-  {% assign rel_total = rel_total | plus: c %}{% if c > rel_max %}{% assign rel_max = c %}{% endif %}
+  {% assign rel_total = rel_total | plus: c %}{% if c > rel_max %}{% assign rel_max = c %}{% endif %}{% if c > 0 %}{% assign rel_active = rel_active | plus: 1 %}{% endif %}
   {% assign pad = c | prepend: "00" | slice: -2, 2 %}
   {% assign rel_list = rel_list | append: pad | append: "~" | append: t.id | append: "|" %}
 {% endfor %}
 {% assign rel_sorted = rel_list | split: "|" | sort | reverse %}
 <section id="brief">
   <div class="hero"><div class="hero-in">
-    <div class="hero-top"><span class="k">📊 Last 7 days · {{ b.window }} · <span class="upd">updated {{ b.updated_label }}</span></span><span class="pill">{{ rel_total }} releases · {{ tracked.size }} tools · <a href="#actions">{{ board_count }} open action{% if board_count != 1 %}s{% endif %} ↓</a></span></div>
+    <div class="hero-top"><span class="k">📊 Last 7 days · {{ b.window }} · <span class="upd">updated {{ b.updated_label }}</span></span><span class="pill">{{ rel_total }} release{% if rel_total != 1 %}s{% endif %} · {{ rel_active }} of {{ tracked.size }} tools active · <a href="#actions">{{ board_count }} open action{% if board_count != 1 %}s{% endif %} ↓</a></span></div>
     <div class="lbl">The week in one line</div>
     <h1>{{ b.headline }}</h1>
     <div class="themes">

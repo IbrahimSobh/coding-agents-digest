@@ -70,6 +70,7 @@ a { color: var(--accent); text-underline-offset: 2px; }
   border: 1px solid var(--line); border-radius: 8px;
   color: var(--muted); font-size: .85rem;
 }
+.quiet-rows { margin-top: 14px; }
 .tool-quiet .tool-name { font-weight: 600; min-width: 120px; }
 
 code {

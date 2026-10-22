@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><title>Coding Agents Digest · slide</title>
+<style>
+:root{
+  --bg:#0b0f17; --bg2:#0f1420; --card:#141a26; --card2:#10151f; --line:#263043; --ink:#e8ecf4; --muted:#94a0b4; --soft:#6b778c;
+  --cyan:#38bdf8; --violet:#a78bfa; --amber:#fbbf24; --green:#34d399; --orange:#fb923c;
+  --t-cc:#e07a5f; --t-agy:#5b8def; --t-codex:#2fb38a; --t-kilo:#e3b341; --t-oc:#a78bfa; --t-old:#8b93a3;
+  --shadow:none;
+}
+:root[data-theme="light"]{
+  --bg:#f5f6f9; --bg2:#ffffff; --card:#ffffff; --card2:#f6f7fa; --line:#e2e6ee; --ink:#141a26; --muted:#5b6475; --soft:#8a93a3;
+  --cyan:#0284c7; --violet:#7c3aed; --amber:#b45309; --green:#047857; --orange:#c2410c;
+  --shadow:0 6px 20px rgba(20,26,38,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--orange);text-underline-offset:2px}
+code{font:.86em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--card2);border:1px solid var(--line);padding:1px 5px;border-radius:5px}
+.wrap{max-width:920px;margin:0 auto;padding:0 16px}
+.mock{background:repeating-linear-gradient(45deg,#3b2a0a,#3b2a0a 10px,#2f2208 10px,#2f2208 20px);color:#fde68a;text-align:center;font-size:13px;font-weight:600;padding:6px}
+
+/* Header */
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hbar{display:flex;align-items:center;gap:16px;height:60px}
+.brand{font-weight:800;font-size:17px;display:flex;gap:8px;align-items:center;white-space:nowrap}
+.brand .g{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:6px 10px;border-radius:8px;white-space:nowrap}
+nav a.on,nav a:hover{color:var(--ink);background:var(--card)}
+.tbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:16px;flex:none}
+
+section{margin-top:28px}
+.k{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* Weekly hero */
+.hero{position:relative;border-radius:22px;padding:2px;background:linear-gradient(135deg,var(--cyan),var(--violet) 55%,var(--orange))}
+.hero-in{background:var(--card);border-radius:20px;padding:24px 24px 20px;box-shadow:var(--shadow)}
+.hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pill{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--muted)}
+.hero h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:4px 0 4px}
+.hero .sub{color:var(--muted);font-size:14px}
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.theme{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.theme .n{font-size:12px;font-weight:800;color:var(--violet)}
+.theme b{display:block;font-size:15.5px;margin:4px 0 6px;line-height:1.3}
+.theme p{font-size:13.5px;color:var(--muted)}
+.theme .so{margin-top:8px;font-size:13.5px;color:var(--ink)}
+.theme .so i{color:var(--cyan);font-style:normal;font-weight:700}
+.score{margin-top:18px;display:grid;gap:6px}
+.srow{display:grid;grid-template-columns:120px 1fr 54px;gap:10px;align-items:center;font-size:13px}
+.bar{height:8px;border-radius:99px;background:var(--card2);overflow:hidden;border:1px solid var(--line)}
+.bar i{display:block;height:100%;border-radius:99px}
+.srow .w{color:var(--ink);font-weight:700;text-align:right}
+.hero-foot{display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}
+
+/* Actions */
+.actions{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:12px;margin-top:10px}
+.act{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow)}
+.act .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.act b{font-size:14.5px;line-height:1.3}
+.act p{font-size:13.5px;color:var(--ink);margin-top:6px;line-height:1.45}
+.act .src{font-size:12.5px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.act .src .d{width:9px;height:9px;border-radius:50%;display:inline-block}
+.demo{margin-left:auto;font-size:12px;color:var(--soft)}
+.empty{margin-top:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:700;font-size:15px}
+.empty span{font-weight:500;color:var(--muted);font-size:13.5px}
+.lab{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-right:6px}
+.lab.do{color:var(--amber)}
+.lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-top:14px}
+.shead{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;flex-wrap:wrap}
+.shead .lg{font-weight:600;letter-spacing:0;text-transform:none;color:var(--soft)}
+.warnc{color:var(--amber)}
+.cd{flex:none;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)}
+.cd.done{background:var(--card2);color:var(--soft)}
+
+/* Filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chip{cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--muted)}
+.chip .d{width:9px;height:9px;border-radius:50%}
+.chip.on{color:var(--ink);border-color:var(--ink)}
+
+/* Timeline */
+.tl{position:relative;margin-top:14px;padding-left:28px}
+.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.day{position:relative;font-size:13px;font-weight:800;color:var(--muted);margin:22px 0 10px;letter-spacing:.04em}
+.day::before{content:"";position:absolute;left:-25px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--muted)}
+.run{position:relative;margin-bottom:14px}
+.run::before{content:"";position:absolute;left:-24px;top:16px;width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px color-mix(in srgb,var(--cyan) 20%,transparent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
+.rh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.rh .t{font-weight:800;font-size:15px}
+.rh .m{font-size:13px;color:var(--muted)}
+.tool{margin-top:10px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.tool .h{display:flex;align-items:center;gap:8px;padding:7px 12px;font-weight:700;font-size:13.5px;background:var(--card2);border-bottom:1px solid var(--line)}
+.tool .h .d{width:9px;height:9px;border-radius:50%}
+.tool ul{padding:8px 14px 10px 30px;font-size:14px}
+.tool li{margin:4px 0}
+.warn{color:var(--amber)}
+.qrows{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.q{font-size:12.5px;color:var(--soft);border:1px dashed var(--line);border-radius:999px;padding:3px 10px}
+.quiet{position:relative;font-size:13px;color:var(--soft);margin:-2px 0 14px;padding:6px 0}
+.quiet::before{content:"";position:absolute;left:-22px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--soft)}
+.more{display:inline-block;margin-top:10px;font-size:13px;font-weight:600}
+footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.hidden{display:none!important}
+.upd{color:var(--green);text-transform:none;letter-spacing:0}
+.pill a{color:var(--amber);text-decoration:none}
+.shd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.shd small{font-size:12.5px;color:var(--soft)}
+.new{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;background:var(--amber);color:#111;border-radius:6px;padding:1px 6px;vertical-align:2px;margin-left:4px}
+.sep{display:flex;align-items:center;gap:12px;margin-top:8px}
+.sep::before,.sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.sep span{font-weight:800;font-size:15px}
+.sep small{font-size:12.5px;color:var(--soft)}
+.daily{margin-top:56px;padding-top:30px;border-top:3px solid transparent;border-image:linear-gradient(90deg,var(--cyan),var(--violet),var(--orange)) 1;position:relative}
+.daily::before{content:"DETAILS";position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 12px;font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--muted)}
+.dhead{display:flex;gap:14px;align-items:center;margin-bottom:14px}
+.dicon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:24px;background:var(--card);border:1px solid var(--line);flex:none}
+.dhead h2{font-size:24px;letter-spacing:-.02em;line-height:1.1}
+.dhead p{font-size:14px;color:var(--muted);margin-top:3px}
+.note{font-size:12.5px;color:var(--soft);margin:4px 0 8px}
+details.run summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 16px}
+details.run summary::-webkit-details-marker{display:none}
+.sum .t{font-weight:800} .sum .m{color:var(--muted);font-size:13.5px}
+.dots{display:flex;gap:4px} .dots i{width:9px;height:9px;border-radius:50%;display:block}
+.cnt{margin-left:auto;font-size:13px;color:var(--muted)}
+.chev{color:var(--soft);transition:transform .15s}
+details[open] .chev{transform:rotate(90deg)}
+@media (max-width:720px){ .actions{grid-template-columns:1fr} .themes{grid-template-columns:1fr} .srow{grid-template-columns:96px 1fr 62px} .srow .w{white-space:nowrap} .hero h1{font-size:23px} nav a:not(.on){display:none} }
+
+html,body{width:1920px;height:1080px;overflow:hidden}
+body{font-size:14px}
+.slide{display:grid;grid-template-columns:1.12fr 1fr;gap:36px;padding:22px 40px 0;height:calc(1080px - 64px)}
+.col{min-width:0;overflow:hidden}
+.sbar{display:flex;align-items:center;gap:14px;height:64px;padding:0 40px;border-bottom:1px solid var(--line)}
+.sbar .brand{font-size:20px}
+.sbar .tag{margin-left:auto;font-size:13px;color:var(--muted)}
+section{margin-top:0}
+#actions{margin-top:22px}
+.hero-in{padding:20px 22px 16px}
+.hero h1{font-size:24px}
+.themes{gap:10px;margin-top:14px}
+.theme{padding:12px}
+.theme p,.theme .so{font-size:13px}
+.score{margin-top:14px;gap:5px}
+.actions{grid-template-columns:repeat(3,1fr);gap:10px}
+.act{padding:11px 13px}
+.act p{font-size:13px;margin-top:4px}
+.daily{margin-top:0;padding-top:0;border:none;border-left:3px solid transparent;border-image:linear-gradient(180deg,var(--cyan),var(--violet),var(--orange)) 1;padding-left:30px}
+.daily::before{content:none}
+.dhead{margin-bottom:10px}
+.tl{margin-top:8px}
+.day{margin:12px 0 8px}
+.card{padding:12px 14px}
+.tool ul{font-size:13.5px}
+.qrows{margin-top:8px}
+</style></head><body>
+<div class="sbar"><div class="brand">🤖 Coding Agents <span class="g">Digest</span></div><span class="tag">New home page design · summary on the left, details on the right · ibrahimsobh.github.io/coding-agents-digest</span></div>
+<div class="slide">
+ <div class="col">
+  <section id="weekly">
+    <div class="hero"><div class="hero-in">
+      <div class="hero-top"><span class="k">📊 Last 7 days · Oct 15 to 22 · <span class="upd">updated today 07:42</span></span><span class="pill">21 releases · 5 tools · <a href="#actions">3 open actions ↓</a></span></div>
+      <div class="lbl">The week in one line</div>
+      <h1>The agents got more autonomous and more careful, and their plugins started to converge.</h1>
+      <p class="sub">Busiest: Claude Code (8 releases). Quietest: Codex CLI (1 stable, ~10 alphas). Rebuilt on every run.</p>
+      <div class="themes">
+        <div class="theme" data-tools="cc agy"><span class="n">1 · AUTONOMY</span><b>Autonomy, with a guard in front</b>
+          <p>agy extended Auto mode, where a review agent checks risky commands, to subagents (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.3">1.4.3</a>) and Windows (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.4">1.4.4</a>); Claude Code added <code>/auto-mode-setup</code> (<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.304">2.1.304</a>).</p>
+          <p class="so"><i>So what:</i> “approve every command” is ending; the safety check is the new battleground.</p></div>
+        <div class="theme" data-tools="agy cc"><span class="n">2 · PLUGINS</span><b>Plugins are becoming portable</b>
+          <p>agy accepts plugins “written for other tools” (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a>) and flags Claude Code-style hook keys (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.3">1.4.3</a>).</p>
+          <p class="so"><i>So what:</i> one plugin may soon run in several agents.</p></div>
+        <div class="theme" data-tools="cc agy"><span class="n">3 · COST</span><b>Long sessions got cheaper</b>
+          <p>Claude Code made idle compaction a <code>/config</code> switch (<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">2.1.302</a>); agy halved idle CPU (<a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a>).</p>
+          <p class="so"><i>So what:</i> an agent session open all day is becoming normal.</p></div>
+      </div>
+      <div class="score">
+        <div class="shead"><span>Releases in the last 7 days</span></div>
+        <div class="srow"><span>Claude Code</span><span class="bar"><i style="width:100%;background:var(--t-cc)"></i></span><span class="w">8</span></div>
+        <div class="srow"><span>Antigravity CLI</span><span class="bar"><i style="width:88%;background:var(--t-agy)"></i></span><span class="w">7</span></div>
+        <div class="srow"><span>OpenCode</span><span class="bar"><i style="width:38%;background:var(--t-oc)"></i></span><span class="w">3</span></div>
+        <div class="srow"><span>Kilo Code</span><span class="bar"><i style="width:25%;background:var(--t-kilo)"></i></span><span class="w">2</span></div>
+        <div class="srow"><span>Codex CLI</span><span class="bar"><i style="width:13%;background:var(--t-codex)"></i></span><span class="w">1</span></div>
+      </div>
+      <div class="hero-foot"><span>👀 Watch next: OpenCode 2 becoming “Latest”, and a large Codex 0.164 (10 alphas so far).</span><a href="#">Archive: weekly snapshots →</a></div>
+    </div></div>
+  </section>
+  <section id="actions">
+    <div class="shd"><span class="k">⚠ Action needed · 3 open</span><small>updated every run · last 7 days, plus items with a date still ahead</small></div>
+    <div class="empty hidden" id="emptyBoard">✅ Nothing needs action right now <span>· checked today 07:42</span></div>
+    <div class="actions" id="board">
+      <div class="act" data-tools="cc"><div class="top"><b>Standalone Claude Design closes</b><span class="cd" data-deadline="2026-12-14">Dec 14</span></div>
+        <div class="src"><i class="d" style="background:var(--t-cc)"></i>Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">2.1.302</a> · flagged Oct 16</div>
+        <p><span class="lab">Affects you if</span> you keep designs in claude.ai/design.</p>
+        <p><span class="lab do">Do this</span> move the work you want to keep before Dec 14.</p></div>
+      <div class="act" data-tools="agy"><div class="top"><b>Recurring schedules now fire at an offset</b><span class="cd done">flagged today</span></div>
+        <div class="src"><i class="d" style="background:var(--t-agy)"></i>Antigravity CLI <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a></div>
+        <p><span class="lab">Affects you if</span> you use the agent's <code>schedule</code> tool for jobs that must run exactly on the hour.</p>
+        <p><span class="lab do">Do this</span> ask the agent for exact timing for those jobs.</p></div>
+      <div class="act" data-tools="oc"><div class="top"><b>Session sharing removed</b><span class="cd done">flagged 7 days ago</span></div>
+        <div class="src"><i class="d" style="background:var(--t-oc)"></i>OpenCode <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.1">1.19.1</a></div>
+        <p><span class="lab">Affects you if</span> you shared sessions or saved share links.</p>
+        <p><span class="lab do">Do this</span> nothing to rescue, old links already stopped working; use another way to share sessions.</p></div>
+    </div>
+  </section>
+ </div>
+ <div class="col">
+  <section class="daily">
+    <div class="dhead">
+      <div class="dicon">📰</div>
+      <div><h2>Daily updates</h2><p>The details: every check, newest first. Each item links its source.</p></div>
+    </div>
+    <div class="filters" id="filters">
+      <span class="chip on" data-f="all">All tools</span>
+      <span class="chip" data-f="cc"><i class="d" style="background:var(--t-cc)"></i>Claude Code</span>
+      <span class="chip" data-f="agy"><i class="d" style="background:var(--t-agy)"></i>Antigravity CLI</span>
+      <span class="chip" data-f="codex"><i class="d" style="background:var(--t-codex)"></i>Codex CLI</span>
+      <span class="chip" data-f="kilo"><i class="d" style="background:var(--t-kilo)"></i>Kilo Code</span>
+      <span class="chip" data-f="oc"><i class="d" style="background:var(--t-oc)"></i>OpenCode</span>
+    </div>
+
+    <div class="tl">
+      <div class="day">TODAY · WED, OCT 22</div>
+
+      <div class="run" data-tools="cc"><div class="card">
+        <div class="rh"><span class="t">07:42</span><span class="m">Claude Code · 1 release, bug fixes (count not given)</span></div>
+        <div class="tool" data-tool="cc"><div class="h"><i class="d" style="background:var(--t-cc)"></i>Claude Code</div>
+          <ul><li><b>Bug fixes only</b> (2.1.308). The notes list “bug fixes and reliability improvements”, no details. <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.308">Source</a></li></ul></div>
+        <div class="qrows"><span class="q">Antigravity CLI · no updates</span><span class="q">Codex CLI · no updates</span><span class="q">Kilo Code · no updates</span><span class="q">OpenCode · no updates</span></div>
+      </div></div>
+
+      <div class="run" data-tools="oc"><div class="card">
+        <div class="rh"><span class="t">05:23</span><span class="m">OpenCode · 3 releases, 5 bug fixes</span></div>
+        <div class="tool" data-tool="oc"><div class="h"><i class="d" style="background:var(--t-oc)"></i>OpenCode</div>
+          <ul><li><span class="warn">⚠</span> <b>Session sharing discontinued</b> (1.19.1). Existing share links stop working and share URLs can no longer be imported. <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.1">Source</a></li>
+              <li><b>Configurable reasoning variants</b> (1.19.3). Set reasoning options to generate variants; your overrides are kept. <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.3">Source</a></li></ul></div>
+        <div class="qrows"><span class="q">Claude Code · no updates</span><span class="q">Antigravity CLI · no updates</span><span class="q">Codex CLI · no updates</span><span class="q">Kilo Code · no updates</span></div>
+      </div></div>
+
+      <div class="quiet" data-quiet>04:09 to 05:20 · 5 checks, no updates</div>
+
+      
+      <details class="run" data-tools="cc agy codex kilo old"><summary class="card sum">
+        <span class="t">01:50</span><span class="m">First digest · Oct 14 to 21</span>
+        <span class="dots"><i style="background:var(--t-cc)"></i><i style="background:var(--t-agy)"></i><i style="background:var(--t-codex)"></i><i style="background:var(--t-kilo)"></i></span>
+        <span class="cnt">11 items · <b class="warnc">⚠ 3</b></span><span class="chev">▸</span></summary>
+        <div class="card" style="margin-top:6px"><div class="tool" data-tool="cc"><div class="h"><i class="d" style="background:var(--t-cc)"></i>Claude Code</div>
+          <ul><li><span class="warn">⚠</span> <b>MCP allow rules now match only the exact server</b> (2.1.299). Write <code>mcp__&lt;server&gt;__*</code> with the full server name. <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">Source</a></li>
+              <li><span class="warn">⚠</span> <b>Standalone Claude Design closes on December 14, 2026</b> (2.1.302). <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">Source</a></li>
+              <li><b>Idle compaction</b> (2.1.299). Idle 200K+ token conversations are compacted before the cache expires. <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">Source</a></li></ul></div>
+        <div class="tool" data-tool="agy"><div class="h"><i class="d" style="background:var(--t-agy)"></i>Antigravity CLI</div>
+          <ul><li><b>Auto mode</b> (1.3.5). Approves edits and safe commands; a separate agent reviews risky ones. <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5">Source</a></li></ul></div>
+        <div class="tool" data-tool="codex"><div class="h"><i class="d" style="background:var(--t-codex)"></i>Codex CLI</div>
+          <ul><li><b>Steer Codex mid-answer, plus a searchable <code>/config</code></b> (0.163.0). <a href="https://github.com/openai/codex/releases/tag/rust-v0.163.0">Source</a></li></ul></div>
+        <div class="tool" data-tool="kilo"><div class="h"><i class="d" style="background:var(--t-kilo)"></i>Kilo Code</div>
+          <ul><li><b>New Agent Manager worktree dialog</b> (v7.8.15). <a href="https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.15">Source</a></li></ul></div>
+        <a class="more" href="#">Show all 11 items →</a></div>
+      </details>
+    </div>
+  </section>
+ </div>
+</div>
+<script>
+// Theme toggle (remembered per browser)
+(function(){
+  const root=document.documentElement;
+  try{const t=localStorage.getItem('cad-theme'); }catch(e){}
+  const tb=document.getElementById('theme'); if(tb) tb.onclick=()=>{root.dataset.theme=root.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('cad-theme',root.dataset.theme)}catch(e){}};
+})();
+// Deadline countdowns
+document.querySelectorAll('[data-deadline]').forEach(el=>{
+  const d=Math.ceil((new Date(el.dataset.deadline+'T00:00:00')-new Date())/864e5);
+  el.textContent = d>0 ? d+' days left' : 'passed';
+});
+// Tool filter
+(function(){
+  const chips=[...document.querySelectorAll('#filters .chip')];
+  function apply(f){
+    chips.forEach(c=>c.classList.toggle('on',c.dataset.f===f));
+    document.querySelectorAll('.run').forEach(r=>{
+      const show=f==='all'||r.dataset.tools.split(' ').includes(f);
+      r.classList.toggle('hidden',!show);
+      r.querySelectorAll('.tool').forEach(t=>t.classList.toggle('hidden',f!=='all'&&t.dataset.tool!==f));
+      r.querySelectorAll('.qrows').forEach(q=>q.classList.toggle('hidden',f!=='all'));
+    });
+    document.querySelectorAll('.act').forEach(a=>a.classList.toggle('hidden',f!=='all'&&!a.dataset.tools.split(' ').includes(f)));
+    document.querySelectorAll('[data-quiet]').forEach(q=>q.classList.toggle('hidden',f!=='all'));
+    try{localStorage.setItem('cad-filter',f)}catch(e){}
+  }
+  chips.forEach(c=>c.onclick=()=>apply(c.dataset.f));
+  let saved='all'; try{saved=localStorage.getItem('cad-filter')||'all'}catch(e){}
+  apply(saved);
+})();
+</script>
+</body></html>

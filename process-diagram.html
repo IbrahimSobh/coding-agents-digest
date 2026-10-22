@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Coding Agents Digest works</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #faf8f1;
+      --color-surface: #ffffff;
+      --color-ink:     #1c1c1c;
+      --color-muted:   #555555;
+      --color-border:  #c8c8c8;
+      --font-sans:     'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 16px;
+    }
+    .frame { max-width: 1072px; width: 100%; }
+    h1 {
+      font-size: clamp(1.75rem, 2.4vw + 0.8rem, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { font-size: 1rem; color: var(--color-muted); margin-bottom: 2rem; }
+    .figure { overflow-x: auto; }
+    svg { width: 100%; min-width: 720px; display: block; }
+    .cards { display: grid; grid-template-columns: 1.1fr 1fr 0.9fr; gap: 16px; margin-top: 32px; }
+    .card { background: var(--color-surface); border: 1.5px solid var(--color-border); border-radius: 12px; padding: 20px; }
+    .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .card p { font-size: 15px; line-height: 1.5; color: var(--color-muted); }
+    @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <h1>How Coding Agents Digest works</h1>
+    <p class="subtitle">Twice a day, a Claude scheduled task checks 5 coding agents, writes a short digest, and GitHub publishes it as a website and an RSS feed.</p>
+
+    <div class="figure">
+    <svg viewBox="0 32 1072 632" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="process-diagram-title process-diagram-desc"
+         font-family="Inter, system-ui, sans-serif">
+      <title id="process-diagram-title">How Coding Agents Digest works</title>
+      <desc id="process-diagram-desc">Swimlane showing a Claude scheduled task that reads its prompt and state from GitHub, checks five coding-agent repos for new releases, writes a short digest and pushes it to GitHub, where Pages rebuilds the website and RSS feed for readers.</desc>
+      <defs>
+        <marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><polygon points="0 0, 12 5, 0 10" fill="#444444"/></marker>
+      </defs>
+
+      <rect x="0" y="32" width="1072" height="632" fill="#faf8f1"/>
+
+      <!-- ===== Lanes (washes) ===== -->
+      <rect x="24" y="88" width="1024" height="176" rx="16" fill="#ebf0f4" stroke="#2b6cb0" stroke-width="1.5"/>
+      <text x="40" y="168" font-size="16" font-weight="700" fill="#245c99">Claude cloud</text>
+      <text x="40" y="188" font-size="12" font-weight="500" fill="#555555">scheduled task</text>
+
+      <rect x="24" y="288" width="1024" height="160" rx="16" fill="#fceee0" stroke="#dd6b20" stroke-width="1.5"/>
+      <text x="40" y="364" font-size="16" font-weight="700" fill="#a84c0e">GitHub</text>
+      <text x="40" y="384" font-size="12" font-weight="500" fill="#555555">storage + hosting</text>
+
+      <rect x="24" y="472" width="1024" height="160" rx="16" fill="#ecf4e8" stroke="#2e7d32" stroke-width="1.5"/>
+      <text x="40" y="548" font-size="16" font-weight="700" fill="#276b2b">Readers</text>
+      <text x="40" y="568" font-size="12" font-weight="500" fill="#555555">you + your audience</text>
+
+      <!-- ===== Connectors (main flow, neutral) ===== -->
+      <line x1="352" y1="176" x2="400" y2="176" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="560" y1="176" x2="608" y2="176" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="816" y1="176" x2="864" y2="176" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <!-- repo -> wake up (reads prompt + state) -->
+      <line x1="272" y1="312" x2="272" y2="232" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <!-- tool repos -> check releases -->
+      <line x1="480" y1="312" x2="480" y2="232" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <!-- push -> pages build -->
+      <line x1="944" y1="232" x2="944" y2="312" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <!-- pages build -> website (elbow) -->
+      <path d="M 864 368 H 732 Q 720 368 720 380 V 496" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <!-- pages build -> RSS -->
+      <line x1="944" y1="424" x2="944" y2="496" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- ===== Connector labels (on paper between lanes) ===== -->
+      <rect x="280" y="268" width="140" height="16" fill="#faf8f1"/>
+      <text x="284" y="280" font-size="12" font-weight="500" fill="#6b6b6b">reads prompt + state</text>
+      <rect x="488" y="268" width="140" height="16" fill="#faf8f1"/>
+      <text x="492" y="280" font-size="12" font-weight="500" fill="#6b6b6b">release tags + notes</text>
+      <rect x="800" y="268" width="136" height="16" fill="#faf8f1"/>
+      <text x="932" y="280" text-anchor="end" font-size="12" font-weight="500" fill="#6b6b6b">pushes entry + state</text>
+
+      <!-- ===== Callout: phone notice ===== -->
+      <text x="1040" y="56" text-anchor="end" font-size="12" font-weight="600" fill="#245c99">push notice to your phone on news or a problem</text>
+      <path d="M 1000 68 V 124" fill="none" stroke="#2b6cb0" stroke-width="2" stroke-dasharray="1,5" stroke-linecap="round"/>
+      <circle cx="1000" cy="124" r="4" fill="#2b6cb0"/>
+
+      <!-- ===== Nodes: Claude cloud lane ===== -->
+      <rect x="192" y="120" width="160" height="112" rx="12" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.5"/>
+      <text x="272" y="156" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Wake up</text>
+      <text x="272" y="182" text-anchor="middle" font-size="12" fill="#1c1c1c">07:41 and 19:41</text>
+      <text x="272" y="204" text-anchor="middle" font-size="12" fill="#555555">Cairo, laptop can be off</text>
+
+      <rect x="400" y="120" width="160" height="112" rx="12" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.5"/>
+      <text x="480" y="156" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Check releases</text>
+      <text x="480" y="182" text-anchor="middle" font-size="12" fill="#1c1c1c">newer than last tag?</text>
+      <text x="480" y="204" text-anchor="middle" font-size="12" fill="#555555">5 tools, every run</text>
+
+      <!-- Focal: larger, own hue fill, 3px -->
+      <rect x="608" y="104" width="208" height="144" rx="12" fill="#dce9f7" stroke="#2b6cb0" stroke-width="3"/>
+      <text x="712" y="140" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Select and explain</text>
+      <text x="712" y="168" text-anchor="middle" font-size="12" fill="#1c1c1c">⚠️ breaking changes first</text>
+      <text x="712" y="190" text-anchor="middle" font-size="12" fill="#1c1c1c">one sentence + source link</text>
+      <text x="712" y="220" text-anchor="middle" font-size="12" fill="#555555">nothing new: “No updates”</text>
+
+      <rect x="864" y="120" width="160" height="112" rx="12" fill="#ffffff" stroke="#2b6cb0" stroke-width="1.5"/>
+      <text x="944" y="156" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Push to main</text>
+      <text x="944" y="182" text-anchor="middle" font-size="12" fill="#1c1c1c">one entry file</text>
+      <text x="944" y="204" text-anchor="middle" font-size="12" fill="#555555">+ updated state</text>
+
+      <!-- ===== Nodes: GitHub lane ===== -->
+      <rect x="192" y="312" width="160" height="112" rx="12" fill="#ffffff" stroke="#dd6b20" stroke-width="1.5"/>
+      <text x="272" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Prompt + memory</text>
+      <text x="272" y="374" text-anchor="middle" font-size="12" font-family="'Geist Mono', monospace" fill="#1c1c1c">task/PROMPT.md</text>
+      <text x="272" y="396" text-anchor="middle" font-size="12" font-family="'Geist Mono', monospace" fill="#555555">task/state.json</text>
+
+      <!-- External: public tool repos, read only -->
+      <rect x="400" y="312" width="160" height="112" rx="12" fill="#ffffff" stroke="#7b4a8f" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="480" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">5 tool repos</text>
+      <text x="480" y="374" text-anchor="middle" font-size="12" fill="#1c1c1c">Claude Code, agy, Codex,</text>
+      <text x="480" y="396" text-anchor="middle" font-size="12" fill="#555555">Cline, Kilo Code</text>
+
+      <rect x="864" y="312" width="160" height="112" rx="12" fill="#ffffff" stroke="#dd6b20" stroke-width="1.5"/>
+      <text x="944" y="348" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Pages build</text>
+      <text x="944" y="374" text-anchor="middle" font-size="12" fill="#1c1c1c">Jekyll, every push</text>
+      <text x="944" y="396" text-anchor="middle" font-size="12" fill="#555555">about 1 minute</text>
+
+      <!-- ===== Nodes: Readers lane ===== -->
+      <rect x="640" y="496" width="160" height="112" rx="12" fill="#ffffff" stroke="#2e7d32" stroke-width="1.5"/>
+      <text x="720" y="532" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Website</text>
+      <text x="720" y="558" text-anchor="middle" font-size="12" fill="#1c1c1c">one box per tool</text>
+      <text x="720" y="580" text-anchor="middle" font-size="12" fill="#555555">quiet runs grouped</text>
+
+      <rect x="864" y="496" width="160" height="112" rx="12" fill="#ffffff" stroke="#2e7d32" stroke-width="1.5"/>
+      <text x="944" y="532" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">RSS feed</text>
+      <text x="944" y="558" text-anchor="middle" font-size="12" fill="#1c1c1c">news runs only</text>
+      <text x="944" y="580" text-anchor="middle" font-size="12" font-family="'Geist Mono', monospace" fill="#555555">feed.xml</text>
+    </svg>
+    </div>
+
+    <div class="cards">
+      <div class="card"><h3>Memory in a file</h3><p>Each run starts fresh. <code>state.json</code> keeps the last tag per tool, so a run covers only releases it has not seen.</p></div>
+      <div class="card"><h3>Prompt as code</h3><p>The rules live in <code>task/PROMPT.md</code>. Edit and push, and the next run follows them.</p></div>
+      <div class="card"><h3>No servers</h3><p>Claude runs the task, GitHub stores and hosts. A few cents per run.</p></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -24,7 +24,6 @@ layout: null
     <link href="{{ e.url | absolute_url }}" rel="alternate" type="text/html"/>
     <id>{{ e.url | absolute_url }}</id>
     <updated>{{ e.date | date_to_xmlschema }}</updated>
-    <summary>{{ e.summary | xml_escape }}</summary>
     <content type="html">{{ body | xml_escape }}</content>
   </entry>
 {% endfor %}

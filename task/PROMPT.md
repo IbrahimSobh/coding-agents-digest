@@ -54,8 +54,8 @@ Rules:
 - Codex: stable tags are `rust-v0.x.y` without `-alpha`. Method A shows them.
 - Release dates come from the release page. The page often shows no year:
   use the current year, unless that puts the date in the future (then use last year).
-- If a source fails, do not guess. Add a line at the end of the entry:
-  `Could not read: <tool> (<what failed, per method>)`, and say it in the run log.
+- If a source fails with every method, do not guess. Treat that tool as "not checked"
+  (see step 4), and give the details (what failed, per method) in the run log only.
 
 ### 3. Read the full text (only if there are new releases)
 - Claude Code and Antigravity CLI: take the sections of `CHANGELOG.md` for each new
@@ -67,12 +67,10 @@ Rules:
 ### 4. Write the entry
 File: `docs/digests/YYYY-MM-DD-HHMM.md`, using the Cairo run time (e.g. `2026-10-22-0800.md`).
 - Any tool has a new release → "News entry" format.
-- All tools were read and none has a new release → "Quiet entry" format.
-- **Some tools could not be read** and none of the others has news → "Quiet entry", but write
-  `No new releases found for the tools that could be read.` plus the `Could not read:` lines.
-- **No tool could be read** → "Quiet entry" with `summary: "Check failed."` and body
-  `Check failed: no source could be read.` plus the `Could not read:` lines.
-  Never write "No new releases" for a tool you did not read.
+- No tool has a new release → "Quiet entry" format.
+- A tool whose source could not be read is "not checked". Never write "No updates" for it.
+  Mention it in ONE short line only (see the formats). No error wording, no per-method details
+  in the entry; those go in the run log.
 
 ### 5. Update `task/state.json`
 - Always: set `last_run` to the run time (`YYYY-MM-DDTHH:MM+03:00`, with the real offset
@@ -109,13 +107,16 @@ summary: "<one sentence, max ~20 words>"
 ```
 - `date`: the run time with the real offset from the `date` command.
 - `since`: the previous `last_run` from `state.json`, in the same readable form.
-- `summary`: news entry = the 2 or 3 biggest changes; quiet entry = `No new releases.`
+- `summary`: news entry = the 2 or 3 biggest changes; quiet entry = `No updates.`
 
 ### Quiet entry: the whole body
 ```
-No new releases since <since>.
+No updates since <since>.
 ```
-Plus a `Could not read: ...` line if a source failed.
+Only if some tools could not be read, add ONE more line:
+`Not checked: <tool>, <tool> (source could not be read).`
+If no tool could be read: `summary: "Not checked."` and the body is only
+`Not checked: no source could be read.`
 
 ### News entry: the whole body
 ```
@@ -139,16 +140,15 @@ Plus a `Could not read: ...` line if a source failed.
 
 ### Across tools
 - **<Theme>.** <One sentence naming the tools and changes.> Sources: [<Tool>](<URL>), [<Tool>](<URL>)
-
-No release: <tool>, <tool>
 ```
 
 Format details:
 - No `#` or `##` headings in the body. The page layout prints the run time and range.
 - **Tool order is fixed:** Claude Code, Antigravity CLI, Codex CLI, Cline, Kilo Code.
   Cline covers both tracks (extension and CLI) under one heading.
-- A tool with no new release gets **no heading**; it goes in the `No release:` line at the end.
-  Omit that line if all tools released.
+- **All 5 tool headings always appear**, in the fixed order. A tool with no new release gets
+  one line under its heading: `- No updates since <since>.`
+  A tool that could not be read gets: `- Not checked (source could not be read).`
 - A tool with releases but nothing worth a bullet gets one line under its heading:
   `- Bug fixes only (<N> fixes).` or `- Minor changes only.`
 - Each bullet = a bold title + the version in brackets + exactly ONE sentence + the source link.

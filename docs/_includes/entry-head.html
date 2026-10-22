@@ -1,4 +1,4 @@
 <header class="run-head">
   <h2><a href="{{ include.e.url | relative_url }}">{{ include.e.run }}</a></h2>
-  <span class="since">{% if include.e.quiet %}<span class="status{% if include.e.summary contains 'failed' %} failed{% endif %}">{{ include.e.summary | remove: '.' }}</span> · {% endif %}since {{ include.e.since }}</span>
+  <span class="since">{% if include.e.quiet %}{{ include.e.content | strip_html | strip | truncatewords: 30 }}{% else %}since {{ include.e.since }}{% endif %}</span>
 </header>

@@ -4,5 +4,5 @@ layout: default
 <p class="back"><a href="{{ '/' | relative_url }}">← All checks</a></p>
 <section class="run{% if page.quiet %} quiet{% endif %}">
   {% include entry-head.html e=page %}
-  {% if page.quiet == false or page.content contains "Could not read" %}<div class="run-body">{{ content }}</div>{% endif %}
+  {% unless page.quiet %}<div class="run-body">{{ content }}</div>{% endunless %}
 </section>

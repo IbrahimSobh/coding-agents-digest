@@ -1,0 +1,13 @@
+<section class="run quiet">
+  {% if include.count == 1 %}
+  <header class="run-head">
+    <h2><a href="{{ include.newest.url | relative_url }}">{{ include.newest.run }}</a></h2>
+    <span class="since">{{ include.newest.content | strip_html | strip | truncatewords: 30 }}</span>
+  </header>
+  {% else %}
+  <header class="run-head">
+    <h2>No updates since {{ include.oldest.since }}</h2>
+    <span class="since">{{ include.count }} checks, last at {{ include.newest.run }}{% if include.nc %} · some sources not checked{% endif %}</span>
+  </header>
+  {% endif %}
+</section>

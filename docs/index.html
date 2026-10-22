@@ -2,20 +2,47 @@
 layout: default
 title: Latest
 ---
+{% comment %}
+  Newest first. Back-to-back quiet checks collapse into one line.
+  Only news entries count toward the limit; older news goes to the list below.
+{% endcomment %}
 {% assign entries = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" | reverse %}
-{% for e in entries limit: 14 %}
-<section class="run{% if e.quiet %} quiet{% endif %}">
+{% assign max_news = 10 %}
+{% assign news_seen = 0 %}
+{% assign qcount = 0 %}
+{% for e in entries %}
+  {% if e.quiet %}
+    {% if news_seen < max_news %}
+      {% if qcount == 0 %}{% assign qnewest = e %}{% assign qnc = false %}{% endif %}
+      {% if e.content contains "Not checked" %}{% assign qnc = true %}{% endif %}
+      {% assign qoldest = e %}
+      {% assign qcount = qcount | plus: 1 %}
+    {% endif %}
+  {% else %}
+    {% if qcount > 0 %}
+      {% include quiet-group.html count=qcount newest=qnewest oldest=qoldest nc=qnc %}
+      {% assign qcount = 0 %}
+    {% endif %}
+    {% if news_seen < max_news %}
+<section class="run">
   {% include entry-head.html e=e %}
-  {% if e.quiet == false or e.content contains "Could not read" %}<div class="run-body{% if e.quiet %} small{% endif %}">{{ e.content | markdownify }}</div>{% endif %}
+  <div class="run-body">{{ e.content | markdownify }}</div>
 </section>
+    {% endif %}
+    {% assign news_seen = news_seen | plus: 1 %}
+  {% endif %}
 {% endfor %}
-{% if entries.size > 14 %}
+{% if qcount > 0 %}{% include quiet-group.html count=qcount newest=qnewest oldest=qoldest nc=qnc %}{% endif %}
+
+{% if news_seen > max_news %}
 <section class="archive">
-  <h2>Older checks</h2>
+  <h2>Older updates</h2>
   <ul>
-  {% for e in entries offset: 14 %}
-    <li><a href="{{ e.url | relative_url }}">{{ e.run }}</a> <span class="summary">{{ e.summary }}</span></li>
-  {% endfor %}
+  {% assign n = 0 %}
+  {% for e in entries %}{% unless e.quiet %}
+    {% assign n = n | plus: 1 %}
+    {% if n > max_news %}<li><a href="{{ e.url | relative_url }}">{{ e.run }}</a> <span class="summary">{{ e.summary }}</span></li>{% endif %}
+  {% endunless %}{% endfor %}
   </ul>
 </section>
 {% endif %}

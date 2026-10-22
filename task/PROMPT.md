@@ -1,4 +1,4 @@
-# Scheduled task: Coding Agents Weekly
+# Scheduled task: Coding Agents Digest
 
 You run on a schedule (twice a day) in a fresh session. You have no memory of earlier
 runs. Everything you need is in this file and in the repository.
@@ -6,8 +6,8 @@ runs. Everything you need is in this file and in the repository.
 ## Your job
 
 Check what changed in AI coding agents since the last run, and publish one entry per run
-to the GitHub repo **`IbrahimSobh/coding-agents-weekly`** (branch `main`).
-GitHub Pages publishes `docs/` to https://ibrahimsobh.github.io/coding-agents-weekly/.
+to the GitHub repo **`IbrahimSobh/coding-agents-digest`** (branch `main`).
+GitHub Pages publishes `docs/` to https://ibrahimsobh.github.io/coding-agents-digest/.
 
 **Every run writes an entry**, also when nothing is new (a short "no new releases" entry).
 This way the site shows that each check happened.
@@ -22,8 +22,8 @@ The value of an entry is not the list of changes. It is:
 
 ### 1. Get the repo and read the state
 - If you have an `add_repo` tool, call it for owner `IbrahimSobh`, repo
-  `coding-agents-weekly`, with push access. Then clone as it says.
-  Otherwise clone `https://github.com/IbrahimSobh/coding-agents-weekly`. Work on branch `main`.
+  `coding-agents-digest`, with push access. Then clone as it says.
+  Otherwise clone `https://github.com/IbrahimSobh/coding-agents-digest`. Work on branch `main`.
 - Get the run time in Cairo: `TZ=Africa/Cairo date '+%Y-%m-%d %H:%M %z'`.
   All times in entries and in `state.json` are Cairo local time.
 - Read `task/sources.yml` (tools, Releases pages, tag patterns, full-text sources).

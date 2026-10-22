@@ -1,7 +1,7 @@
-title: Coding Agents Weekly
+title: Coding Agents Digest
 description: What changed in AI coding agents, selected and explained.
 url: https://ibrahimsobh.github.io
-baseurl: /coding-agents-weekly
+baseurl: /coding-agents-digest
 markdown: kramdown
 kramdown:
   input: GFM

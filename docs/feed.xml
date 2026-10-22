@@ -14,7 +14,7 @@ layout: null
   <link href="{{ '/' | absolute_url }}" rel="alternate" type="text/html"/>
   <id>{{ '/' | absolute_url }}</id>
   <updated>{% if entries.size > 0 %}{{ entries.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
-  <author><name>Coding Agents Weekly</name></author>
+  <author><name>Coding Agents Digest</name></author>
 {% for e in entries limit: 20 %}
   {% assign html = e.content | markdownify %}
   {% assign parts = html | split: "<h3" %}

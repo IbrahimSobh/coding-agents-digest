@@ -93,4 +93,7 @@
   // Redraw with the new colors when the light / dark toggle changes data-theme
   new MutationObserver(draw).observe(root,{attributes:true,attributeFilter:['data-theme']});
   draw();
+  // The chart's controls make the page taller; redo a #section jump that happened before this ran
+  var target=location.hash&&document.getElementById(location.hash.slice(1));
+  if(target) target.scrollIntoView();
 })();

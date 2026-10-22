@@ -17,7 +17,7 @@ code{font:.86em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:
 .wrap{max-width:920px;margin:0 auto;padding:0 16px}
 .hidden{display:none!important}
 .k{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-section{margin-top:28px}
+section{margin-top:28px;scroll-margin-top:76px}
 
 /* Header */
 header.site{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -55,13 +55,13 @@ nav a.on,nav a:hover{color:var(--ink);background:var(--card)}
 
 /* Release history chart */
 .hist{padding:14px 16px}
-.hctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 8px}
+.hctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0 8px;min-height:27px}
 .hgrp{display:inline-flex;flex-wrap:wrap;gap:4px}
 .hsep{width:1px;height:18px;background:var(--line)}
 .hbtn{cursor:pointer;user-select:none;font-size:12.5px;font-weight:600;padding:4px 11px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
 .hbtn:hover{color:var(--ink)}
 .hbtn.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
-.hlegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-bottom:4px}
+.hlegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-bottom:4px;min-height:19px}
 .hleg{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
 .hleg b{color:var(--ink)}
 .hleg.off{opacity:.4}

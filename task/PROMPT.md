@@ -87,8 +87,21 @@ git push origin main
 - Push to `main` directly. Do not open a pull request. Do not push to another branch.
 - If the push fails, retry once. If it still fails, end with the exact error
   (for example the 403 text). Never report success without a successful push.
-- End with a short run log: time range, releases per tool, bullets written,
-  number of "(verify)" marks, and the commit SHA.
+
+### 7. Notify the owner's phone (news or problems only)
+After the push, decide:
+- **News entry pushed** → send ONE push notification. Text (one line, under ~120 characters):
+  `<N> updates: <tools with news>` + `, <K> ⚠️` if any ⚠️ bullets, then the site link.
+  Example: `2 updates: OpenCode, 1 ⚠️ https://ibrahimsobh.github.io/coding-agents-digest/`
+- **Problem** (push failed, or any tool "not checked") → send ONE notification saying what failed.
+- **Quiet run, all tools read** → do NOT notify.
+
+Use the `PushNotification` tool. If it is not loaded, load it first with ToolSearch
+(query `select:PushNotification`). If no notification tool exists, say so in the run log.
+
+### 8. Run log
+End with a short run log: time range, releases per tool, bullets written,
+number of "(verify)" marks, the commit SHA, and whether a notification was sent.
 
 ## Entry formats
 

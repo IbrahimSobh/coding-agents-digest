@@ -23,7 +23,8 @@ Each run updates 4 things on the site:
 2. the **release list** `docs/_data/releases.json` (step 5a),
 3. the **action board** `docs/_data/actions.json` (step 5b),
 4. the **7-day brief** `docs/_data/brief.json`, rebuilt on EVERY run, quiet runs too (step 5c),
-   plus an archive snapshot about once a week (step 5d).
+   plus its headline appended to the **headline log** `docs/_data/headlines.json` (step 5c)
+   and an archive snapshot about once a week (step 5d).
 
 ## Step by step
 
@@ -137,6 +138,10 @@ The brief covers the **last 7 days** up to now. Read the entries in `docs/digest
 - Do not count releases or actions here. The site does that from the other files.
 - No em dash character. Keep the JSON valid: check with `python3 -m json.tool docs/_data/brief.json`
   (also check `releases.json` and `actions.json` the same way if you changed them).
+- Then append ONE item to the end of the headline log `docs/_data/headlines.json`
+  (EVERY run, quiet runs too, also when the headline did not change):
+  `{"updated": "<same as brief.json>", "window": "<same as brief.json>", "headline": "<same as brief.json>"}`.
+  Never remove or change old items. Check it with `python3 -m json.tool docs/_data/headlines.json`.
 
 ### 5d. Archive snapshot (only if 7+ days since the last one)
 Read `last_snapshot` in `task/state.json`. If it is missing, or today is 7 or more days after it,

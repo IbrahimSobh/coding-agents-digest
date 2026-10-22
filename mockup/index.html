@@ -41,7 +41,7 @@ section{margin-top:28px}
 .hero-in{background:var(--card);border-radius:20px;padding:24px 24px 20px;box-shadow:var(--shadow)}
 .hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .pill{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--muted)}
-.hero h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:10px 0 4px}
+.hero h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:4px 0 4px}
 .hero .sub{color:var(--muted);font-size:14px}
 .themes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
 .theme{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}
@@ -58,11 +58,18 @@ section{margin-top:28px}
 .hero-foot{display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}
 
 /* Actions */
-.actions{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:10px}
+.actions{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:12px;margin-top:10px}
 .act{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow)}
 .act .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
 .act b{font-size:14.5px;line-height:1.3}
-.act p{font-size:13px;color:var(--muted);margin-top:4px}
+.act p{font-size:13.5px;color:var(--ink);margin-top:6px;line-height:1.45}
+.act .src{font-size:12.5px;color:var(--muted);margin-top:2px}
+.lab{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin-right:6px}
+.lab.do{color:var(--amber)}
+.lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-top:14px}
+.shead{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;flex-wrap:wrap}
+.shead .lg{font-weight:600;letter-spacing:0;text-transform:none;color:var(--soft)}
+.warnc{color:var(--amber)}
 .cd{flex:none;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--amber) 18%,transparent);color:var(--amber)}
 .cd.done{background:var(--card2);color:var(--soft)}
 
@@ -96,7 +103,7 @@ section{margin-top:28px}
 .more{display:inline-block;margin-top:10px;font-size:13px;font-weight:600}
 footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .hidden{display:none!important}
-@media (max-width:720px){ .themes{grid-template-columns:1fr} .srow{grid-template-columns:96px 1fr 62px} .srow .w{white-space:nowrap} .hero h1{font-size:23px} nav a:not(.on){display:none} }
+@media (max-width:720px){ .actions{grid-template-columns:1fr} .themes{grid-template-columns:1fr} .srow{grid-template-columns:96px 1fr 62px} .srow .w{white-space:nowrap} .hero h1{font-size:23px} nav a:not(.on){display:none} }
 </style>
 </head>
 <body>
@@ -112,6 +119,7 @@ footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font
   <section id="weekly">
     <div class="hero"><div class="hero-in">
       <div class="hero-top"><span class="k">📊 Week in review · Oct 14 to 22, 2026</span><span class="pill">24 releases · 5 tools · 4 actions</span></div>
+      <div class="lbl">The week in one line</div>
       <h1>The agents got more autonomous and more careful, and their plugins started to converge.</h1>
       <p class="sub">Busiest: Claude Code (10 releases). Quietest: Codex CLI (1 stable, ~10 alphas).</p>
       <div class="themes">
@@ -126,6 +134,7 @@ footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font
           <p class="so"><i>So what:</i> an agent session open all day is becoming normal.</p></div>
       </div>
       <div class="score">
+        <div class="shead"><span>Releases this week</span><span class="lg">bar = releases · <b class="warnc">⚠</b> = needs action</span></div>
         <div class="srow"><span>Claude Code</span><span class="bar"><i style="width:100%;background:var(--t-cc)"></i></span><span class="w">10 · ⚠ 2</span></div>
         <div class="srow"><span>Antigravity CLI</span><span class="bar"><i style="width:80%;background:var(--t-agy)"></i></span><span class="w">8 · ⚠ 1</span></div>
         <div class="srow"><span>OpenCode</span><span class="bar"><i style="width:30%;background:var(--t-oc)"></i></span><span class="w">3 · ⚠ 1</span></div>
@@ -140,10 +149,22 @@ footer{margin:40px 0 30px;padding-top:16px;border-top:1px solid var(--line);font
   <section id="actions">
     <div class="k">⚠ Action needed</div>
     <div class="actions">
-      <div class="act" data-tools="cc"><div class="top"><b>Standalone Claude Design closes</b><span class="cd" data-deadline="2026-12-14">Dec 14</span></div><p>Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">2.1.302</a> · move work you keep there</p></div>
-      <div class="act" data-tools="cc"><div class="top"><b>MCP allow rules match exact names</b><span class="cd done">since Oct 14</span></div><p>Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">2.1.299</a> · check your <code>mcp__…</code> rules</p></div>
-      <div class="act" data-tools="agy"><div class="top"><b>Cron schedules now fire at an offset</b><span class="cd done">since Oct 22</span></div><p>Antigravity CLI <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a> · ask for exact timing if a job needs it</p></div>
-      <div class="act" data-tools="oc"><div class="top"><b>Session sharing removed</b><span class="cd done">since Oct 15</span></div><p>OpenCode <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.1">1.19.1</a> · old share links are gone</p></div>
+      <div class="act" data-tools="cc"><div class="top"><b>Standalone Claude Design closes</b><span class="cd" data-deadline="2026-12-14">Dec 14</span></div>
+        <div class="src">Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.302">2.1.302</a></div>
+        <p><span class="lab">Affects you if</span> you keep designs in claude.ai/design.</p>
+        <p><span class="lab do">Do this</span> move the work you want to keep before Dec 14.</p></div>
+      <div class="act" data-tools="cc"><div class="top"><b>MCP allow rules now match exact server names</b><span class="cd done">since Oct 14</span></div>
+        <div class="src">Claude Code <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.299">2.1.299</a></div>
+        <p><span class="lab">Affects you if</span> your settings allow MCP tools with short rules like <code>mcp__a</code>.</p>
+        <p><span class="lab do">Do this</span> write <code>mcp__&lt;server&gt;__*</code> with the full server name, or those tools will start asking for approval.</p></div>
+      <div class="act" data-tools="agy"><div class="top"><b>Recurring schedules now fire at an offset</b><span class="cd done">since Oct 22</span></div>
+        <div class="src">Antigravity CLI <a href="https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5">1.4.5</a></div>
+        <p><span class="lab">Affects you if</span> you use the agent's <code>schedule</code> tool for jobs that must run exactly on the hour.</p>
+        <p><span class="lab do">Do this</span> ask the agent for exact timing for those jobs.</p></div>
+      <div class="act" data-tools="oc"><div class="top"><b>Session sharing removed</b><span class="cd done">since Oct 15</span></div>
+        <div class="src">OpenCode <a href="https://github.com/anomalyco/opencode/releases/tag/v1.19.1">1.19.1</a></div>
+        <p><span class="lab">Affects you if</span> you shared sessions or saved share links.</p>
+        <p><span class="lab do">Do this</span> nothing to rescue, old links already stopped working; use another way to share sessions.</p></div>
     </div>
   </section>
 

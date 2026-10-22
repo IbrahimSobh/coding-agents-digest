@@ -2,15 +2,20 @@
 
 A digest of what changed in AI coding agents, selected and explained.
 
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/screenshot-light.png">
+  <img alt="Coding Agents Digest home page: the 7-day brief and action board on the left, the daily updates on the right" src="docs/assets/screenshot-dark.png">
+</picture>
+
 Site: https://ibrahimsobh.github.io/coding-agents-digest/
 
 RSS (Atom): https://ibrahimsobh.github.io/coding-agents-digest/feed.xml
 
 Tracked: Claude Code, Antigravity CLI (`agy`), OpenAI Codex CLI, Kilo Code, OpenCode.
 
-Not a list of changelogs. Each digest is one short list ("In one minute"): the
-changes that matter, one sentence each with a source link, breaking changes first
-(marked ⚠️), and themes across tools.
+Not a list of changelogs. The home page has a 7-day brief (themes and release counts),
+an action board for changes that need you to act (marked ⚠️), and a daily timeline: the
+changes that matter, one sentence each with a source link.
 
 ## How it works
 

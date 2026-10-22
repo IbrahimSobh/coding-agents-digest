@@ -52,14 +52,17 @@ tools:
 
   - id: opencode
     name: OpenCode
-    repo: sst/opencode
-    releases: https://github.com/sst/opencode/releases
-    tag_pattern: "v2.*"            # e.g. v2.1.2. Other tags (github-v*, named tags) are not app releases.
+    repo: anomalyco/opencode         # moved from sst/opencode (old URLs redirect)
+    releases: https://github.com/anomalyco/opencode/releases
+    tag_pattern: "v1.*"            # e.g. v1.19.3, the line marked "Latest" on the Releases page.
+    ignored_tags: ["v2.*", "github-v*"]
     full_text: release notes on each release page
     full_text_note: >
+      Two lines exist. 1.x is the default (marked Latest) and has full notes.
+      2.x is "OpenCode 2", opt-in via `opencode upgrade --major`; as of 2026-10-22 its
+      releases have no notes, so skip them. Switch to 2.x when a v2 release becomes Latest.
       Kilo Code builds on OpenCode packages, so the same change can appear in both.
-      Cover it under each tool where it ships; an "Across tools" line may point out the overlap.
-    tag_url: https://github.com/sst/opencode/releases/tag/{tag}
+    tag_url: https://github.com/anomalyco/opencode/releases/tag/{tag}
 
 not_tracked:
   - name: Cline

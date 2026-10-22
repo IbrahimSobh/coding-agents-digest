@@ -160,8 +160,11 @@ Format details:
 - **All 5 tool headings always appear**, in the fixed order. A tool with no new release gets
   one line under its heading: `- No updates since <since>.`
   A tool that could not be read gets: `- Not checked (source could not be read).`
-- A tool with releases but nothing worth a bullet gets one line under its heading:
-  `- Bug fixes only (<N> fixes).` or `- Minor changes only.`
+- A tool with releases but nothing worth a bullet still gets ONE line with the version(s),
+  a short plain summary of what the notes say, and the source link. Examples:
+  `- **Bug fixes only** (2.1.308). The notes list "bug fixes and reliability improvements", no details. [Source](<release URL>)`
+  `- **Bug fixes only** (v7.8.16). 6 fixes, none that changes how you work. [Source](<release URL>)`
+  Never write a line without the version and the source link.
 - Each bullet = a bold title + the version in brackets + exactly ONE sentence + the source link.
   The sentence can use a semicolon, but keep it under ~35 words. No tool name in the
   title (the heading already says it).
@@ -197,8 +200,9 @@ back in a harmful way, or end on a date?"
 - **Plain English.** Short sentences. Keep technical terms and identifiers exactly as written.
   Do not use the em dash character.
 - **Counts:** "bug fixes" = lines/bullets that are fixes (in Claude Code, lines that start
-  with "Fixed", including prefixed ones like `[VSCode] Fixed`). If a source gives no clear
-  count, give your best count.
+  with "Fixed", including prefixed ones like `[VSCode] Fixed`). If a source mentions fixes
+  but gives no countable list (e.g. "Bug fixes and reliability improvements"), write
+  "bug fixes (count not given)" in the counts line. Never write "0 bug fixes" when the notes say there were fixes.
 - Language: English.
 
 ## Example of good bullets

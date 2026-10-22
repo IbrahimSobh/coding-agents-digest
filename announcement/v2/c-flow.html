@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>C Flow</title><link rel="stylesheet" href="base.css">
+<style>
+.page{padding:56px 60px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.head{text-align:center}
+.head .k{color:var(--violet)}
+.head h1{font-size:80px;font-weight:900;letter-spacing:-.04em;line-height:1;margin:12px 0}
+.head p{font-size:23px;color:var(--muted)}
+.flow{display:flex;flex-direction:column;gap:0}
+.link{height:40px;display:grid;place-items:center;color:var(--soft);font-size:22px;font-weight:900;line-height:1}
+.node{position:relative;background:var(--card);border:2px solid;border-radius:22px;padding:30px 28px 26px;display:grid;grid-template-columns:300px 1fr;gap:4px 24px;align-items:center}
+.node h3{grid-row:span 2}
+.node .n{position:absolute;top:-14px;left:20px;font-size:13px;font-weight:800;letter-spacing:.1em;padding:3px 10px;border-radius:999px;color:#0b0f17}
+.node h3{font-size:24px;font-weight:800;display:flex;gap:10px;align-items:center}
+.node p{font-size:16px;color:var(--muted);margin-top:6px;line-height:1.4}
+.node .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.node .chip{font-size:13px;padding:4px 10px}
+.src{border-color:#9a4a1c;box-shadow:0 0 40px -10px rgba(251,146,60,.5)} .src .n{background:var(--orange)}
+.llm{border-color:#5b4bb0;box-shadow:0 0 40px -10px rgba(167,139,250,.6)} .llm .n{background:var(--violet)}
+.gh{border-color:#1d6a8f;box-shadow:0 0 40px -10px rgba(56,189,248,.5)} .gh .n{background:var(--cyan)}
+.you{border-color:#1d7a58;box-shadow:0 0 40px -10px rgba(52,211,153,.5)} .you .n{background:var(--green)}
+.verbs{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;margin-top:10px;font-size:16px}
+.verbs b{color:var(--ink)}
+.outs{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:14px}
+.o{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:16px 18px}
+.o .k{font-size:12px;margin-bottom:8px}
+.o p{font-size:15px;line-height:1.45}
+.n2{display:flex;gap:12px;align-items:center;background:#1a2030;border-radius:12px;padding:10px 12px}
+.n2 .i{width:38px;height:38px;border-radius:10px;background:#d97757;display:grid;place-items:center;font-size:19px;flex:none}
+.n2 b{font-size:15px;display:block} .n2 span{font-size:13.5px;color:var(--muted);white-space:nowrap}
+.bottom{display:flex;justify-content:space-between;align-items:center;border-top:1.5px solid var(--line);padding-top:18px}
+.bottom .tags{display:flex;gap:8px}
+.bottom b{font-size:18px;color:var(--cyan)}
+</style></head><body>
+<div class="glow" style="width:600px;height:600px;background:#6d28d9;left:240px;top:380px;opacity:.25"></div>
+<div class="page">
+  <div class="head">
+    <div class="k">New · free · no sign-up</div>
+    <h1><span class="emoji">🤖</span> Coding Agents <span class="grad">Digest</span></h1>
+    <p>Never miss an update about your AI coding agent</p>
+  </div>
+  <div class="flow">
+    <div class="node src"><span class="n">1 · SOURCES</span>
+      <h3><span class="emoji">📥</span> 5 coding agents</h3>
+      <div class="chips"><span class="chip">Claude Code</span><span class="chip">Antigravity CLI</span><span class="chip">Codex CLI</span><span class="chip">Kilo Code</span><span class="chip">OpenCode</span></div>
+      <p>New releases and changelogs, checked twice a day</p></div>
+    <div class="link">↓</div>
+    <div class="node llm"><span class="n">2 · CLAUDE</span>
+      <h3><span class="emoji">🧠</span> LLM processing</h3>
+      <div class="verbs"><div><b>Understand</b> raw notes</div><div><b>Select</b> what matters</div><div><b>Explain</b> in one line</div><div><b class="warn">Flag ⚠</b> breaking</div></div>
+      <p>A Claude scheduled task, running in the cloud</p></div>
+    <div class="link">↓</div>
+    <div class="node gh"><span class="n">3 · GITHUB</span>
+      <h3><span class="emoji">🗄️</span> Store &amp; host</h3>
+      <p>Prompt, memory and history live in the repo. Every push rebuilds the site.</p></div>
+    <div class="link">↓</div>
+    <div class="node you"><span class="n">4 · YOU</span>
+      <h3><span class="emoji">📣</span> Read it anywhere</h3>
+      <div class="chips"><span class="chip">🌐 Website</span><span class="chip">📡 RSS feed</span><span class="chip">📱 Phone alert</span></div>
+      <p>Updated automatically, no manual step</p></div>
+  </div>
+  <div class="outs">
+    <div class="o"><div class="k"><span class="emoji">🌐</span> Sample entry · Oct 22, 05:23</div>
+      <p><span class="warn">⚠</span> <b>Session sharing discontinued</b> (OpenCode 1.19.1). Existing share links stop working. <a>Source</a></p>
+      <p style="margin-top:6px"><b>Configurable reasoning variants</b> (1.19.3). Your overrides are kept. <a>Source</a></p></div>
+    <div class="o"><div class="k"><span class="emoji">📡</span> RSS item</div>
+      <p style="border-left:4px solid var(--orange);padding-left:10px"><b>OpenCode discontinues session sharing; 1.19.3 adds reasoning variants</b></p></div>
+    <div class="o"><div class="k"><span class="emoji">📱</span> Phone alert</div>
+      <div class="n2"><div class="i emoji">🔔</div><div><b>Coding Agents Digest</b><span>2 updates: OpenCode, 1 ⚠</span></div></div></div>
+  </div>
+  <div class="bottom"><div class="tags"><span class="chip">📄 Papers</span><span class="chip">🏁 Competitors</span><span class="chip">⚖️ Regulations</span><span class="chip">📦 Dependencies</span></div>
+    <b>ibrahimsobh.github.io/coding-agents-digest</b></div>
+</div></body></html>

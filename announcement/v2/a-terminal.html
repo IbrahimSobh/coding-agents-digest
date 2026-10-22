@@ -1,0 +1,68 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>A Terminal</title><link rel="stylesheet" href="base.css">
+<style>
+.page{padding:56px 60px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.top{display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:22px;font-weight:800;display:flex;gap:10px;align-items:center}
+h1{font-size:76px;line-height:1.02;font-weight:900;letter-spacing:-.035em}
+.lead{font-size:22px;color:var(--muted);margin-top:16px;line-height:1.4}
+.term{background:#070a10;border:1.5px solid var(--line);border-radius:18px;overflow:hidden}
+.tbar{display:flex;gap:7px;align-items:center;padding:12px 16px;border-bottom:1.5px solid var(--line);background:#0f141e}
+.tbar i{width:12px;height:12px;border-radius:50%;display:block}
+.tbar span{margin-left:12px;font-size:14px;color:var(--soft)}
+.tbody{padding:18px 22px;font-size:16.5px;line-height:1.75}
+.p{color:var(--green)} .c{color:var(--cyan)} .v{color:var(--violet)} .m{color:var(--soft)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.tl{padding:22px 24px}
+.step{display:grid;grid-template-columns:44px 1fr;gap:14px;position:relative;padding-bottom:16px}
+.step:not(:last-child)::after{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:var(--line)}
+.dot{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:var(--card2);border:1.5px solid var(--line)}
+.step b{font-size:19px;display:block;margin-top:2px} .step span{font-size:15px;color:var(--muted)}
+.out{padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.mini{background:var(--card2);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+.mini .k{font-size:12px;margin-bottom:6px}
+.mini p{font-size:15px;line-height:1.45}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{padding:16px 18px} .stat b{font-size:40px;font-weight:900;display:block;line-height:1} .stat span{font-size:15px;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;align-items:center;font-size:17px;color:var(--muted)}
+.foot b{color:var(--cyan)}
+</style></head><body>
+<div class="glow" style="width:520px;height:520px;background:#7c3aed;right:-160px;top:-160px"></div>
+<div class="glow" style="width:420px;height:420px;background:#0ea5e9;left:-180px;top:520px;opacity:.22"></div>
+<div class="page">
+  <div class="top"><div class="brand"><span class="emoji">🤖</span> Coding Agents Digest</div>
+    <div class="chip"><span class="emoji">✨</span> Free · No sign-up</div></div>
+  <div>
+    <h1>Your AI coding agents<br>changed overnight.<br><span class="grad">Here's what matters.</span></h1>
+    <p class="lead">Twice a day, a Claude scheduled task reads every release of 5 coding agents, keeps only what matters, and publishes it for you.</p>
+  </div>
+  <div class="term">
+    <div class="tbar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="mono">claude · scheduled task · 05:23 Cairo</span></div>
+    <div class="tbody mono">
+      <div><span class="p">$</span> check releases <span class="m"># 5 tools</span></div>
+      <div><span class="c">→</span> OpenCode: 3 new <span class="m">(v1.19.1 … v1.19.3)</span> · others: no updates</div>
+      <div><span class="c">→</span> read 3 release notes · <span class="v">picked 2 changes</span> · 5 fixes counted</div>
+      <div><span class="warn">⚠</span> Session sharing discontinued <span class="m">(1.19.1)</span></div>
+      <div><span class="p">✓</span> pushed to main → website + RSS rebuilt · <span class="emoji">📱</span> notified</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="card tl">
+      <div class="k" style="margin-bottom:16px">How it works</div>
+      <div class="step"><div class="dot emoji">📥</div><div><b>Collect</b><span>New releases from 5 GitHub repos</span></div></div>
+      <div class="step"><div class="dot emoji">🧠</div><div><b>Understand &amp; select</b><span>LLM reads the notes, keeps what matters</span></div></div>
+      <div class="step"><div class="dot emoji">📣</div><div><b>Publish</b><span>Website, RSS feed, phone alert</span></div></div>
+    </div>
+    <div class="card out">
+      <div class="k">What you get</div>
+      <div class="mini"><div class="k"><span class="emoji">🌐</span> Website</div><p><span class="warn">⚠</span> <b>Session sharing discontinued</b> (1.19.1). Existing share links stop working. <a>Source</a></p></div>
+      <div class="mini"><div class="k"><span class="emoji">📡</span> RSS · <span class="emoji">📱</span> Phone</div><p>“2 updates: OpenCode, 1 ⚠” · quiet runs stay quiet</p></div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="card stat"><b class="grad">5</b><span>coding agents</span></div>
+    <div class="card stat"><b class="grad">2×</b><span>checks a day</span></div>
+    <div class="card stat"><b class="grad">1</b><span>sentence per change</span></div>
+    <div class="card stat"><b class="grad">0</b><span>manual steps</span></div>
+  </div>
+  <div class="foot"><span>Claude Code · Antigravity CLI · Codex CLI · Kilo Code · OpenCode</span><b>ibrahimsobh.github.io/coding-agents-digest</b></div>
+</div></body></html>

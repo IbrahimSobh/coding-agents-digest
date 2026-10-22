@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>B Bento</title><link rel="stylesheet" href="base.css">
+<style>
+.page{padding:52px 56px;height:100%;display:grid;gap:16px;
+  grid-template-columns:repeat(6,1fr);grid-template-rows:auto auto auto 1fr 1fr auto;
+  grid-template-areas:
+   "hero hero hero hero hero hero"
+   "flow flow flow flow free free"
+   "stats stats stats stats stats stats"
+   "site site site site phone phone"
+   "site site site site rss rss"
+   "uses uses uses url url url"}
+.k{display:flex;gap:8px;align-items:center}
+.t{padding:22px 24px;border-radius:22px;background:var(--card);border:1.5px solid var(--line);position:relative;overflow:hidden}
+.hero{grid-area:hero;padding:34px 36px;background:linear-gradient(135deg,#1b1340,#0d2236 70%);border-color:#33307a}
+.hero .k{color:#c4b5fd}
+.hero h1{font-size:76px;font-weight:900;letter-spacing:-.035em;line-height:1;margin:12px 0 14px}
+.hero p{font-size:23px;color:#cdd5e3;line-height:1.35;max-width:820px}
+.hero .bot{position:absolute;right:34px;top:30px;font-size:64px}
+.flow{grid-area:flow;display:flex;flex-direction:column;gap:14px}
+.steps{display:flex;align-items:center;gap:10px}
+.s{flex:1;background:var(--card2);border:1.5px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.s{padding:18px 12px} .s .e{font-size:38px} .s b{display:block;font-size:17px;margin-top:6px} .s span{font-size:13.5px;color:var(--muted)}
+.arr{color:var(--soft);font-size:24px;font-weight:900}
+.free{grid-area:free;background:linear-gradient(160deg,#0f2e25,#122019);border-color:#1f5a43;display:flex;flex-direction:column;justify-content:center}
+.free b{font-size:56px;font-weight:900;color:var(--green);line-height:1}
+.free span{font-size:18px;color:#b8d9c9;margin-top:8px}
+.site{grid-area:site}
+.bar{display:flex;gap:6px;align-items:center;margin-bottom:14px}
+.bar i{width:11px;height:11px;border-radius:50%;display:block}
+.bar span{margin-left:10px;font-size:13px;color:var(--soft)}
+.when{font-size:18px;font-weight:800;border-top:3px solid var(--ink);padding-top:10px}
+.when small{font-weight:500;color:var(--muted);font-size:14px;margin-left:8px}
+.q{font-size:15px;color:var(--soft);border:1px solid var(--line);border-radius:9px;padding:6px 10px;margin-top:8px;display:flex;gap:14px}
+.q b{color:var(--muted);min-width:104px}
+.box{margin-top:10px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.box .h{background:#1d2333;color:var(--orange);font-weight:700;font-size:15px;padding:8px 12px}
+.box ul{padding:10px 14px 12px 32px;font-size:16px;line-height:1.55}
+.phone{grid-area:phone;background:#0a0d14}
+.n{display:flex;gap:12px;background:#1a2030;border-radius:14px;padding:12px;margin-top:10px}
+.n .i{width:40px;height:40px;border-radius:10px;background:#d97757;display:grid;place-items:center;font-size:20px;flex:none}
+.n b{font-size:15px;display:block} .n span{font-size:14px;color:var(--muted)}
+.rss{grid-area:rss}
+.rss p{font-size:15.5px;font-weight:700;line-height:1.35;margin-top:10px;border-left:4px solid var(--orange);padding-left:12px}
+.rss span{font-size:13px;color:var(--soft);display:block;margin-top:6px;padding-left:16px}
+.uses{grid-area:uses}
+.stats{grid-area:stats;display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:18px 8px}
+.stats div{text-align:center;border-right:1.5px solid var(--line)} .stats div:last-child{border:none}
+.stats b{font-size:38px;font-weight:900;display:block;line-height:1.1} .stats span{font-size:14.5px;color:var(--muted)}
+.uses .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.url{grid-area:url;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,#0c2a3d,#1b1340);border-color:#2b3f6b}
+.url b{font-size:19px;color:var(--cyan);margin-top:6px}
+</style></head><body>
+<div class="page">
+  <div class="t hero">
+    <div class="bot emoji">🤖</div>
+    <div class="k">Introducing</div>
+    <h1>Coding Agents <span class="grad">Digest</span></h1>
+    <p>Never miss an update about your AI coding agent. Only the changes that matter, explained in one sentence, with ⚠ on what needs action.</p>
+  </div>
+  <div class="t flow">
+    <div class="k">Twice a day, by itself</div>
+    <div class="steps">
+      <div class="s"><div class="e emoji">📥</div><b>Collect</b><span>5 GitHub repos</span></div><div class="arr">›</div>
+      <div class="s"><div class="e emoji">🧠</div><b>LLM selects</b><span>Claude scheduled task</span></div><div class="arr">›</div>
+      <div class="s"><div class="e emoji">📣</div><b>Publish</b><span>Web · RSS · phone</span></div>
+    </div>
+  </div>
+  <div class="t free"><b>Free</b><span>No sign-up.<br>Read on the web or via RSS.</span></div>
+  <div class="t stats"><div><b class="grad">5</b><span>coding agents</span></div><div><b class="grad">2×</b><span>checks a day</span></div><div><b class="grad">1</b><span>sentence per change</span></div><div><b class="grad">0</b><span>manual steps</span></div></div>
+  <div class="t site">
+    <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>ibrahimsobh.github.io/coding-agents-digest</span></div>
+    <div class="when">Oct 22, 2026, 05:23<small>OpenCode · 3 releases, 5 bug fixes</small></div>
+    <div class="q"><b>Claude Code</b>No updates since 05:20</div>
+    <div class="q"><b>Antigravity CLI</b>No updates since 05:20</div>
+    <div class="q"><b>Codex CLI</b>No updates since 05:20</div>
+    <div class="q"><b>Kilo Code</b>No updates since 05:20</div>
+    <div class="box"><div class="h">OpenCode</div>
+      <ul><li><span class="warn">⚠</span> <b>Session sharing discontinued</b> (1.19.1). Existing share links stop working. <a>Source</a></li>
+          <li><b>Configurable reasoning variants</b> (1.19.3). Set reasoning options to generate variants; your overrides are kept. <a>Source</a></li></ul></div>
+    <div class="q" style="margin-top:12px;border-style:dashed"><b>Quiet run?</b>One gray line: “No updates since …”</div>
+  </div>
+  <div class="t phone"><div class="k"><span class="emoji">📱</span> Phone alert</div>
+    <div class="n"><div class="i emoji">🔔</div><div><b>Coding Agents Digest</b><span>2 updates: OpenCode, 1 ⚠</span></div></div>
+    <p style="font-size:14px;color:var(--soft);margin-top:12px">Only on news or a problem. Quiet runs stay quiet.</p></div>
+  <div class="t rss"><div class="k"><span class="emoji">📡</span> RSS feed</div>
+    <p>OpenCode discontinues session sharing; 1.19.3 adds reasoning variants</p><span>Coding Agents Digest · new item</span><span style="padding-left:0;margin-top:12px">One item per news run. Any RSS reader.</span></div>
+  <div class="t uses"><div class="k"><span class="emoji">💡</span> Same pattern for</div>
+    <div class="chips"><span class="chip">📄 Research papers</span><span class="chip">🏁 Competitor news</span><span class="chip">⚖️ Regulations</span><span class="chip">📦 Dependencies</span></div></div>
+  <div class="t url"><div class="k">Read it now</div><b>ibrahimsobh.github.io/coding-agents-digest</b></div>
+</div></body></html>

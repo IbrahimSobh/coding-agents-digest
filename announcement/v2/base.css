@@ -1,0 +1,13 @@
+:root{--bg:#0b0f17;--card:#141a26;--card2:#10151f;--line:#263043;--ink:#e8ecf4;--muted:#94a0b4;--soft:#6b778c;
+--cyan:#38bdf8;--violet:#a78bfa;--amber:#fbbf24;--green:#34d399;--orange:#fb923c;--pink:#f472b6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1080px;height:1350px;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;overflow:hidden;position:relative}
+.emoji{font-family:'Noto Color Emoji',sans-serif;font-weight:400}
+.mono{font-family:'DejaVu Sans Mono','Liberation Mono',monospace}
+.glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none}
+.grad{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:20px}
+.k{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--card2);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600;color:var(--ink)}
+.warn{color:var(--amber)}
+a{color:var(--orange);text-decoration:none}

@@ -7,7 +7,10 @@
   {% else %}
   <header class="run-head">
     <h2>No updates since {{ include.oldest.since }}</h2>
-    <span class="since">{{ include.count }} checks, last at {{ include.newest.run }}{% if include.nc %} · some sources not checked{% endif %}</span>
+    {% assign t = include.times | split: "|" %}
+    {% assign d1 = t.first | split: ", " | first %}{% assign d2 = t.last | split: ", " | first %}
+    {% if d1 == d2 %}{% assign shown = include.times | replace: d1, "" | remove: ", " | split: "|" %}{% assign day = d1 | append: ": " %}{% else %}{% assign shown = t %}{% assign day = "" %}{% endif %}
+    <span class="since">{% if t.size <= 5 %}checked at {{ day }}{{ shown | join: ", " }}{% else %}{{ include.count }} checks, {{ day }}{{ shown.first }} to {{ shown.last }}{% endif %} (Cairo){% if include.nc %} · some sources not checked{% endif %}</span>
   </header>
   {% endif %}
 </section>

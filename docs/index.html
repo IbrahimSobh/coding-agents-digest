@@ -13,14 +13,16 @@ title: Latest
 {% for e in entries %}
   {% if e.quiet %}
     {% if news_seen < max_news %}
-      {% if qcount == 0 %}{% assign qnewest = e %}{% assign qnc = false %}{% endif %}
+      {% assign rparts = e.run | remove: " (Cairo)" | split: ", " %}
+      {% assign lbl = rparts[0] | append: ", " | append: rparts[2] %}
+      {% if qcount == 0 %}{% assign qnewest = e %}{% assign qnc = false %}{% assign qtimes = lbl %}{% else %}{% assign qtimes = lbl | append: "|" | append: qtimes %}{% endif %}
       {% if e.content contains "Not checked" %}{% assign qnc = true %}{% endif %}
       {% assign qoldest = e %}
       {% assign qcount = qcount | plus: 1 %}
     {% endif %}
   {% else %}
     {% if qcount > 0 %}
-      {% include quiet-group.html count=qcount newest=qnewest oldest=qoldest nc=qnc %}
+      {% include quiet-group.html count=qcount newest=qnewest oldest=qoldest nc=qnc times=qtimes %}
       {% assign qcount = 0 %}
     {% endif %}
     {% if news_seen < max_news %}
@@ -32,7 +34,7 @@ title: Latest
     {% assign news_seen = news_seen | plus: 1 %}
   {% endif %}
 {% endfor %}
-{% if qcount > 0 %}{% include quiet-group.html count=qcount newest=qnewest oldest=qoldest nc=qnc %}{% endif %}
+{% if qcount > 0 %}{% include quiet-group.html count=qcount newest=qnewest oldest=qoldest nc=qnc times=qtimes %}{% endif %}
 
 {% if news_seen > max_news %}
 <section class="archive">

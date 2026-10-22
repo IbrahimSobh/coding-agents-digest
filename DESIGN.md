@@ -159,3 +159,6 @@ Results of the setup run, recorded so later edits have the facts.
 
 **Renamed (2026-10-22)**
 - Repo and site renamed from `coding-agents-weekly` / "Coding Agents Weekly" to `coding-agents-digest` / "Coding Agents Digest", so the name does not depend on the run frequency. New site: https://ibrahimsobh.github.io/coding-agents-digest/ . The handoff text above keeps the old name as written then.
+
+**Sources change (2026-10-22)**
+- Cline removed, OpenCode (`sst/opencode`, tags `v2.*`) added; the list stays at 5 tools. Order: Claude Code, Antigravity CLI, Codex CLI, Kilo Code, OpenCode. OpenCode starts from `v2.1.2`, so the next run only covers newer releases. Old entries keep their Cline boxes as history.

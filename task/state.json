@@ -15,19 +15,13 @@
       "last_tag": "rust-v0.163.0",
       "last_release_date": "2026-10-15"
     },
-    "cline": {
-      "extension": {
-        "last_tag": "v4.1.25",
-        "last_release_date": "2026-10-16"
-      },
-      "cli": {
-        "last_tag": "cli-v3.0.73",
-        "last_release_date": "2026-10-17"
-      }
-    },
     "kilo-code": {
       "last_tag": "v7.8.15",
       "last_release_date": "2026-10-19"
+    },
+    "opencode": {
+      "last_tag": "v2.1.2",
+      "last_release_date": "2026-10-21"
     }
   }
 }

@@ -37,20 +37,6 @@ tools:
     full_text_note: "Find the newest stable tag with https://github.com/openai/codex/releases/latest or git ls-remote. Skip every -alpha tag."
     tag_url: https://github.com/openai/codex/releases/tag/{tag}
 
-  - id: cline
-    name: Cline
-    repo: cline/cline
-    releases: https://github.com/cline/cline/releases
-    # One repo, several products. Track the extension and the CLI only.
-    tracks:
-      - id: extension
-        tag_pattern: "v4.*"        # e.g. v4.1.25
-      - id: cli
-        tag_pattern: "cli-v3.*"    # e.g. cli-v3.0.73
-    ignored_tags: ["sdk/*", "desktop-v*"]
-    full_text: release notes on each release page
-    tag_url: https://github.com/cline/cline/releases/tag/{tag}
-
   - id: kilo-code
     name: Kilo Code
     repo: Kilo-Org/kilocode
@@ -64,6 +50,19 @@ tools:
       7.8.10, 7.8.12). Cover those notes once, under the stable release.
     tag_url: https://github.com/Kilo-Org/kilocode/releases/tag/{tag}
 
+  - id: opencode
+    name: OpenCode
+    repo: sst/opencode
+    releases: https://github.com/sst/opencode/releases
+    tag_pattern: "v2.*"            # e.g. v2.1.2. Other tags (github-v*, named tags) are not app releases.
+    full_text: release notes on each release page
+    full_text_note: >
+      Kilo Code builds on OpenCode packages, so the same change can appear in both.
+      Cover it under each tool where it ships; an "Across tools" line may point out the overlap.
+    tag_url: https://github.com/sst/opencode/releases/tag/{tag}
+
 not_tracked:
+  - name: Cline
+    reason: Removed on 2026-10-22 to keep the list at 5 tools; replaced by OpenCode.
   - name: Gemini CLI
     reason: Replaced by Antigravity CLI (agy) on 2026-06-18 for unpaid and Google One users.

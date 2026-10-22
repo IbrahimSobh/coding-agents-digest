@@ -27,11 +27,10 @@ The value of an entry is not the list of changes. It is:
 - Get the run time in Cairo: `TZ=Africa/Cairo date '+%Y-%m-%d %H:%M %z'`.
   All times in entries and in `state.json` are Cairo local time.
 - Read `task/sources.yml` (tools, Releases pages, tag patterns, full-text sources).
-- Read `task/state.json`: `last_run` and the `last_tag` of each tool
-  (Cline has two tracks: `extension` and `cli`).
+- Read `task/state.json`: `last_run` and the `last_tag` of each tool.
 
 ### 2. Find new releases
-For each tool (and each Cline track), list the releases that match `tag_pattern` and are
+For each tool, list the releases that match `tag_pattern` and are
 **newer than `last_tag`** in `state.json` (compare by version number, not by date).
 
 **How to read the sources. Read this carefully.**
@@ -60,7 +59,7 @@ Rules:
 ### 3. Read the full text (only if there are new releases)
 - Claude Code and Antigravity CLI: take the sections of `CHANGELOG.md` for each new
   version (headings like `## 2.1.307` or `## 1.4.4`). Read only those sections.
-- Codex, Cline, Kilo Code: read each new release's notes page.
+- Codex, Kilo Code, OpenCode: read each new release's notes page.
 - Kilo Code: a stable release repeats the notes of the pre-releases before it.
   Cover each note once, under the stable release.
 
@@ -132,10 +131,10 @@ If no tool could be read: `summary: "Not checked."` and the body is only
 ### Codex CLI
 - ...
 
-### Cline
+### Kilo Code
 - ...
 
-### Kilo Code
+### OpenCode
 - ...
 
 ### Across tools
@@ -144,8 +143,7 @@ If no tool could be read: `summary: "Not checked."` and the body is only
 
 Format details:
 - No `#` or `##` headings in the body. The page layout prints the run time and range.
-- **Tool order is fixed:** Claude Code, Antigravity CLI, Codex CLI, Cline, Kilo Code.
-  Cline covers both tracks (extension and CLI) under one heading.
+- **Tool order is fixed:** Claude Code, Antigravity CLI, Codex CLI, Kilo Code, OpenCode.
 - **All 5 tool headings always appear**, in the fixed order. A tool with no new release gets
   one line under its heading: `- No updates since <since>.`
   A tool that could not be read gets: `- Not checked (source could not be read).`

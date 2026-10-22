@@ -6,7 +6,7 @@ Site: https://ibrahimsobh.github.io/coding-agents-digest/
 
 RSS (Atom): https://ibrahimsobh.github.io/coding-agents-digest/feed.xml
 
-Tracked: Claude Code, Antigravity CLI (`agy`), OpenAI Codex CLI, Cline, Kilo Code.
+Tracked: Claude Code, Antigravity CLI (`agy`), OpenAI Codex CLI, Kilo Code, OpenCode.
 
 Not a list of changelogs. Each digest is one short list ("In one minute"): the
 changes that matter, one sentence each with a source link, breaking changes first

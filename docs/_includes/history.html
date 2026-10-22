@@ -18,4 +18,4 @@
   <script type="application/json" id="histData">{"today": {{ site.time | date: "%Y-%m-%d" | jsonify }}, "tools": {{ hist_tools | jsonify }}, "releases": {{ site.data.releases | jsonify }}}</script>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
-<script src="{{ '/assets/history.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/history.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

@@ -63,6 +63,15 @@ a { color: var(--accent); text-underline-offset: 2px; }
 }
 .run-body li { margin: 6px 0; }
 
+/* A tool with no news: one thin gray row instead of a box */
+.tool-quiet {
+  display: flex; flex-wrap: wrap; gap: 2px 12px; align-items: baseline;
+  margin-top: 8px; padding: 6px 12px;
+  border: 1px solid var(--line); border-radius: 8px;
+  color: var(--muted); font-size: .85rem;
+}
+.tool-quiet .tool-name { font-weight: 600; min-width: 120px; }
+
 code {
   font: .86em/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   background: var(--code-bg); padding: 1px 4px; border-radius: 4px;

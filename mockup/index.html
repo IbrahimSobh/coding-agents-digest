@@ -131,6 +131,21 @@ details.run summary::-webkit-details-marker{display:none}
 .chev{color:var(--soft);transition:transform .15s}
 details[open] .chev{transform:rotate(90deg)}
 @media (max-width:720px){ .actions{grid-template-columns:1fr} .themes{grid-template-columns:1fr} .srow{grid-template-columns:96px 1fr 62px} .srow .w{white-space:nowrap} .hero h1{font-size:23px} nav a:not(.on){display:none} }
+
+/* Timeline dot and list bullets take the tool's color */
+.run[data-tools="cc"]::before{background:var(--t-cc);box-shadow:0 0 0 4px color-mix(in srgb,var(--t-cc) 22%,transparent)}
+.run[data-tools="agy"]::before{background:var(--t-agy);box-shadow:0 0 0 4px color-mix(in srgb,var(--t-agy) 22%,transparent)}
+.run[data-tools="codex"]::before{background:var(--t-codex);box-shadow:0 0 0 4px color-mix(in srgb,var(--t-codex) 22%,transparent)}
+.run[data-tools="kilo"]::before{background:var(--t-kilo);box-shadow:0 0 0 4px color-mix(in srgb,var(--t-kilo) 22%,transparent)}
+.run[data-tools="oc"]::before{background:var(--t-oc);box-shadow:0 0 0 4px color-mix(in srgb,var(--t-oc) 22%,transparent)}
+.run[data-tools="kilo cc agy"]::before{background:conic-gradient(var(--t-kilo) 0 33%,var(--t-cc) 0 66%,var(--t-agy) 0);box-shadow:0 0 0 4px color-mix(in srgb,var(--muted) 20%,transparent)}
+.run[data-tools="cc agy codex kilo old"]::before{background:conic-gradient(var(--t-cc) 0 25%,var(--t-agy) 0 50%,var(--t-codex) 0 75%,var(--t-kilo) 0);box-shadow:0 0 0 4px color-mix(in srgb,var(--muted) 20%,transparent)}
+.tool[data-tool="cc"] li::marker{color:var(--t-cc)}
+.tool[data-tool="agy"] li::marker{color:var(--t-agy)}
+.tool[data-tool="codex"] li::marker{color:var(--t-codex)}
+.tool[data-tool="kilo"] li::marker{color:var(--t-kilo)}
+.tool[data-tool="oc"] li::marker{color:var(--t-oc)}
+.run::before{width:12px;height:12px;left:-25px}
 </style>
 </head>
 <body>

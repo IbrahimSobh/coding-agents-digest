@@ -2,6 +2,8 @@ title: Coding Agents Digest
 timezone: Africa/Cairo
 description: What changed in AI coding agents, selected and explained.
 url: https://ibrahimsobh.github.io
+author: Ibrahim Sobh
+linkedin: https://www.linkedin.com/in/ibrahim-sobh-phd-8681757/
 baseurl: /coding-agents-digest
 markdown: kramdown
 kramdown:

@@ -183,8 +183,19 @@ footer.site a{color:var(--muted)}
   .hbar{gap:8px}
   .brand{font-size:15px;gap:6px}
   .logo{width:21px;height:21px}
-  nav a{padding:6px 7px}
-  nav a[href$="feed.xml"]{display:none}
+  .tbtn{width:32px;height:32px}
+  /* phones: the 3 icons stay; the text links go (both are also in the footer) */
+  nav a{display:none}
   a.tbtn{margin-right:0}
+}
+@media (max-width:380px){
+  .brand{font-size:14px}
+  .logo{width:19px;height:19px}
+  .hbar{gap:6px}
+}
+@media (max-width:340px){
+  .brand{font-size:13px;gap:5px}
+  .hbar{gap:4px}
+  .tbtn{width:28px;height:28px}
 }
 .tool li::marker{color:var(--tc,currentColor)}

@@ -46,8 +46,10 @@
       function v(t){return +p.filter(function(x){return x.type===t})[0].value}
       return v('hour')%24*60+v('minute');
     }
-    // "updated 3 h ago", exact time in the reader's own time zone on hover
-    function ago(min){return min<1?'just now':min<60?min+' min ago':min<1440?Math.round(min/60)+' h ago':Math.round(min/1440)+' days ago'}
+    // Relative times ("updated 3 h ago", "17 h ago"), exact time in the reader's own time zone on hover.
+    // The page source keeps Cairo times, shown as they are if this script does not run.
+    function ago(min){return min<1?'just now':min<60?min+' min ago':min<2880?Math.round(min/60)+' h ago':Math.round(min/1440)+' days ago'}
+    function local(t){return t.toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'})+' (your time)'}
     function clock(){
       if(nc){
         var m=cairoMinutes(), txt;
@@ -62,15 +64,21 @@
         var t=new Date(el.dataset.updated);
         if(isNaN(t)) return;
         el.textContent='updated '+ago(Math.round((Date.now()-t)/6e4));
-        el.title=t.toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'})+' (your time)';
+        el.title=local(t);
+      });
+      // Timeline: each run time becomes "N h ago"; a quiet range shows its two ends, or one if they match
+      document.querySelectorAll('[data-at]').forEach(function(el){
+        var t=new Date(el.dataset.at);
+        if(isNaN(t)) return;
+        el.textContent=ago(Math.round((Date.now()-t)/6e4));
+        el.title=local(t);
+      });
+      document.querySelectorAll('.quiet').forEach(function(q){
+        var s=q.querySelectorAll('[data-at]');
+        if(s.length===2&&s[0].textContent===s[1].textContent){s[1].style.display='none';if(s[0].nextSibling)s[0].nextSibling.textContent=''}
       });
     }
     clock(); setInterval(clock,6e4);
-    // Timeline times are Cairo time; the hover shows the same moment in the reader's time zone
-    document.querySelectorAll('[data-at]').forEach(function(el){
-      var t=new Date(el.dataset.at);
-      if(!isNaN(t)) el.title=t.toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'})+' (your time)';
-    });
     function d0(s){return new Date(s+'T00:00:00')}
     var today=new Date(); today.setHours(0,0,0,0);
     // Countdowns and "flagged N days ago"

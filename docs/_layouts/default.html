@@ -46,8 +46,8 @@
       else if(hidden&&y<=2) hdr.classList.remove('scrolled');
     }
     window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('load',onScroll); onScroll();
-    // "next check in about N h" / "checking now". The scheduled task runs at 08:00 and 20:00 Cairo time.
-    var RUNS=[8*60,20*60], nc=document.getElementById('nextCheck');
+    // "next check in about N h" / "checking now". The scheduled task runs at 08:00 and 22:00 Cairo time.
+    var RUNS=[8*60,22*60], nc=document.getElementById('nextCheck');
     function cairoMinutes(){
       var p=new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Cairo',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
       function v(t){return +p.filter(function(x){return x.type===t})[0].value}

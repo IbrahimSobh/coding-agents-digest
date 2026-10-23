@@ -20,7 +20,10 @@ and a daily timeline: the changes that matter, one sentence each with a source l
 
 ## How it works
 
-A Claude scheduled task runs twice a day (08:00 and 20:00 Cairo).
+A Claude scheduled task runs twice a day, at 08:00 and 22:00 Cairo time
+(`Africa/Cairo`, daylight saving included). The times follow US release hours: most
+of these tools ship during the US workday, about 19:00 to 04:00 Cairo time. The 22:00
+run catches the US morning releases, and the 08:00 run catches the rest of the US day.
 
 <img alt="Flowchart of one run: read state and find releases; if there are new releases, read the notes and select what matters, then test each change for action needed (deadline, loses-work, breaks-automation, removed, default-change, security) and make a ⚠️ action card or a normal bullet; write the entry and update the data files; commit and push; notify only on news or problems" src="docs/assets/prompt-process.png" width="760">
 

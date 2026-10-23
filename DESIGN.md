@@ -150,7 +150,7 @@ Results of the setup run, recorded so later edits have the facts.
 - Update: the list is grouped by tool, in a fixed order: Claude Code, Antigravity CLI, Codex CLI, Cline, Kilo Code, then "Across tools". ⚠️ bullets come first inside each tool. PROMPT.md has a test for when to use ⚠️.
 
 **Schedule and entries change (2026-10-22)**
-- Runs twice a day, 08:00 and 20:00 Cairo time, on Haiku 5.5 (cost). Push notification when a run finishes.
+- Runs twice a day, 08:00 and 22:00 Cairo time, on Haiku 5.5 (cost). Push notification when a run finishes.
 - Every run writes an entry, also when nothing is new ("No new releases since ..."), so each check is visible. This replaces "nothing new = no commit".
 - Entry files: `docs/digests/YYYY-MM-DD-HHMM.md` (Cairo time). `state.json` tracks `last_run` instead of `last_digest_date`.
 - Site: a feed of the latest 14 checks, one box per tool, a strong line between runs, quiet checks shown as one small line.

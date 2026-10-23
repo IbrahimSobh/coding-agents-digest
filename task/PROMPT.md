@@ -104,9 +104,11 @@ For EVERY ⚠️ bullet you wrote in this run's entry, append exactly one item (
  "do": "<what to do, one sentence, ends with a full stop>",
  "deadline": "YYYY-MM-DD" or null,
  "flagged": "<today's date, YYYY-MM-DD>",
+ "category": "<deadline | loses-work | breaks-automation | removed | default-change | security>",
  "dismissed": false
 }
 ```
+- `category`: the first category that fits, from "When to use ⚠️" below. The site shows it as a tag.
 - The site prints `affects` after "Affects you if" and `do` after "Do this". Write them to fit:
   affects = "your settings allow MCP tools with short rules like `mcp__a`."
   do = "write `mcp__<server>__*` with the full server name, or those tools will start asking for approval."
@@ -268,17 +270,28 @@ Format details:
 - Release links: use `tag_url` from `sources.yml`. Link the release that introduced the change.
 
 ### When to use ⚠️
-**Always ⚠️** if the change:
-1. can lose work or data (e.g. edits that `/rewind` no longer undoes),
-2. breaks scripts, CI or automation (flags, exit codes, output format, non-interactive runs),
-3. removes or renames something users rely on (a flag, setting, command, URL or config key),
-4. ends on a date (a shutdown or removal date),
-5. changes a default so that cost goes up, results change, or something that worked stops
-   working (e.g. a different default model, a permission rule that matches less).
+**Always ⚠️** if the change fits one of these categories. If it fits more than one, use the
+FIRST that fits, in this order; its id goes in the card's `category` field (step 5b):
+1. `deadline`: ends on a date (a shutdown or removal date).
+2. `loses-work`: can lose work or data (e.g. edits that `/rewind` no longer undoes).
+3. `breaks-automation`: breaks scripts, CI or automation (flags, exit codes, output format,
+   non-interactive runs), or needs manual setup to keep working (a config file moved or changed
+   format, a new login).
+4. `removed`: removes or renames something users rely on (a flag, setting, command, URL or
+   config key), or drops support (an OS, runtime version or model).
+5. `default-change`: a new default that raises cost, or changes results in a way the user can
+   undo or pin (e.g. a different default model, a permission rule that matches less).
+6. `security`: fixes a vulnerability in the tool or a component it bundles: the notes mention a
+   vulnerability, CVE, security advisory or security fix, or advise updating.
 
-**Never ⚠️:** a new command or opt-in mode, a fix, a default that only helps and breaks
-nothing (e.g. automatic compaction that saves cost), a deprecation warning with no removal date,
-a renamed label in the UI, a change that only affects one platform you would skip anyway.
+**"Do this" must be a concrete step** (set X back to Y, add a flag, move work before a date,
+update to version X). If the only advice is "be aware" or "check it", it is not ⚠️: write a
+normal bullet.
+
+**Never ⚠️:** a new command or opt-in mode, a fix (except a security fix, see 6), a default that
+only helps and breaks nothing (e.g. automatic compaction that saves cost), a deprecation warning
+with no removal date, a renamed label in the UI, a change that only affects one platform you
+would skip anyway.
 
 **When unsure, no ⚠️.** Each ⚠️ becomes a card on the action board, so a false alarm costs
 the reader time.

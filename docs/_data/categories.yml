@@ -1,0 +1,14 @@
+# Action board categories: id as written in actions.json, label shown on the card.
+# Order and meaning are defined in task/PROMPT.md ("When to use ⚠️"). Colors: .ctag.c-<id> in style.css.
+- id: deadline
+  label: Deadline
+- id: loses-work
+  label: Loses work
+- id: breaks-automation
+  label: Breaks automation
+- id: removed
+  label: Removed
+- id: default-change
+  label: Default change
+- id: security
+  label: Security

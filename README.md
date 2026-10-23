@@ -20,8 +20,8 @@ and a daily timeline: the changes that matter, one sentence each with a source l
 
 ## How it works
 
-A Claude scheduled task runs twice a day, at 08:00 and 22:00 Cairo time
-(`Africa/Cairo`, daylight saving included). The times follow US release hours: most
+A Claude scheduled task runs twice a day, at 08:00 and 22:00 Cairo local time
+(Egypt, daylight saving included). The times follow US release hours: most
 of these tools ship during the US workday, about 19:00 to 04:00 Cairo time. The 22:00
 run catches the US morning releases, and the 08:00 run catches the rest of the US day.
 

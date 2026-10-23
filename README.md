@@ -58,7 +58,6 @@ action board are computed by the site from the data files, not by the model.
 | `docs/briefs/` | Weekly snapshots (archive, also in RSS) |
 | `docs/_layouts/`, `docs/_includes/`, `docs/assets/style.css` | Site layout and style |
 | `docs/_includes/history.html`, `docs/assets/history.js` | The release chart (drawn in the browser from `releases.json`) |
-| `DESIGN.md` | Design notes and decisions (not published) |
 | `prompt-process.html` | Source of the run diagram (`docs/assets/prompt-process.png`) |
 
 ## Change the schedule

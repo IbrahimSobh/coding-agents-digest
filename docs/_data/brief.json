@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-23T08:12+03:00",
- "updated_label": "Oct 23, 08:12",
+ "updated": "2026-10-23T20:11+03:00",
+ "updated_label": "Oct 23, 20:11",
  "window": "Oct 16 to Oct 23, 2026",
  "headline": "Coding agents tightened sandboxes and MCP handling this week, and some defaults now behave differently.",
  "themes": [
@@ -11,16 +11,16 @@
    "so_what": "any sandbox or MCP setup that worked by accident may now need an explicit grant."
   },
   {
-   "tag": "Plugins",
-   "title": "Plugins are checked before they load",
-   "facts": "`agy plugin validate --strict --json` uses the loader's own rules for CI ([1.4.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.0)), and 1.4.6 adds checks for context providers and for `SKILL.md` files the loader skips ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)).",
-   "so_what": "if you write plugins for more than one agent, test them in each one's validator."
+   "tag": "Defaults",
+   "title": "Defaults and rewind behave differently now",
+   "facts": "Codex Guardian v2 now defaults to conversation mode, so its verdicts can differ ([rust-v0.164.0](https://github.com/openai/codex/releases/tag/rust-v0.164.0)); Claude Code's `/rewind` no longer undoes `sed -i` edits, and `claude ultrareview` needs workspace trust in scripts ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)).",
+   "so_what": "scripts and reviews that ran unattended before may now stop or change output, so check them before you rely on them."
   },
   {
-   "tag": "Autonomy",
-   "title": "Autonomy, with a guard in front",
-   "facts": "agy's Auto mode has a separate agent review commands that would leave the sandbox ([1.3.5](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5)), and Claude Code added `/auto-mode-setup` to teach auto mode about your project ([2.1.304](https://github.com/anthropics/claude-code/releases/tag/v2.1.304)).",
-   "so_what": "\"approve every command\" is ending; how good the safety check is becomes the real difference."
+   "tag": "Plugins",
+   "title": "Plugins get their own checks and settings",
+   "facts": "`agy plugin validate --strict --json` uses the CLI's own loader rules, so you can run it in CI and fail on warnings ([1.4.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.0)), and `/plugin` now sets a plugin's MCP server variables without disabling it ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)).",
+   "so_what": "if you write plugins for more than one agent, test them in each one's validator."
   }
  ],
  "watch_next": "Claude Code 2.1.309 changes `ultrareview` and `/rewind`, so expect reports of broken scripts. OpenCode 2 is still opt-in; the day a v2 release becomes \"Latest\" will be big news."

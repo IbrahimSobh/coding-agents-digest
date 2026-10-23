@@ -59,8 +59,13 @@ Rules:
   page with Method C for tools whose tags do not show it, e.g. Kilo Code).
 - Skip tags listed under `ignored_tags`.
 - Codex: stable tags are `rust-v0.x.y` without `-alpha`. Method A shows them.
-- Release dates come from the release page. The page often shows no year:
-  use the current year, unless that puts the date in the future (then use last year).
+- Release dates are **Cairo dates**, like everything else on the site. Read the exact UTC time
+  from the release page, then convert it:
+  `curl -sS https://github.com/<owner>/<repo>/releases/tag/<tag> | grep -o 'datetime="[^"]*"' | head -1`
+  gives e.g. `datetime="2026-10-22T22:18:57Z"`, and
+  `TZ=Africa/Cairo date -d '2026-10-22T22:18:57Z' +%Y-%m-%d` gives `2026-10-23`.
+  Only if no exact time can be read, use the date shown on the release page. That page often
+  shows no year: use the current year, unless that puts the date in the future (then use last year).
 - If a source fails with every method, do not guess. Treat that tool as "not checked"
   (see step 4), and give the details (what failed, per method) in the run log only.
 
@@ -81,7 +86,7 @@ File: `docs/digests/YYYY-MM-DD-HHMM.md`, using the Cairo run time (e.g. `2026-10
 
 ### 5a. Add new releases to `docs/_data/releases.json`
 For every release you covered in this run, append one object to the list:
-`{"tool": "<tool id>", "tag": "<tag exactly as in git>", "date": "YYYY-MM-DD"}`.
+`{"tool": "<tool id>", "tag": "<tag exactly as in git>", "date": "YYYY-MM-DD"}` (the Cairo date from step 2).
 Tool ids: `claude-code`, `antigravity-cli`, `codex`, `kilo-code`, `opencode`.
 Never remove or change old items. No duplicates (same tool + tag). The site counts the
 release bars from this file, so do not count anything yourself.

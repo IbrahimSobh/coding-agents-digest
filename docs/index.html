@@ -32,8 +32,8 @@ layout: default
       {% endif %}
       {% if e.quiet %}
         {% assign tm = e.date | date: "%H:%M" %}
-        {% if qcount == 0 %}{% assign qlast = tm %}{% endif %}
-        {% assign qfirst = tm %}{% assign qcount = qcount | plus: 1 %}
+        {% if qcount == 0 %}{% assign qlast = tm %}{% assign qlast_at = e.date | date_to_xmlschema %}{% endif %}
+        {% assign qfirst = tm %}{% assign qfirst_at = e.date | date_to_xmlschema %}{% assign qcount = qcount | plus: 1 %}
         {% if e.content contains "Not checked" %}{% assign qnc = true %}{% endif %}
       {% else %}
         {% include quiet-flush.html %}

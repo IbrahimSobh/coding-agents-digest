@@ -66,6 +66,11 @@
       });
     }
     clock(); setInterval(clock,6e4);
+    // Timeline times are Cairo time; the hover shows the same moment in the reader's time zone
+    document.querySelectorAll('[data-at]').forEach(function(el){
+      var t=new Date(el.dataset.at);
+      if(!isNaN(t)) el.title=t.toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'})+' (your time)';
+    });
     function d0(s){return new Date(s+'T00:00:00')}
     var today=new Date(); today.setHours(0,0,0,0);
     // Countdowns and "flagged N days ago"

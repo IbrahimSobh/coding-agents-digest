@@ -26,6 +26,7 @@ header.site{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--b
 .hbar{display:flex;align-items:center;gap:16px;height:60px}
 .hsub{font-size:13px;color:var(--muted);margin-top:-10px;padding-bottom:10px;max-height:60px;overflow:hidden;transition:max-height .2s,opacity .2s,margin .2s,padding .2s}
 #nextCheck{color:var(--cyan);font-style:italic}
+.tagline{font-weight:600}
 header.site.scrolled .hsub{max-height:0;opacity:0;margin-top:0;padding-bottom:0}
 /* Hourglass before "next check": sand runs down, then it turns over (4 s loop) */
 .hg{width:17px;height:17px;vertical-align:-4px;margin:0 5px 0 2px;animation:hg-flip 4s ease-in-out infinite}

@@ -268,16 +268,20 @@ Format details:
 - Release links: use `tag_url` from `sources.yml`. Link the release that introduced the change.
 
 ### When to use ⚠️
-Ask: "If the user updates and does nothing, will something break, change behind their
-back in a harmful way, or end on a date?"
-- **Yes → ⚠️.** Examples: a removed flag or setting, a permission rule that matches less,
-  a URL or config that is now read differently, a service shutdown date, a new default that
-  can raise cost or change results (e.g. a different default model).
-- **No → no ⚠️.** Examples: a new command, a new opt-in mode, a new default that only helps
-  and breaks nothing (e.g. automatic compaction that saves cost).
-- **When unsure, no ⚠️.** Each ⚠️ becomes a card on the action board, so a false alarm costs
-  the reader time. Not ⚠️: a deprecation warning with no removal yet, a fix, a renamed label in
-  the UI, a change that only affects one platform you would skip anyway.
+**Always ⚠️** if the change:
+1. can lose work or data (e.g. edits that `/rewind` no longer undoes),
+2. breaks scripts, CI or automation (flags, exit codes, output format, non-interactive runs),
+3. removes or renames something users rely on (a flag, setting, command, URL or config key),
+4. ends on a date (a shutdown or removal date),
+5. changes a default so that cost goes up, results change, or something that worked stops
+   working (e.g. a different default model, a permission rule that matches less).
+
+**Never ⚠️:** a new command or opt-in mode, a fix, a default that only helps and breaks
+nothing (e.g. automatic compaction that saves cost), a deprecation warning with no removal date,
+a renamed label in the UI, a change that only affects one platform you would skip anyway.
+
+**When unsure, no ⚠️.** Each ⚠️ becomes a card on the action board, so a false alarm costs
+the reader time.
 
 ## Writing rules
 

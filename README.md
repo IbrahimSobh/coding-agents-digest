@@ -2,10 +2,7 @@
 
 A digest of what changed in AI coding agents, selected and explained.
 
-<picture>
-  <source media="(prefers-color-scheme: light)" srcset="docs/assets/screenshot-light.png">
-  <img alt="Coding Agents Digest home page: the release chart, 7-day brief and action board (with category tags) on the left, the daily updates on the right" src="docs/assets/screenshot-dark.png">
-</picture>
+<img alt="Coding Agents Digest home page: the release chart, 7-day brief and action board (with category tags) on the left, the daily updates on the right" src="docs/assets/screenshot-light.png">
 
 Site: https://ibrahimsobh.github.io/coding-agents-digest/
 

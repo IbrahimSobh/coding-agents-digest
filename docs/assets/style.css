@@ -29,7 +29,9 @@ header.site{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--b
 nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
 nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:6px 10px;border-radius:8px;white-space:nowrap}
 nav a.on,nav a:hover{color:var(--ink);background:var(--card)}
-.tbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:16px;flex:none}
+.tbtn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:16px;flex:none;display:inline-grid;place-items:center}
+a.tbtn{margin-right:-8px}
+a.tbtn:hover{border-color:var(--muted)}
 
 /* Brief */
 .hero{border-radius:22px;padding:2px;background:linear-gradient(135deg,var(--cyan),var(--violet) 55%,var(--orange))}
@@ -154,5 +156,12 @@ footer.site a{color:var(--muted)}
   .hero h1{font-size:23px}
   .hero-in{padding:18px 16px}
   .hsep{display:none}
+}
+@media (max-width:480px){
+  .hbar{gap:8px}
+  .brand{font-size:15px;gap:6px}
+  nav a{padding:6px 7px}
+  nav a[href$="feed.xml"]{display:none}
+  a.tbtn{margin-right:0}
 }
 .tool li::marker{color:var(--tc,currentColor)}

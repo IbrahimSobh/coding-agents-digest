@@ -19,7 +19,12 @@ changes that matter, one sentence each with a source link.
 
 ## How it works
 
-A Claude scheduled task runs twice a day (08:00 and 20:00 Cairo). Each run:
+A Claude scheduled task runs twice a day (08:00 and 20:00 Cairo).
+
+<img alt="Flowchart of one run: read state and find releases; if there are new releases, read the notes and select what matters, then test each change for action needed (deadline, loses-work, breaks-automation, removed, default-change, security) and make a ⚠️ action card or a normal bullet; write the entry and update the data files; commit and push; notify only on news or problems" src="docs/assets/prompt-process.png" width="760">
+
+The diagram follows `task/PROMPT.md`; its source is [`prompt-process.html`](prompt-process.html).
+Each run:
 
 1. Reads `task/state.json` (last run, last tag per tool, last snapshot date).
 2. Checks the sources in `task/sources.yml` for newer stable releases.
@@ -44,10 +49,12 @@ by the site from the data files, not by the model.
 | `docs/_data/brief.json` | The live 7-day brief |
 | `docs/_data/actions.json` | Action board items (set `dismissed: true` to hide one) |
 | `docs/_data/releases.json` | Every covered release (for the bars) |
+| `docs/_data/headlines.json` | The brief's headline from every run (append only) |
 | `docs/_data/tools.yml` | Tool names and colors |
 | `docs/briefs/` | Weekly snapshots (archive, also in RSS) |
 | `docs/_layouts/`, `docs/_includes/`, `docs/assets/style.css` | Site layout and style |
 | `DESIGN.md` | Design notes and decisions (not published) |
+| `prompt-process.html` | Source of the run diagram (`docs/assets/prompt-process.png`) |
 
 ## Change the schedule
 

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How a digest run works</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #faf8f1;
+      --color-surface: #ffffff;
+      --color-ink:     #1c1c1c;
+      --color-muted:   #555555;
+      --color-border:  #c8c8c8;
+      --font-sans:     'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 16px;
+    }
+    .frame { max-width: 1072px; width: 100%; }
+    h1 {
+      font-size: clamp(1.75rem, 2.4vw + 0.8rem, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle { font-size: 1rem; color: var(--color-muted); margin-bottom: 2rem; }
+    .figure { overflow-x: auto; }
+    svg { width: 100%; min-width: 720px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <h1>How a digest run works</h1>
+    <p class="subtitle">The scheduled task, step by step, as written in task/PROMPT.md · runs at 08:00 and 20:00 Cairo</p>
+
+    <div class="figure">
+    <svg viewBox="0 0 1072 1040" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="prompt-process-title prompt-process-desc"
+         font-family="Inter, system-ui, sans-serif">
+      <title id="prompt-process-title">How a digest run works</title>
+      <desc id="prompt-process-desc">Flowchart of one scheduled run: read the state and new releases, select the changes that matter, test each one for action needed against six categories, update the data files, push to main, and notify only on news or problems.</desc>
+      <defs>
+        <marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><polygon points="0 0, 12 5, 0 10" fill="#444444"/></marker>
+        <marker id="arrow-orange" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="10" refX="11" refY="5" orient="auto"><polygon points="0 0, 12 5, 0 10" fill="#dd6b20"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#faf8f1"/>
+
+      <!-- Connectors (drawn before nodes) -->
+      <line x1="300" y1="44" x2="300" y2="64" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="300" y1="136" x2="300" y2="156" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="300" y1="244" x2="300" y2="284" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="300" y1="404" x2="300" y2="436" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <!-- No new releases: quiet entry goes straight to the data files -->
+      <path d="M 412 200 H 948 Q 960 200 960 212 V 672 Q 960 684 948 684 H 440" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <!-- Needs action: yes -->
+      <line x1="412" y1="480" x2="560" y2="480" stroke="#dd6b20" stroke-width="2" marker-end="url(#arrow-orange)"/>
+      <path d="M 840 480 H 868 Q 880 480 880 492 V 640 Q 880 652 868 652 H 440" fill="none" stroke="#dd6b20" stroke-width="2" marker-end="url(#arrow-orange)"/>
+      <!-- Needs action: no -->
+      <line x1="300" y1="524" x2="300" y2="620" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="300" y1="708" x2="300" y2="744" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="300" y1="800" x2="300" y2="836" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="412" y1="880" x2="560" y2="880" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="300" y1="924" x2="300" y2="972" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+      <path d="M 700 912 V 972 Q 700 984 688 984 H 312" fill="none" stroke="#444444" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Connector labels (masked, 8px off the line) -->
+      <rect x="308" y="256" width="36" height="16" fill="#faf8f1"/>
+      <text x="312" y="268" font-size="12" font-weight="600" fill="#6b6b6b">Yes</text>
+      <rect x="456" y="176" width="128" height="16" fill="#faf8f1"/>
+      <text x="520" y="188" text-anchor="middle" font-size="12" font-weight="600" fill="#6b6b6b">No: quiet entry</text>
+      <rect x="468" y="456" width="36" height="16" fill="#faf8f1"/>
+      <text x="486" y="468" text-anchor="middle" font-size="12" font-weight="700" fill="#a84c0e">Yes</text>
+      <rect x="152" y="564" width="140" height="16" fill="#faf8f1"/>
+      <text x="288" y="576" text-anchor="end" font-size="12" font-weight="600" fill="#6b6b6b">No: normal bullet</text>
+      <rect x="468" y="856" width="36" height="16" fill="#faf8f1"/>
+      <text x="486" y="868" text-anchor="middle" font-size="12" font-weight="600" fill="#6b6b6b">Yes</text>
+      <rect x="180" y="940" width="112" height="16" fill="#faf8f1"/>
+      <text x="288" y="952" text-anchor="end" font-size="12" font-weight="600" fill="#6b6b6b">No: quiet run</text>
+
+      <!-- Start -->
+      <circle cx="300" cy="36" r="8" fill="#1c1c1c"/>
+
+      <!-- 1. Read state and find releases -->
+      <rect x="160" y="64" width="280" height="72" rx="12" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5"/>
+      <text x="300" y="94" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Read state, find releases</text>
+      <text x="300" y="118" text-anchor="middle" font-size="12" fill="#555555">newer than last tag · dates in Cairo time</text>
+
+      <!-- Decision: any new releases -->
+      <polygon points="300,156 412,200 300,244 188,200" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5"/>
+      <text x="300" y="206" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Any new releases?</text>
+
+      <!-- Focal: select what matters -->
+      <rect x="132" y="284" width="336" height="120" rx="12" fill="#dce9f7" stroke="#2b6cb0" stroke-width="3"/>
+      <text x="300" y="320" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Read notes, select what matters</text>
+      <text x="300" y="348" text-anchor="middle" font-size="12" fill="#1c1c1c">a few bullets per tool, one sentence each</text>
+      <text x="300" y="372" text-anchor="middle" font-size="12" fill="#555555">never invent · every bullet links its source</text>
+      <text x="300" y="392" text-anchor="middle" font-size="12" font-weight="700" fill="#245c99">the model's main judgment</text>
+
+      <!-- Decision: needs action -->
+      <polygon points="300,436 412,480 300,524 188,480" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5"/>
+      <text x="300" y="480" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Needs action?</text>
+      <text x="300" y="500" text-anchor="middle" font-size="12" fill="#555555">⚠️ test, per change</text>
+
+      <!-- Warning card -->
+      <rect x="560" y="444" width="280" height="72" rx="12" fill="#fde3cf" stroke="#dd6b20" stroke-width="1.5"/>
+      <text x="700" y="474" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">⚠️ bullet + action card</text>
+      <text x="700" y="498" text-anchor="middle" font-size="12" fill="#555555">card in actions.json with a category</text>
+
+      <!-- Categories, checked in order; first that fits -->
+      <text x="560" y="536" font-size="12" font-weight="600" fill="#a84c0e">Categories, first that fits:</text>
+      <g font-family="'Geist Mono', ui-monospace, monospace" font-size="12" font-weight="500" fill="#a84c0e" text-anchor="middle">
+        <rect x="560" y="544" width="72" height="20" rx="6" fill="#fde3cf" stroke="#dd6b20" stroke-width="1.5"/>
+        <text x="596" y="558">deadline</text>
+        <rect x="640" y="544" width="88" height="20" rx="6" fill="#fde3cf" stroke="#dd6b20" stroke-width="1.5"/>
+        <text x="684" y="558">loses-work</text>
+        <rect x="560" y="572" width="140" height="20" rx="6" fill="#fde3cf" stroke="#dd6b20" stroke-width="1.5"/>
+        <text x="630" y="586">breaks-automation</text>
+        <rect x="708" y="572" width="72" height="20" rx="6" fill="#fde3cf" stroke="#dd6b20" stroke-width="1.5"/>
+        <text x="744" y="586">removed</text>
+        <rect x="560" y="600" width="120" height="20" rx="6" fill="#fde3cf" stroke="#dd6b20" stroke-width="1.5"/>
+        <text x="620" y="614">default-change</text>
+        <rect x="688" y="600" width="72" height="20" rx="6" fill="#fde3cf" stroke="#dd6b20" stroke-width="1.5"/>
+        <text x="724" y="614">security</text>
+      </g>
+      <text x="560" y="640" font-size="12" font-style="italic" fill="#555555">when unsure, no ⚠️</text>
+
+      <!-- Update data files -->
+      <rect x="160" y="620" width="280" height="88" rx="12" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5"/>
+      <text x="300" y="648" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Write entry, update data</text>
+      <text x="300" y="672" text-anchor="middle" font-size="12" fill="#555555">releases · actions · brief · headlines</text>
+      <text x="300" y="692" text-anchor="middle" font-size="12" fill="#555555">state · weekly snapshot every 7 days</text>
+
+      <!-- Commit and push -->
+      <rect x="160" y="744" width="280" height="56" rx="12" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5"/>
+      <text x="300" y="770" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Commit and push to main</text>
+      <text x="300" y="790" text-anchor="middle" font-size="12" fill="#555555">GitHub Pages rebuilds the site</text>
+
+      <!-- Decision: notify -->
+      <polygon points="300,836 412,880 300,924 188,880" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5"/>
+      <text x="300" y="886" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">News or problem?</text>
+
+      <!-- Notification -->
+      <rect x="560" y="848" width="280" height="64" rx="12" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5"/>
+      <text x="700" y="876" text-anchor="middle" font-size="16" font-weight="700" fill="#1c1c1c">Phone notification</text>
+      <text x="700" y="898" text-anchor="middle" font-size="12" fill="#555555">updates, ⚠️ count, site link</text>
+
+      <!-- End -->
+      <circle cx="300" cy="984" r="10" fill="none" stroke="#1c1c1c" stroke-width="2"/>
+      <circle cx="300" cy="984" r="6" fill="#1c1c1c"/>
+      <text x="300" y="1020" text-anchor="middle" font-size="12" font-weight="500" fill="#555555">run log</text>
+    </svg>
+    </div>
+  </div>
+</body>
+</html>

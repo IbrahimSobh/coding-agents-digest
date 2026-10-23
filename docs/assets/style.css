@@ -27,9 +27,9 @@ header.site{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--b
 .hsub{font-size:13px;color:var(--muted);margin-top:-10px;padding-bottom:10px;max-height:60px;overflow:hidden;transition:max-height .2s,opacity .2s,margin .2s,padding .2s}
 header.site.scrolled .hsub{max-height:0;opacity:0;margin-top:0;padding-bottom:0}
 /* Hourglass before "next check": sand runs down, then it turns over (4 s loop) */
-.hg{width:13px;height:13px;vertical-align:-2px;margin:0 4px 0 1px;animation:hg-flip 4s ease-in-out infinite}
-.hg-frame{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
-.hg-sand{fill:var(--amber);transform-box:fill-box}
+.hg{width:17px;height:17px;vertical-align:-4px;margin:0 5px 0 2px;animation:hg-flip 4s ease-in-out infinite}
+.hg-frame{fill:none;stroke:var(--violet);stroke-width:2.2;stroke-linecap:round}
+.hg-sand{fill:var(--cyan);transform-box:fill-box}
 .hg-sand.top{transform-origin:50% 100%;animation:hg-top 4s linear infinite}
 .hg-sand.bot{transform-origin:50% 100%;animation:hg-bot 4s linear infinite}
 @keyframes hg-flip{0%,75%{transform:rotate(0)}100%{transform:rotate(180deg)}}

@@ -13,7 +13,7 @@
   {% else %}{% assign f_s = a.flagged | date: "%s" | plus: 0 %}{% if f_s >= cutoff_s %}{% assign keep = true %}{% endif %}{% endif %}
   {% if keep %}{% assign board_count = board_count | plus: 1 %}{% assign t = site.data.tools | where: "id", a.tool | first %}
   <div class="act{% if board_count > 6 %} extra hidden{% endif %}" data-tools="{{ a.tool }}">
-    <div class="top"><b>{{ a.title }}</b>{% if a.deadline %}<span class="cd dl" data-deadline="{{ a.deadline }}">{{ a.deadline | date: "%b %-d" }}</span>{% else %}<span class="cd" data-flagged="{{ a.flagged }}">flagged {{ a.flagged | date: "%b %-d" }}</span>{% endif %}</div>
+    <div class="top"><b>{{ a.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</b>{% if a.deadline %}<span class="cd dl" data-deadline="{{ a.deadline }}">{{ a.deadline | date: "%b %-d" }}</span>{% else %}<span class="cd" data-flagged="{{ a.flagged }}">flagged {{ a.flagged | date: "%b %-d" }}</span>{% endif %}</div>
     <div class="src"><i class="d" style="background:{{ t.color }}"></i>{{ t.name }} <a href="{{ a.url }}">{{ a.version }}</a>{% if a.deadline %} · flagged {{ a.flagged | date: "%b %-d" }}{% endif %}{% if a.category %}{% assign cat = site.data.categories | where: "id", a.category | first %}<span class="ctag c-{{ a.category }}">{{ cat.label | default: a.category }}</span>{% endif %}</div>
     <p><span class="lab">Affects you if</span> {{ a.affects | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>
     <p><span class="lab do">Do this</span> {{ a.do | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p>

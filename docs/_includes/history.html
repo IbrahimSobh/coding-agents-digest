@@ -13,6 +13,7 @@
   </div>
   <div class="hlegend" id="histLegend"></div>
   <div class="hbox"><canvas id="histChart" role="img" aria-label="Stable releases per tool over time"></canvas></div>
+  <p class="hnote">Stable releases only. A release count does not mean importance.</p>
   <script type="application/json" id="histData">{"today": {{ site.time | date: "%Y-%m-%d" | jsonify }}, "tools": {{ hist_tools | jsonify }}, "releases": {{ site.data.releases | jsonify }}}</script>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>

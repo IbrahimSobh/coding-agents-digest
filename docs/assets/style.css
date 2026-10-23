@@ -85,6 +85,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .hleg b{color:var(--ink)}
 .hleg.off{opacity:.4}
 .hbox{position:relative;height:210px}
+.hnote{font-size:12px;color:var(--soft);margin-top:6px}
 
 /* Action board */
 .shd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}

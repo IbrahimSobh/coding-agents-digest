@@ -250,5 +250,9 @@
   "date": "2026-10-16"
  },
   {"tool": "antigravity-cli", "tag": "1.4.5", "date": "2026-10-22"},
-  {"tool": "opencode", "tag": "v1.19.4", "date": "2026-10-22"}
+  {"tool": "opencode", "tag": "v1.19.4", "date": "2026-10-22"},
+  {"tool": "claude-code", "tag": "v2.1.309", "date": "2026-10-22"},
+  {"tool": "antigravity-cli", "tag": "1.4.6", "date": "2026-10-23"},
+  {"tool": "codex", "tag": "rust-v0.164.0", "date": "2026-10-23"},
+  {"tool": "kilo-code", "tag": "v7.8.17", "date": "2026-10-23"}
 ]

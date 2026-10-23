@@ -1,24 +1,24 @@
 {
-  "last_run": "2026-10-22T20:08+03:00",
-  "last_entry_file": "docs/digests/2026-10-22-2008.md",
+  "last_run": "2026-10-23T08:12+03:00",
+  "last_entry_file": "docs/digests/2026-10-23-0812.md",
   "last_snapshot": "2026-10-22",
   "timezone": "Africa/Cairo",
   "tools": {
     "claude-code": {
-      "last_tag": "v2.1.308",
+      "last_tag": "v2.1.309",
       "last_release_date": "2026-10-22"
     },
     "antigravity-cli": {
-      "last_tag": "1.4.5",
-      "last_release_date": "2026-10-22"
+      "last_tag": "1.4.6",
+      "last_release_date": "2026-10-23"
     },
     "codex": {
-      "last_tag": "rust-v0.163.0",
-      "last_release_date": "2026-10-15"
+      "last_tag": "rust-v0.164.0",
+      "last_release_date": "2026-10-23"
     },
     "kilo-code": {
-      "last_tag": "v7.8.15",
-      "last_release_date": "2026-10-19"
+      "last_tag": "v7.8.17",
+      "last_release_date": "2026-10-23"
     },
     "opencode": {
       "last_tag": "v1.19.4",

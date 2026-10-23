@@ -1,27 +1,27 @@
 {
- "updated": "2026-10-22T20:08+03:00",
- "updated_label": "Oct 22, 20:08",
- "window": "Oct 15 to Oct 22, 2026",
- "headline": "The agents got more autonomous and more careful, and their plugin systems got stricter.",
+ "updated": "2026-10-23T08:12+03:00",
+ "updated_label": "Oct 23, 08:12",
+ "window": "Oct 16 to Oct 23, 2026",
+ "headline": "Coding agents tightened sandboxes and MCP handling this week, and some defaults now behave differently.",
  "themes": [
   {
-   "tag": "Autonomy",
-   "title": "Autonomy, with a guard in front",
-   "facts": "agy extended Auto mode, where a review agent checks risky commands, to subagents ([1.4.3](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.3)) and Windows ([1.4.4](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.4)); Claude Code added `/auto-mode-setup` ([2.1.304](https://github.com/anthropics/claude-code/releases/tag/v2.1.304)).",
-   "so_what": "\"approve every command\" is ending; how good the safety check is becomes the real difference."
+   "tag": "Security",
+   "title": "Sandboxes and MCP servers are locked down",
+   "facts": "Claude Code stopped sandboxed commands from changing the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)); agy blocks `~/.docker`, `~/.kube` and `~/_netrc` in its sandbox unless you grant access ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)); Kilo Code treats shell expressions in MCP prompts as plain text ([v7.8.16](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.16)).",
+   "so_what": "any sandbox or MCP setup that worked by accident may now need an explicit grant."
   },
   {
    "tag": "Plugins",
    "title": "Plugins are checked before they load",
-   "facts": "`agy plugin validate` now uses the loader's own rules, with `--strict` and `--json` for CI ([1.4.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.0)), and it warns about Claude Code-style hook keys ([1.4.3](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.3)).",
+   "facts": "`agy plugin validate --strict --json` uses the loader's own rules for CI ([1.4.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.0)), and 1.4.6 adds checks for context providers and for `SKILL.md` files the loader skips ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)).",
    "so_what": "if you write plugins for more than one agent, test them in each one's validator."
   },
   {
-   "tag": "Cost",
-   "title": "Long sessions got cheaper",
-   "facts": "Claude Code made idle compaction a `/config` switch ([2.1.302](https://github.com/anthropics/claude-code/releases/tag/v2.1.302)); agy cut CPU and memory use while streaming ([1.4.4](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.4)) and roughly halved idle CPU use ([1.4.5](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.5)).",
-   "so_what": "leaving an agent session open all day is becoming normal."
+   "tag": "Autonomy",
+   "title": "Autonomy, with a guard in front",
+   "facts": "agy's Auto mode has a separate agent review commands that would leave the sandbox ([1.3.5](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.3.5)), and Claude Code added `/auto-mode-setup` to teach auto mode about your project ([2.1.304](https://github.com/anthropics/claude-code/releases/tag/v2.1.304)).",
+   "so_what": "\"approve every command\" is ending; how good the safety check is becomes the real difference."
   }
  ],
- "watch_next": "OpenCode 2 is opt-in for now; the day a v2 release becomes \"Latest\" will be big news. Codex has shipped about 10 alphas since its last stable."
+ "watch_next": "Claude Code 2.1.309 changes `ultrareview` and `/rewind`, so expect reports of broken scripts. OpenCode 2 is still opt-in; the day a v2 release becomes \"Latest\" will be big news."
 }

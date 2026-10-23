@@ -20,7 +20,7 @@
     <h1>{{ b.headline }}</h1>
     <div class="themes">
       {% for th in b.themes %}
-      <div class="theme"><span class="n">{{ forloop.index }} · {{ th.tag }}</span><b>{{ th.title }}</b>
+      <div class="theme"><span class="n">{% if b.themes.size > 1 %}{{ forloop.index }} · {% endif %}{{ th.tag }}</span><b>{{ th.title }}</b>
         <div class="f">{{ th.facts | markdownify | remove: "<p>" | remove: "</p>" }}</div>
         <p class="so"><i>So what:</i> {{ th.so_what | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p></div>
       {% endfor %}

@@ -133,7 +133,7 @@ The brief covers the **last 7 days** up to now. Read the entries in `docs/digest
   {"tag": "<1 word>", "title": "<short title>",
    "facts": "<1 or 2 sentences with the facts, Markdown, each fact links its release: ([2.1.304](URL))>",
    "so_what": "<one short sentence: what it means for the reader, lower-case start>"},
-  ... exactly 3 themes ...
+  ... 1 to 3 themes ...
  ],
  "watch_next": "<1 or 2 sentences: what to look for next>"
 }
@@ -143,6 +143,10 @@ The brief covers the **last 7 days** up to now. Read the entries in `docs/digest
   ones, but keep the week's biggest change.
 - Themes are real patterns from the last 7 days, best across 2+ tools. If the week has fewer
   than 3 real cross-tool themes, use the biggest single-tool changes. Never invent.
+- **1 to 3 themes, never 0 and never 4.** Use 3 when the week has 3 real themes. Use fewer only
+  when there are not enough real ones: never add a weak theme just to fill a card.
+  If the 7 days have no stable release at all, write 1 theme that says so plainly
+  (e.g. tag "Quiet", title "A quiet week", facts: no stable releases from the 5 tools).
 - Use only facts that are in the entries (and their sources). Every fact keeps its link.
 - If nothing changed this run, still update `updated`, `updated_label` and `window`, and
   drop facts that are now older than 7 days (replace those themes).
@@ -159,8 +163,8 @@ Read `last_snapshot` in `task/state.json`. If it is missing, or today is 7 or mo
 also save the current brief to the archive:
 - File `docs/briefs/YYYY-MM-DD.md` (today's Cairo date). Copy the format of the newest file in
   `docs/briefs/`: front matter (`layout: brief`, `title: "Weekly snapshot: <window>"`, `date`,
-  `window`, `summary` = the headline), then the headline as `#`, the 3 themes as `## 1.` to `## 3.`
-  with **So what:**, "## Releases in these 7 days" (count per tool from `releases.json`, dates
+  `window`, `summary` = the headline), then the headline as `#`, each theme as `## 1. <title>`, `## 2. <title>`, `## 3. <title>`
+  (with only 1 theme: `## <title>`, no number) with **So what:**, "## Releases in these 7 days" (count per tool from `releases.json`, dates
   in the window, biggest first), "## Action needed at the time" (open board items, or "None."),
   and **👀 Watch next:**.
 - Set `last_snapshot` in `state.json` to today's date.

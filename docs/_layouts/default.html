@@ -35,9 +35,16 @@
     // Light / dark toggle, remembered per browser
     var tb=document.getElementById('theme');
     if(tb) tb.onclick=function(){root.dataset.theme=root.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('cad-theme',root.dataset.theme)}catch(e){}};
-    // Header subtitle: shown at the top of the page, hidden once the reader scrolls
+    // Header subtitle: shown at the top of the page, hidden once the reader scrolls.
+    // Hide past 60px, show again only at the top: hiding shortens the header by ~20px,
+    // which moves the scroll position, so a single threshold would flip back and forth.
     var hdr=document.querySelector('header.site');
-    function onScroll(){if(hdr) hdr.classList.toggle('scrolled',window.scrollY>40)}
+    function onScroll(){
+      if(!hdr) return;
+      var y=window.scrollY, hidden=hdr.classList.contains('scrolled');
+      if(!hidden&&y>60) hdr.classList.add('scrolled');
+      else if(hidden&&y<=2) hdr.classList.remove('scrolled');
+    }
     window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListener('load',onScroll); onScroll();
     // "next check in about N h". The scheduled task runs at 08:00 and 20:00 Cairo time.
     var RUNS=[8*60,20*60], nc=document.getElementById('nextCheck');

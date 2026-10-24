@@ -34,6 +34,11 @@ Each run updates 4 things on the site:
   Otherwise clone `https://github.com/IbrahimSobh/coding-agents-digest`. Work on branch `main`.
 - Get the run time in Cairo: `TZ=Africa/Cairo date '+%Y-%m-%d %H:%M %z'`.
   All times in entries and in `state.json` are Cairo local time.
+- The last part of that output is Cairo's UTC offset: `+0300` in summer time, `+0200` in
+  winter time (Egypt switches on fixed dates; the command knows them). Every time you write
+  takes its offset from this output, never from an example or an older file. In the formats
+  below, `+HH:MM` means that offset with a colon (`+03:00` or `+02:00`) and `+HHMM` means it
+  without one (`+0300` or `+0200`).
 - Read `task/sources.yml` (tools, Releases pages, tag patterns, full-text sources).
 - Read `task/state.json`: `last_run` and the `last_tag` of each tool.
 
@@ -125,7 +130,7 @@ The brief covers the **last 7 days** up to now. Read the entries in `docs/digest
 7 days (by file name date) plus this run's entry. Write the whole file again:
 ```
 {
- "updated": "YYYY-MM-DDTHH:MM+03:00",
+ "updated": "YYYY-MM-DDTHH:MM+HH:MM",
  "updated_label": "<Mon D, HH:MM>",
  "window": "<Mon D> to <Mon D, YYYY>",
  "headline": "<the week in ONE sentence, max ~20 words>",
@@ -138,6 +143,7 @@ The brief covers the **last 7 days** up to now. Read the entries in `docs/digest
  "watch_next": "<1 or 2 sentences: what to look for next>"
 }
 ```
+- `updated`: the run time, with the real offset from the `date` command in step 1.
 - `window`: from 7 days ago to today, e.g. "Oct 15 to Oct 22, 2026".
 - `headline`: when writing it, consider the dates of the entries: give more weight to the newest
   ones, but keep the week's biggest change.
@@ -171,7 +177,7 @@ also save the current brief to the archive:
 Otherwise skip this step.
 
 ### 5e. Update `task/state.json`
-- Always: set `last_run` to the run time (`YYYY-MM-DDTHH:MM+03:00`, with the real offset
+- Always: set `last_run` to the run time (`YYYY-MM-DDTHH:MM+HH:MM`, with the real offset
   from the `date` command) and `last_entry_file` to the new file.
 - For every tool with new releases: set `last_tag` and `last_release_date`
   to the newest release you covered. Leave other tools as they were.
@@ -210,7 +216,7 @@ number of "(verify)" marks, the commit SHA, and whether a notification was sent.
 ---
 layout: digest
 title: "Check: <Mon D, YYYY, HH:MM>"
-date: YYYY-MM-DD HH:MM:00 +0300
+date: YYYY-MM-DD HH:MM:00 +HHMM
 run: "<Mon D, YYYY, HH:MM> (Cairo)"
 since: "<Mon D, YYYY, HH:MM>"
 quiet: <true for a quiet entry, false for a news entry>

@@ -1,7 +1,7 @@
 {
- "updated": "2026-10-24T22:11+03:00",
- "updated_label": "Oct 24, 22:11",
- "window": "Oct 17 to Oct 24, 2026",
+ "updated": "2026-10-25T08:11+03:00",
+ "updated_label": "Oct 25, 08:11",
+ "window": "Oct 18 to Oct 25, 2026",
  "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action.",
  "themes": [
   {
@@ -18,9 +18,9 @@
   },
   {
    "tag": "Plugins",
-   "title": "Plugins get their own checks and new sign-in rules",
-   "facts": "`agy plugin validate --strict --json` uses the CLI's own loader rules, so you can run it in CI and fail on warnings ([1.4.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.0)); `/plugin` now sets a plugin's MCP server variables without disabling it ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)); plugin MCP tokens now belong to the signed-in user, so OAuth servers may ask you to sign in again ([1.4.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.7)).",
-   "so_what": "if you write plugins for more than one agent, test them in each one's validator, and expect a one-time sign-in after the agy 1.4.7 update."
+   "title": "Plugins get new MCP and sign-in rules",
+   "facts": "`/plugin` now sets a plugin's MCP server variables without disabling it ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)); plugin MCP tokens now belong to the signed-in user, so OAuth servers may ask you to sign in again ([1.4.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.7)).",
+   "so_what": "expect a one-time sign-in to plugin MCP servers after the agy 1.4.7 update."
   }
  ],
  "watch_next": "Claude Code 2.1.310 fixes compaction and hook edge cases, but the 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts. OpenCode 2 is still opt-in; the day a v2 release becomes \"Latest\" will be big news."

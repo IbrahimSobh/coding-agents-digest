@@ -58,12 +58,22 @@ For each tool, list the releases that match `tag_pattern` and are
   (Claude Code and Antigravity CLI; files on `raw.githubusercontent.com`).
 - Method C, release pages with dates and notes: your web fetch tool on
   `https://github.com/<owner>/<repo>/releases` or `.../releases/tag/<tag>`.
-- Start with Method A for every tool. Only tags newer than `last_tag` need Methods B and C.
+- Method D, backup for Method C (plain `curl`, no web fetch tool needed):
+  - Newest stable release: `curl -sSI https://github.com/<owner>/<repo>/releases/latest | grep -i '^location'`
+    GitHub redirects this page to the newest release that is not a pre-release, so the tag at
+    the end of the `location` URL is stable.
+  - Is one tag a pre-release: `curl -sS https://github.com/<owner>/<repo>/releases/tag/<tag> | grep -o -E '>(Pre-release|Latest)<' | sort -u`
+    `>Pre-release<` means skip it. `>Latest<`, or no label, means stable.
+  - Notes of one release: `curl -sS https://github.com/<owner>/<repo>/releases/tag/<tag>`, then
+    read the text of the release body in the HTML.
+  If Method C fails for a tool (an error, a timeout, an empty or cut-off page), use Method D before
+  calling the source "not checked".
+- Start with Method A for every tool. Only tags newer than `last_tag` need Methods B, C and D.
 - A source counts as "could not read" only if **all** methods that apply to it failed.
 
 Rules:
 - Skip alpha, beta, rc, nightly, and any release marked "Pre-release" (check the release
-  page with Method C for tools whose tags do not show it, e.g. Kilo Code).
+  page with Method C, or Method D if C fails, for tools whose tags do not show it, e.g. Kilo Code).
 - Skip tags listed under `ignored_tags`.
 - Codex: stable tags are `rust-v0.x.y` without `-alpha`. Method A shows them.
 - Release dates are **Cairo dates**, like everything else on the site. Read the exact UTC time

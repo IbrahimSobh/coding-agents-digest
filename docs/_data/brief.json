@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-27T08:12+03:00",
- "updated_label": "Oct 27, 08:12",
+ "updated": "2026-10-27T22:12+03:00",
+ "updated_label": "Oct 27, 22:12",
  "window": "Oct 20 to Oct 27, 2026",
  "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs.",
  "themes": [
@@ -23,5 +23,5 @@
    "so_what": "expect a one-time sign-in to plugin MCP servers after the agy 1.4.7 update."
   }
  ],
- "watch_next": "Claude Code 2.1.311 changes `ultrathink` and compaction, but the 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts. OpenCode 2 is still opt-in; the day a v2 release becomes \"Latest\" will be big news."
+ "watch_next": "Codex rust-v0.165.0 and Kilo Code v7.8.20 are out but their notes could not be read this run, so the next check retries them. The 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts, and OpenCode 2 is still opt-in."
 }

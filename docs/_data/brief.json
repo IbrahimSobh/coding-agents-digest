@@ -1,14 +1,14 @@
 {
- "updated": "2026-10-26T22:12+03:00",
- "updated_label": "Oct 26, 22:12",
- "window": "Oct 19 to Oct 26, 2026",
- "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action.",
+ "updated": "2026-10-27T08:12+03:00",
+ "updated_label": "Oct 27, 08:12",
+ "window": "Oct 20 to Oct 27, 2026",
+ "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs.",
  "themes": [
   {
    "tag": "Security",
    "title": "Sandboxes and MCP servers are locked down",
-   "facts": "Claude Code stopped sandboxed commands from changing the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)); agy blocks `~/.docker`, `~/.kube` and `~/_netrc` in its sandbox unless you grant access ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)); Kilo Code treats shell expressions in MCP prompts as plain text ([v7.8.16](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.16)).",
-   "so_what": "any sandbox or MCP setup that worked by accident may now need an explicit grant."
+   "facts": "Claude Code stopped sandboxed commands from changing the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)); agy blocks `~/.docker`, `~/.kube` and `~/_netrc` in its sandbox unless you grant access ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)); Kilo Code's MCP SDK update fixes security issues but stops remote servers that redirect from connecting ([v7.8.18](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.18)).",
+   "so_what": "any sandbox or MCP setup that worked by accident may now need an explicit grant or a new URL."
   },
   {
    "tag": "Defaults",
@@ -23,5 +23,5 @@
    "so_what": "expect a one-time sign-in to plugin MCP servers after the agy 1.4.7 update."
   }
  ],
- "watch_next": "Claude Code 2.1.310 fixes compaction and hook edge cases, but the 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts. OpenCode 2 is still opt-in; the day a v2 release becomes \"Latest\" will be big news."
+ "watch_next": "Claude Code 2.1.311 changes `ultrathink` and compaction, but the 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts. OpenCode 2 is still opt-in; the day a v2 release becomes \"Latest\" will be big news."
 }

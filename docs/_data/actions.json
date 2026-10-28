@@ -71,5 +71,18 @@
   "flagged": "2026-10-28",
   "category": "default-change",
   "dismissed": false
+ },
+ {
+  "id": "antigravity-cli-1.4.9-google-app-approvals",
+  "tool": "antigravity-cli",
+  "version": "1.4.9",
+  "url": "https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.9",
+  "title": "Google apps need their own approval",
+  "affects": "your `execute_url` rules approve Google sites and you use Gmail, Docs, Drive or Cloud Console through the agent.",
+  "do": "approve `mail.google.com`, `docs.google.com`, `drive.google.com` and `console.cloud.google.com` one by one, since a site approval no longer covers them.",
+  "deadline": null,
+  "flagged": "2026-10-28",
+  "category": "default-change",
+  "dismissed": false
  }
 ]

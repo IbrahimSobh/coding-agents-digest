@@ -25,5 +25,6 @@
   {"updated": "2026-10-26T22:12+03:00", "window": "Oct 19 to Oct 26, 2026", "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."},
   {"updated": "2026-10-27T08:12+03:00", "window": "Oct 20 to Oct 27, 2026", "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs."},
   {"updated": "2026-10-27T22:12+03:00", "window": "Oct 20 to Oct 27, 2026", "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs."},
-  {"updated": "2026-10-28T08:11+03:00", "window": "Oct 21 to Oct 28, 2026", "headline": "Claude Code 2.1.312 and Codex 0.165.0 shipped, and both now change defaults, so check the model-switch and memory settings."}
+  {"updated": "2026-10-28T08:11+03:00", "window": "Oct 21 to Oct 28, 2026", "headline": "Claude Code 2.1.312 and Codex 0.165.0 shipped, and both now change defaults, so check the model-switch and memory settings."},
+  {"updated": "2026-10-28T22:12+03:00", "window": "Oct 21 to Oct 28, 2026", "headline": "Claude Code 2.1.312 and Codex 0.165.0 changed defaults, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."}
 ]

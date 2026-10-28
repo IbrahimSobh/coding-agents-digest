@@ -1,8 +1,8 @@
 {
- "updated": "2026-10-28T08:11+03:00",
- "updated_label": "Oct 28, 08:11",
+ "updated": "2026-10-28T22:12+03:00",
+ "updated_label": "Oct 28, 22:12",
  "window": "Oct 21 to Oct 28, 2026",
- "headline": "Claude Code 2.1.312 and Codex 0.165.0 shipped, and both now change defaults, so check the model-switch and memory settings.",
+ "headline": "Claude Code 2.1.312 and Codex 0.165.0 changed defaults, and Antigravity CLI 1.4.9 now needs separate approval for Google apps.",
  "themes": [
   {
    "tag": "Defaults",
@@ -23,5 +23,5 @@
    "so_what": "expect a one-time sign-in to plugin MCP servers after the agy 1.4.7 update."
   }
  ],
- "watch_next": "Antigravity CLI has no new release since 1.4.8. Check your Claude Code and Codex settings for the new defaults, and the 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts."
+ "watch_next": "Check your Antigravity CLI Google app approvals after 1.4.9, and your Claude Code and Codex settings for the new defaults. The 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts."
 }

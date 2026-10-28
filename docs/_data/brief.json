@@ -1,20 +1,20 @@
 {
- "updated": "2026-10-27T22:12+03:00",
- "updated_label": "Oct 27, 22:12",
- "window": "Oct 20 to Oct 27, 2026",
- "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs.",
+ "updated": "2026-10-28T08:11+03:00",
+ "updated_label": "Oct 28, 08:11",
+ "window": "Oct 21 to Oct 28, 2026",
+ "headline": "Claude Code 2.1.312 and Codex 0.165.0 shipped, and both now change defaults, so check the model-switch and memory settings.",
  "themes": [
+  {
+   "tag": "Defaults",
+   "title": "Defaults and rewind behave differently now",
+   "facts": "Codex turns memory v2 on for new profiles ([rust-v0.165.0](https://github.com/openai/codex/releases/tag/rust-v0.165.0)) and Claude Code widens automatic model switches to custom model names ([2.1.312](https://github.com/anthropics/claude-code/releases/tag/v2.1.312)). Claude Code's `/rewind` no longer undoes `sed -i` edits, and `claude ultrareview` needs workspace trust in scripts ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)).",
+   "so_what": "new defaults and scripts that ran unattended before may now change results or stop, so check those settings before you rely on them."
+  },
   {
    "tag": "Security",
    "title": "Sandboxes and MCP servers are locked down",
    "facts": "Claude Code stopped sandboxed commands from changing the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)); agy blocks `~/.docker`, `~/.kube` and `~/_netrc` in its sandbox unless you grant access ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)); Kilo Code's MCP SDK update fixes security issues but stops remote servers that redirect from connecting ([v7.8.18](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.18)).",
    "so_what": "any sandbox or MCP setup that worked by accident may now need an explicit grant or a new URL."
-  },
-  {
-   "tag": "Defaults",
-   "title": "Defaults and rewind behave differently now",
-   "facts": "Codex Guardian v2 now defaults to conversation mode, so its verdicts can differ ([rust-v0.164.0](https://github.com/openai/codex/releases/tag/rust-v0.164.0)); Claude Code's `/rewind` no longer undoes `sed -i` edits, and `claude ultrareview` needs workspace trust in scripts ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)).",
-   "so_what": "scripts and reviews that ran unattended before may now stop or change output, so check them before you rely on them."
   },
   {
    "tag": "Plugins",
@@ -23,5 +23,5 @@
    "so_what": "expect a one-time sign-in to plugin MCP servers after the agy 1.4.7 update."
   }
  ],
- "watch_next": "Codex rust-v0.165.0 and Kilo Code v7.8.20 are out but their notes could not be read this run, so the next check retries them. The 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts, and OpenCode 2 is still opt-in."
+ "watch_next": "Antigravity CLI has no new release since 1.4.8. Check your Claude Code and Codex settings for the new defaults, and the 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts."
 }

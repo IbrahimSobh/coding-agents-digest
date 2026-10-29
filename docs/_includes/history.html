@@ -4,14 +4,14 @@
 {% endcomment %}
 {% assign hist_tools = site.data.tools | where: "tracked", true %}
 <section id="history" class="hist card">
-  <div class="k" id="histTitle">Release activity</div>
+  <h2 class="k" id="histTitle">Release activity</h2>
   <div class="hctl">
-    <div class="hgrp" id="histRange"></div>
+    <div class="hgrp" id="histRange" role="group" aria-label="Time range"></div>
     <span class="hsep"></span>
-    <div class="hgrp" id="histMode"></div>
-    <div class="hgrp" id="histShape"></div>
+    <div class="hgrp" id="histMode" role="group" aria-label="Count"></div>
+    <div class="hgrp" id="histShape" role="group" aria-label="Line shape"></div>
   </div>
-  <div class="hlegend" id="histLegend"></div>
+  <div class="hlegend" id="histLegend" role="group" aria-label="Tools shown in the chart"></div>
   <div class="hbox"><canvas id="histChart" role="img" aria-label="Stable releases per tool over time"></canvas></div>
   <p class="hnote">Stable releases only. A release count does not mean importance.</p>
   <script type="application/json" id="histData">{"today": {{ site.time | date: "%Y-%m-%d" | jsonify }}, "tools": {{ hist_tools | jsonify }}, "releases": {{ site.data.releases | jsonify }}}</script>

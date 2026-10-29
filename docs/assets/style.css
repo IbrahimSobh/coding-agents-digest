@@ -1,20 +1,28 @@
 /* Coding Agents Digest. Dark by default; light via system setting or the toggle. */
 :root{
-  --bg:#0b0f17; --card:#141a26; --card2:#10151f; --line:#263043; --ink:#e8ecf4; --muted:#94a0b4; --soft:#6b778c;
+  --bg:#0b0f17; --card:#141a26; --card2:#10151f; --line:#263043; --ink:#e8ecf4; --muted:#94a0b4; --soft:#7f8aa0;
   --cyan:#38bdf8; --violet:#a78bfa; --amber:#fbbf24; --green:#34d399; --orange:#fb923c;
   --red:#f87171; --pink:#f472b6;
   --shadow:none;
+  color-scheme:dark;
 }
 :root[data-theme="light"]{
-  --bg:#f5f6f9; --card:#ffffff; --card2:#f6f7fa; --line:#e2e6ee; --ink:#141a26; --muted:#5b6475; --soft:#8a93a3;
-  --cyan:#0284c7; --violet:#7c3aed; --amber:#b45309; --green:#047857; --orange:#c2410c;
+  --bg:#f5f6f9; --card:#ffffff; --card2:#f6f7fa; --line:#e2e6ee; --ink:#141a26; --muted:#5b6475; --soft:#656e80;
+  --cyan:#0369a1; --violet:#7c3aed; --amber:#b45309; --green:#047857; --orange:#c2410c;
   --red:#b91c1c; --pink:#be185d;
   --shadow:0 6px 20px rgba(20,26,38,.06);
+  color-scheme:light;
 }
+@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-wght-normal.woff2") format("woff2")}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,.theme b,.act b{text-wrap:balance}
+p,li{text-wrap:pretty}
 a{color:var(--orange);text-underline-offset:2px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:6px}
+::selection{background:color-mix(in srgb,var(--cyan) 32%,transparent);color:var(--ink)}
 code{font:.86em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--card2);border:1px solid var(--line);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
 .wrap{max-width:920px;margin:0 auto;padding:0 16px}
 .hidden{display:none!important}
@@ -26,7 +34,7 @@ header.site{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--b
 .hbar{display:flex;align-items:center;gap:16px;height:60px}
 .hsub{font-size:13px;color:var(--muted);margin-top:-10px;padding-bottom:10px;max-height:60px;overflow:hidden;transition:max-height .2s,opacity .2s,margin .2s,padding .2s}
 #nextCheck{color:var(--cyan);font-style:italic}
-.tagline{font-weight:600}
+.tagline{font-weight:600;color:var(--ink)}
 header.site.scrolled .hsub{max-height:0;opacity:0;margin-top:0;padding-bottom:0}
 /* Hourglass before "next check": sand runs down, then it turns over (4 s loop) */
 .hg{width:17px;height:17px;vertical-align:-4px;margin:0 5px 0 2px;animation:hg-flip 4s ease-in-out infinite}
@@ -40,7 +48,7 @@ header.site.scrolled .hsub{max-height:0;opacity:0;margin-top:0;padding-bottom:0}
 @media (prefers-reduced-motion:reduce){.hg,.hg-sand{animation:none}}
 .brand{font-weight:800;font-size:17px;display:flex;gap:8px;align-items:center;white-space:nowrap;color:var(--ink);text-decoration:none}
 .logo{width:24px;height:24px;flex:none;display:block}
-.g{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.g{color:var(--cyan)}
 nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
 nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:6px 10px;border-radius:8px;white-space:nowrap}
 nav a.on,nav a:hover{color:var(--ink);background:var(--card)}
@@ -55,15 +63,14 @@ a.tbtn:hover{border-color:var(--muted)}
 .upd{color:var(--green);text-transform:none;letter-spacing:0}
 .pill{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--muted)}
 .pill a{color:var(--amber);text-decoration:none}
-.lbl{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-top:14px}
-.hero h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:4px 0}
-.themes{display:flex;gap:12px;margin-top:18px}
+.hero h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:16px 0 4px}
+.themes{display:flex;gap:28px;margin-top:20px}
 /* 1 to 3 themes share the width; a single theme puts "So what" beside the facts */
 .themes .theme{flex:1 1 0;min-width:0}
 .theme:only-child{display:grid;grid-template-columns:3fr 2fr;column-gap:28px;align-items:start}
 .theme:only-child .n,.theme:only-child b{grid-column:1/-1}
 .theme:only-child .so{margin-top:0;border-left:1px solid var(--line);padding-left:20px}
-.theme{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.theme{border-top:1px solid var(--line);padding-top:12px}
 .theme .n{font-size:12px;font-weight:800;color:var(--violet);text-transform:uppercase}
 .theme b{display:block;font-size:15.5px;margin:4px 0 6px;line-height:1.3}
 .theme .f{font-size:13.5px;color:var(--muted)}
@@ -74,7 +81,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .srow{display:grid;grid-template-columns:120px 1fr 40px;gap:10px;align-items:center;font-size:13px}
 .bar{height:8px;border-radius:99px;background:var(--card2);overflow:hidden;border:1px solid var(--line)}
 .bar i{display:block;height:100%;border-radius:99px}
-.srow .w{font-weight:700;text-align:right}
+.srow .w{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
 .hero-foot{display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}
 
 /* Release history chart */
@@ -86,7 +93,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .hbtn:hover{color:var(--ink)}
 .hbtn.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .hlegend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--muted);margin-bottom:4px;min-height:19px}
-.hleg{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.hleg{display:inline-flex;align-items:center;gap:6px;cursor:pointer;user-select:none;background:none;border:0;padding:2px 0;font-size:inherit;color:inherit}
 .hleg b{color:var(--ink)}
 .hleg.off{opacity:.4}
 .hbox{position:relative;height:210px}
@@ -96,7 +103,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .shd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .shd small{font-size:12.5px;color:var(--soft)}
 .actions{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:12px;margin-top:10px}
-.act{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow)}
+.act{background:var(--card);border:1px solid color-mix(in srgb,var(--amber) 28%,var(--line));border-radius:14px;padding:12px 14px;box-shadow:var(--shadow)}
 .act .top{display:flex;justify-content:space-between;gap:8px;align-items:center}
 .act b{font-size:14.5px;line-height:1.3}
 .act .src{font-size:12.5px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
@@ -135,11 +142,11 @@ a.tbtn:hover{border-color:var(--muted)}
 .rh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .rh .t{font-weight:800;font-size:15px;color:var(--ink);text-decoration:none}
 .rh .m{font-size:13px;color:var(--muted)}
-.tool{margin-top:10px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.tool .h{display:flex;align-items:center;gap:8px;padding:7px 12px;font-weight:700;font-size:13.5px;background:var(--card2);border-bottom:1px solid var(--line)}
-.tool ul{padding:8px 14px 10px 30px;font-size:14px}
+.tool{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.tool .h{display:flex;align-items:center;gap:8px;font-weight:700;font-size:13.5px}
+.tool ul{padding:4px 0 0 20px;font-size:14px}
 .tool li{margin:4px 0}
-.tool p{padding:8px 14px;font-size:14px}
+.tool p{padding:4px 0 0;font-size:14px}
 .qrows{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .q{font-size:12.5px;color:var(--soft);border:1px dashed var(--line);border-radius:999px;padding:3px 10px}
 .quiet{position:relative;font-size:13px;color:var(--soft);margin:-2px 0 14px;padding:6px 0}
@@ -149,7 +156,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .sum .t{font-weight:800}
 .sum .m{color:var(--muted);font-size:13.5px}
 .dots{display:flex;gap:4px}
-.cnt{margin-left:auto;font-size:13px;color:var(--muted)}
+.cnt{margin-left:auto;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 .warnc{color:var(--amber)}
 .chev{color:var(--soft);transition:transform .15s}
 details[open]>summary .chev{transform:rotate(90deg)}

@@ -14,10 +14,10 @@ layout: default
     <div class="dicon">📰</div>
     <div><h2>Daily updates</h2><p>The details: every check, newest first. Each item links its source. Hover a time to see your local time.</p></div>
   </div>
-  <div class="filters" id="filters">
-    <span class="chip on" data-f="all">All tools</span>
+  <div class="filters" id="filters" role="group" aria-label="Show updates for">
+    <button type="button" class="chip on" data-f="all" aria-pressed="true">All tools</button>
     {% assign tracked = site.data.tools | where: "tracked", true %}
-    {% for t in tracked %}<span class="chip" data-f="{{ t.id }}"><i class="d" style="background:{{ t.color }}"></i>{{ t.name }}</span>{% endfor %}
+    {% for t in tracked %}<button type="button" class="chip" data-f="{{ t.id }}" aria-pressed="false"><i class="d" style="background:{{ t.color }}" aria-hidden="true"></i>{{ t.name }}</button>{% endfor %}
   </div>
   <div class="tl">
     {% assign entries = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" | reverse %}

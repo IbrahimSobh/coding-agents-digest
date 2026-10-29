@@ -16,7 +16,6 @@
 <section id="brief">
   <div class="hero"><div class="hero-in">
     <div class="hero-top"><span class="k">📊 Last 7 days · {{ b.window }} · <span class="upd" data-updated="{{ b.updated }}">updated {{ b.updated_label }}</span></span><span class="pill">{{ rel_total }} release{% if rel_total != 1 %}s{% endif %} · {{ rel_active }} of {{ tracked.size }} tools active · <a href="#actions">{{ board_count }} open action{% if board_count != 1 %}s{% endif %} ↓</a></span></div>
-    <div class="lbl">The week in one line</div>
     <h1>{{ b.headline }}</h1>
     <div class="themes">
       {% for th in b.themes %}

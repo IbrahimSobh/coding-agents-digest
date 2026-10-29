@@ -27,19 +27,24 @@
   var range='all', mode='cum', shape='smooth', chart;
 
   function css(n){return getComputedStyle(root).getPropertyValue(n).trim()}
+  // Controls are rebuilt on every draw, so remember which one had keyboard focus and give it back.
+  function focusKey(el){var a=document.activeElement;return el.contains(a)?a.dataset.k:null}
+  function refocus(el,k){if(k===null) return;var b=el.querySelector('[data-k="'+k+'"]');if(b) b.focus()}
   function group(id,items,cur,cb,show){
-    var el=document.getElementById(id);
+    var el=document.getElementById(id), k=focusKey(el);
     el.classList.toggle('hidden',show===false);
     el.innerHTML='';
     items.forEach(function(it){
-      var b=document.createElement('span'), on=it[1]===cur;
+      var b=document.createElement('button'), on=it[1]===cur;
+      b.type='button';
       b.className='hbtn'+(on?' on':'');
       b.textContent=it[0];
-      b.setAttribute('role','radio');b.setAttribute('aria-checked',on);b.tabIndex=0;
+      b.dataset.k=String(it[1]);
+      b.setAttribute('aria-pressed',on);
       b.onclick=function(){cb(it[1])};
-      b.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();cb(it[1])}};
       el.appendChild(b);
     });
+    refocus(el,k);
   }
 
   function draw(){
@@ -52,15 +57,20 @@
     var from=N-len, ds=days.slice(from);
     document.getElementById('histTitle').textContent='Release activity · '+(len===1?fmt(ds[0],true):fmt(ds[0],true)+' to '+fmt(ds[len-1],true));
 
-    var lg=document.getElementById('histLegend');
+    var lg=document.getElementById('histLegend'), lk=focusKey(lg);
     lg.innerHTML='';
     tools.forEach(function(t){
-      var n=t.v.slice(from).reduce(function(a,b){return a+b},0), e=document.createElement('span');
+      var n=t.v.slice(from).reduce(function(a,b){return a+b},0), e=document.createElement('button');
+      e.type='button';
       e.className='hleg'+(t.on?'':' off');
-      e.innerHTML='<i class="d" style="background:'+t.color+'"></i>'+t.name+' <b>'+n+'</b>';
+      e.dataset.k=t.id;
+      e.setAttribute('aria-pressed',t.on);
+      e.title=(t.on?'Hide ':'Show ')+t.name+' in the chart';
+      e.innerHTML='<i class="d" style="background:'+t.color+'" aria-hidden="true"></i>'+t.name+' <b>'+n+'</b>';
       e.onclick=function(){t.on=!t.on;draw()};
       lg.appendChild(e);
     });
+    refocus(lg,lk);
 
     var vis=tools.filter(function(t){return t.on});
     var ink=css('--ink'), muted=css('--muted'), soft=css('--soft'), line=css('--line'), card=css('--card');

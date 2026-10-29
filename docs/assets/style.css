@@ -62,6 +62,9 @@ a.tbtn:hover{border-color:var(--muted)}
 /* Brief */
 .hero{border-radius:22px;padding:2px;background:linear-gradient(135deg,var(--cyan),var(--violet) 55%,var(--orange))}
 .hero-in{background:var(--card);border-radius:20px;padding:24px 24px 20px;box-shadow:var(--shadow)}
+/* "Latest brief": the themes, counts and Watch next of the newest run, below the replay box */
+.latest{margin-top:14px;padding:22px 24px 18px;border-radius:20px}
+.latest .themes{margin-top:14px}
 .hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .upd{color:var(--green);text-transform:none;letter-spacing:0}
 .pill{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--muted)}
@@ -110,13 +113,6 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-key .kn{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--cyan);background:var(--cyan)}
 .rg-key .ks{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--soft);background:var(--card)}
 .rg-key .kl{width:22px;height:14px;border-radius:4px;border:1.5px dashed color-mix(in srgb,#5b8def 85%,transparent);background:color-mix(in srgb,#5b8def 16%,transparent)}
-/* During a replay the themes and "Watch next" still show the latest run */
-.themes-wrap{position:relative}
-#brief .themes,#brief .rp-watch{transition:opacity .2s}
-#brief.rp-old .themes,#brief.rp-old .rp-watch{opacity:.35}
-.rp-note{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;white-space:nowrap;font-size:13px;font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;box-shadow:0 4px 14px rgba(0,0,0,.12)}
-.rp-note[hidden]{display:none}
-@media (max-width:480px){.rp-note{white-space:normal;width:max-content;max-width:90%;text-align:center}}
 .rg-cap{font-size:12.5px;color:var(--soft);margin-top:8px;min-height:20px}
 .rg-back{margin-left:6px;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:1px 10px;font-size:12px;font-weight:600;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.rg-cur,.rg-shade,.rg-c,.rg-dot::before{transition:none}}

@@ -15,18 +15,8 @@
 {% assign rel_sorted = rel_list | split: "|" | sort | reverse %}
 <section id="brief">
   <div class="hero"><div class="hero-in">
-    <div class="hero-top"><span class="k">📊 Last 7 days · {{ b.window }} · <span class="upd" data-updated="{{ b.updated }}">updated {{ b.updated_label }}</span></span><span class="pill">{{ rel_total }} release{% if rel_total != 1 %}s{% endif %} · {{ rel_active }} of {{ tracked.size }} tools active · <a href="#actions">{{ board_count }} open action{% if board_count != 1 %}s{% endif %} ↓</a></span></div>
+    <div class="hero-top"><span class="k">📊 Last 7 days · {{ b.window }} · <span class="upd" data-updated="{{ b.updated }}">updated {{ b.updated_label }}</span></span></div>
     <h1 id="rpHead">{{ b.headline }}</h1>
-    <div class="themes-wrap">
-    <div class="themes">
-      {% for th in b.themes %}
-      <div class="theme"><span class="n">{% if b.themes.size > 1 %}{{ forloop.index }} · {% endif %}{{ th.tag }}</span><b>{{ th.title }}</b>
-        <div class="f">{{ th.facts | markdownify | remove: "<p>" | remove: "</p>" }}</div>
-        <p class="so"><i>So what:</i> {{ th.so_what | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p></div>
-      {% endfor %}
-    </div>
-    <p class="rp-note" id="rpNote" hidden>Themes and Watch next show the latest run</p>
-    </div>
     {% comment %}
       Release grid: one row per tool, one column per day of the 7-day window (8 calendar days,
       like the counts above). Noon of each day is used so a DST change cannot shift the date.
@@ -55,7 +45,18 @@
         "runs": [{% assign first = true %}{% for x in site.data.headlines %}{% assign xd = x.updated | slice: 0, 10 %}{% if xd >= start_day %}{% unless first %},{% endunless %}{% assign first = false %}{"at": {{ x.updated | jsonify }}, "h": {{ x.headline | jsonify }}}{% endif %}{% endfor %}],
         "seen": [{% assign first = true %}{% assign digs = site.pages | where_exp: "p", "p.path contains 'digests/'" %}{% for p in digs %}{% assign pd = p.date | date: "%Y-%m-%d" %}{% if pd >= start_day %}{% assign tparts = p.content | split: "releases/tag/" %}{% assign ptags = "" %}{% for x in tparts offset: 1 %}{% assign tg = x | split: ")" | first | split: '"' | first | strip %}{% assign ptags = ptags | append: tg | append: " " %}{% endfor %}{% unless first %},{% endunless %}{% assign first = false %}{"at": {{ p.date | date: "%Y-%m-%dT%H:%M" | jsonify }}, "q": {% if p.quiet %}true{% else %}false{% endif %}, "tags": {{ ptags | strip | jsonify }}}{% endif %}{% endfor %}]}</script>
     </div>
-    <div class="hero-foot"><span class="rp-watch">👀 Watch next: {{ b.watch_next | markdownify | remove: "<p>" | remove: "</p>" | strip }}</span><a href="{{ '/briefs/' | relative_url }}">Archive: weekly snapshots →</a></div>
   </div></div>
+  {% comment %} The latest brief: fixed, it does not change during a replay. {% endcomment %}
+  <div class="card latest">
+    <div class="hero-top"><h2 class="k">Latest brief · <span class="upd" data-updated="{{ b.updated }}">updated {{ b.updated_label }}</span></h2><span class="pill">{{ rel_total }} release{% if rel_total != 1 %}s{% endif %} · {{ rel_active }} of {{ tracked.size }} tools active · <a href="#actions">{{ board_count }} open action{% if board_count != 1 %}s{% endif %} ↓</a></span></div>
+    <div class="themes">
+      {% for th in b.themes %}
+      <div class="theme"><span class="n">{% if b.themes.size > 1 %}{{ forloop.index }} · {% endif %}{{ th.tag }}</span><b>{{ th.title }}</b>
+        <div class="f">{{ th.facts | markdownify | remove: "<p>" | remove: "</p>" }}</div>
+        <p class="so"><i>So what:</i> {{ th.so_what | markdownify | remove: "<p>" | remove: "</p>" | strip }}</p></div>
+      {% endfor %}
+    </div>
+    <div class="hero-foot"><span>👀 Watch next: {{ b.watch_next | markdownify | remove: "<p>" | remove: "</p>" | strip }}</span><a href="{{ '/briefs/' | relative_url }}">Archive: weekly snapshots →</a></div>
+  </div>
 </section>
 <script src="{{ '/assets/replay.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

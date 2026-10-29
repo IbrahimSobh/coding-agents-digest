@@ -9,7 +9,7 @@
   if(runs.length<2) return;
   var grid=box.querySelector('.rg'), track=document.getElementById('rpTrack'), over=box.querySelector('.rg-over');
   var cur=over.querySelector('.rg-cur'), curLabel=cur.querySelector('em'), shade=over.querySelector('.rg-shade');
-  var head=document.getElementById('rpHead'), cap=document.getElementById('rpCap'), msg=document.getElementById('rpMsg'), back=document.getElementById('rpBack');
+  var head=document.getElementById('rpHead'), note=document.getElementById('rpNote'), brief=document.getElementById('brief'), cap=document.getElementById('rpCap'), msg=document.getElementById('rpMsg'), back=document.getElementById('rpBack');
   var cells=[].slice.call(box.querySelectorAll('.rg-c[data-tags]')), totals=[].slice.call(box.querySelectorAll('.rg-t'));
   var still=matchMedia('(prefers-reduced-motion: reduce)');
   var DAYS=8, startMs=Date.parse(data.start+'T00:00:00Z'), last=runs.length-1, shown=last;
@@ -93,10 +93,13 @@
     shade.style.left=p+'%';
     shade.hidden=latest;
     grid.classList.toggle('replaying',!latest);
+    // Themes and Watch next have no history yet: fade them and say so while an older run shows
+    note.hidden=latest;
+    brief.classList.toggle('rp-old',!latest);
     back.hidden=pinned===null&&latest;
     msg.textContent=latest
       ? 'Headline '+n+' of '+n+'. Hover a run to preview it, click or tap to pin it; arrow keys step through runs.'
-      : (pinned===null?'Previewing ':'Pinned to ')+label(runs[i].at)+': headline '+ver[i]+' of '+n+'. Releases found after this run are dashed.';
+      : (pinned===null?'Previewing ':'Pinned to ')+label(runs[i].at)+': headline '+ver[i]+' of '+n+'. Releases found after this run are dashed. Themes and Watch next show the latest run.';
   }
 
   // Hover previews a run; a click or tap pins it until another run is picked, the same run is

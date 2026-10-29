@@ -84,18 +84,5 @@
   "flagged": "2026-10-28",
   "category": "default-change",
   "dismissed": false
- },
- {
-  "id": "kilo-code-v7.8.20-zod-memory-advisory",
-  "tool": "kilo-code",
-  "version": "v7.8.20",
-  "url": "https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.20",
-  "title": "Zod memory-exhaustion fix",
-  "affects": "you use the Kilo Code VS Code extension older than v7.8.20.",
-  "do": "update the extension to v7.8.20 or later, which uses a patched zod.",
-  "deadline": null,
-  "flagged": "2026-10-29",
-  "category": "security",
-  "dismissed": false
  }
 ]

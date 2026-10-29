@@ -62,8 +62,12 @@ For each tool, list the releases that match `tag_pattern` and are
   - Newest stable release: `curl -sSI https://github.com/<owner>/<repo>/releases/latest | grep -i '^location'`
     GitHub redirects this page to the newest release that is not a pre-release, so the tag at
     the end of the `location` URL is stable.
-  - Is one tag a pre-release: `curl -sS https://github.com/<owner>/<repo>/releases/tag/<tag> | grep -o -E '>(Pre-release|Latest)<' | sort -u`
-    `>Pre-release<` means skip it. `>Latest<`, or no label, means stable.
+  - Is one tag a pre-release: `curl -sS https://github.com/<owner>/<repo>/releases/tag/<tag> | grep -o -E '>(Pre-release|Latest)<|datetime="[^"]*"' | sort -u`
+    `>Pre-release<` means skip it. `>Latest<` means stable. No label means stable ONLY if the
+    output also has a `datetime=` line (the page loaded). No `datetime=` line means the page
+    did not load or the tag has no release: do not cover that tag.
+  - A tag that is newer than the tag `releases/latest` points to is a pre-release. Skip it,
+    whatever the tag page shows. (GitHub moves `releases/latest` to each new stable release.)
   - Notes of one release: `curl -sS https://github.com/<owner>/<repo>/releases/tag/<tag>`, then
     read the text of the release body in the HTML.
   If Method C fails for a tool (an error, a timeout, an empty or cut-off page), use Method D before
@@ -74,6 +78,10 @@ For each tool, list the releases that match `tag_pattern` and are
 Rules:
 - Skip alpha, beta, rc, nightly, and any release marked "Pre-release" (check the release
   page with Method C, or Method D if C fails, for tools whose tags do not show it, e.g. Kilo Code).
+  Kilo Code: first read the tag that `releases/latest` points to (Method D). Only tags up to and
+  including that tag can be stable. Never cover a Kilo Code tag newer than it, even if every
+  other check failed. When unsure whether a tag is stable, skip it: a later stable release
+  repeats its notes.
 - Skip tags listed under `ignored_tags`.
 - Codex: stable tags are `rust-v0.x.y` without `-alpha`. Method A shows them.
 - Release dates are **Cairo dates**, like everything else on the site. Read the exact UTC time

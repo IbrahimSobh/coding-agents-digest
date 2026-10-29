@@ -1,27 +1,21 @@
 {
- "updated": "2026-10-28T22:12+03:00",
- "updated_label": "Oct 28, 22:12",
- "window": "Oct 21 to Oct 28, 2026",
- "headline": "Claude Code 2.1.312 and Codex 0.165.0 changed defaults, and Antigravity CLI 1.4.9 now needs separate approval for Google apps.",
+ "updated": "2026-10-29T08:11+03:00",
+ "updated_label": "Oct 29, 08:11",
+ "window": "Oct 22 to Oct 29, 2026",
+ "headline": "Claude Code and Codex changed defaults this week, and Kilo Code's zod security fix means updating its VS Code extension.",
  "themes": [
-  {
-   "tag": "Defaults",
-   "title": "Defaults and rewind behave differently now",
-   "facts": "Codex turns memory v2 on for new profiles ([rust-v0.165.0](https://github.com/openai/codex/releases/tag/rust-v0.165.0)) and Claude Code widens automatic model switches to custom model names ([2.1.312](https://github.com/anthropics/claude-code/releases/tag/v2.1.312)). Claude Code's `/rewind` no longer undoes `sed -i` edits, and `claude ultrareview` needs workspace trust in scripts ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)).",
-   "so_what": "new defaults and scripts that ran unattended before may now change results or stop, so check those settings before you rely on them."
-  },
-  {
-   "tag": "Security",
-   "title": "Sandboxes and MCP servers are locked down",
-   "facts": "Claude Code stopped sandboxed commands from changing the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)); agy blocks `~/.docker`, `~/.kube` and `~/_netrc` in its sandbox unless you grant access ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)); Kilo Code's MCP SDK update fixes security issues but stops remote servers that redirect from connecting ([v7.8.18](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.18)).",
-   "so_what": "any sandbox or MCP setup that worked by accident may now need an explicit grant or a new URL."
-  },
-  {
-   "tag": "Plugins",
-   "title": "Plugins get new MCP and sign-in rules",
-   "facts": "`/plugin` now sets a plugin's MCP server variables without disabling it ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)); plugin MCP tokens now belong to the signed-in user, so OAuth servers may ask you to sign in again ([1.4.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.7)).",
-   "so_what": "expect a one-time sign-in to plugin MCP servers after the agy 1.4.7 update."
-  }
+  {"tag": "Defaults",
+   "title": "Defaults shift under you again",
+   "facts": "Codex turns memory v2 on for new profiles ([rust-v0.165.0](https://github.com/openai/codex/releases/tag/rust-v0.165.0)) and runs its Guardian classifier in conversation mode by default ([rust-v0.164.0](https://github.com/openai/codex/releases/tag/rust-v0.164.0)). Claude Code widens automatic model switches to custom model names ([2.1.312](https://github.com/anthropics/claude-code/releases/tag/v2.1.312)).",
+   "so_what": "a setting that gave you one result last week may give another now, so check the new defaults before you rely on them."},
+  {"tag": "Security",
+   "title": "Security fixes and tighter sandboxes",
+   "facts": "Kilo Code upgrades zod in its VS Code extension to fix a memory-exhaustion advisory ([v7.8.20](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.20)). OpenCode's bundled Bun gets security fixes ([v1.19.4](https://github.com/anomalyco/opencode/releases/tag/v1.19.4)), and Claude Code's sandboxed commands can no longer change the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)).",
+   "so_what": "update the tools that carry security fixes, and give sandboxed commands the explicit access they still need."},
+  {"tag": "Long sessions",
+   "title": "Compaction gets fixes in two tools",
+   "facts": "Antigravity CLI 1.4.10 stops subagents from losing their task after compaction ([1.4.10](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.10)). Kilo Code fixes early auto-compaction ([v7.8.20](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.20)) and gives large-session compaction more output space ([v7.8.23](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.23)).",
+   "so_what": "long sessions are less likely to stall or lose their task, so restarting them is needed less often."}
  ],
- "watch_next": "Check your Antigravity CLI Google app approvals after 1.4.9, and your Claude Code and Codex settings for the new defaults. The 2.1.309 changes to `ultrareview` and `/rewind` may still break scripts."
+ "watch_next": "Update Kilo Code to v7.8.20 or later, and approve Gmail, Docs, Drive and Cloud Console one by one in Antigravity CLI 1.4.9 if you use them through the agent. Kilo Code v7.8.22 shipped without notes, so its changes are not yet known."
 }

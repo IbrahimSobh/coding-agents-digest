@@ -1,6 +1,7 @@
 // "Replay the week" in the 7-day brief. Data comes from _includes/brief.html:
 // runs = every run's headline in the window (headlines.json), seen = release tags each check entry linked.
-// Picking a run shows that run's headline and fades the releases the site only found later.
+// Selecting a run (click, tap, drag or arrow keys) shows that run's headline and dashes the releases
+// the site only found later. Times are Cairo time, like the day columns.
 // Without this script the brief shows the latest headline and the full grid.
 (function(){
   var dataEl=document.getElementById('rpData'), box=document.getElementById('replay');
@@ -9,6 +10,7 @@
   if(runs.length<2) return;
   var grid=box.querySelector('.rg'), track=document.getElementById('rpTrack'), over=box.querySelector('.rg-over');
   var cur=over.querySelector('.rg-cur'), curLabel=cur.querySelector('em'), shade=over.querySelector('.rg-shade');
+  var ghost=over.querySelector('.rg-ghost'), ghostLabel=ghost.querySelector('em');
   var head=document.getElementById('rpHead'), cap=document.getElementById('rpCap'), msg=document.getElementById('rpMsg'), back=document.getElementById('rpBack');
   var cells=[].slice.call(box.querySelectorAll('.rg-c[data-tags]')), totals=[].slice.call(box.querySelectorAll('.rg-t'));
   var still=matchMedia('(prefers-reduced-motion: reduce)');
@@ -21,6 +23,8 @@
     var m=+at.slice(11,13)*60+(+at.slice(14,16));
     return Math.max(0,Math.min(100,(d+m/1440)/DAYS*100));
   }
+  // Keep a marker's label inside the box near the edges
+  function edge(p){return p>80?'translateX(calc(-100% + 10px))':p<20?'translateX(-10px)':''}
   function label(at){
     var d=new Date(at.slice(0,10)+'T12:00:00Z');
     return d.toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'})+', '+at.slice(11,16);
@@ -49,9 +53,9 @@
     b.className='rg-dot '+kind[i];
     b.style.left=pos(r.at)+'%';
     b.tabIndex=i===last?0:-1;
-    b.setAttribute('aria-label','Run '+label(r.at)+', '+kindLabel[kind[i]]+(i===last?' (latest)':''));
-    b.onfocus=function(){show(i)};
-    b.onclick=function(e){e.stopPropagation();pin(i===pinned?null:i)};
+    b.setAttribute('aria-label','Run '+label(r.at)+' Cairo time, '+kindLabel[kind[i]]+(i===last?' (latest)':''));
+    // Mouse and touch select through the track (pointerdown); Enter or Space on a focused ball lands here
+    b.onclick=function(e){if(!e.detail) show(i)};
     track.appendChild(b);
     return b;
   });
@@ -87,41 +91,58 @@
     });
     var p=pos(runs[i].at);
     cur.style.left=p+'%';
-    curLabel.textContent=(latest?'Latest · ':'Replaying · ')+label(runs[i].at);
-    // Keep the label inside the box near the edges
-    curLabel.style.transform=p>80?'translateX(calc(-100% + 10px))':p<20?'translateX(-10px)':'';
+    curLabel.textContent=(latest?'Latest · ':'Replaying · ')+label(runs[i].at)+' Cairo';
+    curLabel.style.transform=edge(p);
     shade.style.left=p+'%';
     shade.hidden=latest;
     grid.classList.toggle('replaying',!latest);
-    back.hidden=pinned===null&&latest;
+    back.hidden=latest;
     msg.textContent=latest
-      ? 'Headline '+n+' of '+n+'. Hover a run to preview it, click or tap to pin it; arrow keys step through runs.'
-      : (pinned===null?'Previewing ':'Pinned to ')+label(runs[i].at)+': headline '+ver[i]+' of '+n+'. Releases found after this run are dashed.';
+      ? 'Headline '+n+' of '+n+'. Click or drag along the line to replay a run; arrow keys step through runs. Times are Cairo time.'
+      : 'Replaying '+label(runs[i].at)+' Cairo time: headline '+ver[i]+' of '+n+'. Releases found after this run are dashed.';
   }
 
-  // Hover previews a run; a click or tap pins it until another run is picked, the same run is
-  // clicked again, Esc, or "Back to latest". While a run is pinned, hovering changes nothing.
-  var pinned=null;
-  function pin(i){pinned=i;show(i===null?last:i)}
+  // Scrubber: a click, tap or drag along the line selects the nearest run, and it stays selected
+  // until another run is picked, Esc, or "Back to latest". Hovering never changes the page: it only
+  // shows a ghost marker of the run a click would pick.
   function nearest(e){
     var r=track.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*100, best=0, bd=1e9;
     runs.forEach(function(run,i){var dd=Math.abs(pos(run.at)-x);if(dd<bd){bd=dd;best=i}});
     return best;
   }
-  track.addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&pinned===null) show(nearest(e))});
-  track.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'&&pinned===null) show(last)});
-  // A click or tap between the balls pins the nearest run
-  track.addEventListener('click',function(e){var i=nearest(e);pin(i===pinned?null:i)});
+  function hint(i){
+    ghost.hidden=i===null||i===shown;
+    if(ghost.hidden) return;
+    var p=pos(runs[i].at);
+    ghost.style.left=p+'%';
+    ghostLabel.textContent=label(runs[i].at);
+    ghostLabel.style.transform=edge(p);
+  }
+  var drag=false;
+  track.addEventListener('pointerdown',function(e){
+    if(e.button) return;
+    drag=true;
+    track.setPointerCapture(e.pointerId);
+    hint(null);
+    show(nearest(e));
+  });
+  track.addEventListener('pointermove',function(e){
+    var i=nearest(e);
+    if(drag){if(i!==shown) show(i)}
+    else if(e.pointerType==='mouse') hint(i);
+  });
+  track.addEventListener('pointerup',function(){drag=false});
+  track.addEventListener('pointercancel',function(){drag=false});
+  track.addEventListener('pointerleave',function(){if(!drag) hint(null)});
   track.addEventListener('keydown',function(e){
-    var j={ArrowLeft:shown-1,ArrowRight:shown+1,Home:0,End:last}[e.key];
-    if(e.key==='Escape'){e.preventDefault();pin(null);dots[last].focus();return}
+    var j={ArrowLeft:shown-1,ArrowRight:shown+1,Home:0,End:last,Escape:last}[e.key];
     if(j===undefined) return;
     e.preventDefault();
     j=Math.max(0,Math.min(last,j));
-    pin(j);
+    show(j);
     dots[j].focus();
   });
-  back.onclick=function(){pin(null)};
+  back.onclick=function(){show(last);dots[last].focus()};
 
   // The week's headlines differ in length. Reserve the height of the longest one, so changing the
   // headline never moves the grid (the ball under the mouse would slide away and a click would miss).

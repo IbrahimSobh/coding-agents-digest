@@ -45,7 +45,7 @@
     b.tabIndex=i===last?0:-1;
     b.setAttribute('aria-label','Run '+label(r.at)+(i===last?' (latest)':''));
     b.onfocus=function(){show(i)};
-    b.onclick=function(){show(i)};
+    b.onclick=function(e){e.stopPropagation();pin(i===pinned?null:i)};
     track.appendChild(b);
     return b;
   });
@@ -87,35 +87,51 @@
     shade.style.left=p+'%';
     shade.hidden=latest;
     grid.classList.toggle('replaying',!latest);
-    back.hidden=latest;
+    back.hidden=pinned===null&&latest;
     msg.textContent=latest
-      ? 'Headline '+n+' of '+n+'. Hover or tap a run to replay the week; arrow keys step through runs.'
-      : 'Replaying '+label(runs[i].at)+': headline '+ver[i]+' of '+n+'. Releases found after this run are dashed.';
+      ? 'Headline '+n+' of '+n+'. Hover a run to preview it, click or tap to pin it; arrow keys step through runs.'
+      : (pinned===null?'Previewing ':'Pinned to ')+label(runs[i].at)+': headline '+ver[i]+' of '+n+'. Releases found after this run are dashed.';
   }
 
-  // Mouse: follow the nearest run while hovering the grid, return to the latest on leave.
-  // Touch: a tap picks the nearest run, and stays until "Back to latest".
+  // Hover previews a run; a click or tap pins it until another run is picked, the same run is
+  // clicked again, Esc, or "Back to latest". While a run is pinned, hovering changes nothing.
+  var pinned=null;
+  function pin(i){pinned=i;show(i===null?last:i)}
   function nearest(e){
     var r=track.getBoundingClientRect(), x=(e.clientX-r.left)/r.width*100, best=0, bd=1e9;
     runs.forEach(function(run,i){var dd=Math.abs(pos(run.at)-x);if(dd<bd){bd=dd;best=i}});
     return best;
   }
-  grid.addEventListener('pointermove',function(e){if(e.pointerType==='mouse') show(nearest(e))});
-  grid.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse') show(nearest(e))});
-  grid.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'&&!track.contains(document.activeElement)) show(last)});
+  track.addEventListener('pointermove',function(e){if(e.pointerType==='mouse'&&pinned===null) show(nearest(e))});
+  track.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'&&pinned===null) show(last)});
+  // A click or tap between the balls pins the nearest run
+  track.addEventListener('click',function(e){var i=nearest(e);pin(i===pinned?null:i)});
   track.addEventListener('keydown',function(e){
     var j={ArrowLeft:shown-1,ArrowRight:shown+1,Home:0,End:last}[e.key];
-    if(e.key==='Escape') j=last;
+    if(e.key==='Escape'){e.preventDefault();pin(null);dots[last].focus();return}
     if(j===undefined) return;
     e.preventDefault();
     j=Math.max(0,Math.min(last,j));
+    pin(j);
     dots[j].focus();
-    show(j);
   });
-  track.addEventListener('focusout',function(e){if(!track.contains(e.relatedTarget)) show(last)});
-  back.onclick=function(){show(last)};
+  back.onclick=function(){pin(null)};
+
+  // The week's headlines differ in length. Reserve the height of the longest one, so changing the
+  // headline never moves the grid (the ball under the mouse would slide away and a click would miss).
+  function fitHead(){
+    var keep=head.textContent, max=0;
+    head.style.minHeight='';
+    runs.forEach(function(r){head.textContent=r.h;max=Math.max(max,head.offsetHeight)});
+    head.textContent=keep;
+    head.style.minHeight=max+'px';
+  }
+  var rt;
+  window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(fitHead,150)});
+  if(document.fonts&&document.fonts.status!=='loaded') document.fonts.ready.then(fitHead);
 
   track.hidden=false; over.hidden=false; cap.hidden=false;
   box.classList.add('rp-on');
+  fitHead();
   show(last);
 })();

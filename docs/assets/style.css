@@ -13,10 +13,13 @@
   --shadow:0 6px 20px rgba(20,26,38,.06);
   color-scheme:light;
 }
-@font-face{font-family:Inter;font-style:normal;font-weight:100 900;font-display:swap;src:url("fonts/inter-latin-wght-normal.woff2") format("woff2")}
+/* Fonts are self-hosted (SIL OFL, licenses next to the files): Schibsted Grotesk for all text, Newsreader for the main headlines */
+@font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400 900;font-display:swap;src:url("fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2")}
+@font-face{font-family:Newsreader;font-style:normal;font-weight:200 800;font-display:swap;src:url("fonts/newsreader-latin-wght-normal.woff2") format("woff2")}
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 "Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif}
+.hero h1,.snap h1{font-family:Newsreader,Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em}
 h1,h2,h3,.theme b,.act b{text-wrap:balance}
 p,li{text-wrap:pretty}
 a{color:var(--orange);text-underline-offset:2px}
@@ -63,7 +66,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .upd{color:var(--green);text-transform:none;letter-spacing:0}
 .pill{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);color:var(--muted)}
 .pill a{color:var(--amber);text-decoration:none}
-.hero h1{font-size:28px;line-height:1.2;letter-spacing:-.02em;margin:16px 0 4px}
+.hero h1{font-size:31px;line-height:1.15;margin:16px 0 4px}
 .themes{display:flex;gap:28px;margin-top:20px}
 /* 1 to 3 themes share the width; a single theme puts "So what" beside the facts */
 .themes .theme{flex:1 1 0;min-width:0}
@@ -168,7 +171,7 @@ details.run[open]>summary{margin-bottom:6px}
 .list{margin-top:14px;display:grid;gap:10px}
 .list a{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;text-decoration:none;color:var(--ink)}
 .list a b{display:block} .list a span{font-size:13.5px;color:var(--muted)}
-.snap h1{font-size:26px;letter-spacing:-.02em;line-height:1.2;margin:8px 0 14px}
+.snap h1{font-size:30px;line-height:1.15;margin:8px 0 14px}
 .snap h2{font-size:17px;margin:20px 0 6px}
 .snap p,.snap li{font-size:15px;margin:6px 0}
 .snap ol,.snap ul{padding-left:22px}
@@ -182,7 +185,7 @@ footer.site a{color:var(--muted)}
   .theme:only-child .so{margin-top:8px;border-left:0;padding-left:0}
   .actions{grid-template-columns:1fr}
   .srow{grid-template-columns:96px 1fr 32px}
-  .hero h1{font-size:23px}
+  .hero h1{font-size:25px}
   .hero-in{padding:18px 16px}
   .hsep{display:none}
 }

@@ -83,8 +83,8 @@ a.tbtn:hover{border-color:var(--muted)}
 .shead{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 /* Release grid (tool x day) and the "replay the week" timeline (assets/replay.js) */
 .rg{position:relative;display:grid;grid-template-columns:var(--rg-name,120px) repeat(8,minmax(0,1fr)) var(--rg-tot,32px);grid-template-rows:0 18px;grid-auto-rows:28px;gap:5px;align-items:center;font-size:13px}
-.rp-on .rg{grid-template-rows:44px 18px}
-.rg-d{grid-row:2;justify-self:center;position:relative;z-index:4;padding:0 5px;border-radius:4px;background:var(--card);font-size:11px;color:var(--soft);font-variant-numeric:tabular-nums;white-space:nowrap}
+.rp-on .rg{grid-template-rows:44px 26px}
+.rg-d{grid-row:2;justify-self:center;align-self:end;font-size:11px;color:var(--soft);font-variant-numeric:tabular-nums;white-space:nowrap}
 .rg-n{grid-column:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rg-t{grid-column:10;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
 .rg-c{height:100%;border-radius:6px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:12px;color:#0b0f17;transition:background-color .16s,border-color .16s}
@@ -98,9 +98,9 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-dot.fut::before{opacity:.35}
 .rg-dot[aria-pressed="true"]::before{box-shadow:0 0 0 4px color-mix(in srgb,var(--cyan) 30%,transparent)}
 .rg-over{grid-row:1/-1;grid-column:2/10;position:relative;align-self:stretch;pointer-events:none}
-.rg-cur{position:absolute;top:16px;bottom:0;width:2px;margin-left:-1px;background:var(--cyan);z-index:3;transition:left .22s cubic-bezier(.16,1,.3,1)}
+.rg-cur{position:absolute;top:16px;height:28px;width:2px;margin-left:-1px;background:var(--cyan);z-index:3;transition:left .22s cubic-bezier(.16,1,.3,1)}
 .rg-cur em{position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;font-style:normal;color:var(--bg);background:var(--cyan);padding:2px 9px;border-radius:999px;white-space:nowrap}
-.rg-shade{position:absolute;top:67px;bottom:0;right:0;background:color-mix(in srgb,var(--card) 50%,transparent);z-index:2;transition:left .22s cubic-bezier(.16,1,.3,1)}
+.rg-shade{position:absolute;top:75px;bottom:0;right:0;background:color-mix(in srgb,var(--card) 50%,transparent);z-index:2;transition:left .22s cubic-bezier(.16,1,.3,1)}
 /* Legend: only with the replay timeline (replay.js adds .rp-on) */
 .rg-key{display:none;flex-wrap:wrap;gap:6px 18px;align-items:center;margin-top:10px;font-size:12.5px;color:var(--soft)}
 .rp-on .rg-key{display:flex}

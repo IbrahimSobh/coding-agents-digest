@@ -89,7 +89,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-t{grid-column:10;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
 .rg-c{height:100%;border-radius:6px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:12px;color:#0b0f17;transition:background-color .16s,border-color .16s}
 .rg-c.on{background:var(--c);border-color:var(--c)}
-.rg-c.later{background:transparent;border:1.5px dashed color-mix(in srgb,var(--c) 75%,transparent)}
+.rg-c.later{background:color-mix(in srgb,var(--c) 16%,transparent);border:1.5px dashed color-mix(in srgb,var(--c) 85%,transparent)}
 .rg-track{grid-row:1;grid-column:2/10;position:relative;align-self:stretch;border-bottom:1px solid var(--line);touch-action:pan-y}
 .rg-dot{position:absolute;bottom:-9px;width:18px;height:18px;margin-left:-9px;padding:0;border:0;background:none;cursor:pointer;z-index:4;border-radius:50%}
 .rg-dot::before{content:"";position:absolute;inset:5.5px;border-radius:50%;background:var(--card);border:1.5px solid var(--soft);transition:opacity .16s,box-shadow .16s}
@@ -100,6 +100,15 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-cur{position:absolute;top:16px;bottom:0;width:2px;margin-left:-1px;background:var(--cyan);z-index:3;transition:left .22s cubic-bezier(.16,1,.3,1)}
 .rg-cur em{position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;font-style:normal;color:var(--bg);background:var(--cyan);padding:2px 9px;border-radius:999px;white-space:nowrap}
 .rg-shade{position:absolute;top:67px;bottom:0;right:0;background:color-mix(in srgb,var(--card) 50%,transparent);z-index:2;transition:left .22s cubic-bezier(.16,1,.3,1)}
+/* Legend: only with the replay timeline (replay.js adds .rp-on) */
+.rg-key{display:none;flex-wrap:wrap;gap:6px 18px;align-items:center;margin-top:10px;font-size:12.5px;color:var(--soft)}
+.rp-on .rg-key{display:flex}
+.rg-key span{display:inline-flex;align-items:center;gap:6px}
+.rg-key i{flex:none}
+.rg-key .kd{width:11px;height:11px;border-radius:50%;background:var(--cyan)}
+.rg-key .ks{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--soft);background:var(--card)}
+.rg-key .kb{width:22px;height:14px;border-radius:4px;background:#5b8def}
+.rg-key .kl{width:22px;height:14px;border-radius:4px;border:1.5px dashed color-mix(in srgb,#5b8def 85%,transparent);background:color-mix(in srgb,#5b8def 16%,transparent)}
 .rg-cap{font-size:12.5px;color:var(--soft);margin-top:8px;min-height:20px}
 .rg-back{margin-left:6px;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:1px 10px;font-size:12px;font-weight:600;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.rg-cur,.rg-shade,.rg-c,.rg-dot::before{transition:none}}

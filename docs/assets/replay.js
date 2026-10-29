@@ -36,14 +36,20 @@
     return k;
   }
 
-  // One button per run; big dots where the headline changed
+  // Quiet runs: the check entry written at the same minute says quiet: true
+  var quiet={};
+  seen.forEach(function(s){quiet[s.at]=s.q});
+  // One button per run: big dot = new headline, small solid = news with the same headline,
+  // small empty = quiet run (no new releases)
+  var kind=runs.map(function(r,i){return ver[i]!==(ver[i-1]||0)?'ch':quiet[local(r.at)]===false?'nw':'qt'});
+  var kindLabel={ch:'new headline',nw:'new releases, same headline',qt:'quiet run'};
   var dots=runs.map(function(r,i){
     var b=document.createElement('button');
     b.type='button';
-    b.className='rg-dot'+(ver[i]!==(ver[i-1]||0)?' ch':'');
+    b.className='rg-dot '+kind[i];
     b.style.left=pos(r.at)+'%';
     b.tabIndex=i===last?0:-1;
-    b.setAttribute('aria-label','Run '+label(r.at)+(i===last?' (latest)':''));
+    b.setAttribute('aria-label','Run '+label(r.at)+', '+kindLabel[kind[i]]+(i===last?' (latest)':''));
     b.onfocus=function(){show(i)};
     b.onclick=function(e){e.stopPropagation();pin(i===pinned?null:i)};
     track.appendChild(b);

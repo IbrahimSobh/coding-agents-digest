@@ -94,6 +94,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-dot{position:absolute;bottom:-9px;width:18px;height:18px;margin-left:-9px;padding:0;border:0;background:none;cursor:pointer;z-index:4;border-radius:50%}
 .rg-dot::before{content:"";position:absolute;inset:5.5px;border-radius:50%;background:var(--card);border:1.5px solid var(--soft);transition:opacity .16s,box-shadow .16s}
 .rg-dot.ch::before{inset:3.5px;background:var(--cyan);border-color:var(--cyan)}
+.rg-dot.nw::before{background:var(--cyan);border-color:var(--cyan)}
 .rg-dot.fut::before{opacity:.35}
 .rg-dot[aria-pressed="true"]::before{box-shadow:0 0 0 4px color-mix(in srgb,var(--cyan) 30%,transparent)}
 .rg-over{grid-row:1/-1;grid-column:2/10;position:relative;align-self:stretch;pointer-events:none}
@@ -106,6 +107,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-key span{display:inline-flex;align-items:center;gap:6px}
 .rg-key i{flex:none}
 .rg-key .kd{width:11px;height:11px;border-radius:50%;background:var(--cyan)}
+.rg-key .kn{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--cyan);background:var(--cyan)}
 .rg-key .ks{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--soft);background:var(--card)}
 .rg-key .kb{width:22px;height:14px;border-radius:4px;background:#5b8def}
 .rg-key .kl{width:22px;height:14px;border-radius:4px;border:1.5px dashed color-mix(in srgb,#5b8def 85%,transparent);background:color-mix(in srgb,#5b8def 16%,transparent)}

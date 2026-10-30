@@ -1,6 +1,8 @@
 {% comment %}
   Release history chart, drawn in the browser by assets/history.js from _data/releases.json.
   Every run appends to releases.json and pushes, so the chart updates with each rebuild.
+  The chart ends on the day of the last run, not the build day, so a push after midnight cannot move
+  its 1 Week window away from the 7-day box (same rule as today_s in index.html).
 {% endcomment %}
 {% assign hist_tools = site.data.tools | where: "tracked", true %}
 <section id="history" class="hist card">
@@ -14,7 +16,7 @@
   <div class="hlegend" id="histLegend" role="group" aria-label="Tools shown in the chart"></div>
   <div class="hbox"><canvas id="histChart" role="img" aria-label="Stable releases per tool over time"></canvas></div>
   <p class="hnote">Stable releases only. A release count does not mean importance.</p>
-  <script type="application/json" id="histData">{"today": {{ site.time | date: "%Y-%m-%d" | jsonify }}, "tools": {{ hist_tools | jsonify }}, "releases": {{ site.data.releases | jsonify }}}</script>
+  <script type="application/json" id="histData">{"today": {{ site.data.brief.updated | slice: 0, 10 | jsonify }}, "tools": {{ hist_tools | jsonify }}, "releases": {{ site.data.releases | jsonify }}}</script>
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
 <script src="{{ '/assets/history.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

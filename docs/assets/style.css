@@ -52,6 +52,9 @@ header.site.scrolled .hsub{max-height:0;opacity:0;margin-top:0;padding-bottom:0}
 .brand{font-weight:800;font-size:17px;display:flex;gap:8px;align-items:center;white-space:nowrap;color:var(--ink);text-decoration:none}
 .logo{width:24px;height:24px;flex:none;display:block}
 .g{color:var(--cyan)}
+/* "Digest" in the logo's gradient (cyan, violet, orange), with each theme's own colors */
+@supports ((-webkit-background-clip:text) or (background-clip:text)){.g{background:linear-gradient(90deg,var(--cyan),var(--violet) 55%,var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}}
+@media (forced-colors:active){.g{color:LinkText;background:none}}
 nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
 nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:6px 10px;border-radius:8px;white-space:nowrap}
 nav a.on,nav a:hover{color:var(--ink);background:var(--card)}

@@ -12,7 +12,8 @@
   {% assign pad = c | prepend: "00" | slice: -2, 2 %}
   {% assign rel_list = rel_list | append: pad | append: "~" | append: t.id | append: "|" %}
 {% endfor %}
-{% assign rel_sorted = rel_list | split: "|" | sort | reverse %}
+{% comment %} Rows keep the order of _data/tools.yml, like the Release activity chart. {% endcomment %}
+{% assign rel_rows = rel_list | split: "|" %}
 <section id="brief">
   <div class="hero"><div class="hero-in">
     <div class="hero-top"><span class="k">📊 Last 7 days · {{ b.window }} · <span class="upd" data-updated="{{ b.updated }}">updated {{ b.updated_label }}</span></span></div>
@@ -28,7 +29,7 @@
       <div class="rg">
         <div class="rg-track" id="rpTrack" role="group" aria-label="Replay the week, one button per run" hidden></div>
         {% for i in (0..7) %}{% assign ds = i | times: 86400 | plus: cutoff_s | plus: 43200 %}<span class="rg-d" style="grid-column:{{ i | plus: 2 }}"><span class="rg-dw">{{ ds | date: "%a" }} </span>{{ ds | date: "%-d" }}</span>{% endfor %}
-        {% for row in rel_sorted %}{% assign rc = row | split: "~" %}{% assign n = rc[0] | plus: 0 %}{% assign t = site.data.tools | where: "id", rc[1] | first %}{% assign gr = forloop.index | plus: 2 %}
+        {% for row in rel_rows %}{% assign rc = row | split: "~" %}{% assign n = rc[0] | plus: 0 %}{% assign t = site.data.tools | where: "id", rc[1] | first %}{% assign gr = forloop.index | plus: 2 %}
         <span class="rg-n" style="grid-row:{{ gr }}">{{ t.name }}</span>
         {% for i in (0..7) %}{% assign ds = i | times: 86400 | plus: cutoff_s | plus: 43200 %}{% assign day = ds | date: "%Y-%m-%d" %}{% assign tags = "" %}{% assign tc = 0 %}
           {% for r in site.data.releases %}{% if r.tool == t.id and r.date == day %}{% assign tags = tags | append: r.tag | append: " " %}{% assign tc = tc | plus: 1 %}{% endif %}{% endfor %}

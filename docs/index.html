@@ -1,8 +1,9 @@
 ---
 layout: default
 ---
-{% comment %} Dates are compared at build time (each run pushes, so the site rebuilds after every run). {% endcomment %}
-{% assign today_s = site.time | date: "%Y-%m-%d" | date: "%s" | plus: 0 %}
+{% comment %} Dates are counted from the last run (brief.json "updated"), not the build time, so a push
+  between runs (for example after midnight) cannot move the 7-day window away from the brief's own text. {% endcomment %}
+{% assign today_s = site.data.brief.updated | slice: 0, 10 | date: "%s" | plus: 0 %}
 {% assign cutoff_s = today_s | minus: 604800 %}
 {% include board.html %}
 {% include history.html %}

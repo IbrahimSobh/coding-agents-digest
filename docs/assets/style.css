@@ -23,6 +23,8 @@ body{background:var(--bg);color:var(--ink);font:15px/1.55 "Schibsted Grotesk",sy
 h1,h2,h3,.theme b,.act b{text-wrap:balance}
 p,li{text-wrap:pretty}
 a{color:var(--orange);text-underline-offset:2px}
+a.ext::after{content:"\2197";display:inline-block;font-size:.78em;margin-left:2px;opacity:.8;text-decoration:none}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:6px}
 ::selection{background:color-mix(in srgb,var(--cyan) 32%,transparent);color:var(--ink)}

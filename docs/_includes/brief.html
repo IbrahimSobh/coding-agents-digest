@@ -24,7 +24,8 @@
       assets/replay.js adds the run timeline that replays the week (headline + what each run knew).
     {% endcomment %}
     <div class="score" id="replay">
-      <div class="shead rg-head"><span>Releases in the last 7 days</span><button type="button" class="rg-live at" id="rpBack" tabindex="-1" aria-hidden="true" hidden><i class="rg-pulse" aria-hidden="true"></i><span class="rg-l1">Jump to latest</span><span class="rg-l2">Latest</span><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M2 3l7 5-7 5zM8 3l5 5-5 5z" fill="currentColor"/><rect x="13" y="3" width="1.8" height="10" fill="currentColor"/></svg></button></div>
+      <div class="shead rg-head"><span>Releases in the last 7 days</span></div>
+      <div class="rg-slot"><button type="button" class="rg-live at" id="rpBack" tabindex="-1" aria-hidden="true" hidden><i class="rg-pulse" aria-hidden="true"></i><span>Jump to latest</span><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M2 3l7 5-7 5zM8 3l5 5-5 5z" fill="currentColor"/><rect x="13" y="3" width="1.8" height="10" fill="currentColor"/></svg></button></div>
       <div class="rg">
         <div class="rg-track" id="rpTrack" role="group" aria-label="Replay the week, one button per run" hidden></div>
         {% for i in (0..7) %}{% assign ds = i | times: 86400 | plus: cutoff_s | plus: 43200 %}<span class="rg-d" style="grid-column:{{ i | plus: 2 }}"><span class="rg-dw">{{ ds | date: "%a" }} </span>{{ ds | date: "%-d" }}</span>{% endfor %}

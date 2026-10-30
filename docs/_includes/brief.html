@@ -24,7 +24,7 @@
     {% endcomment %}
     {% assign start_day = cutoff_s | plus: 43200 | date: "%Y-%m-%d" %}
     <div class="score" id="replay">
-      <div class="shead">Releases in the last 7 days</div>
+      <div class="shead rg-head"><span>Releases in the last 7 days</span><button type="button" class="rg-live at" id="rpBack" tabindex="-1" aria-hidden="true" hidden><i class="rg-pulse" aria-hidden="true"></i><span class="rg-l1">Jump to latest</span><span class="rg-l2">Latest</span><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M2 3l7 5-7 5zM8 3l5 5-5 5z" fill="currentColor"/><rect x="13" y="3" width="1.8" height="10" fill="currentColor"/></svg></button></div>
       <div class="rg">
         <div class="rg-track" id="rpTrack" role="group" aria-label="Replay the week, one button per run" hidden></div>
         {% for i in (0..7) %}{% assign ds = i | times: 86400 | plus: cutoff_s | plus: 43200 %}<span class="rg-d" style="grid-column:{{ i | plus: 2 }}"><span class="rg-dw">{{ ds | date: "%a" }} </span>{{ ds | date: "%-d" }}</span>{% endfor %}
@@ -39,8 +39,8 @@
         {% endfor %}
         <div class="rg-over" aria-hidden="true" hidden><i class="rg-shade"></i><b class="rg-cur"><em></em></b><b class="rg-ghost" hidden><em></em></b></div>
       </div>
-      <div class="rg-key"><span><i class="kd" aria-hidden="true"></i>New headline</span><span><i class="kn" aria-hidden="true"></i>Same headline</span><span><i class="ks" aria-hidden="true"></i>Quiet run</span><span><i class="kl" aria-hidden="true"></i>Found after this run</span></div>
-      <p class="rg-cap" id="rpCap" hidden><span id="rpMsg" aria-live="polite"></span> <button type="button" class="rg-back" id="rpBack" hidden>Back to latest</button></p>
+      <div class="rg-key"><span><i class="kd" aria-hidden="true"></i>New headline</span><span><i class="kn" aria-hidden="true"></i>Same headline</span><span><i class="ks" aria-hidden="true"></i>Quiet run</span><span><i class="kg" aria-hidden="true"></i>Latest run</span><span><i class="kl" aria-hidden="true"></i>Found after this run</span></div>
+      <p class="rg-cap" id="rpCap" hidden><i class="rg-cdot" id="rpCdot" aria-hidden="true"></i><span id="rpMsg" aria-live="polite"></span></p>
       <script type="application/json" id="rpData">{"start": {{ start_day | jsonify }},
         "runs": [{% assign first = true %}{% for x in site.data.headlines %}{% assign xd = x.updated | slice: 0, 10 %}{% if xd >= start_day %}{% unless first %},{% endunless %}{% assign first = false %}{"at": {{ x.updated | jsonify }}, "h": {{ x.headline | jsonify }}}{% endif %}{% endfor %}],
         "seen": [{% assign first = true %}{% assign digs = site.pages | where_exp: "p", "p.path contains 'digests/'" %}{% for p in digs %}{% assign pd = p.date | date: "%Y-%m-%d" %}{% if pd >= start_day %}{% assign tparts = p.content | split: "releases/tag/" %}{% assign ptags = "" %}{% for x in tparts offset: 1 %}{% assign tg = x | split: ")" | first | split: '"' | first | strip %}{% assign ptags = ptags | append: tg | append: " " %}{% endfor %}{% unless first %},{% endunless %}{% assign first = false %}{"at": {{ p.date | date: "%Y-%m-%dT%H:%M" | jsonify }}, "q": {% if p.quiet %}true{% else %}false{% endif %}, "tags": {{ ptags | strip | jsonify }}}{% endif %}{% endfor %}]}</script>

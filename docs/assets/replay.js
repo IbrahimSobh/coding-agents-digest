@@ -11,7 +11,7 @@
   var grid=box.querySelector('.rg'), track=document.getElementById('rpTrack'), over=box.querySelector('.rg-over');
   var cur=over.querySelector('.rg-cur'), curLabel=cur.querySelector('em'), shade=over.querySelector('.rg-shade');
   var ghost=over.querySelector('.rg-ghost'), ghostLabel=ghost.querySelector('em');
-  var head=document.getElementById('rpHead'), cap=document.getElementById('rpCap'), msg=document.getElementById('rpMsg'), back=document.getElementById('rpBack');
+  var head=document.getElementById('rpHead'), cap=document.getElementById('rpCap'), msg=document.getElementById('rpMsg'), back=document.getElementById('rpBack'), cdot=document.getElementById('rpCdot');
   var cells=[].slice.call(box.querySelectorAll('.rg-c[data-tags]')), totals=[].slice.call(box.querySelectorAll('.rg-t'));
   var still=matchMedia('(prefers-reduced-motion: reduce)');
   var DAYS=8, startMs=Date.parse(data.start+'T00:00:00Z'), last=runs.length-1, shown=last;
@@ -50,7 +50,8 @@
   var dots=runs.map(function(r,i){
     var b=document.createElement('button');
     b.type='button';
-    b.className='rg-dot '+kind[i];
+    // The latest run is always green ("now"); older runs are cyan
+    b.className='rg-dot '+kind[i]+(i===last?' now':'');
     b.style.left=pos(r.at)+'%';
     b.tabIndex=i===last?0:-1;
     b.setAttribute('aria-label','Run '+label(r.at)+' Cairo time, '+kindLabel[kind[i]]+(i===last?' (latest)':''));
@@ -96,10 +97,18 @@
     shade.style.left=p+'%';
     shade.hidden=latest;
     grid.classList.toggle('replaying',!latest);
-    back.hidden=latest;
-    msg.textContent=latest
-      ? 'Headline '+n+' of '+n+'. Click or drag along the line to replay a run; arrow keys step through runs. Times are Cairo time.'
-      : 'Replaying '+label(runs[i].at)+' Cairo time: headline '+ver[i]+' of '+n+'. Releases found after this run are dashed.';
+    // Like a video's live button: "Jump to latest" is there only while behind the latest run.
+    // Its space stays reserved, so showing it never moves the timeline.
+    back.classList.toggle('at',latest);
+    back.tabIndex=latest?-1:0;
+    back.setAttribute('aria-hidden',latest);
+    cdot.className='rg-cdot '+kind[i]+(latest?' now':'');
+    var what={ch:'New headline',nw:'New releases, same headline',qt:'Quiet run, same headline'}[kind[i]]+' ('+ver[i]+' of '+n+')';
+    var when=document.createElement('b');
+    when.textContent=label(runs[i].at)+' Cairo';
+    msg.textContent='';
+    msg.appendChild(when);
+    msg.appendChild(document.createTextNode(' · '+what+(latest?'. Click or drag along the line to replay an earlier run.':'. Releases found after this run are dashed.')));
   }
 
   // Scrubber: a click, tap or drag along the line selects the nearest run, and it stays selected
@@ -131,7 +140,8 @@
     if(drag){if(i!==shown) show(i)}
     else if(e.pointerType==='mouse') hint(i);
   });
-  track.addEventListener('pointerup',function(){drag=false});
+  // After a click or drag, the arrow keys continue from the selected run
+  track.addEventListener('pointerup',function(){if(drag){drag=false;dots[shown].focus({preventScroll:true})}});
   track.addEventListener('pointercancel',function(){drag=false});
   track.addEventListener('pointerleave',function(){if(!drag) hint(null)});
   track.addEventListener('keydown',function(e){
@@ -142,7 +152,7 @@
     show(j);
     dots[j].focus();
   });
-  back.onclick=function(){show(last);dots[last].focus()};
+  back.onclick=function(){if(shown!==last){show(last);dots[last].focus()}};
 
   // The week's headlines differ in length. Reserve the height of the longest one, so changing the
   // headline never moves the grid (the ball under the mouse would slide away and a click would miss).
@@ -157,7 +167,7 @@
   window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(fitHead,150)});
   if(document.fonts&&document.fonts.status!=='loaded') document.fonts.ready.then(fitHead);
 
-  track.hidden=false; over.hidden=false; cap.hidden=false;
+  track.hidden=false; over.hidden=false; cap.hidden=false; back.hidden=false;
   box.classList.add('rp-on');
   fitHead();
   show(last);

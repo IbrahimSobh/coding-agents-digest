@@ -1,8 +1,8 @@
 {
- "updated": "2026-10-30T08:38+02:00",
- "updated_label": "Oct 30, 08:38",
+ "updated": "2026-10-30T23:41+02:00",
+ "updated_label": "Oct 30, 23:41",
  "window": "Oct 23 to Oct 30, 2026",
- "headline": "Codex drops detached review/start, and headless runs in Claude Code and Antigravity CLI now report failures more clearly.",
+ "headline": "Codex drops detached review/start, and Antigravity CLI 1.4.12 lets plugins run without an API key set.",
  "themes": [
   {"tag": "Headless",
    "title": "Scripts get clearer failure signals",
@@ -14,7 +14,7 @@
    "so_what": "a setting that gave you one result last week may give another now, so check the new defaults before you rely on them."},
   {"tag": "Security",
    "title": "Sandboxes and MCP locked down",
-   "facts": "Claude Code's sandboxed commands can no longer change the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)), and Antigravity CLI hides `~/.docker`, `~/.kube` and `~/_netrc` from sandboxed commands ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)). Kilo Code stops running shell expressions in MCP prompts ([v7.8.16](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.16)).",
+   "facts": "Claude Code's sandboxed commands can no longer change the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)), and Antigravity CLI hides `~/.docker`, `~/.kube` and `~/_netrc` from sandboxed commands ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)).",
    "so_what": "sandboxed commands that need credentials or config files now need an explicit grant, so check them after updating."}
  ],
  "watch_next": "Check any Codex API client that calls `review/start` with detached delivery before you upgrade past rust-v0.166.0."

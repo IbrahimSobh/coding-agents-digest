@@ -1,7 +1,7 @@
 {% comment %}
   Action board from _data/actions.json. Shows items flagged in the last 7 days, plus items
   whose deadline is still ahead. Dated items first (soonest deadline), then newest.
-  Needs today_s and cutoff_s (set in index.html). Sets board_count.
+  Needs today_s and start_day (set in index.html). Sets board_count.
 {% endcomment %}
 {% assign dated = site.data.actions | where_exp: "a", "a.deadline" | sort: "deadline" %}
 {% assign undated = site.data.actions | where_exp: "a", "a.deadline == nil" | sort: "flagged" | reverse %}
@@ -10,7 +10,7 @@
 {% capture board_cards %}{% for a in ordered %}{% if a.dismissed %}{% continue %}{% endif %}
   {% assign keep = false %}
   {% if a.deadline %}{% assign dl_s = a.deadline | date: "%s" | plus: 0 %}{% if dl_s >= today_s %}{% assign keep = true %}{% endif %}
-  {% else %}{% assign f_s = a.flagged | date: "%s" | plus: 0 %}{% if f_s >= cutoff_s %}{% assign keep = true %}{% endif %}{% endif %}
+  {% else %}{% assign f_d = a.flagged | date: "%Y-%m-%d" %}{% if f_d >= start_day %}{% assign keep = true %}{% endif %}{% endif %}
   {% if keep %}{% assign board_count = board_count | plus: 1 %}{% assign t = site.data.tools | where: "id", a.tool | first %}
   <div class="act{% if board_count > 6 %} extra hidden{% endif %}" data-tools="{{ a.tool }}">
     <div class="top"><b>{{ a.title | markdownify | remove: "<p>" | remove: "</p>" | strip }}</b>{% if a.deadline %}<span class="cd dl" data-deadline="{{ a.deadline }}">{{ a.deadline | date: "%b %-d" }}</span>{% else %}<span class="cd" data-flagged="{{ a.flagged }}">flagged {{ a.flagged | date: "%b %-d" }}</span>{% endif %}</div>

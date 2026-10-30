@@ -7,7 +7,7 @@
 {% assign rel_list = "" %}{% assign rel_total = 0 %}{% assign rel_max = 1 %}{% assign rel_active = 0 %}
 {% for t in tracked %}
   {% assign c = 0 %}
-  {% for r in site.data.releases %}{% if r.tool == t.id %}{% assign r_s = r.date | date: "%s" | plus: 0 %}{% if r_s >= cutoff_s %}{% assign c = c | plus: 1 %}{% endif %}{% endif %}{% endfor %}
+  {% for r in site.data.releases %}{% if r.tool == t.id %}{% if r.date >= start_day %}{% assign c = c | plus: 1 %}{% endif %}{% endif %}{% endfor %}
   {% assign rel_total = rel_total | plus: c %}{% if c > rel_max %}{% assign rel_max = c %}{% endif %}{% if c > 0 %}{% assign rel_active = rel_active | plus: 1 %}{% endif %}
   {% assign pad = c | prepend: "00" | slice: -2, 2 %}
   {% assign rel_list = rel_list | append: pad | append: "~" | append: t.id | append: "|" %}
@@ -23,7 +23,6 @@
       like the counts above). Noon of each day is used so a DST change cannot shift the date.
       assets/replay.js adds the run timeline that replays the week (headline + what each run knew).
     {% endcomment %}
-    {% assign start_day = cutoff_s | plus: 43200 | date: "%Y-%m-%d" %}
     <div class="score" id="replay">
       <div class="shead rg-head"><span>Releases in the last 7 days</span><button type="button" class="rg-live at" id="rpBack" tabindex="-1" aria-hidden="true" hidden><i class="rg-pulse" aria-hidden="true"></i><span class="rg-l1">Jump to latest</span><span class="rg-l2">Latest</span><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M2 3l7 5-7 5zM8 3l5 5-5 5z" fill="currentColor"/><rect x="13" y="3" width="1.8" height="10" fill="currentColor"/></svg></button></div>
       <div class="rg">

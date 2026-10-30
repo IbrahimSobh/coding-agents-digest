@@ -30,11 +30,11 @@
         <div class="rg-track" id="rpTrack" role="group" aria-label="Replay the week, one button per run" hidden></div>
         {% for i in (0..7) %}{% assign ds = i | times: 86400 | plus: cutoff_s | plus: 43200 %}<span class="rg-d" style="grid-column:{{ i | plus: 2 }}"><span class="rg-dw">{{ ds | date: "%a" }} </span>{{ ds | date: "%-d" }}</span>{% endfor %}
         {% for row in rel_rows %}{% assign rc = row | split: "~" %}{% assign n = rc[0] | plus: 0 %}{% assign t = site.data.tools | where: "id", rc[1] | first %}{% assign gr = forloop.index | plus: 2 %}
-        <span class="rg-n" style="grid-row:{{ gr }}">{% include tool-logo.html t=t %}{{ t.name }}</span>
+        <span class="rg-n" style="grid-row:{{ gr }}">{% include tool-logo.html t=t %}{{ t.short | default: t.name }}</span>
         {% for i in (0..7) %}{% assign ds = i | times: 86400 | plus: cutoff_s | plus: 43200 %}{% assign day = ds | date: "%Y-%m-%d" %}{% assign tags = "" %}{% assign tc = 0 %}
           {% for r in site.data.releases %}{% if r.tool == t.id and r.date == day %}{% assign tags = tags | append: r.tag | append: " " %}{% assign tc = tc | plus: 1 %}{% endif %}{% endfor %}
           {% assign tags = tags | strip %}
-          <span class="rg-c{% if tc > 0 %} on{% endif %}" style="grid-row:{{ gr }};grid-column:{{ i | plus: 2 }};--c:{{ t.color }}"{% if tc > 0 %} data-tags="{{ tags }}" data-day="{{ day }}" data-tool="{{ t.id }}" data-name="{{ t.name }}" title="{{ t.name }} · {{ ds | date: '%a, %b %-d' }}: {{ tags | replace: ' ', ', ' }}"{% endif %}>{% if tc > 1 %}{{ tc }}{% endif %}</span>
+          <span class="rg-c{% if tc > 0 %} on{% endif %}" style="grid-row:{{ gr }};grid-column:{{ i | plus: 2 }};--c:{{ t.color }}"{% if tc > 0 %} data-tags="{{ tags }}" data-day="{{ day }}" data-tool="{{ t.id }}" data-name="{{ t.short | default: t.name }}" title="{{ t.short | default: t.name }} · {{ ds | date: '%a, %b %-d' }}: {{ tags | replace: ' ', ', ' }}"{% endif %}>{% if tc > 1 %}{{ tc }}{% endif %}</span>
         {% endfor %}
         <span class="rg-t" style="grid-row:{{ gr }}" data-n="{{ n }}">{{ n }}</span>
         {% endfor %}

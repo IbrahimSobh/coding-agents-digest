@@ -1,4 +1,5 @@
 # Display data for each tool: name as written in entry headings, id, color, order.
+# short: the name shown on the site (grid, chips, chart, tooltips); name stays as written in entry headings and is what the scripts match.
 # logo: file in assets/logos/ (the tool's own mark, shown on a white tile; logo_fill: the file already fills its square).
 # "tracked: false" keeps old entries readable after a tool is removed.
 - id: claude-code
@@ -8,11 +9,13 @@
   tracked: true
 - id: antigravity-cli
   name: Antigravity CLI
+  short: Antigravity
   color: "#5b8def"
   logo: antigravity.png
   tracked: true
 - id: codex
   name: Codex CLI
+  short: Codex
   color: "#2fb38a"
   logo: openai.png
   tracked: true

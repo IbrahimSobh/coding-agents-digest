@@ -13,7 +13,7 @@ layout: default
 {% comment %} Entry text is shown here, outside /digests/. A short link to another entry (href="2026-10-24-0811.html") would give a 404, so it is made absolute. task/check-links.sh and PROMPT.md ask for the full address; this is the safety net. {% endcomment %}
 {% capture dfix %}href="{{ '/digests/' | relative_url }}20{% endcapture %}
 {% assign trk = site.data.tools | where: "tracked", true %}
-<p class="track"><span class="tk">Tracking</span>{% for t in trk %}<span class="trk">{% include tool-logo.html t=t %}{{ t.name }}</span>{% endfor %}</p>
+<p class="track"><span class="tk">Tracking</span>{% for t in trk %}<span class="trk">{% include tool-logo.html t=t %}{{ t.short | default: t.name }}</span>{% endfor %}</p>
 {% include board.html %}
 {% include history.html %}
 {% include brief.html %}
@@ -27,7 +27,7 @@ layout: default
   <div class="filters" id="filters" role="group" aria-label="Show updates for">
     <button type="button" class="chip on" data-f="all" aria-pressed="true">All tools</button>
     {% assign tracked = site.data.tools | where: "tracked", true %}
-    {% for t in tracked %}<button type="button" class="chip" data-f="{{ t.id }}" aria-pressed="false"><i class="d" style="background:{{ t.color }}" aria-hidden="true"></i>{{ t.name }}</button>{% endfor %}
+    {% for t in tracked %}<button type="button" class="chip" data-f="{{ t.id }}" aria-pressed="false">{% include tool-logo.html t=t %}{{ t.short | default: t.name }}</button>{% endfor %}
   </div>
   <div class="tl">
     {% assign entries = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" | reverse %}

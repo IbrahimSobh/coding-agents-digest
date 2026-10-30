@@ -22,7 +22,7 @@
   var tools=data.tools.map(function(t){
     var v=days.map(function(){return 0}), tags=days.map(function(){return []});
     data.releases.forEach(function(r){if(r.tool===t.id&&idx[r.date]!==undefined){v[idx[r.date]]++;tags[idx[r.date]].push(r.tag)}});
-    return {id:t.id,name:t.name,color:t.color,v:v,tags:tags,on:true};
+    return {id:t.id,name:t.short||t.name,color:t.color,v:v,tags:tags,on:true};
   });
 
   var range='all', mode='cum', shape='smooth', chart;

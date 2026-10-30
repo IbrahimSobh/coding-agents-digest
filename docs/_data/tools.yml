@@ -1,24 +1,32 @@
 # Display data for each tool: name as written in entry headings, id, color, order.
+# logo: file in assets/logos/ (the tool's own mark, shown on a white tile; logo_fill: the file already fills its square).
 # "tracked: false" keeps old entries readable after a tool is removed.
 - id: claude-code
   name: Claude Code
   color: "#e07a5f"
+  logo: claude.png
   tracked: true
 - id: antigravity-cli
   name: Antigravity CLI
   color: "#5b8def"
+  logo: antigravity.png
   tracked: true
 - id: codex
   name: Codex CLI
   color: "#2fb38a"
+  logo: openai.png
   tracked: true
 - id: kilo-code
   name: Kilo Code
   color: "#e3b341"
+  logo: kilo.png
+  logo_fill: true
   tracked: true
 - id: opencode
   name: OpenCode
   color: "#a78bfa"
+  logo: opencode.svg
+  logo_fill: true
   tracked: true
 - id: cline
   name: Cline

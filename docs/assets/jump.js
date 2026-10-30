@@ -79,11 +79,17 @@
       if(next&&next.at) bar.appendChild(button('jb-nav','Next: '+next.tag+' ('+when(next.at)+') ↑',function(){step(1)}));
       jump.rel.forEach(function(x){if(!x.at) bar.appendChild(el('span','jb-none',x.tag+' was counted, but no update explains it'))});
     }
+    // The bar sits right above this tool's section, so the jump lands on the right lines even in
+    // an entry that covers several tools; a shared link (no box) puts it on top of the entry
     var card=r.querySelector(':scope>div.card')||r;
-    card.insertBefore(bar,card.firstChild);
+    var sec=jump.c&&card.querySelector('.tool[data-tool="'+jump.c.dataset.tool+'"]');
+    if(sec){bar.classList.add('mid'); sec.parentNode.insertBefore(bar,sec)}
+    else card.insertBefore(bar,card.firstChild);
+    return bar;
   }
-  function setHash(id){ours='#'+id; jump.stack.push(ours); location.hash=id}
-  function step(d){jump.idx+=d; render(); setHash(idOf(jump.rel[jump.idx].at))}
+  // Setting the address scrolls to the entry's top; then bring the bar (above the tool's lines) into view
+  function setHash(id,bar){ours='#'+id; jump.stack.push(ours); location.hash=id; if(bar) bar.scrollIntoView({block:'start'})}
+  function step(d){jump.idx+=d; setHash(idOf(jump.rel[jump.idx].at),render())}
   function goGrid(){
     if(jump&&jump.stack.length) history.go(-jump.stack.length);
     else end(true);
@@ -108,8 +114,7 @@
     var on=document.querySelector('#filters .chip.on');
     if(on&&on.dataset.f!=='all'&&on.dataset.f!==c.dataset.tool){var all=document.querySelector('#filters [data-f="all"]'); if(all) all.click()}
     jump={c:c, rel:rel, idx:0, stack:[], color:c.style.getPropertyValue('--c')};
-    render();
-    setHash(idOf(rel[0].at));
+    setHash(idOf(rel[0].at),render());
     chip.hidden=false;
   }
   // An entry address without a click on a box (a shared link, an edited URL): frame the entry with

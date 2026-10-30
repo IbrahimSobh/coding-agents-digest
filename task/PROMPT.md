@@ -89,6 +89,9 @@ Rules:
   `curl -sS https://github.com/<owner>/<repo>/releases/tag/<tag> | grep -o 'datetime="[^"]*"' | head -1`
   gives e.g. `datetime="2026-10-22T22:18:57Z"`, and
   `TZ=Africa/Cairo date -d '2026-10-22T22:18:57Z' +%Y-%m-%d` gives `2026-10-23`.
+  Check the result by hand, never write the UTC date: the Cairo date is the UTC date, or the
+  next day when the UTC time is 22:00 or later (21:00 or later during Egypt's summer time).
+  Example: `2026-10-23T23:39:00Z` is Cairo `2026-10-24`, not `2026-10-23`.
   Only if no exact time can be read, use the date shown on the release page. That page often
   shows no year: use the current year, unless that puts the date in the future (then use last year).
 - If a source fails with every method, do not guess. Treat that tool as "not checked"

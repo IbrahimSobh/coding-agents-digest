@@ -95,6 +95,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-t{grid-column:10;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
 .rg-c{height:100%;border-radius:6px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:12px;color:#0b0f17;transition:background-color .16s,border-color .16s}
 .rg-c.on{background:var(--c);border-color:var(--c)}
+.rg-c.part{font-size:11px;letter-spacing:-.02em}
 .rg-c.later{background:color-mix(in srgb,var(--c) 16%,transparent);border:1.5px dashed color-mix(in srgb,var(--c) 85%,transparent)}
 .rg-track{grid-row:1;grid-column:2/10;position:relative;align-self:stretch;border-bottom:1px solid var(--line);touch-action:pan-y;cursor:pointer}
 /* Wider hit band: the line is the track's bottom edge, so reach 24px below it */
@@ -168,6 +169,9 @@ a.tbtn:hover{border-color:var(--muted)}
 .jb-back{background:var(--ink);color:var(--bg);border:1px solid var(--ink)}
 .jb-nav{background:var(--card);color:var(--ink);border:1px solid var(--line)}
 .jb-nav:hover,.jb-nav:focus-visible{border-color:var(--ink)}
+.jbar.mid{margin:12px -16px 0;border-top:1px solid var(--line);border-radius:0}
+.jbar.mid+.tool{margin-top:0;border-top:0}
+.jbar{scroll-margin-top:110px}
 .jb-pos{color:var(--muted)}
 .jb-none{color:var(--muted);font-style:italic;flex-basis:100%}
 @media (prefers-reduced-motion:reduce){.run.jumped>.card{animation:none}.rg-cur,.rg-shade,.rg-c,.rg-dot::before{transition:none}.rg-live.beat .rg-pulse::after{animation:none}}

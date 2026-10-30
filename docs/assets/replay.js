@@ -80,7 +80,10 @@
       var m=k?tags.filter(function(t){return early||k[t]}).length:tags.length;
       c.classList.toggle('on',m>0);
       c.classList.toggle('later',m===0);
-      c.textContent=m>1?m:'';
+      // A box this run knew only partly says so ("1/2"), so it never looks like a 1-release box
+      var part=m>0&&m<tags.length;
+      c.textContent=part?m+'/'+tags.length:m>1?m:'';
+      c.classList.toggle('part',part);
       var row=c.style.gridRowStart;
       rowsKnown[row]=(rowsKnown[row]||0)+m;
     });

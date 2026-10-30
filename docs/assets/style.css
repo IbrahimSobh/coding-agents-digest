@@ -66,7 +66,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .hero{border-radius:22px;padding:2px;background:linear-gradient(135deg,var(--cyan),var(--violet) 55%,var(--orange))}
 .hero-in{background:var(--card);border-radius:20px;padding:24px 24px 20px;box-shadow:var(--shadow)}
 /* "Latest brief": the themes, counts and Watch next of the newest run, below the replay box */
-.latest{margin-top:14px;padding:22px 24px 18px;border-radius:20px}
+.latest{margin-top:14px}
 .latest .themes{margin-top:14px}
 .hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .upd{color:var(--green);text-transform:none;letter-spacing:0}
@@ -206,6 +206,8 @@ a.tbtn:hover{border-color:var(--muted)}
 .run{position:relative;margin-bottom:14px;display:block}
 .run .rdot{position:absolute;left:-25px;top:15px;width:12px;height:12px;border-radius:50%}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
+/* The boxes around the 7-day brief share its rounder corners */
+.card.hist,.card.latest{border-radius:20px}
 .rh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .rh .t{font-weight:800;font-size:15px;color:var(--ink);text-decoration:none}
 .rh .m{font-size:13px;color:var(--muted)}

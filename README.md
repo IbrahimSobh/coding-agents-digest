@@ -17,10 +17,11 @@ and a daily timeline: the changes that matter, one sentence each with a source l
 
 ## How it works
 
-A Claude scheduled task runs twice a day, at 08:00 and 22:00 Cairo local time
-(Egypt). The times follow US release hours: most
-of these tools ship during the US workday, about 19:00 to 04:00 Cairo time. The 22:00
-run catches the US morning releases, and the 08:00 run catches the rest of the US day.
+A Claude scheduled task runs twice a day, at 08:30 and 23:30 Cairo local time
+(Egypt). The times follow release hours: most releases land in two waves, about 20:00 to
+02:00 and 06:00 to 10:00 Cairo time. The 23:30 run catches the evening wave on the same
+day it ships, so a release and its entry usually share a date, and the 08:30 run catches
+the night and early-morning releases.
 
 <img alt="Flowchart of one run: read state and find releases; if there are new releases, read the notes and select what matters, then test each change for action needed (deadline, loses-work, breaks-automation, removed, default-change, security) and make a ⚠️ action card or a normal bullet; write the entry and update the data files; commit and push; notify only on news or problems" src="docs/assets/prompt-process.png" width="760">
 

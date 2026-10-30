@@ -20,6 +20,9 @@
   function el(tag,cls,text){var e=document.createElement(tag); if(cls) e.className=cls; if(text) e.textContent=text; return e}
   function button(cls,text,fn){var b=el('button',cls,text); b.type='button'; b.onclick=fn; return b}
   // A box's releases in the order the site explained them; releases no update explains come last
+  // Days between a release's publish day (the box) and the day an update first reported it
+  function late(c,r){return r.at?Math.round((Date.parse(r.at.slice(0,10))-Date.parse(c.dataset.day))/864e5):0}
+  function lateText(d){return d===1?'reported a day later':'reported '+d+' days later'}
   function list(c){
     return c.dataset.tags.split(' ').map(function(t){return {tag:t, at:first[t]||null}})
       .sort(function(a,b){return !a.at?1:!b.at?-1:a.at<b.at?-1:1});
@@ -42,7 +45,8 @@
     tip.appendChild(document.createTextNode(' · '+day(c.dataset.day)));
     list(c).forEach(function(r){
       var row=el('span','rg-tip-row'); row.appendChild(el('code','',r.tag));
-      row.appendChild(document.createTextNode(r.at?' → update of '+when(r.at):' → no update explains it'));
+      var d=late(c,r);
+      row.appendChild(document.createTextNode(r.at?' → update of '+when(r.at)+(d>0?' · '+lateText(d):''):' → no update explains it'));
       tip.appendChild(row);
     });
     tip.appendChild(el('span','rg-tip-go','Click to read the update ↓'));
@@ -145,7 +149,12 @@
   cells.forEach(function(c){
     c.removeAttribute('title');
     c.tabIndex=0; c.setAttribute('role','link');
-    c.setAttribute('aria-label',c.dataset.name+', '+day(c.dataset.day)+': '+c.dataset.tags.split(' ').join(', ')+'. Read the update');
+    // A small corner mark when a release was reported on a later day than it was published
+    // (published after that day's last check, or missed by it)
+    var lateTags=list(c).filter(function(r){return late(c,r)>0});
+    c.classList.toggle('late',lateTags.length>0);
+    c.setAttribute('aria-label',c.dataset.name+', '+day(c.dataset.day)+': '+c.dataset.tags.split(' ').join(', ')+
+      lateTags.map(function(r){return '; '+r.tag+' '+lateText(late(c,r))}).join('')+'. Read the update');
     c.addEventListener('mouseenter',function(){showTip(c)});
     c.addEventListener('mouseleave',hideTip);
     c.addEventListener('focus',function(){showTip(c)});

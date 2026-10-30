@@ -40,7 +40,7 @@
         {% endfor %}
         <div class="rg-over" aria-hidden="true" hidden><i class="rg-shade"></i><b class="rg-cur"><em></em></b><b class="rg-ghost" hidden><em></em></b></div>
       </div>
-      <div class="rg-key"><span><i class="kd" aria-hidden="true"></i>New headline</span><span><i class="kn" aria-hidden="true"></i>Same headline</span><span><i class="ks" aria-hidden="true"></i>Quiet run</span><span><i class="kg" aria-hidden="true"></i>Latest run</span><span><i class="kl" aria-hidden="true"></i>Found after this run</span></div>
+      <div class="rg-key"><span><i class="kd" aria-hidden="true"></i>New headline</span><span><i class="kn" aria-hidden="true"></i>Same headline</span><span><i class="ks" aria-hidden="true"></i>Quiet run</span><span><i class="kg" aria-hidden="true"></i>Latest run</span><span><i class="kl" aria-hidden="true"></i>Found after this run</span><span><i class="kr" aria-hidden="true"></i>Reported on a later day</span></div>
       <p class="rg-cap" id="rpCap" hidden><i class="rg-cdot" id="rpCdot" aria-hidden="true"></i><span id="rpMsg" aria-live="polite"></span></p>
       <script type="application/json" id="rpData">{"start": {{ start_day | jsonify }},
         "runs": [{% assign first = true %}{% for x in site.data.headlines %}{% assign xd = x.updated | slice: 0, 10 %}{% if xd >= start_day %}{% unless first %},{% endunless %}{% assign first = false %}{"at": {{ x.updated | jsonify }}, "h": {{ x.headline | jsonify }}}{% endif %}{% endfor %}],

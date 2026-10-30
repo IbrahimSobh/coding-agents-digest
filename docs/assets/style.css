@@ -95,6 +95,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-t{grid-column:10;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
 .rg-c{height:100%;border-radius:6px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;font-weight:800;font-size:12px;color:#0b0f17;transition:background-color .16s,border-color .16s}
 .rg-c.on{background:var(--c);border-color:var(--c)}
+.rg-c.late{position:relative;overflow:hidden}
 .rg-c.part{font-size:11px;letter-spacing:-.02em}
 .rg-c.later{background:color-mix(in srgb,var(--c) 16%,transparent);border:1.5px dashed color-mix(in srgb,var(--c) 85%,transparent)}
 .rg-track{grid-row:1;grid-column:2/10;position:relative;align-self:stretch;border-bottom:1px solid var(--line);touch-action:pan-y;cursor:pointer}
@@ -130,6 +131,8 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-key .kn{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--cyan);background:var(--cyan)}
 .rg-key .ks{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--soft);background:var(--card)}
 .rg-key .kg{width:9px;height:9px;border-radius:50%;border:2px solid var(--green);background:color-mix(in srgb,var(--green) 25%,var(--card))}
+.rg-key .kr{position:relative;width:14px;height:14px;border-radius:3px;background:var(--line);overflow:hidden}
+.rg-key .kr::after,.rg-c.late::after{content:"";position:absolute;top:0;right:0;border-style:solid;border-width:0 8px 8px 0;border-color:transparent var(--ink) transparent transparent;opacity:.7}
 .rg-key .kl{width:22px;height:14px;border-radius:4px;border:1.5px dashed color-mix(in srgb,#5b8def 85%,transparent);background:color-mix(in srgb,#5b8def 16%,transparent)}
 .rg-cap{font-size:12.5px;color:var(--soft);margin-top:8px;min-height:20px}
 /* Caption: starts with the selected run's ball */

@@ -114,9 +114,6 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-over{grid-row:1/-1;grid-column:2/10;position:relative;align-self:stretch;pointer-events:none}
 .rg-cur{position:absolute;top:16px;height:28px;width:2px;margin-left:-1px;background:var(--cyan);z-index:3;transition:left .22s cubic-bezier(.16,1,.3,1)}
 .rg-cur em{position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;font-style:normal;color:var(--bg);background:var(--cyan);padding:2px 9px;border-radius:999px;white-space:nowrap}
-/* The selected pill fades while the hover pill would overlap it (replay.js adds .covered) */
-.rg-cur em{transition:opacity .15s}
-.rg-cur.covered em{opacity:0}
 /* Green marker at the latest run, cyan while replaying */
 .rg:not(.replaying) .rg-cur,.rg:not(.replaying) .rg-cur em{background:var(--green)}
 /* Ghost marker: the run a click would select (mouse hover only) */

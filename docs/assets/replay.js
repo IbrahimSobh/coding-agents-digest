@@ -64,7 +64,6 @@
   function show(i){
     var changed=i!==shown;
     shown=i;
-    hint(null);
     var latest=i===last, k=latest?null:known(i);
     if(head.textContent!==runs[i].h){
       head.textContent=runs[i].h;
@@ -125,15 +124,11 @@
   }
   function hint(i){
     ghost.hidden=i===null||i===shown;
-    if(ghost.hidden){cur.classList.remove('covered');return}
+    if(ghost.hidden) return;
     var p=pos(runs[i].at);
     ghost.style.left=p+'%';
     ghostLabel.textContent=label(runs[i].at);
     ghostLabel.style.transform=edge(p);
-    // Both pills sit at the same height: while the hover pill would overlap the selected one,
-    // the selected pill steps aside (its marker line stays) and returns when the hover ends
-    var a=ghostLabel.getBoundingClientRect(), b=curLabel.getBoundingClientRect();
-    cur.classList.toggle('covered',a.left<b.right+6&&b.left<a.right+6);
   }
   var drag=false;
   track.addEventListener('pointerdown',function(e){

@@ -205,6 +205,9 @@ Otherwise skip this step.
 - Do **not** edit `docs/index.html` or anything outside the files named here. The site lists entries automatically.
 
 ### 6. Commit and push
+First check the links to other entries: `sh task/check-links.sh`. It prints `links ok`, or the
+link to fix (a short link, or an entry that does not exist). Fix it and run the check again.
+Do not commit while it reports a problem.
 ```
 git add docs/digests docs/_data docs/briefs task/state.json
 git commit -m "Check YYYY-MM-DD HH:MM: <tools with releases, or 'no new releases'>"
@@ -299,7 +302,11 @@ Format details:
 - Number of bullets follows the amount of news: often 1 to 3 for a 12-hour run, up to
   ~10 after a long gap. Max ~3 bullets per tool, not counting ⚠️ bullets.
 - `### Across tools` ONLY if a real theme exists across 2+ tools; otherwise omit the heading.
-  It may link to an earlier entry when it continues a trend: [earlier](YYYY-MM-DD-HHMM.html).
+  It may link to an earlier entry when it continues a trend. Always use the FULL address, never a
+  bare file name: `[Oct 24 lighter headless runs](https://ibrahimsobh.github.io/coding-agents-digest/digests/YYYY-MM-DD-HHMM.html)`.
+  The same text is shown on the entry page (`/digests/`), on the home page and in the Atom feed, so
+  a short link like `(2026-10-24-0811.html)` works on one page and gives a 404 on the others.
+  Copy the date and time from the file name of the entry in `docs/digests/`; the file must exist.
 - Release links: use `tag_url` from `sources.yml`. Link the release that introduced the change.
 
 ### When to use ⚠️

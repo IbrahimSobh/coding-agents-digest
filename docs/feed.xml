@@ -9,6 +9,8 @@ layout: null
 {% assign news = site.pages | where_exp: "p", "p.path contains 'digests/'" | where_exp: "p", "p.quiet == false" %}
 {% assign snaps = site.pages | where_exp: "p", "p.path contains 'briefs/'" | where_exp: "p", "p.name != 'index.html'" %}
 {% assign entries = news | concat: snaps | sort: "date" | reverse %}
+{% comment %} A short link to another entry (href="2026-10-24-0811.html") would break in a feed reader: make it a full URL. {% endcomment %}
+{% capture dfix %}href="{{ '/digests/' | absolute_url }}20{% endcapture %}
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{ site.title | xml_escape }}</title>
   <subtitle>{{ site.description | xml_escape }}</subtitle>
@@ -18,7 +20,7 @@ layout: null
   <updated>{% if entries.size > 0 %}{{ entries.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
   <author><name>Coding Agents Digest</name></author>
 {% for e in entries limit: 20 %}
-  {% assign html = e.content | markdownify %}
+  {% assign html = e.content | markdownify | replace: 'href="20', dfix %}
   {% assign parts = html | split: "<h3" %}
   {% capture body %}{{ parts[0] }}{% for part in parts offset: 1 %}{% unless part contains "No updates since" %}<h3{{ part }}{% endunless %}{% endfor %}<p><a href="{{ e.url | absolute_url }}">Read on the website →</a></p>{% endcapture %}
   <entry>

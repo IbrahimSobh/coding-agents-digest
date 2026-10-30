@@ -5,6 +5,8 @@ layout: default
   between runs (for example after midnight) cannot move the 7-day window away from the brief's own text. {% endcomment %}
 {% assign today_s = site.data.brief.updated | slice: 0, 10 | date: "%s" | plus: 0 %}
 {% assign cutoff_s = today_s | minus: 604800 %}
+{% comment %} Entry text is shown here, outside /digests/. A short link to another entry (href="2026-10-24-0811.html") would give a 404, so it is made absolute. task/check-links.sh and PROMPT.md ask for the full address; this is the safety net. {% endcomment %}
+{% capture dfix %}href="{{ '/digests/' | relative_url }}20{% endcapture %}
 {% include board.html %}
 {% include history.html %}
 {% include brief.html %}
@@ -38,7 +40,7 @@ layout: default
         {% if e.content contains "Not checked" %}{% assign qnc = true %}{% endif %}
       {% else %}
         {% include quiet-flush.html %}
-        {% assign html = e.content | markdownify %}
+        {% assign html = e.content | markdownify | replace: 'href="20', dfix %}
         {% if d == newest_day %}{% include run.html e=e html=html open=true %}{% else %}{% include run.html e=e html=html open=false %}{% endif %}
       {% endif %}
     {% endfor %}

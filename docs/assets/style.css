@@ -155,9 +155,11 @@ a.tbtn:hover{border-color:var(--muted)}
 /* Release boxes link to their "Daily updates" entry (assets/jump.js) */
 .rg-c[data-tags]{cursor:pointer}
 .rg-c[data-tags]:hover,.rg-c[data-tags]:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
-.rg-tip{position:absolute;z-index:50;max-width:260px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:8px 11px;font-size:12.5px;line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.18);pointer-events:none}
+.rg-tip{position:absolute;z-index:50;max-width:310px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:8px 11px;font-size:12.5px;line-height:1.45;box-shadow:0 8px 24px rgba(0,0,0,.18);pointer-events:none}
 .rg-tip i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
-.rg-tip-row{display:block;margin-top:2px;color:var(--muted)}
+/* Released (the box's day) reads first; reported times are quieter details */
+.rg-tip-rel{display:block;margin:2px 0 3px;font-weight:700;color:var(--ink)}
+.rg-tip-row{display:block;margin-top:2px;color:var(--muted);font-size:12px}
 .rg-tip-row code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;color:var(--ink)}
 .rg-tip-go{display:block;color:var(--muted);font-size:11.5px;margin-top:4px}
 .tl .run,.tl .day{scroll-margin-top:110px}
@@ -176,6 +178,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .jbar.mid+.tool{margin-top:0;border-top:0}
 .jbar{scroll-margin-top:110px}
 .jb-pos{color:var(--muted)}
+.jb-pos b{color:var(--ink)}
 .jb-none{color:var(--muted);font-style:italic;flex-basis:100%}
 @media (prefers-reduced-motion:reduce){.run.jumped>.card{animation:none}.rg-cur,.rg-shade,.rg-c,.rg-dot::before{transition:none}.rg-live.beat .rg-pulse::after{animation:none}}
 .hero-foot{display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}

@@ -22,7 +22,9 @@
   // A box's releases in the order the site explained them; releases no update explains come last
   // Days between a release's publish day (the box) and the day an update first reported it
   function late(c,r){return r.at?Math.round((Date.parse(r.at.slice(0,10))-Date.parse(c.dataset.day))/864e5):0}
-  function lateText(d){return d===1?'reported a day later':'reported '+d+' days later'}
+  // Wording: "released" = the tool published it (the box's day); "reported" = a check wrote it into Daily updates
+  function later(d){return d===1?'a day later':d+' days later'}
+  function lateText(d){return 'reported '+later(d)}
   function list(c){
     return c.dataset.tags.split(' ').map(function(t){return {tag:t, at:first[t]||null}})
       .sort(function(a,b){return !a.at?1:!b.at?-1:a.at<b.at?-1:1});
@@ -42,11 +44,11 @@
     tip.textContent='';
     var d=el('i'); d.style.background=c.style.getPropertyValue('--c');
     tip.appendChild(d); tip.appendChild(el('b','',c.dataset.name));
-    tip.appendChild(document.createTextNode(' · '+day(c.dataset.day)));
+    tip.appendChild(el('span','rg-tip-rel','Released '+day(c.dataset.day)));
     list(c).forEach(function(r){
       var row=el('span','rg-tip-row'); row.appendChild(el('code','',r.tag));
       var d=late(c,r);
-      row.appendChild(document.createTextNode(r.at?' → update of '+when(r.at)+(d>0?' · '+lateText(d):''):' → no update explains it'));
+      row.appendChild(document.createTextNode(r.at?'  reported '+when(r.at)+(d>0?' · '+later(d):''):'  not explained in any update'));
       tip.appendChild(row);
     });
     tip.appendChild(el('span','rg-tip-go','Click to read the update ↓'));
@@ -77,11 +79,14 @@
     var bar=el('div','jbar');
     bar.appendChild(button('jb-back','↑ Back to the release grid',goGrid));
     if(jump.rel.length>1){
-      bar.appendChild(el('span','jb-pos',jump.c.dataset.name+' · '+day(jump.c.dataset.day)+': release '+(jump.idx+1)+' of '+jump.rel.length+' ('+cur.tag+')'));
+      var pos=el('span','jb-pos',jump.c.dataset.name+', ');
+      pos.appendChild(el('b','','released '+day(jump.c.dataset.day)));
+      pos.appendChild(document.createTextNode(': release '+(jump.idx+1)+' of '+jump.rel.length+' ('+cur.tag+')'));
+      bar.appendChild(pos);
       var prev=jump.rel[jump.idx-1], next=jump.rel[jump.idx+1];
-      if(prev&&prev.at) bar.appendChild(button('jb-nav','Previous: '+prev.tag+' ('+when(prev.at)+') ↓',function(){step(-1)}));
-      if(next&&next.at) bar.appendChild(button('jb-nav','Next: '+next.tag+' ('+when(next.at)+') ↑',function(){step(1)}));
-      jump.rel.forEach(function(x){if(!x.at) bar.appendChild(el('span','jb-none',x.tag+' was counted, but no update explains it'))});
+      if(prev&&prev.at) bar.appendChild(button('jb-nav','Previous: '+prev.tag+' (reported '+when(prev.at)+') ↓',function(){step(-1)}));
+      if(next&&next.at) bar.appendChild(button('jb-nav','Next: '+next.tag+' (reported '+when(next.at)+') ↑',function(){step(1)}));
+      jump.rel.forEach(function(x){if(!x.at) bar.appendChild(el('span','jb-none',x.tag+' was released, but no update explains it'))});
     }
     // The bar sits right above this tool's section, so the jump lands on the right lines even in
     // an entry that covers several tools; a shared link (no box) puts it on top of the entry
@@ -153,7 +158,7 @@
     // (published after that day's last check, or missed by it)
     var lateTags=list(c).filter(function(r){return late(c,r)>0});
     c.classList.toggle('late',lateTags.length>0);
-    c.setAttribute('aria-label',c.dataset.name+', '+day(c.dataset.day)+': '+c.dataset.tags.split(' ').join(', ')+
+    c.setAttribute('aria-label',c.dataset.name+', released '+day(c.dataset.day)+': '+c.dataset.tags.split(' ').join(', ')+
       lateTags.map(function(r){return '; '+r.tag+' '+lateText(late(c,r))}).join('')+'. Read the update');
     c.addEventListener('mouseenter',function(){showTip(c)});
     c.addEventListener('mouseleave',hideTip);

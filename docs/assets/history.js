@@ -3,10 +3,9 @@
   var dataEl=document.getElementById('histData'), canvas=document.getElementById('histChart');
   if(!dataEl||!canvas) return;
   if(!window.Chart){canvas.parentNode.innerHTML='<p class="hnote">The chart could not load.</p>';return;}
-  var data=JSON.parse(dataEl.textContent), root=document.documentElement, DAY=864e5;
+  var data=JSON.parse(dataEl.textContent), root=document.documentElement;
 
   function d0(s){return new Date(s+'T00:00:00')}
-  function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
   function fmt(s,year){return d0(s).toLocaleDateString('en-GB',year?{day:'numeric',month:'short',year:'numeric'}:{day:'numeric',month:'short'})}
 
   // One slot per day, from the first release to the build date
@@ -14,7 +13,9 @@
   if(!dates.length) return;
   var start=dates[0], end=data.today>dates[dates.length-1]?data.today:dates[dates.length-1];
   var days=[];
-  for(var t=d0(start).getTime();t<=d0(end).getTime();t+=DAY) days.push(iso(new Date(t)));
+  // Step by calendar day (UTC noon), never by 24 hours: a clock change makes a local day 23 or 25 hours long,
+  // and 24-hour steps then repeat a date or drop the last one (Cairo, 29 Oct 2026: 30 Oct was missing).
+  for(var t=new Date(start+'T12:00:00Z'), stop=new Date(end+'T12:00:00Z');t<=stop;t.setUTCDate(t.getUTCDate()+1)) days.push(t.toISOString().slice(0,10));
   var N=days.length, idx={};
   days.forEach(function(d,i){idx[d]=i});
 

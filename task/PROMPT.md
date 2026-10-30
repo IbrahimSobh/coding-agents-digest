@@ -175,6 +175,11 @@ The brief covers the **last 7 days** up to now. Read the entries in `docs/digest
   If the 7 days have no stable release at all, write 1 theme that says so plainly
   (e.g. tag "Quiet", title "A quiet week", facts: no stable releases from the 5 tools).
 - Use only facts that are in the entries (and their sources). Every fact keeps its link.
+- Release links in `facts` become the theme's chips and week map on the site. Link only stable
+  releases that are in `releases.json`. If a stable release only carries the notes of a pre-release,
+  write it like this, with the word pre-release inside the link text:
+  `([v7.8.17](<stable link>), notes in [pre-release v7.8.16](<pre-release link>))`.
+  `sh task/check-links.sh` checks this.
 - If nothing changed this run, still update `updated`, `updated_label` and `window`, and
   drop facts that are now older than 7 days (replace those themes).
 - Do not count releases or actions here. The site does that from the other files.

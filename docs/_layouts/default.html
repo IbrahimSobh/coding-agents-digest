@@ -150,7 +150,7 @@
       if(!/^https?:$/.test(u.protocol)||u.hostname===location.hostname||/\.xml$/.test(u.pathname)) return;
       a.target='_blank'; a.rel='noopener noreferrer';
       // a cue only on links inside the text; the header icons and the footer are self-explanatory
-      if(main&&main.contains(a)&&!a.querySelector('svg')){
+      if(main&&main.contains(a)&&!a.querySelector('svg')&&!a.classList.contains('rchip')){
         a.classList.add('ext');
         var s=document.createElement('span'); s.className='vh'; s.textContent=' (opens in a new tab)'; a.appendChild(s);
       }

@@ -1,5 +1,6 @@
 // Release boxes in the 7-day grid: a tooltip on hover or focus says which update explains each
 // release, and a click (or Enter) jumps to the "Daily updates" entry that first linked it.
+// A release chip in the Latest brief jumps the same way, and its way back is the brief.
 // The entry gets a frame and a jump bar on top: "Back to the release grid", and for a box with
 // several releases "release 1 of 2" with Previous / Next to the other releases' entries.
 // The jump lasts while the URL points at the entry (#run-YYYYMMDDHHMM); going back ends it.
@@ -32,12 +33,14 @@
 
   var tip=el('div','rg-tip'); tip.hidden=true; tip.setAttribute('aria-hidden','true');
   document.body.appendChild(tip);
-  var chip=button('rg-backchip','↑ Back to the release grid',goGrid); chip.hidden=true;
+  var chip=button('rg-backchip','',goGrid); chip.hidden=true;
   document.body.appendChild(chip);
 
   // jump = {c: the box (null for a shared link), rel: its releases, idx: the one shown,
   //         stack: entry addresses this jump added to the history, color}
   var jump=null, ours=null, quietTip=false;
+
+  function backText(){return jump&&jump.a?'↑ Back to the brief':'↑ Back to the release grid'}
 
   function showTip(c){
     if(quietTip) return;
@@ -67,6 +70,7 @@
   // Frame the shown entry, tint its lines for the shown release, and put the jump bar on top
   function render(){
     clear();
+    chip.textContent=backText();
     var cur=jump.rel[jump.idx], r=document.getElementById(idOf(cur.at));
     if(!r) return;
     if(r.tagName==='DETAILS') r.open=true;
@@ -77,7 +81,7 @@
       if(t===cur.tag) (a.closest('li')||a.parentNode).classList.add('hit');
     });
     var bar=el('div','jbar');
-    bar.appendChild(button('jb-back','↑ Back to the release grid',goGrid));
+    bar.appendChild(button('jb-back',backText(),goGrid));
     if(jump.rel.length>1){
       var pos=el('span','jb-pos',jump.c.dataset.name+', ');
       pos.appendChild(el('b','','released '+day(jump.c.dataset.day)));
@@ -105,13 +109,14 @@
   }
   // scroll = true when there is no history step back to the grid (a shared link)
   function end(scroll){
-    var c=jump&&jump.c;
+    var c=jump&&(jump.a||jump.c);
     clear(); chip.hidden=true; jump=null;
     if(scroll){history.replaceState(null,'',location.pathname+location.search); box.scrollIntoView({block:'center'})}
     // Focus returns to the box (focus fires synchronously, so the flag only skips this one tooltip)
     if(c&&!location.hash){quietTip=true; c.focus({preventScroll:true}); quietTip=false}
   }
-  function go(c){
+  // a = the chip clicked in the Latest brief, for a jump to its own release of the box
+  function go(c,a){
     hideTip();
     var rel=list(c);
     if(!rel[0].at){ // no update explains any release of this box: go to its day in "Daily updates"
@@ -122,7 +127,8 @@
     // A filter on another tool would hide the entry's lines: show all tools first
     var on=document.querySelector('#filters .chip.on');
     if(on&&on.dataset.f!=='all'&&on.dataset.f!==c.dataset.tool){var all=document.querySelector('#filters [data-f="all"]'); if(all) all.click()}
-    jump={c:c, rel:rel, idx:0, stack:[], color:c.style.getPropertyValue('--c')};
+    jump={c:c, a:a, rel:rel, idx:0, stack:[], color:c.style.getPropertyValue('--c')};
+    if(a) rel.forEach(function(r,i){if(r.tag===a.dataset.tag) jump.idx=i});
     setHash(idOf(rel[0].at),render());
     chip.hidden=false;
   }
@@ -166,6 +172,15 @@
     c.addEventListener('blur',hideTip);
     c.addEventListener('click',function(){go(c)});
     c.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();go(c)}});
+  });
+  // A chip whose release has a box and an update jumps like the box; any other chip stays a link to the release
+  [].forEach.call(document.querySelectorAll('.rchip[data-tag]'),function(a){
+    a.addEventListener('click',function(e){
+      if(e.ctrlKey||e.metaKey||e.shiftKey||!first[a.dataset.tag]) return;
+      var c=cells.filter(function(x){return x.dataset.tool===a.dataset.tool&&x.dataset.tags.split(' ').indexOf(a.dataset.tag)>-1})[0];
+      if(!c) return;
+      e.preventDefault(); go(c,a);
+    });
   });
   fromHash(false);
 })();

@@ -1,32 +1,39 @@
 # Display data for each tool: name as written in entry headings, id, color, order.
 # short: the name shown on the site (grid, chips, chart, tooltips); name stays as written in entry headings and is what the scripts match.
+# repo: the GitHub repository; a theme's release links are matched on it, for its chips and week map.
 # logo: file in assets/logos/ (the tool's own mark, shown on a white tile; logo_fill: the file already fills its square).
 # "tracked: false" keeps old entries readable after a tool is removed.
 - id: claude-code
   name: Claude Code
+  repo: anthropics/claude-code
   color: "#e07a5f"
   logo: claude.png
   tracked: true
 - id: antigravity-cli
   name: Antigravity CLI
+  repo: google-antigravity/antigravity-cli
   short: Antigravity
   color: "#5b8def"
   logo: antigravity.png
   tracked: true
 - id: codex
   name: Codex CLI
+  repo: openai/codex
   short: Codex
   color: "#2fb38a"
-  logo: openai.png
+  logo: codex.png
+  logo_fill: true
   tracked: true
 - id: kilo-code
   name: Kilo Code
+  repo: Kilo-Org/kilocode
   color: "#e3b341"
   logo: kilo.png
   logo_fill: true
   tracked: true
 - id: opencode
   name: OpenCode
+  repo: anomalyco/opencode
   color: "#a78bfa"
   logo: opencode.svg
   logo_fill: true

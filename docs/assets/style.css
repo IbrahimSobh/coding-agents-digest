@@ -85,15 +85,46 @@ a.tbtn:hover{border-color:var(--muted)}
 .themes{display:flex;gap:28px;margin-top:20px}
 /* 1 to 3 themes share the width; a single theme puts "So what" beside the facts */
 .themes .theme{flex:1 1 0;min-width:0}
-.theme:only-child{display:grid;grid-template-columns:3fr 2fr;column-gap:28px;align-items:start}
-.theme:only-child .n,.theme:only-child b{grid-column:1/-1}
-.theme:only-child .so{margin-top:0;border-left:1px solid var(--line);padding-left:20px}
+.theme:only-child{display:grid;grid-template-columns:3fr 2fr;column-gap:32px;align-items:start}
+.theme:only-child>*,.theme:only-child .tm-chips{grid-column:1}
+.theme:only-child .tm{display:contents}
+.theme:only-child .tm-chips{margin-bottom:12px}
+.theme:only-child .tm-map{grid-column:2;grid-row:1/span 3;justify-self:start;margin-top:4px}
+.theme:only-child .so{grid-column:2;grid-row:4;margin-top:0}
+.theme:only-child:not(:has(.tm)) .so{grid-row:3}
 .theme{border-top:1px solid var(--line);padding-top:12px}
 .theme .n{font-size:12px;font-weight:800;color:var(--violet);text-transform:uppercase}
 .theme b{display:block;font-size:15.5px;margin:4px 0 6px;line-height:1.3}
 .theme .f{font-size:13.5px;color:var(--muted)}
 .theme .so{margin-top:8px;font-size:13.5px}
 .theme .so i{color:var(--cyan);font-style:normal;font-weight:700}
+/* A theme's release chips and week map (the release grid in small): _includes/theme-map.html */
+.tm{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin:6px 0 12px}
+.tm-chips{display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start}
+.rchip{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 4px;border:1px solid var(--line);border-radius:999px;background:var(--card2);color:var(--ink);font-size:12.5px;font-weight:600;line-height:1.3;white-space:nowrap;text-decoration:none;transition:border-color .15s}
+.rchip:hover,.rchip:focus-visible{border-color:var(--muted)}
+.rchip .tlogo{width:20px;height:20px;margin:0;padding:2px;border-radius:5px}
+.rchip .tlogo.fill{padding:0}
+.rchip.old{border-style:dashed}
+.rchip-d{font-weight:500;color:var(--soft)}
+.tm-map{flex:none;width:109px}
+.tm-cells{display:grid;grid-template-columns:repeat(8,11px);grid-auto-rows:11px;gap:3px}
+.tm-cells i{border-radius:3px;background:var(--line)}
+.tm-cells i.on{background:var(--c)}
+.tm-ends{display:flex;justify-content:space-between;margin-top:4px;font-size:10.5px;color:var(--soft);font-variant-numeric:tabular-nums}
+.tm-old{margin-top:2px;font-size:11.5px;font-weight:600;color:var(--muted)}
+/* Side by side, the themes share rows, so chips and text start on the same line in every column */
+@supports (grid-template-rows:subgrid){
+  @media (min-width:721px){
+    .themes:has(.theme:nth-child(2)){display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-rows:repeat(5,auto);column-gap:28px;row-gap:0}
+    .themes:has(.theme:nth-child(2)) .theme{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0}
+    .themes:has(.theme:nth-child(2)) .theme .n{grid-row:1}
+    .themes:has(.theme:nth-child(2)) .theme b{grid-row:2}
+    .themes:has(.theme:nth-child(2)) .theme .tm{grid-row:3}
+    .themes:has(.theme:nth-child(2)) .theme .f{grid-row:4}
+    .themes:has(.theme:nth-child(2)) .theme .so{grid-row:5}
+  }
+}
 .score{margin-top:18px;display:grid;gap:6px;overflow-x:clip}
 .shead{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 /* Release grid (tool x day) and the "replay the week" timeline (assets/replay.js) */
@@ -291,7 +322,9 @@ footer.site a{color:var(--muted)}
 @media (max-width:720px){
   .themes{flex-direction:column}
   .theme:only-child{display:block}
-  .theme:only-child .so{margin-top:8px;border-left:0;padding-left:0}
+  .theme:only-child .tm{display:flex}
+  .theme:only-child .tm-chips{margin-bottom:0}
+  .theme:only-child .so{margin-top:8px}
   .actions{grid-template-columns:1fr}
   .rg{--rg-name:104px;--rg-tot:22px;gap:4px;grid-auto-rows:24px;font-size:12px}
   .rg-dw{display:none}

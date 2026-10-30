@@ -1,0 +1,35 @@
+{% comment %}
+  Chips and week map of one theme (include.th) in the Latest brief. Needs tracked, start_day and cutoff_s.
+  A chip is made only for a release in _data/releases.json that the theme links, so a pre-release named
+  in the text gets no chip. A release older than the window has no box: its chip is dashed and shows its
+  date, and "+N older" sits under the map. The map is the release grid in small: same tools, same 8 days.
+{% endcomment %}
+{% assign tm_text = include.th.facts | append: include.th.so_what %}
+{% assign tm_chips = "" %}{% assign tm_hits = "" %}{% assign tm_label = "" %}{% assign tm_n = 0 %}{% assign tm_old = 0 %}
+{% for t in tracked %}
+  {% assign t_rel = site.data.releases | where: "tool", t.id | sort: "date" | reverse %}
+  {% for r in t_rel %}
+    {% capture tm_need %}github.com/{{ t.repo }}/releases/tag/{{ r.tag }}){% endcapture %}
+    {% if tm_text contains tm_need %}
+      {% assign tm_n = tm_n | plus: 1 %}
+      {% capture tm_chip %}<a class="rchip{% if r.date < start_day %} old{% endif %}" href="https://github.com/{{ t.repo }}/releases/tag/{{ r.tag }}" aria-label="{{ t.short | default: t.name }} {{ r.tag }}"{% if r.date >= start_day %} data-tool="{{ t.id }}" data-tag="{{ r.tag }}"{% endif %}>{% include tool-logo.html t=t %}{{ r.tag }}{% if r.date < start_day %}<span class="rchip-d">· {{ r.date | date: "%b %-d" }}</span>{% endif %}</a>{% endcapture %}
+      {% assign tm_chips = tm_chips | append: tm_chip %}
+      {% if r.date < start_day %}{% assign tm_old = tm_old | plus: 1 %}
+      {% else %}
+        {% assign tm_hits = tm_hits | append: t.id | append: "~" | append: r.date | append: "|" %}
+        {% capture tm_one %}{{ t.short | default: t.name }} {{ r.date | date: "%b %-d" }}, {% endcapture %}
+        {% assign tm_label = tm_label | append: tm_one %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+{% if tm_n > 0 %}
+<div class="tm">
+  <div class="tm-chips">{{ tm_chips }}</div>
+  <div class="tm-map" role="img" aria-label="Release days: {{ tm_label | split: ', ' | join: ', ' }}{% if tm_old > 0 %} and {{ tm_old }} older{% endif %}">
+    <div class="tm-cells">{% for t in tracked %}{% for i in (0..7) %}{% assign ds = i | times: 86400 | plus: cutoff_s | plus: 43200 %}{% assign day = ds | date: "%Y-%m-%d" %}{% capture tm_key %}{{ t.id }}~{{ day }}|{% endcapture %}<i{% if tm_hits contains tm_key %} class="on" style="--c:{{ t.color }}"{% endif %}></i>{% endfor %}{% endfor %}</div>
+    <div class="tm-ends"><span>{{ cutoff_s | plus: 43200 | date: "%b %-d" }}</span><span>{{ cutoff_s | plus: 648000 | date: "%b %-d" }}</span></div>
+    {% if tm_old > 0 %}<div class="tm-old">+{{ tm_old }} older</div>{% endif %}
+  </div>
+</div>
+{% endif %}

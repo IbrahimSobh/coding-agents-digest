@@ -135,7 +135,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-cdot.ch::before{inset:3.5px;background:var(--cyan);border-color:var(--cyan)}
 .rg-cdot.nw::before{background:var(--cyan);border-color:var(--cyan)}
 /* "Jump to latest": only while replaying (replay.js removes .at); green like "updated N h ago".
-   Its dot pulses 3 times each time the chip appears, then glows steadily. */
+   Its dot pulses 3 times each time an older run is picked, then glows steadily. */
 .rg-head{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:26px}
 .rg-live{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:12px;font-weight:700;letter-spacing:0;text-transform:none;border:1.5px solid var(--green);color:var(--green);background:color-mix(in srgb,var(--green) 10%,transparent);border-radius:999px;padding:2px 10px 2px 9px;cursor:pointer;white-space:nowrap;transition:opacity .2s,visibility 0s,background .15s,color .15s}
 .rg-live:hover,.rg-live:focus-visible{background:var(--green);color:var(--bg)}
@@ -143,9 +143,9 @@ a.tbtn:hover{border-color:var(--muted)}
 .rg-l2{display:none}
 .rg-pulse{position:relative;width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 6px 1px color-mix(in srgb,var(--green) 60%,transparent)}
 .rg-pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:currentColor;opacity:0}
-.rg-live:not(.at) .rg-pulse::after{animation:rgPulse 1.5s ease-out 3}
+.rg-live.beat .rg-pulse::after{animation:rgPulse 1.5s ease-out 3}
 @keyframes rgPulse{from{transform:scale(1);opacity:.6}to{transform:scale(2.8);opacity:0}}
-@media (prefers-reduced-motion:reduce){.rg-cur,.rg-shade,.rg-c,.rg-dot::before{transition:none}.rg-live:not(.at) .rg-pulse::after{animation:none}}
+@media (prefers-reduced-motion:reduce){.rg-cur,.rg-shade,.rg-c,.rg-dot::before{transition:none}.rg-live.beat .rg-pulse::after{animation:none}}
 .hero-foot{display:flex;justify-content:space-between;margin-top:16px;font-size:13px;color:var(--muted);flex-wrap:wrap;gap:8px}
 
 /* Release history chart */

@@ -100,6 +100,9 @@
     // Like a video's live button: "Jump to latest" is there only while behind the latest run.
     // Its space stays reserved, so showing it never moves the timeline.
     back.classList.toggle('at',latest);
+    // Each pick of an older run restarts the 3 pulses (removing the class, then a reflow, resets the animation)
+    if(latest) back.classList.remove('beat');
+    else if(changed){back.classList.remove('beat');void back.offsetWidth;back.classList.add('beat')}
     back.tabIndex=latest?-1:0;
     back.setAttribute('aria-hidden',latest);
     cdot.className='rg-cdot '+kind[i]+(latest?' now':'');

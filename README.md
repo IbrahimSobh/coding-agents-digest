@@ -2,7 +2,7 @@
 
 What is new in the popular AI coding tools, so you don't have to check each one yourself.
 
-<img alt="Coding Agents Digest home page: the Tracking strip with the five tool logos, the release chart, the 7-day box with the replay line and release grid, and the Latest brief with release chips and week maps" src="docs/assets/screenshot-light.png">
+<img alt="Coding Agents Digest home page: the Tracking strip with the five tool logos, the release chart, the 7-day box with the replay line and release grid, and the Latest brief with release chips and week maps" src="docs/assets/home-light.png">
 
 Site: https://ibrahimsobh.github.io/coding-agents-digest/
 

@@ -30,12 +30,12 @@
 {% assign rtime = include.e.date | date: "%H:%M" %}{% assign rat = include.e.date | date_to_xmlschema %}
 {% capture inner %}{{ rp_news }}{% if rp_quiet != "" %}<div class="qrows">{{ rp_quiet }}</div>{% endif %}{% endcapture %}
 {% if include.open %}
-<div class="run" data-tools="{{ tools_attr }}"><i class="rdot" style="background:{{ dotbg }}"></i><div class="card">
+<div class="run" id="run-{{ include.e.date | date: '%Y%m%d%H%M' }}" data-tools="{{ tools_attr }}"><i class="rdot" style="background:{{ dotbg }}"></i><div class="card">
   <div class="rh"><a class="t" data-at="{{ rat }}" href="{{ include.e.url | relative_url }}">{{ rtime }}</a><span class="m">{{ counts }}</span></div>
   {{ inner }}
 </div></div>
 {% else %}
-<details class="run" data-tools="{{ tools_attr }}"><summary class="card sum"><i class="rdot" style="background:{{ dotbg }}"></i><span class="t" data-at="{{ rat }}">{{ rtime }}</span><span class="m">{{ rp_names | split: "|" | join: " · " }}</span><span class="dots">{% for c in cl %}<i class="d" style="background:{{ c }}"></i>{% endfor %}</span><span class="cnt">{{ n_items }} item{% if n_items != 1 %}s{% endif %}{% if n_warn > 0 %} · <b class="warnc">⚠ {{ n_warn }}</b>{% endif %}</span><span class="chev">▸</span></summary>
+<details class="run" id="run-{{ include.e.date | date: '%Y%m%d%H%M' }}" data-tools="{{ tools_attr }}"><summary class="card sum"><i class="rdot" style="background:{{ dotbg }}"></i><span class="t" data-at="{{ rat }}">{{ rtime }}</span><span class="m">{{ rp_names | split: "|" | join: " · " }}</span><span class="dots">{% for c in cl %}<i class="d" style="background:{{ c }}"></i>{% endfor %}</span><span class="cnt">{{ n_items }} item{% if n_items != 1 %}s{% endif %}{% if n_warn > 0 %} · <b class="warnc">⚠ {{ n_warn }}</b>{% endif %}</span><span class="chev">▸</span></summary>
   <div class="card"><div class="rh"><a class="t" data-at="{{ rat }}" href="{{ include.e.url | relative_url }}">{{ rtime }}</a><span class="m">{{ counts }}</span></div>{{ inner }}</div>
 </details>
 {% endif %}

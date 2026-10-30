@@ -28,7 +28,7 @@ layout: default
       {% assign d = e.date | date: "%Y-%m-%d" %}
       {% if d != cur_day %}
         {% include quiet-flush.html %}
-        <div class="day" data-date="{{ d }}">{{ e.date | date: "%a, %b %-d" }}</div>
+        <div class="day" id="day-{{ d | remove: '-' }}" data-date="{{ d }}">{{ e.date | date: "%a, %b %-d" }}</div>
         {% assign cur_day = d %}
       {% endif %}
       {% if e.quiet %}

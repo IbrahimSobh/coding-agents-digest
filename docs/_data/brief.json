@@ -1,21 +1,21 @@
 {
- "updated": "2026-10-29T22:13+03:00",
- "updated_label": "Oct 29, 22:13",
- "window": "Oct 22 to Oct 29, 2026",
- "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps.",
+ "updated": "2026-10-30T08:38+02:00",
+ "updated_label": "Oct 30, 08:38",
+ "window": "Oct 23 to Oct 30, 2026",
+ "headline": "Codex drops detached review/start, and headless runs in Claude Code and Antigravity CLI now report failures more clearly.",
  "themes": [
+  {"tag": "Headless",
+   "title": "Scripts get clearer failure signals",
+   "facts": "Claude Code 2.1.314 makes `claude -p` print the error and exit 1 when startup fails ([2.1.314](https://github.com/anthropics/claude-code/releases/tag/v2.1.314)), and Antigravity CLI 1.4.11 adds `finished_reason` to JSON and stream-json output so a cut-off answer shows ([1.4.11](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.11)). Antigravity CLI 1.4.7 also made headless `-p` runs much lighter ([1.4.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.7)).",
+   "so_what": "scripts that trust exit code 0 or the raw output should check these signals now."},
   {"tag": "Defaults",
-   "title": "Defaults shift under you again",
-   "facts": "Codex turns memory v2 on for new profiles ([rust-v0.165.0](https://github.com/openai/codex/releases/tag/rust-v0.165.0)) and runs its Guardian classifier in conversation mode by default ([rust-v0.164.0](https://github.com/openai/codex/releases/tag/rust-v0.164.0)). Claude Code widens automatic model switches to custom model names ([2.1.312](https://github.com/anthropics/claude-code/releases/tag/v2.1.312)).",
+   "title": "Defaults keep moving",
+   "facts": "Codex turns memory v2 on for new profiles ([rust-v0.165.0](https://github.com/openai/codex/releases/tag/rust-v0.165.0)) and cuts the default thread unload delay to one minute ([rust-v0.166.0](https://github.com/openai/codex/releases/tag/rust-v0.166.0)). Claude Code widens automatic model switches to custom model names ([2.1.312](https://github.com/anthropics/claude-code/releases/tag/v2.1.312)).",
    "so_what": "a setting that gave you one result last week may give another now, so check the new defaults before you rely on them."},
   {"tag": "Security",
-   "title": "Security fixes and tighter sandboxes",
-   "facts": "OpenCode's bundled Bun gets security fixes ([v1.19.4](https://github.com/anomalyco/opencode/releases/tag/v1.19.4)), and Claude Code's sandboxed commands can no longer change the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)).",
-   "so_what": "update the tools that carry security fixes, and give sandboxed commands the explicit access they still need."},
-  {"tag": "Long sessions",
-   "title": "Subagents keep their task after compaction",
-   "facts": "Antigravity CLI 1.4.10 stops subagents from losing the task and parent ID their parent agent gave them after compaction, including with `/compact` ([1.4.10](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.10)).",
-   "so_what": "long sessions with subagents are less likely to lose their task, so restarting them is needed less often."}
+   "title": "Sandboxes and MCP locked down",
+   "facts": "Claude Code's sandboxed commands can no longer change the `--mcp-config` file ([2.1.309](https://github.com/anthropics/claude-code/releases/tag/v2.1.309)), and Antigravity CLI hides `~/.docker`, `~/.kube` and `~/_netrc` from sandboxed commands ([1.4.6](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.6)). Kilo Code stops running shell expressions in MCP prompts ([v7.8.16](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.16)).",
+   "so_what": "sandboxed commands that need credentials or config files now need an explicit grant, so check them after updating."}
  ],
- "watch_next": "Approve Gmail, Docs, Drive and Cloud Console one by one in Antigravity CLI 1.4.9 if you use them through the agent."
+ "watch_next": "Check any Codex API client that calls `review/start` with detached delivery before you upgrade past rust-v0.166.0."
 }

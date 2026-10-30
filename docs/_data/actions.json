@@ -84,5 +84,18 @@
   "flagged": "2026-10-28",
   "category": "default-change",
   "dismissed": false
+ },
+ {
+  "id": "codex-rust-v0.166.0-review-start-detached-removed",
+  "tool": "codex",
+  "version": "rust-v0.166.0",
+  "url": "https://github.com/openai/codex/releases/tag/rust-v0.166.0",
+  "title": "Detached delivery removed from review/start",
+  "affects": "API clients that call `review/start` with detached delivery.",
+  "do": "change those calls before you upgrade, since the release notes name no replacement (verify).",
+  "deadline": null,
+  "flagged": "2026-10-30",
+  "category": "removed",
+  "dismissed": false
  }
 ]

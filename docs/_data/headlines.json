@@ -28,5 +28,6 @@
   {"updated": "2026-10-28T08:11+03:00", "window": "Oct 21 to Oct 28, 2026", "headline": "Claude Code 2.1.312 and Codex 0.165.0 shipped, and both now change defaults, so check the model-switch and memory settings."},
   {"updated": "2026-10-28T22:12+03:00", "window": "Oct 21 to Oct 28, 2026", "headline": "Claude Code 2.1.312 and Codex 0.165.0 changed defaults, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."},
  {"updated": "2026-10-29T08:11+03:00", "window": "Oct 22 to Oct 29, 2026", "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."},
- {"updated": "2026-10-29T22:13+03:00", "window": "Oct 22 to Oct 29, 2026", "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."}
+ {"updated": "2026-10-29T22:13+03:00", "window": "Oct 22 to Oct 29, 2026", "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."},
+ {"updated": "2026-10-30T08:38+02:00", "window": "Oct 23 to Oct 30, 2026", "headline": "Codex drops detached review/start, and headless runs in Claude Code and Antigravity CLI now report failures more clearly."}
 ]

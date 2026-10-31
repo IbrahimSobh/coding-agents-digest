@@ -11,16 +11,19 @@
 {% assign m_first = m_s | plus: 43200 %}
 {% assign m_last = m_s | plus: 2505600 | plus: 43200 %}
 {% assign m_start = m_first | date: "%Y-%m-%d" %}
+{% assign m_end = m_last | date: "%Y-%m-%d" %}
+{% comment %} The pill counts the same window, by tool, from releases.json. {% endcomment %}
+{% assign m_total = 0 %}{% assign m_active = 0 %}
+{% for t in tracked %}{% assign tn = 0 %}{% for r in site.data.releases %}{% if r.tool == t.id and r.date >= m_start and r.date <= m_end %}{% assign tn = tn | plus: 1 %}{% endif %}{% endfor %}{% assign m_total = m_total | plus: tn %}{% if tn > 0 %}{% assign m_active = m_active | plus: 1 %}{% endif %}{% endfor %}
 {% comment %} The first update on the site: squares before it have no update to read, so the card says so. {% endcomment %}
 {% assign m_ents = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" %}
 {% assign m_fu = m_ents.first.date | date: "%Y-%m-%d" %}
 <section id="m30" class="card m30" aria-labelledby="m30Title" data-first="{{ m_fu }}">
-  <h2 class="k" id="m30Title">Releases in the last 30 days · {{ m_first | date: "%b %-d" }} to {{ m_last | date: "%b %-d, %Y" }}</h2>
-  <p class="m30-sub">One square per day for each tool. It always ends on the day of the latest check.{% if m_fu > m_start %} Updates on this site start on {{ m_ents.first.date | date: "%b %-d" }}, so older squares have no update to read.{% endif %}</p>
+  <div class="m30-head"><h2 class="k" id="m30Title">Releases in the last 30 days · {{ m_first | date: "%b %-d" }} to {{ m_last | date: "%b %-d, %Y" }}</h2><span class="pill">{{ m_total }} release{% if m_total != 1 %}s{% endif %} · {{ m_active }} of {{ tracked.size }} tools active</span></div>
   <div class="m30-grid">
     {% for i in (0..29) %}{% if i == 0 or i == 7 or i == 14 or i == 21 or i == 29 %}{% assign ds = i | times: 86400 | plus: m_s | plus: 43200 %}<span class="m30-d{% if i == 0 %} first{% elsif i == 29 %} last{% endif %}" style="grid-row:1;grid-column:{{ i | plus: 2 }}">{{ ds | date: "%b %-d" }}</span>{% endif %}{% endfor %}
     {% for t in tracked %}{% assign gr = forloop.index | plus: 1 %}
-    <span class="m30-n" style="grid-row:{{ gr }}">{% include tool-logo.html t=t %}<span class="nm">{{ t.short | default: t.name }}</span></span>
+    <span class="m30-n" style="grid-row:{{ gr }}">{% include tool-logo.html t=t %}<span class="vh">{{ t.short | default: t.name }}</span></span>
     {% for i in (0..29) %}{% assign ds = i | times: 86400 | plus: m_s | plus: 43200 %}{% assign day = ds | date: "%Y-%m-%d" %}{% assign tags = "" %}{% assign tc = 0 %}
       {% for r in site.data.releases %}{% if r.tool == t.id and r.date == day %}{% assign tags = tags | append: r.tag | append: " " %}{% assign tc = tc | plus: 1 %}{% endif %}{% endfor %}
       {% assign tags = tags | strip %}
@@ -29,5 +32,6 @@
     {% endfor %}
     <b class="m30-now" aria-hidden="true" style="grid-row:2 / span {{ tracked.size }};grid-column:31"></b>
   </div>
+  {% if m_fu > m_start %}<p class="m30-note">Updates on this site start on {{ m_ents.first.date | date: "%b %-d" }}, so older squares have no update to read.</p>{% endif %}
   <script type="application/json" id="m30Data">{"seen": [{% assign first = true %}{% assign digs = site.pages | where_exp: "p", "p.path contains 'digests/'" %}{% for p in digs %}{% assign pd = p.date | date: "%Y-%m-%d" %}{% if pd >= m_start %}{% assign tparts = p.content | split: "releases/tag/" %}{% assign ptags = "" %}{% for x in tparts offset: 1 %}{% assign tg = x | split: ")" | first | split: '"' | first | strip %}{% assign ptags = ptags | append: tg | append: " " %}{% endfor %}{% unless first %},{% endunless %}{% assign first = false %}{"at": {{ p.date | date: "%Y-%m-%dT%H:%M" | jsonify }}, "q": {% if p.quiet %}true{% else %}false{% endif %}, "tags": {{ ptags | strip | jsonify }}}{% endif %}{% endfor %}]}</script>
 </section>

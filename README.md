@@ -17,8 +17,8 @@ Not a list of changelogs: the changes that matter, one sentence each with a sour
 
 - **Tracking strip:** the five tools, under the header.
 - **Release activity:** a chart of stable releases per tool, from 1 Day to all since 1 Oct 2026.
-- **Last 30 days:** a moving window of one square per day for each tool, always ending on the
-  day of the latest check. It does not follow the Release activity buttons or the replay line.
+- **Last 30 days:** a moving window of one square per day for each tool (shown by its logo), with a
+  pill that counts the window's releases. It always ends on the day of the latest check. It does not follow the Release activity buttons or the replay line.
   Hover or focus shows the release and when a check reported it, and a click jumps to the update
   with a way back ("Back to the last 30 days"). A square from before the site's first update
   (Oct 22) has no update to jump to, and its tooltip says so.

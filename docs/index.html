@@ -16,6 +16,7 @@ layout: default
 <p class="track"><span class="tk">Tracking</span>{% for t in trk %}<span class="trk">{% include tool-logo.html t=t %}{{ t.short | default: t.name }}</span>{% endfor %}</p>
 {% include board.html %}
 {% include history.html %}
+{% include month.html %}
 {% include brief.html %}
 {% include board-section.html %}
 

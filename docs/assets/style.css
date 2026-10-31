@@ -125,6 +125,20 @@ a.tbtn:hover{border-color:var(--muted)}
     .themes:has(.theme:nth-child(2)) .theme .so{grid-row:5}
   }
 }
+.m30{padding:14px 16px 16px}
+.m30-sub{font-size:13px;color:var(--soft);margin:2px 0 12px}
+/* Releases of the last 30 days: tool x day, a moving window ending on the latest check day (_includes/month.html) */
+.m30-grid{position:relative;display:grid;grid-template-columns:var(--m-name,152px) repeat(30,minmax(0,1fr));grid-template-rows:18px;grid-auto-rows:28px;gap:3px;align-items:stretch;font-size:13px}
+.m30-d{align-self:end;justify-self:center;font-size:11px;color:var(--soft);white-space:nowrap;font-variant-numeric:tabular-nums;padding-bottom:3px}
+.m30-d.first{justify-self:start}
+.m30-d.last{justify-self:end}
+.m30-n{grid-column:1;display:flex;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m30-c{border-radius:5px;background:color-mix(in srgb,var(--line) 55%,transparent);display:grid;place-items:center;font-size:11px;font-weight:800;color:#0b0f17}
+.m30-c.on{background:var(--c)}
+.m30-c[data-tags]{cursor:pointer}
+.m30-c.nogo{cursor:default}
+.m30-c[data-tags]:hover,.m30-c[data-tags]:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
+.m30-now{pointer-events:none;border:2px solid var(--green);border-radius:7px;margin:-3px;z-index:2}
 .score{margin-top:18px;display:grid;gap:6px;overflow-x:clip}
 .shead{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 /* Release grid (tool x day) and the "replay the week" timeline (assets/replay.js) */
@@ -281,7 +295,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .run .rdot{position:absolute;left:-25px;top:15px;width:12px;height:12px;border-radius:50%}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
 /* The boxes around the 7-day brief share its rounder corners */
-.card.hist,.card.latest{border-radius:20px}
+.card.hist,.card.latest,.card.m30{border-radius:20px}
 .rh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .rh .t{font-weight:800;font-size:15px;color:var(--ink);text-decoration:none}
 .rh .m{font-size:13px;color:var(--muted)}
@@ -333,6 +347,11 @@ footer.site a{color:var(--muted)}
   .hsep{display:none}
 }
 @media (max-width:480px){
+  .m30-grid{--m-name:34px;gap:2px;grid-auto-rows:24px}
+  .m30-n .nm{display:none}
+  .m30-n .tlogo{margin-right:0}
+  .m30-c{border-radius:3px;font-size:0}
+  .m30-now{margin:-2px}
   .hbar{gap:8px}
   .brand{font-size:15px;gap:6px}
   .logo{width:21px;height:21px}

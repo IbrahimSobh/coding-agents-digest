@@ -1,5 +1,6 @@
-// Release boxes in the 7-day grid: a tooltip on hover or focus says which update explains each
-// release, and a click (or Enter) jumps to the "Daily updates" entry that first linked it.
+// Release boxes in the 7-day grid and the squares of the 30-day card (#m30): a tooltip on hover or focus
+// says which update explains each release, and a click (or Enter) jumps to the "Daily updates" entry that
+// first linked it. The way back says where the reader came from: the release grid or the last 30 days.
 // A release chip in the Latest brief jumps the same way, and its way back is the brief.
 // The entry gets a frame and a jump bar on top: "Back to the release grid", and for a box with
 // several releases "release 1 of 2" with Previous / Next to the other releases' entries.
@@ -8,11 +9,15 @@
 (function(){
   var dataEl=document.getElementById('rpData'), box=document.getElementById('replay');
   if(!dataEl||!box) return;
+  var m30=document.getElementById('m30'), m30El=document.getElementById('m30Data');
   var cells=[].slice.call(box.querySelectorAll('.rg-c[data-tags]'));
+  if(m30) cells=cells.concat([].slice.call(m30.querySelectorAll('.m30-c[data-tags]')));
   if(!cells.length) return;
+  // The 7-day grid and the 30-day card are separate blocks that read the same release data
+  function srcOf(c){return c&&m30&&m30.contains(c)?m30:box}
   // Earliest entry that linked each tag, as Cairo minute strings ("2026-10-27T08:12")
   var first={};
-  JSON.parse(dataEl.textContent).seen.slice().sort(function(a,b){return a.at<b.at?-1:1}).forEach(function(s){
+  JSON.parse(dataEl.textContent).seen.concat(m30El?JSON.parse(m30El.textContent).seen:[]).sort(function(a,b){return a.at<b.at?-1:1}).forEach(function(s){
     s.tags.split(' ').forEach(function(t){if(t&&!first[t]) first[t]=s.at});
   });
   function idOf(at){return 'run-'+at.replace(/[-:T]/g,'')}
@@ -31,6 +36,14 @@
       .sort(function(a,b){return !a.at?1:!b.at?-1:a.at<b.at?-1:1});
   }
 
+  // Where a click on a box goes: the update that explains it, its day in Daily updates, or nowhere
+  // (the first updates on this site are from late October, so older squares may have neither)
+  function target(c){
+    var r=list(c)[0];
+    if(r.at&&document.getElementById(idOf(r.at))) return 'update';
+    return document.getElementById('day-'+c.dataset.day.replace(/-/g,''))?'day':null;
+  }
+
   var tip=el('div','rg-tip'); tip.hidden=true; tip.setAttribute('aria-hidden','true');
   document.body.appendChild(tip);
   var chip=button('rg-backchip','',goGrid); chip.hidden=true;
@@ -40,7 +53,7 @@
   //         stack: entry addresses this jump added to the history, color}
   var jump=null, ours=null, quietTip=false;
 
-  function backText(){return jump&&jump.a?'↑ Back to the brief':'↑ Back to the release grid'}
+  function backText(){return jump&&jump.a?'↑ Back to the brief':jump&&jump.c&&srcOf(jump.c)===m30?'↑ Back to the last 30 days':'↑ Back to the release grid'}
 
   function showTip(c){
     if(quietTip) return;
@@ -54,7 +67,8 @@
       row.appendChild(document.createTextNode(r.at?'  reported '+when(r.at)+(d>0?' · '+later(d):''):'  not explained in any update'));
       tip.appendChild(row);
     });
-    tip.appendChild(el('span','rg-tip-go','Click to read the update ↓'));
+    var tg=target(c);
+    if(tg) tip.appendChild(el('span','rg-tip-go',tg==='update'?'Click to read the update ↓':'Click to see that day ↓'));
     tip.hidden=false;
     var b=c.getBoundingClientRect(), w=tip.offsetWidth;
     tip.style.left=(Math.max(8,Math.min(innerWidth-w-8,b.left+b.width/2-w/2))+scrollX)+'px';
@@ -109,9 +123,9 @@
   }
   // scroll = true when there is no history step back to the grid (a shared link)
   function end(scroll){
-    var c=jump&&(jump.a||jump.c);
+    var c=jump&&(jump.a||jump.c), src=jump&&jump.c?srcOf(jump.c):box;
     clear(); chip.hidden=true; jump=null;
-    if(scroll){history.replaceState(null,'',location.pathname+location.search); box.scrollIntoView({block:'center'})}
+    if(scroll){history.replaceState(null,'',location.pathname+location.search); src.scrollIntoView({block:'center'})}
     // Focus returns to the box (focus fires synchronously, so the flag only skips this one tooltip)
     if(c&&!location.hash){quietTip=true; c.focus({preventScroll:true}); quietTip=false}
   }
@@ -119,7 +133,8 @@
   function go(c,a){
     hideTip();
     var rel=list(c);
-    if(!rel[0].at){ // no update explains any release of this box: go to its day in "Daily updates"
+    // no update explains any release of this box, or its entry is not on the page: go to its day in "Daily updates"
+    if(!rel[0].at||!document.getElementById(idOf(rel[0].at))){
       var dh=document.getElementById('day-'+c.dataset.day.replace(/-/g,''));
       if(dh) dh.scrollIntoView();
       return;
@@ -152,20 +167,27 @@
     end(false);
     fromHash(true);
   });
-  // The chip hides while the grid itself is on screen
-  if('IntersectionObserver' in window) new IntersectionObserver(function(es){
-    if(jump) chip.hidden=es[0].isIntersecting;
-  }).observe(box);
+  // The chip hides while the block the reader came from (the grid or the 30-day card) is on screen
+  var vis={};
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){vis[e.target.id]=e.isIntersecting});
+      if(jump) chip.hidden=!!vis[(jump.c?srcOf(jump.c):box).id];
+    });
+    io.observe(box); if(m30) io.observe(m30);
+  }
 
   cells.forEach(function(c){
     c.removeAttribute('title');
-    c.tabIndex=0; c.setAttribute('role','link');
+    c.tabIndex=0; if(target(c)) c.setAttribute('role','link');
     // A small corner mark when a release was reported on a later day than it was published
     // (published after that day's last check, or missed by it)
     var lateTags=list(c).filter(function(r){return late(c,r)>0});
     c.classList.toggle('late',lateTags.length>0);
+    var tg=target(c);
+    c.classList.toggle('nogo',!tg);
     c.setAttribute('aria-label',c.dataset.name+', released '+day(c.dataset.day)+': '+c.dataset.tags.split(' ').join(', ')+
-      lateTags.map(function(r){return '; '+r.tag+' '+lateText(late(c,r))}).join('')+'. Read the update');
+      lateTags.map(function(r){return '; '+r.tag+' '+lateText(late(c,r))}).join('')+(tg?'. Read the update':'. No update explains it'));
     c.addEventListener('mouseenter',function(){showTip(c)});
     c.addEventListener('mouseleave',hideTip);
     c.addEventListener('focus',function(){showTip(c)});

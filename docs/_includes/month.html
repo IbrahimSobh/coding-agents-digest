@@ -1,0 +1,29 @@
+{% comment %}
+  Releases of the last 30 days: one row per tool, one square per day (a moving window like the 7-day grid).
+  It always ends on the day of the last check (today_s) and is counted by calendar date, never by seconds:
+  noon is added so a clock change cannot move a day. It does not follow the Release activity buttons or
+  the replay line. Squares jump to the update that explains the release (assets/jump.js), and the
+  m30Data block gives jump.js the checks of these 30 days (the replay data only covers 7 days).
+  Needs today_s and tracked.
+{% endcomment %}
+{% assign m_s = today_s | minus: 2505600 %}
+{% assign m_first = m_s | plus: 43200 %}
+{% assign m_last = m_s | plus: 2505600 | plus: 43200 %}
+{% assign m_start = m_first | date: "%Y-%m-%d" %}
+<section id="m30" class="card m30" aria-labelledby="m30Title">
+  <h2 class="k" id="m30Title">Releases in the last 30 days · {{ m_first | date: "%b %-d" }} to {{ m_last | date: "%b %-d, %Y" }}</h2>
+  <p class="m30-sub">One square per day for each tool. It always ends on the day of the latest check.</p>
+  <div class="m30-grid">
+    {% for i in (0..29) %}{% if i == 0 or i == 7 or i == 14 or i == 21 or i == 29 %}{% assign ds = i | times: 86400 | plus: m_s | plus: 43200 %}<span class="m30-d{% if i == 0 %} first{% elsif i == 29 %} last{% endif %}" style="grid-row:1;grid-column:{{ i | plus: 2 }}">{{ ds | date: "%b %-d" }}</span>{% endif %}{% endfor %}
+    {% for t in tracked %}{% assign gr = forloop.index | plus: 1 %}
+    <span class="m30-n" style="grid-row:{{ gr }}">{% include tool-logo.html t=t %}<span class="nm">{{ t.short | default: t.name }}</span></span>
+    {% for i in (0..29) %}{% assign ds = i | times: 86400 | plus: m_s | plus: 43200 %}{% assign day = ds | date: "%Y-%m-%d" %}{% assign tags = "" %}{% assign tc = 0 %}
+      {% for r in site.data.releases %}{% if r.tool == t.id and r.date == day %}{% assign tags = tags | append: r.tag | append: " " %}{% assign tc = tc | plus: 1 %}{% endif %}{% endfor %}
+      {% assign tags = tags | strip %}
+      <span class="m30-c{% if tc > 0 %} on{% endif %}" style="grid-row:{{ gr }};grid-column:{{ i | plus: 2 }};--c:{{ t.color }}"{% if tc > 0 %} data-tags="{{ tags }}" data-day="{{ day }}" data-tool="{{ t.id }}" data-name="{{ t.short | default: t.name }}" title="{{ t.short | default: t.name }} · {{ ds | date: '%a, %b %-d' }}: {{ tags | replace: ' ', ', ' }}"{% endif %}>{% if tc > 1 %}{{ tc }}{% endif %}</span>
+    {% endfor %}
+    {% endfor %}
+    <b class="m30-now" aria-hidden="true" style="grid-row:2 / span {{ tracked.size }};grid-column:31"></b>
+  </div>
+  <script type="application/json" id="m30Data">{"seen": [{% assign first = true %}{% assign digs = site.pages | where_exp: "p", "p.path contains 'digests/'" %}{% for p in digs %}{% assign pd = p.date | date: "%Y-%m-%d" %}{% if pd >= m_start %}{% assign tparts = p.content | split: "releases/tag/" %}{% assign ptags = "" %}{% for x in tparts offset: 1 %}{% assign tg = x | split: ")" | first | split: '"' | first | strip %}{% assign ptags = ptags | append: tg | append: " " %}{% endfor %}{% unless first %},{% endunless %}{% assign first = false %}{"at": {{ p.date | date: "%Y-%m-%dT%H:%M" | jsonify }}, "q": {% if p.quiet %}true{% else %}false{% endif %}, "tags": {{ ptags | strip | jsonify }}}{% endif %}{% endfor %}]}</script>
+</section>

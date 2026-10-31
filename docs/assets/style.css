@@ -126,6 +126,8 @@ a.tbtn:hover{border-color:var(--muted)}
   }
 }
 .m30{padding:14px 16px 14px}
+/* the first three boxes (Release activity, Last 30 days, Last 7 days) sit closer together */
+#m30,#brief{margin-top:14px}
 .m30-head{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;flex-wrap:wrap;margin-bottom:10px}
 .m30-head .k{margin:0}
 /* Releases of the last 30 days: logo x day, a moving window ending on the latest check day (_includes/month.html) */
@@ -141,7 +143,6 @@ a.tbtn:hover{border-color:var(--muted)}
 .m30-c[data-tags]{cursor:pointer}
 .m30-c.nogo{cursor:default}
 .m30-c[data-tags]:hover,.m30-c[data-tags]:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
-.m30-note{margin:8px 0 0;font-size:11px;color:var(--soft)}
 .m30-now{pointer-events:none;border:2px solid var(--green);border-radius:6px;margin:-3px;z-index:2}
 .score{margin-top:18px;display:grid;gap:6px;overflow-x:clip}
 .shead{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}

@@ -20,15 +20,16 @@ Not a list of changelogs: the changes that matter, one sentence each with a sour
 - **Last 30 days:** a moving window of one square per day for each tool (shown by its logo), with a
   pill that counts the window's releases. It always ends on the day of the latest check. It does not follow the Release activity buttons or the replay line.
   Hover or focus shows the release and when a check reported it, and a click jumps to the update
-  with a way back ("Back to the last 30 days"). A square from before the site's first update
-  (Oct 22) has no update to jump to, and its tooltip says so.
+  with a way back ("Back to the last 30 days"). A square that no update explains (older than the
+  site's first update on Oct 22, or missed by a check) opens the newest release of that day on
+  GitHub, in a new tab.
 - **Last 7 days:** the week's headline and the release grid (one row per tool, one column per
   day; a box sits on the day a release was published).
   - **Replay line:** click or drag along the line to see what each past check knew. The green
     point is the latest check, and "Jump to latest" appears when a past check is selected.
   - **Release boxes:** hover or focus shows each release and when a check reported it. A click
     jumps to the matching update in Daily updates, with a way back. A corner mark means the
-    release was reported on a later day.
+    release was reported on a later day. A release that no update explains opens on GitHub.
 - **Latest brief:** 1 to 3 themes, each with a "so what". Each theme has release chips and a
   week map, the release grid in small with that theme's releases lit, so the week's pattern
   shows with no click. A chip jumps to the release's update. A release older than the 7 days

@@ -36,13 +36,19 @@
       .sort(function(a,b){return !a.at?1:!b.at?-1:a.at<b.at?-1:1});
   }
 
-  // Where a click on a box goes: the update that explains it, its day in Daily updates, or nowhere
-  // (the first updates on this site are from late October, so older squares may have neither)
-  function target(c){
-    var r=list(c)[0];
-    if(r.at&&document.getElementById(idOf(r.at))) return 'update';
-    return document.getElementById('day-'+c.dataset.day.replace(/-/g,''))?'day':null;
+  // Where a click on a box goes: the update that explains it, or, when no update does (an old release,
+  // or one a check missed), the newest release of that day on GitHub, in a new tab
+  function explained(c){var r=list(c)[0]; return !!(r.at&&document.getElementById(idOf(r.at)))}
+  function ver(t){return (t.match(/\d+/g)||[]).map(Number)}
+  function newest(c){
+    return c.dataset.tags.split(' ').sort(function(a,b){
+      var x=ver(a), y=ver(b);
+      for(var i=0;i<Math.max(x.length,y.length);i++){var d=(x[i]||0)-(y[i]||0); if(d) return d}
+      return 0;
+    }).pop();
   }
+  function releaseUrl(c,tag){return c.dataset.repo?'https://github.com/'+c.dataset.repo+'/releases/tag/'+encodeURIComponent(tag):''}
+  function target(c){return explained(c)?'update':c.dataset.repo?'release':null}
 
   // Squares from before the site's first update (#m30 data-first) have no update to read
   var firstDay=m30&&m30.dataset.first||'';
@@ -72,7 +78,7 @@
       tip.appendChild(row);
     });
     var tg=target(c);
-    if(tg) tip.appendChild(el('span','rg-tip-go',tg==='update'?'Click to read the update ↓':'Click to see that day ↓'));
+    if(tg) tip.appendChild(el('span','rg-tip-go',tg==='update'?'Click to read the update ↓':'Click to open '+newest(c)+' on GitHub ↗'));
     tip.hidden=false;
     var b=c.getBoundingClientRect(), w=tip.offsetWidth;
     tip.style.left=(Math.max(8,Math.min(innerWidth-w-8,b.left+b.width/2-w/2))+scrollX)+'px';
@@ -108,7 +114,11 @@
       var prev=jump.rel[jump.idx-1], next=jump.rel[jump.idx+1];
       if(prev&&prev.at) bar.appendChild(button('jb-nav','Previous: '+prev.tag+' (reported '+when(prev.at)+') ↓',function(){step(-1)}));
       if(next&&next.at) bar.appendChild(button('jb-nav','Next: '+next.tag+' (reported '+when(next.at)+') ↑',function(){step(1)}));
-      jump.rel.forEach(function(x){if(!x.at) bar.appendChild(el('span','jb-none',x.tag+' was released, but no update explains it'))});
+      jump.rel.forEach(function(x){if(!x.at){
+        var n=el('span','jb-none',x.tag+' was released, but no update explains it'), u=releaseUrl(jump.c,x.tag);
+        if(u){var a=el('a','',' Open it on GitHub ↗'); a.href=u; a.target='_blank'; a.rel='noopener noreferrer'; n.appendChild(a)}
+        bar.appendChild(n);
+      }});
     }
     // The bar sits right above this tool's section, so the jump lands on the right lines even in
     // an entry that covers several tools; a shared link (no box) puts it on top of the entry
@@ -137,10 +147,10 @@
   function go(c,a){
     hideTip();
     var rel=list(c);
-    // no update explains any release of this box, or its entry is not on the page: go to its day in "Daily updates"
-    if(!rel[0].at||!document.getElementById(idOf(rel[0].at))){
-      var dh=document.getElementById('day-'+c.dataset.day.replace(/-/g,''));
-      if(dh) dh.scrollIntoView();
+    // no update explains any release of this box (or its entry is not on the page): open the newest one on GitHub
+    if(!explained(c)){
+      var u=releaseUrl(c,newest(c));
+      if(u) window.open(u,'_blank','noopener,noreferrer');
       return;
     }
     // A filter on another tool would hide the entry's lines: show all tools first
@@ -191,7 +201,8 @@
     var tg=target(c);
     c.classList.toggle('nogo',!tg);
     c.setAttribute('aria-label',c.dataset.name+', released '+day(c.dataset.day)+': '+c.dataset.tags.split(' ').join(', ')+
-      lateTags.map(function(r){return '; '+r.tag+' '+lateText(late(c,r))}).join('')+(tg?'. Read the update':before(c)?". Released before the site's first update":'. No update explains it'));
+      lateTags.map(function(r){return '; '+r.tag+' '+lateText(late(c,r))}).join('')+(before(c)?". Released before the site's first update":tg==='update'?'':'. No update explains it')+
+      (tg==='update'?'. Read the update':tg==='release'?'. Open the release page on GitHub (new tab)':''));
     c.addEventListener('mouseenter',function(){showTip(c)});
     c.addEventListener('mouseleave',hideTip);
     c.addEventListener('focus',function(){showTip(c)});

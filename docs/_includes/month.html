@@ -15,7 +15,7 @@
 {% comment %} The pill counts the same window, by tool, from releases.json. {% endcomment %}
 {% assign m_total = 0 %}{% assign m_active = 0 %}
 {% for t in tracked %}{% assign tn = 0 %}{% for r in site.data.releases %}{% if r.tool == t.id and r.date >= m_start and r.date <= m_end %}{% assign tn = tn | plus: 1 %}{% endif %}{% endfor %}{% assign m_total = m_total | plus: tn %}{% if tn > 0 %}{% assign m_active = m_active | plus: 1 %}{% endif %}{% endfor %}
-{% comment %} The first update on the site: squares before it have no update to read, so the card says so. {% endcomment %}
+{% comment %} The first update on the site: the tooltip of an older square says it came before it. {% endcomment %}
 {% assign m_ents = site.pages | where_exp: "p", "p.path contains 'digests/'" | sort: "path" %}
 {% assign m_fu = m_ents.first.date | date: "%Y-%m-%d" %}
 <section id="m30" class="card m30" aria-labelledby="m30Title" data-first="{{ m_fu }}">
@@ -27,11 +27,10 @@
     {% for i in (0..29) %}{% assign ds = i | times: 86400 | plus: m_s | plus: 43200 %}{% assign day = ds | date: "%Y-%m-%d" %}{% assign tags = "" %}{% assign tc = 0 %}
       {% for r in site.data.releases %}{% if r.tool == t.id and r.date == day %}{% assign tags = tags | append: r.tag | append: " " %}{% assign tc = tc | plus: 1 %}{% endif %}{% endfor %}
       {% assign tags = tags | strip %}
-      <span class="m30-c{% if tc > 0 %} on{% endif %}" style="grid-row:{{ gr }};grid-column:{{ i | plus: 2 }};--c:{{ t.color }}"{% if tc > 0 %} data-tags="{{ tags }}" data-day="{{ day }}" data-tool="{{ t.id }}" data-name="{{ t.short | default: t.name }}" title="{{ t.short | default: t.name }} · {{ ds | date: '%a, %b %-d' }}: {{ tags | replace: ' ', ', ' }}"{% endif %}>{% if tc > 1 %}{{ tc }}{% endif %}</span>
+      <span class="m30-c{% if tc > 0 %} on{% endif %}" style="grid-row:{{ gr }};grid-column:{{ i | plus: 2 }};--c:{{ t.color }}"{% if tc > 0 %} data-tags="{{ tags }}" data-day="{{ day }}" data-tool="{{ t.id }}" data-repo="{{ t.repo }}" data-name="{{ t.short | default: t.name }}" title="{{ t.short | default: t.name }} · {{ ds | date: '%a, %b %-d' }}: {{ tags | replace: ' ', ', ' }}"{% endif %}>{% if tc > 1 %}{{ tc }}{% endif %}</span>
     {% endfor %}
     {% endfor %}
     <b class="m30-now" aria-hidden="true" style="grid-row:2 / span {{ tracked.size }};grid-column:31"></b>
   </div>
-  {% if m_fu > m_start %}<p class="m30-note">Updates on this site start on {{ m_ents.first.date | date: "%b %-d" }}, so older squares have no update to read.</p>{% endif %}
   <script type="application/json" id="m30Data">{"seen": [{% assign first = true %}{% assign digs = site.pages | where_exp: "p", "p.path contains 'digests/'" %}{% for p in digs %}{% assign pd = p.date | date: "%Y-%m-%d" %}{% if pd >= m_start %}{% assign tparts = p.content | split: "releases/tag/" %}{% assign ptags = "" %}{% for x in tparts offset: 1 %}{% assign tg = x | split: ")" | first | split: '"' | first | strip %}{% assign ptags = ptags | append: tg | append: " " %}{% endfor %}{% unless first %},{% endunless %}{% assign first = false %}{"at": {{ p.date | date: "%Y-%m-%dT%H:%M" | jsonify }}, "q": {% if p.quiet %}true{% else %}false{% endif %}, "tags": {{ ptags | strip | jsonify }}}{% endif %}{% endfor %}]}</script>
 </section>

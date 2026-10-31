@@ -34,7 +34,7 @@
         {% for i in (0..7) %}{% assign ds = i | times: 86400 | plus: cutoff_s | plus: 43200 %}{% assign day = ds | date: "%Y-%m-%d" %}{% assign tags = "" %}{% assign tc = 0 %}
           {% for r in site.data.releases %}{% if r.tool == t.id and r.date == day %}{% assign tags = tags | append: r.tag | append: " " %}{% assign tc = tc | plus: 1 %}{% endif %}{% endfor %}
           {% assign tags = tags | strip %}
-          <span class="rg-c{% if tc > 0 %} on{% endif %}" style="grid-row:{{ gr }};grid-column:{{ i | plus: 2 }};--c:{{ t.color }}"{% if tc > 0 %} data-tags="{{ tags }}" data-day="{{ day }}" data-tool="{{ t.id }}" data-name="{{ t.short | default: t.name }}" title="{{ t.short | default: t.name }} · {{ ds | date: '%a, %b %-d' }}: {{ tags | replace: ' ', ', ' }}"{% endif %}>{% if tc > 1 %}{{ tc }}{% endif %}</span>
+          <span class="rg-c{% if tc > 0 %} on{% endif %}" style="grid-row:{{ gr }};grid-column:{{ i | plus: 2 }};--c:{{ t.color }}"{% if tc > 0 %} data-tags="{{ tags }}" data-day="{{ day }}" data-tool="{{ t.id }}" data-repo="{{ t.repo }}" data-name="{{ t.short | default: t.name }}" title="{{ t.short | default: t.name }} · {{ ds | date: '%a, %b %-d' }}: {{ tags | replace: ' ', ', ' }}"{% endif %}>{% if tc > 1 %}{{ tc }}{% endif %}</span>
         {% endfor %}
         <span class="rg-t" style="grid-row:{{ gr }}" data-n="{{ n }}">{{ n }}</span>
         {% endfor %}

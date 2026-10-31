@@ -50,7 +50,8 @@
   function releaseUrl(c,tag){return c.dataset.repo?'https://github.com/'+c.dataset.repo+'/releases/tag/'+encodeURIComponent(tag):''}
   function target(c){return explained(c)?'update':c.dataset.repo?'release':null}
 
-  // Squares from before the site's first update (#m30 data-first) have no update to read
+  // Squares from before the site's first update (#m30 data-first) have no update to read; the tooltip does not
+  // say so (the click opens the release on GitHub), but it still names a real gap after that date
   var firstDay=m30&&m30.dataset.first||'';
   function before(c){return !!firstDay&&c.dataset.day<firstDay}
 
@@ -74,7 +75,7 @@
     list(c).forEach(function(r){
       var row=el('span','rg-tip-row'); row.appendChild(el('code','',r.tag));
       var d=late(c,r);
-      row.appendChild(document.createTextNode(r.at?'  reported '+when(r.at)+(d>0?' · '+later(d):''):before(c)?"  before the site's first update ("+day(firstDay).replace(/^\w+, /,'')+')':'  not explained in any update'));
+      row.appendChild(document.createTextNode(r.at?'  reported '+when(r.at)+(d>0?' · '+later(d):''):before(c)?'':'  not explained in any update'));
       tip.appendChild(row);
     });
     var tg=target(c);
@@ -201,7 +202,7 @@
     var tg=target(c);
     c.classList.toggle('nogo',!tg);
     c.setAttribute('aria-label',c.dataset.name+', released '+day(c.dataset.day)+': '+c.dataset.tags.split(' ').join(', ')+
-      lateTags.map(function(r){return '; '+r.tag+' '+lateText(late(c,r))}).join('')+(before(c)?". Released before the site's first update":tg==='update'?'':'. No update explains it')+
+      lateTags.map(function(r){return '; '+r.tag+' '+lateText(late(c,r))}).join('')+(before(c)||tg==='update'?'':'. No update explains it')+
       (tg==='update'?'. Read the update':tg==='release'?'. Open the release page on GitHub (new tab)':''));
     c.addEventListener('mouseenter',function(){showTip(c)});
     c.addEventListener('mouseleave',hideTip);

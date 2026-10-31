@@ -6,6 +6,9 @@
 # https://ibrahimsobh.github.io/coding-agents-digest/digests/YYYY-MM-DD-HHMM.html and the entry must exist.
 # It also checks the brief: a release link in brief.json must be a release in releases.json (the site
 # makes a chip and a week map square from it), unless its link text says pre-release.
+# And it checks the other way round: every release in releases.json from the day of the first entry on
+# must be linked by some entry (a release counted but never written about shows in the strip as
+# "not explained in any update"). task/known-gaps.txt lists the few old exceptions; it is for the owner.
 # Exit code 0 = fine, 1 = a link must be fixed.
 cd "$(dirname "$0")/.." || exit 2
 FULL='https://ibrahimsobh.github.io/coding-agents-digest/digests/'
@@ -40,6 +43,40 @@ while IFS= read -r l; do
   fi
 done < "$tmp"
 rm -f "$tmp"
+
+# 4. Every release (from the first entry on) must be linked by some entry, or listed in task/known-gaps.txt
+PY=$(command -v python3 || command -v python)
+if [ -n "$PY" ]; then
+  gaps=$("$PY" - <<'PYEOF'
+import json, os, re, glob
+ents = sorted(glob.glob('docs/digests/*.md'))
+first = os.path.basename(ents[0])[:10] if ents else '9999'
+rel = json.load(open('docs/_data/releases.json', encoding='utf-8'))
+tools = open('docs/_data/tools.yml', encoding='utf-8').read()
+off = {b.split('\n')[0].strip() for b in re.split(r'^- id: ', tools, flags=re.M)[1:] if re.search(r'^\s*tracked:\s*false', b, re.M)}
+norm = lambda t: t[1:] if t.startswith('v') else t
+linked = set()
+for f in ents:
+    linked |= {norm(t) for t in re.findall(r'releases/tag/([^)"\s]+)', open(f, encoding='utf-8').read())}
+known = set()
+if os.path.exists('task/known-gaps.txt'):
+    for line in open('task/known-gaps.txt', encoding='utf-8'):
+        w = line.split('#')[0].split()
+        if len(w) >= 2:
+            known.add((w[0], norm(w[1])))
+for r in rel:
+    if r['tool'] in off or r['date'] < first or norm(r['tag']) in linked or (r['tool'], norm(r['tag'])) in known:
+        continue
+    print('Release %s (%s, %s) is in releases.json but no entry links it: write a line for it in this run\'s entry (a "Bug fixes only" line is enough). task/known-gaps.txt is for the owner only.' % (r['tag'], r['tool'], r['date']))
+PYEOF
+)
+  if [ -n "$gaps" ]; then
+    echo "$gaps"
+    bad=1
+  fi
+else
+  echo "(skipped the release check: python is not installed)"
+fi
 
 [ "$bad" = 0 ] && echo "links ok"
 exit "$bad"

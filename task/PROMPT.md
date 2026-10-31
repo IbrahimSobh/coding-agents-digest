@@ -118,6 +118,9 @@ For every release you covered in this run, append one object to the list:
 Tool ids: `claude-code`, `antigravity-cli`, `codex`, `kilo-code`, `opencode`.
 Never remove or change old items. No duplicates (same tool + tag). The site counts the
 release bars from this file, so do not count anything yourself.
+Every release you record here must be linked in this run's entry, even when it has nothing that
+matters (then write a "Bug fixes only" line for it). A release that no entry links shows on the site as
+"not explained in any update", and `sh task/check-links.sh` fails on it.
 
 ### 5b. Add ⚠️ items to `docs/_data/actions.json`
 For EVERY ⚠️ bullet you wrote in this run's entry, append exactly one item (1:1, no more, no less):
@@ -210,8 +213,10 @@ Otherwise skip this step.
 - Do **not** edit `docs/index.html` or anything outside the files named here. The site lists entries automatically.
 
 ### 6. Commit and push
-First check the links to other entries: `sh task/check-links.sh`. It prints `links ok`, or the
-link to fix (a short link, or an entry that does not exist). Fix it and run the check again.
+First check the links: `sh task/check-links.sh`. It prints `links ok`, or the link to fix (a short link,
+an entry that does not exist, a release link in the brief that is not in `releases.json`, or a release in
+`releases.json` that no entry links). Fix it and run the check again. Never add a line to
+`task/known-gaps.txt`: that file is for the owner. Write the missing line in this run's entry instead.
 Do not commit while it reports a problem.
 ```
 git add docs/digests docs/_data docs/briefs task/state.json

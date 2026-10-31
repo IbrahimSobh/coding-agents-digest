@@ -1,0 +1,3 @@
+# Releases in docs/_data/releases.json that no entry links, and why. One per line: <tool> <tag>  # reason.
+# task/check-links.sh skips these. Only the owner adds a line here; a run must write the missing line in its entry instead.
+claude-code v2.1.307  # the first entry (2026-10-22 01:50) caught up 8 days of releases, counted this one and did not link it

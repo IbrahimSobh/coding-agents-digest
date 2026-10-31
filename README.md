@@ -68,8 +68,9 @@ GitHub Pages builds `docs/` with Jekyll. The chart, release grid, week maps, chi
 board are computed by the site from the data files, not by the model.
 
 Before it pushes, a run calls `task/check-links.sh`. It checks that links to other entries use
-the full address and point to an entry that exists, and that every release link in the brief
-is in `releases.json`. A pre-release may be named only with the word pre-release in its link
+the full address and point to an entry that exists, that every release link in the brief
+is in `releases.json`, and that every release in `releases.json` since the first entry is linked by
+some entry (`task/known-gaps.txt` lists the owner-approved exceptions). A pre-release may be named only with the word pre-release in its link
 text, and it gets no chip.
 
 ## Files
@@ -79,7 +80,8 @@ text, and it gets no chip.
 | `task/PROMPT.md` | The scheduled task's instructions (source of truth) |
 | `task/sources.yml` | Tools, Releases pages, tag patterns |
 | `task/state.json` | Last run, last tag per tool, last snapshot date |
-| `task/check-links.sh` | Checks entry links and the brief's release links |
+| `task/check-links.sh` | Checks entry links, the brief's release links, and that every recorded release is linked by an entry |
+| `task/known-gaps.txt` | Releases the check skips, with a reason (owner only) |
 | `docs/digests/` | One Markdown file per check |
 | `docs/_data/brief.json` | The live 7-day brief |
 | `docs/_data/actions.json` | Action board items, each with a `category` (set `dismissed: true` to hide one) |

@@ -2,7 +2,7 @@
 
 What is new in the popular AI coding tools, so you don't have to check each one yourself.
 
-<img alt="Coding Agents Digest home page: the Tracking strip with the five tool logos, the release chart, the 7-day box with the replay line and release grid, and the Latest brief with release chips and week maps" src="docs/assets/home-light.png">
+<img alt="Coding Agents Digest home page: the Tracking strip with the five tool logos, the release chart, the 7-day box with the replay line and release grid, and the "What matters this week" card with release chips and week maps" src="docs/assets/home-light.png">
 
 Site: https://ibrahimsobh.github.io/coding-agents-digest/
 
@@ -30,7 +30,7 @@ Not a list of changelogs: the changes that matter, one sentence each with a sour
   - **Release boxes:** hover or focus shows each release and when a check reported it. A click
     jumps to the matching update in Daily updates, with a way back. A corner mark means the
     release was reported on a later day. A release that no update explains opens on GitHub.
-- **Latest brief:** 1 to 3 themes, each with a "so what". Each theme has release chips and a
+- **What matters this week:** 1 to 3 themes, each with a "so what". Each theme has release chips and a
   week map, the release grid in small with that theme's releases lit, so the week's pattern
   shows with no click. A chip jumps to the release's update. A release older than the 7 days
   gets a dashed chip with its date, and "+1 older" under the map.
@@ -90,7 +90,7 @@ text, and it gets no chip.
 | `docs/briefs/` | Weekly snapshots (archive, also in RSS) |
 | `docs/_layouts/`, `docs/_includes/`, `docs/assets/style.css` | Site layout and style |
 | `docs/_includes/history.html`, `docs/assets/history.js` | The release chart (drawn in the browser from `releases.json`) |
-| `docs/_includes/brief.html` | The 7-day box, the release grid and the Latest brief |
+| `docs/_includes/brief.html` | The 7-day box, the release grid and the What matters this week card |
 | `docs/_includes/month.html` | The Last 30 days card |
 | `docs/_includes/theme-map.html` | A theme's release chips and week map |
 | `docs/assets/replay.js` | The replay line |

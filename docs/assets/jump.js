@@ -63,7 +63,7 @@
   //         stack: entry addresses this jump added to the history, color}
   var jump=null, ours=null, quietTip=false;
 
-  function backText(){return jump&&jump.a?'↑ Back to the brief':jump&&jump.c&&srcOf(jump.c)===m30?'↑ Back to the last 30 days':'↑ Back to the release grid'}
+  function backText(){return jump&&jump.a?'↑ Back to what matters this week':jump&&jump.c&&srcOf(jump.c)===m30?'↑ Back to the last 30 days':'↑ Back to the release grid'}
 
   function showTip(c){
     if(quietTip) return;

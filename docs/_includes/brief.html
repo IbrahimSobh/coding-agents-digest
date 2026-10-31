@@ -49,7 +49,7 @@
   </div></div>
   {% comment %} The latest brief: fixed, it does not change during a replay. {% endcomment %}
   <div class="card latest">
-    <div class="hero-top"><h2 class="k">Latest brief · <span class="upd" data-updated="{{ b.updated }}">updated {{ b.updated_label }}</span></h2><span class="pill">{{ rel_total }} release{% if rel_total != 1 %}s{% endif %} · {{ rel_active }} of {{ tracked.size }} tools active · <a href="#actions">{{ board_count }} open action{% if board_count != 1 %}s{% endif %} ↓</a></span></div>
+    <div class="hero-top"><h2 class="k">What matters this week · <span class="upd" data-updated="{{ b.updated }}">updated {{ b.updated_label }}</span></h2><span class="pill">{{ rel_total }} release{% if rel_total != 1 %}s{% endif %} · {{ rel_active }} of {{ tracked.size }} tools active · <a href="#actions">{{ board_count }} open action{% if board_count != 1 %}s{% endif %} ↓</a></span></div>
     <div class="themes">
       {% for th in b.themes %}
       <div class="theme"><span class="n">{% if b.themes.size > 1 %}{{ forloop.index }} · {% endif %}{{ th.tag }}</span><b>{{ th.title }}</b>

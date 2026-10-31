@@ -4,8 +4,9 @@
   noon is added so a clock change cannot move a day. It does not follow the Release activity buttons or
   the replay line. Squares jump to the update that explains the release (assets/jump.js), and the
   m30Data block gives jump.js the checks of these 30 days (the replay data only covers 7 days).
-  Needs today_s and tracked.
+  Needs today_s.
 {% endcomment %}
+{% assign tracked = site.data.tools | where: "tracked", true %}
 {% assign m_s = today_s | minus: 2505600 %}
 {% assign m_first = m_s | plus: 43200 %}
 {% assign m_last = m_s | plus: 2505600 | plus: 43200 %}

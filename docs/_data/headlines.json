@@ -31,5 +31,6 @@
  {"updated": "2026-10-29T22:13+03:00", "window": "Oct 22 to Oct 29, 2026", "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."},
  {"updated": "2026-10-30T08:38+02:00", "window": "Oct 23 to Oct 30, 2026", "headline": "Codex drops detached review/start, and headless runs in Claude Code and Antigravity CLI now report failures more clearly."},
  {"updated": "2026-10-30T23:41+02:00", "window": "Oct 23 to Oct 30, 2026", "headline": "Codex drops detached review/start, and Antigravity CLI 1.4.12 lets plugins run without an API key set."},
- {"updated": "2026-10-31T08:41+02:00", "window": "Oct 24 to Oct 31, 2026", "headline": "Codex drops detached review/start, and Antigravity CLI 1.4.12 lets plugins run without an API key set."}
+ {"updated": "2026-10-31T08:41+02:00", "window": "Oct 24 to Oct 31, 2026", "headline": "Codex drops detached review/start, and Antigravity CLI 1.4.12 lets plugins run without an API key set."},
+ {"updated": "2026-10-31T23:41+02:00", "window": "Oct 24 to Oct 31, 2026", "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."}
 ]

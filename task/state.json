@@ -1,12 +1,12 @@
 {
-  "last_run": "2026-10-31T08:41+02:00",
-  "last_entry_file": "docs/digests/2026-10-31-0841.md",
+  "last_run": "2026-10-31T23:41+02:00",
+  "last_entry_file": "docs/digests/2026-10-31-2341.md",
   "last_snapshot": "2026-10-29",
   "timezone": "Africa/Cairo",
   "tools": {
     "claude-code": {
-      "last_tag": "v2.1.314",
-      "last_release_date": "2026-10-30"
+      "last_tag": "v2.1.316",
+      "last_release_date": "2026-10-31"
     },
     "antigravity-cli": {
       "last_tag": "1.4.12",

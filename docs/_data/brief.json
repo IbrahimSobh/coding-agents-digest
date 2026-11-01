@@ -1,13 +1,13 @@
 {
- "updated": "2026-10-31T23:41+02:00",
- "updated_label": "Oct 31, 23:41",
- "window": "Oct 24 to Oct 31, 2026",
+ "updated": "2026-11-01T08:41+02:00",
+ "updated_label": "Nov 1, 08:41",
+ "window": "Oct 25 to Nov 1, 2026",
  "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start.",
  "themes": [
   {
    "tag": "Headless",
    "title": "Scripts get clearer failure signals",
-   "facts": "Claude Code 2.1.314 makes `claude -p` print the error and exit 1 when startup fails ([2.1.314](https://github.com/anthropics/claude-code/releases/tag/v2.1.314)), and Antigravity CLI 1.4.11 adds `finished_reason` to JSON and stream-json output so a cut-off answer shows ([1.4.11](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.11)). Antigravity CLI 1.4.7 also made headless `-p` runs much lighter ([1.4.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.7)).",
+   "facts": "Claude Code 2.1.314 makes `claude -p` print the error and exit 1 when startup fails ([2.1.314](https://github.com/anthropics/claude-code/releases/tag/v2.1.314)), and Antigravity CLI 1.4.11 adds `finished_reason` to JSON and stream-json output so a cut-off answer shows ([1.4.11](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.4.11)).",
    "so_what": "scripts that trust exit code 0 or the raw output should check these signals now."
   },
   {

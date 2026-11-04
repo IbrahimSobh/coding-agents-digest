@@ -73,7 +73,7 @@
   var dotBy={}; dots.forEach(function(d){dotBy[d.id]=d});
 
   // ---- view and state ----
-  var V0={yaw:0.35,pitch:-0.42}, V={yaw:V0.yaw,pitch:V0.pitch}, hover=null, sel=null, drag=null, vel=0, moved=0, anim=null, started=false, onscreen=false;
+  var V0={yaw:0.35,pitch:0.42}, V={yaw:V0.yaw,pitch:V0.pitch}, hover=null, sel=null, drag=null, vel=0, moved=0, anim=null, started=false, onscreen=false;
   var W=0,H=0,dpr=1,D=1900,SCALE=1,VS=1,picked=false,framePending=false; // VS = how much taller the ring is drawn than the view gives (phones)
   function P(x,y,z){
     var cy=Math.cos(V.yaw),sy=Math.sin(V.yaw),cp=Math.cos(V.pitch),sp=Math.sin(V.pitch);
@@ -106,7 +106,7 @@
     var r=box.getBoundingClientRect(); if(r.width<50) return;
     W=r.width; H=r.height;
     // narrow screens: a tighter ring and larger nodes; the scale makes the ring and the halos fit the width and the height
-    var narrow=W<600, pit=narrow?-0.9:-0.42; R=narrow?164:220; NS=narrow?1.45:1.3; VS=narrow?1.85:1;
+    var narrow=W<600, pit=narrow?0.9:0.42; R=narrow?164:220; NS=narrow?1.45:1.3; VS=narrow?1.85:1;
     toolN.forEach(function(t){t.x=Math.cos(t.ang)*R; t.z=Math.sin(t.ang)*R});
     SCALE=Math.min((W/2-6)/(R+(narrow?80:70)*NS),(H-20)/(2*R*Math.abs(Math.sin(pit))*VS+60+110*NS));
     if(!picked){picked=true; V0.pitch=pit; V.pitch=V0.pitch; V0.yaw=bestYaw(); V.yaw=V0.yaw}

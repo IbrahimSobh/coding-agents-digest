@@ -104,9 +104,9 @@
     var r=box.getBoundingClientRect(); if(r.width<50) return;
     W=r.width; H=r.height;
     // narrow screens: a tighter ring and larger nodes; the scale makes the ring and the halos fit the width and the height
-    var narrow=W<600; R=narrow?160:190; NS=narrow?1.25:1;
+    var narrow=W<600; R=narrow?135:165; NS=narrow?1.45:1.3;
     toolN.forEach(function(t){t.x=Math.cos(t.ang)*R; t.z=Math.sin(t.ang)*R});
-    SCALE=Math.min((W/2-6)/(R+102*NS),(H-20)/(300*NS+20));
+    SCALE=Math.min((W/2-6)/(R+102*NS),(H-20)/(150+150*NS+20));
     if(!picked){picked=true; V0.pitch=narrow?-0.9:-0.42; V.pitch=V0.pitch; V0.yaw=bestYaw(); V.yaw=V0.yaw}
     cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); draw();
   }

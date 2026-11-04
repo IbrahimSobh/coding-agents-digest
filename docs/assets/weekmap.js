@@ -108,7 +108,7 @@
     return s;
   }
   function draw(){
-    if(!W||!onscreen&&started) return;
+    if(!W) return; // drawing follows the reader's actions and resizes, so nothing runs while the card is off screen
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
     var ink=css('--ink'),bg=css('--card2'),soft=css('--soft'),amber=css('--amber'),items=[],rel=related(),f=sel||hover;
     // the ring on the floor
@@ -249,7 +249,8 @@
     if(drag){var dx=e.clientX-drag.x; moved+=Math.abs(dx); V.yaw+=dx*.009; vel=dx*.009; drag.x=e.clientX; tip.hidden=true; redraw(); return}
     var h=hit(p[0],p[1]);
     if(!same(h,hover)){hover=h; cv.classList.toggle('hit',!!h); redraw()}
-    if(h){
+    // no tooltip over the thing that is already open in the panel
+    if(h&&!same(h,sel)){
       tip.innerHTML=h.k==='tool'?toolTip(h.tn):dotTip(h.d); tip.hidden=false;
       var w=tip.offsetWidth,hh=tip.offsetHeight; tip.style.left=Math.min(W-w-8,Math.max(8,p[0]+14))+'px'; tip.style.top=(p[1]+16+hh>H?p[1]-hh-12:p[1]+16)+'px';
     } else tip.hidden=true;

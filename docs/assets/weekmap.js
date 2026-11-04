@@ -260,7 +260,7 @@
   cv.addEventListener('pointerdown',function(e){cv.setPointerCapture(e.pointerId); drag={x:e.clientX}; moved=0; stopAnim(); vel=0; cv.classList.add('drag')});
   cv.addEventListener('pointermove',function(e){
     var p=pos(e);
-    if(drag){var dx=e.clientX-drag.x; moved+=Math.abs(dx); V.yaw+=dx*.009; vel=dx*.009; drag.x=e.clientX; tip.hidden=true; redraw(); return}
+    if(drag){var dx=e.clientX-drag.x; moved+=Math.abs(dx); V.yaw-=dx*.009; vel=-dx*.009; drag.x=e.clientX; tip.hidden=true; redraw(); return}
     var h=hit(p[0],p[1]);
     if(!same(h,hover)){hover=h; cv.classList.toggle('hit',!!h); redraw()}
     // no tooltip over the thing that is already open in the panel
@@ -280,7 +280,7 @@
   cv.addEventListener('dblclick',reset);
   cv.addEventListener('keydown',function(e){
     var k=e.key,used=true;
-    if(k==='ArrowLeft') V.yaw-=.14; else if(k==='ArrowRight') V.yaw+=.14; else if(k==='0') reset(); else if(k==='Escape') pick(null); else used=false;
+    if(k==='ArrowLeft') V.yaw+=.14; else if(k==='ArrowRight') V.yaw-=.14; else if(k==='0') reset(); else if(k==='Escape') pick(null); else used=false;
     if(used){e.preventDefault(); redraw()}
   });
   resetBtn.onclick=reset;

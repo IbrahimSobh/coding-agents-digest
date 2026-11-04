@@ -56,7 +56,7 @@
     group('histShape',[['Smooth','smooth'],['Steps','steps']],shape,function(v){shape=v;draw()},len>1&&mode==='cum');
 
     var from=N-len, ds=days.slice(from);
-    document.getElementById('histTitle').textContent='Release activity · '+(len===1?fmt(ds[0],true):fmt(ds[0],true)+' to '+fmt(ds[len-1],true));
+    document.getElementById('histTitleText').textContent='Release activity · '+(len===1?fmt(ds[0],true):fmt(ds[0],true)+' to '+fmt(ds[len-1],true));
 
     var lg=document.getElementById('histLegend'), lk=focusKey(lg);
     lg.innerHTML='';

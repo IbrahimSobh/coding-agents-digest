@@ -6,7 +6,7 @@
 {% endcomment %}
 {% assign hist_tools = site.data.tools | where: "tracked", true %}
 <section id="history" class="hist card">
-  <h2 class="k" id="histTitle">Release activity</h2>
+  <h2 class="k" id="histTitle"><span id="histTitleText">Release activity</span> · <span class="upd" data-updated="{{ site.data.brief.updated }}">updated {{ site.data.brief.updated_label }}</span></h2>
   <div class="hctl">
     <div class="hgrp" id="histRange" role="group" aria-label="Time range"></div>
     <span class="hsep"></span>

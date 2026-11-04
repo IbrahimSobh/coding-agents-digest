@@ -16,7 +16,7 @@
 {% assign rel_rows = rel_list | split: "|" %}
 <section id="brief">
   <div class="hero"><div class="hero-in">
-    <div class="hero-top"><span class="k">📊 Last 7 days · {{ b.window }} · <span class="upd" data-updated="{{ b.updated }}">updated {{ b.updated_label }}</span></span></div>
+    <div class="hero-top"><span class="k">📊 Last 7 days · {{ b.window }}</span></div>
     <h1 id="rpHead">{{ b.headline }}</h1>
     {% comment %}
       Release grid: one row per tool, one column per day of the 7-day window (8 calendar days,

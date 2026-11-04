@@ -20,9 +20,7 @@
   function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
   function rgba(hex,a){var n=parseInt(hex.slice(1),16);return 'rgba('+(n>>16)+','+(n>>8&255)+','+(n&255)+','+a+')'}
   // a glass bubble: see-through colored shell, a crescent of light, a thin rim
-  var gbase='#10151f';
   function glass(x,y,r,col,solid){
-    ctx.fillStyle=gbase; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill(); // opaque base: a node in front hides what is behind it
     var g=ctx.createRadialGradient(x,y+r*.15,r*.35,x,y,r);
     g.addColorStop(0,rgba(col,solid?.5:.18)); g.addColorStop(.75,rgba(col,solid?.85:.5)); g.addColorStop(1,rgba(col,.95));
     ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill();
@@ -124,7 +122,7 @@
   function draw(){
     if(!W) return; // drawing follows the reader's actions and resizes, so nothing runs while the card is off screen
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    var ink=css('--ink'),bg=gbase=css('--card2'),soft=css('--soft'),amber=css('--amber'),items=[],rel=related(),f=sel||hover;
+    var ink=css('--ink'),bg=css('--card2'),soft=css('--soft'),amber=css('--amber'),items=[],rel=related(),f=sel||hover;
     // the ring on the floor
     ctx.strokeStyle='rgba(138,147,166,.2)'; ctx.lineWidth=1.2; ctx.beginPath();
     for(var i=0;i<=80;i++){var a=i/80*Math.PI*2,p=P(Math.cos(a)*R,26,Math.sin(a)*R); i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)}

@@ -21,7 +21,7 @@
     </div>
     <div class="wk-side" id="wkSide" hidden></div>
   </div>
-  <p class="wk-legend" aria-hidden="true"><span class="wk-lk"><i></i>One release</span><span class="wk-lk"><em>!</em>Needs action</span><span>The number after a tool's name is its releases this week.</span></p>
+  <p class="wk-legend" aria-hidden="true"><span class="wk-lk"><i></i>One release</span><span class="wk-lk"><em>!</em>Needs action</span><span>A tool with no dots had no releases this week.</span></p>
   <ul class="wk-list" id="wkList">
     {% for t in tracked %}{% assign wk_has = false %}
     <li><b>{{ t.short | default: t.name }}</b>: {% for r in site.data.releases %}{% if r.tool == t.id and r.date >= start_day and r.date <= wk_end %}{% if wk_has %}, {% endif %}{% assign wk_has = true %}<a href="https://github.com/{{ t.repo }}/releases/tag/{{ r.tag }}">{{ r.tag }}</a> ({{ r.date | date: "%b %-d" }}){% endif %}{% endfor %}{% unless wk_has %}no releases this week{% endunless %}</li>

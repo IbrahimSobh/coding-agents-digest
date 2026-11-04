@@ -61,7 +61,7 @@
   toolN.forEach(function(tn){
     var shown=tn.all.length>MAXDOTS?MAXDOTS:tn.all.length;
     for(var i=0;i<shown;i++){
-      var more=tn.all.length>MAXDOTS&&i===MAXDOTS-1, r=tn.all[i];
+      var big=tn.all.length>MAXDOTS, more=big&&i===MAXDOTS-1, r=big?(more?tn.all[0]:tn.all[tn.all.length-(MAXDOTS-1)+i]):tn.all[i]; // with many releases the dots are the newest ones, and the +N dot stands for the older ones
       var ring=i<5?0:1, idx=ring?i-5:i, cnt=ring?shown-5:Math.min(shown,5);
       var step=cnt>1?Math.min(34,150/(cnt-1))*Math.PI/180:0;
       var d={r:r,tn:tn,id:r.tool+'|'+r.tag,more:more,extra:tn.all.length-(MAXDOTS-1),a:-Math.PI/2+(idx-(cnt-1)/2)*step,ring:ring,rad:r.action?9.5:8.5,sx:0,sy:0,sr:0};
@@ -182,9 +182,12 @@
     if(sel.k==='tool'||sel.d.more){
       var tn=sel.k==='tool'?sel.tn:sel.d.tn;
       h='<div class="wk-panel"><button type="button" class="wk-x" id="wkX">← Close</button><h3><img src="'+esc(tn.t.logo)+'" alt="">'+esc(tn.t.short)+'</h3><div class="m">'+(tn.n?tn.n+' release'+(tn.n===1?'':'s')+' this week':'No releases this week. Nothing to open here.')+'</div>';
-      if(tn.n){h+='<ul>'; tn.all.slice().reverse().forEach(function(r){h+='<li><button type="button" data-id="'+esc(r.tool+'|'+r.tag)+'"><b>'+esc(r.tag)+'</b><span class="m">'+day(r.date)+'</span>'+(r.action?'<span class="w">!</span>':'')+'</button></li>'}); h+='</ul>'}
+      if(tn.n>8){ // many releases: one line of chips per day, so the panel stays shorter than the card
+        var gs=[],gi={}; tn.all.slice().reverse().forEach(function(r){if(!(r.date in gi)){gi[r.date]=gs.length; gs.push({date:r.date,rs:[]})} gs[gi[r.date]].rs.push(r)});
+        gs.forEach(function(g){h+='<div class="wk-grp"><div class="wk-gd">'+day(g.date)+'</div><div class="wk-chips">'+g.rs.map(function(r){return '<button type="button" data-id="'+esc(r.tool+'|'+r.tag)+'">'+esc(r.tag)+(r.action?' <span class="w">!</span>':'')+'</button>'}).join('')+'</div></div>'});
+      } else if(tn.n){h+='<ul>'; tn.all.slice().reverse().forEach(function(r){h+='<li><button type="button" data-id="'+esc(r.tool+'|'+r.tag)+'"><b>'+esc(r.tag)+'</b><span class="m">'+day(r.date)+'</span>'+(r.action?'<span class="w">!</span>':'')+'</button></li>'}); h+='</ul>'}
       side.innerHTML=h+'</div>';
-      [].forEach.call(side.querySelectorAll('li button'),function(b){
+      [].forEach.call(side.querySelectorAll('li button,.wk-chips button'),function(b){
         var id=b.dataset.id;
         // a release that has no dot of its own (past the first few) is shown from its tool
         b.onclick=function(){pick({k:'dot',d:dotBy[id]||{id:id,r:rels.filter(function(r){return r.tool+'|'+r.tag===id})[0],tn:tn,more:false,sr:10}})};
@@ -206,6 +209,7 @@
   // The panel opens beside what was clicked, on the side with room, and follows it while the scene turns
   function placeSide(){
     if(!sel||side.hidden||getComputedStyle(side).position==='static') return;
+    var pn=side.firstChild; if(pn&&pn.style) pn.style.maxHeight=(H-16)+'px'; // a very long list scrolls inside the panel, so the panel never grows taller than the card
     var ax,ay,ar;
     if(sel.k==='tool'){ax=sel.tn.sx;ay=sel.tn.sy;ar=sel.tn.sr*(sel.tn.n?1.95:1.25)+10}
     else if(!dotBy[sel.d.id]){ax=sel.d.tn.sx;ay=sel.d.tn.sy;ar=sel.d.tn.sr*1.95+10}

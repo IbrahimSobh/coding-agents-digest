@@ -165,13 +165,19 @@ a.tbtn:hover{border-color:var(--muted)}
 .wk-side::before{content:"";position:absolute;top:var(--ay,30px);width:13px;height:13px;margin-top:-7px;background:var(--card2);border:1px solid var(--line);transform:rotate(45deg);z-index:3}
 .wk-side.r::before{left:-7px;border-right:0;border-top:0}
 .wk-side.l::before{right:-7px;border-left:0;border-bottom:0}
-.wk-panel{position:relative;z-index:2;border:1px solid var(--line);border-radius:14px;background:var(--card2);padding:12px 14px;font-size:13.5px}
+.wk-panel{overflow-y:auto;overscroll-behavior:contain;position:relative;z-index:2;border:1px solid var(--line);border-radius:14px;background:var(--card2);padding:12px 14px;font-size:13.5px}
 .wk-panel h3{display:flex;align-items:center;gap:8px;margin:0;font-size:16px;line-height:1.3}
 .wk-panel h3 img{width:24px;height:24px;border-radius:6px;background:#fff;padding:3px;box-sizing:border-box}
 .wk-panel .wk-t{margin:8px 0 4px}
 .wk-panel ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
 .wk-panel li button{all:unset;box-sizing:border-box;display:flex;gap:8px;align-items:baseline;width:100%;padding:6px 8px;border-radius:9px;cursor:pointer}
 .wk-panel li button:hover{background:var(--card)}
+.wk-grp{margin-top:10px}.wk-gd{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.wk-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.wk-chips button{all:unset;box-sizing:border-box;cursor:pointer;font-size:13px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.wk-chips button:hover{border-color:var(--muted)}
+.wk-chips button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.wk-chips .w{margin-left:2px}
 .wk-x{all:unset;cursor:pointer;display:inline-block;margin:0 0 8px;font-size:13px;font-weight:700;color:var(--muted)}
 .wk-x:hover{color:var(--ink)}
 .wk-btn{display:inline-block;margin-top:10px;padding:6px 12px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}

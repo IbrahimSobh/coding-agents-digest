@@ -23,6 +23,11 @@ Not a list of changelogs: the changes that matter, one sentence each with a sour
   with a way back ("Back to the last 30 days"). A square that no update explains (older than the
   site's first update on Oct 22, or missed by a check) opens the newest release of that day on
   GitHub, in a new tab.
+- **This week at a glance:** the tools on a 3D ring, each with its releases of the last 7 days in a
+  halo above it (the same window as the Last 7 days grid). Drag left or right to turn it, hover to
+  preview a tool or a release, click to open a panel beside it, and click a release again to jump to
+  its update ("Back to this week at a glance"), or to GitHub when no update explains it. A text list
+  of the same facts is under it for screen readers and for readers without JavaScript.
 - **Last 7 days:** the week's headline and the release grid (one row per tool, one column per
   day; a box sits on the day a release was published).
   - **Replay line:** click or drag along the line to see what each past check knew. The green
@@ -94,6 +99,7 @@ text, and it gets no chip.
 | `docs/_includes/history.html`, `docs/assets/history.js` | The release chart (drawn in the browser from `releases.json`) |
 | `docs/_includes/brief.html` | The 7-day box, the release grid and the What matters this week card |
 | `docs/_includes/month.html` | The Last 30 days card |
+| `docs/_includes/week-map.html`, `docs/assets/weekmap.js` | The This week at a glance card (data in Liquid, drawing in a plain canvas) |
 | `docs/_includes/theme-map.html` | A theme's release chips and week map |
 | `docs/assets/replay.js` | The replay line |
 | `docs/assets/jump.js` | Release box tooltips, and the jump from a box or chip to its update |

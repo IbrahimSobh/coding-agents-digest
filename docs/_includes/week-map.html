@@ -1,0 +1,33 @@
+{% comment %}
+  "This week at a glance": the five tools on a ring, each with its releases of the last 7 days around it
+  (drawn by assets/weekmap.js). The data is counted here from _data/releases.json, _data/tools.yml and
+  _data/actions.json, in the same window as the 7-day grid: from start_day to the day of the last check
+  (today_s), compared as YYYY-MM-DD text, never as seconds, so a clock change or a push after midnight cannot
+  move it. Without the script the card is a plain list. Needs today_s, cutoff_s and start_day.
+{% endcomment %}
+{% assign tracked = site.data.tools | where: "tracked", true %}
+{% assign wk_end = today_s | plus: 43200 | date: "%Y-%m-%d" %}
+{% assign wk_n = 0 %}{% assign wk_active = 0 %}
+{% for t in tracked %}{% assign wk_c = 0 %}{% for r in site.data.releases %}{% if r.tool == t.id and r.date >= start_day and r.date <= wk_end %}{% assign wk_c = wk_c | plus: 1 %}{% endif %}{% endfor %}{% assign wk_n = wk_n | plus: wk_c %}{% if wk_c > 0 %}{% assign wk_active = wk_active | plus: 1 %}{% endif %}{% endfor %}
+<section id="wk" class="card wk" aria-labelledby="wkTitle">
+  <div class="wk-head"><h2 class="k" id="wkTitle">This week at a glance · {{ cutoff_s | plus: 43200 | date: "%b %-d" }} to {{ today_s | plus: 43200 | date: "%b %-d" }}</h2><span class="pill">{{ wk_n }} release{% if wk_n != 1 %}s{% endif %} · {{ wk_active }} of {{ tracked.size }} tools active</span></div>
+  <p class="wk-sub">Each large sphere is a tool, and the dots around it are its releases of the week. Drag left or right to turn it, hover to preview, click to open.</p>
+  <div class="wk-stage">
+    <div class="wk-cv" id="wkCv" hidden>
+      <canvas id="wkC" tabindex="0" role="img" aria-label="The tools with their releases of this week, as spheres and dots. The arrow keys turn it, 0 resets it, Escape clears it. The same facts are in the list below."></canvas>
+      <button type="button" class="wk-reset" id="wkReset">Reset</button>
+      <p class="wk-hint" aria-hidden="true">Drag to turn · hover to preview · click to open</p>
+      <div class="wk-tip" id="wkTip" hidden></div>
+    </div>
+    <div class="wk-side" id="wkSide" hidden></div>
+  </div>
+  <p class="wk-legend" aria-hidden="true"><span class="wk-lk"><i></i>One release</span><span class="wk-lk"><em>!</em>Needs action</span><span>The number after a tool's name is its releases this week.</span></p>
+  <ul class="wk-list" id="wkList">
+    {% for t in tracked %}{% assign wk_has = false %}
+    <li><b>{{ t.short | default: t.name }}</b>: {% for r in site.data.releases %}{% if r.tool == t.id and r.date >= start_day and r.date <= wk_end %}{% if wk_has %}, {% endif %}{% assign wk_has = true %}<a href="https://github.com/{{ t.repo }}/releases/tag/{{ r.tag }}">{{ r.tag }}</a> ({{ r.date | date: "%b %-d" }}){% endif %}{% endfor %}{% unless wk_has %}no releases this week{% endunless %}</li>
+    {% endfor %}
+  </ul>
+  <script type="application/json" id="wkData">{"tools": [{% for t in tracked %}{"id": {{ t.id | jsonify }}, "name": {{ t.name | jsonify }}, "short": {{ t.short | default: t.name | jsonify }}, "color": {{ t.color | jsonify }}, "logo": {{ '/assets/logos/' | append: t.logo | relative_url | jsonify }}, "fill": {% if t.logo_fill %}true{% else %}false{% endif %}, "repo": {{ t.repo | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}],
+    "releases": [{% assign wk_first = true %}{% for r in site.data.releases %}{% if r.date >= start_day and r.date <= wk_end %}{% assign wk_t = tracked | where: "id", r.tool | first %}{% if wk_t %}{% assign wk_rv = r.tag | remove_first: "rust-v" | remove_first: "v" %}{% assign wk_ac = false %}{% assign wk_dl = "" %}{% for a in site.data.actions %}{% unless a.dismissed %}{% if a.tool == r.tool %}{% assign wk_av = a.version | remove_first: "rust-v" | remove_first: "v" %}{% if wk_av == wk_rv %}{% assign wk_ac = true %}{% if a.deadline %}{% assign wk_dl = a.deadline %}{% endif %}{% endif %}{% endif %}{% endunless %}{% endfor %}{% unless wk_first %},{% endunless %}{% assign wk_first = false %}{"tool": {{ r.tool | jsonify }}, "tag": {{ r.tag | jsonify }}, "date": {{ r.date | jsonify }}, "action": {% if wk_ac %}{"deadline": {{ wk_dl | jsonify }}}{% else %}null{% endif %}}{% endif %}{% endif %}{% endfor %}]}</script>
+</section>
+<script src="{{ '/assets/weekmap.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>

@@ -104,7 +104,7 @@
     var r=box.getBoundingClientRect(); if(r.width<50) return;
     W=r.width; H=r.height;
     // narrow screens: a tighter ring and larger nodes; the scale makes the ring and the halos fit the width and the height
-    var narrow=W<600, pit=narrow?0.9:0.42; R=narrow?164:220; NS=narrow?1.45:1.3; VS=narrow?1.85:1;
+    var narrow=W<600, pit=narrow?0.9:0.42; R=narrow?164:220; NS=narrow?1.45:1.3; VS=narrow?1.85:1; BEND=narrow?1.4:1.8;
     toolN.forEach(function(t){t.x=Math.cos(t.ang)*R; t.z=Math.sin(t.ang)*R});
     SCALE=Math.min((W/2-6)/(R+(narrow?80:70)*NS),(H-20)/(2*R*Math.abs(Math.sin(pit))*VS+60+110*NS));
     if(!picked){picked=true; V0.pitch=pit; V.pitch=V0.pitch; V0.yaw=bestYaw(); V.yaw=V0.yaw}
@@ -119,20 +119,60 @@
     else {s.dots[f.d.id]=1; s.tools[f.d.tn.t.id]=1}
     return s;
   }
+  // ---- the floor: a grid that bends into a dip at every tool (deeper for more releases), with the orbit sinking along it ----
+  var BEND=1.8; // how deep the dips are (phones: less)
+  function wy(x,z){var d=0; toolN.forEach(function(tn){var q=(x-tn.x)*(x-tn.x)+(z-tn.z)*(z-tn.z),sg=R*.3; d+=BEND*(16+14*Math.sqrt(tn.n))*Math.exp(-q/(2*sg*sg))}); return d}
+  var GRAY=[138,147,166];
+  function tint(x,z){ // the gray of the floor, pulled toward the color of the tools near this point
+    var w=0,c=[0,0,0]; toolN.forEach(function(tn){var q=(x-tn.x)*(x-tn.x)+(z-tn.z)*(z-tn.z),sg=R*.3,k=Math.exp(-q/(2*sg*sg)),h=parseInt(tn.t.color.slice(1),16); w+=k; c[0]+=k*(h>>16); c[1]+=k*(h>>8&255); c[2]+=k*(h&255)});
+    var m=1/(1+2*w); return {w:w,c:[0,1,2].map(function(j){return Math.round((GRAY[j]+2*c[j])*m)})};
+  }
+  // The grid does not move (only the view turns), so its points, dips and colors are worked out once per size and bend
+  var fab=null,fabKey='';
+  function fabBuild(){
+    var L=R*1.75,S=40,k; fab=[]; fabKey=R+'|'+BEND;
+    function line(f){
+      var pts=[],segs=[],j; for(j=0;j<=S;j++){var q=f(-L+2*L*j/S); pts.push({x:q[0],z:q[1],y:26+wy(q[0],q[1])})}
+      for(j=0;j<S;j++){var mx=(pts[j].x+pts[j+1].x)/2,mz=(pts[j].z+pts[j+1].z)/2,e=1-Math.hypot(mx,mz)/L; if(e>0){var cc=tint(mx,mz); segs.push({j:j,e:e,w:cc.w,c:cc.c.join(',')})}}
+      fab.push({pts:pts,segs:segs});
+    }
+    for(k=-8;k<=8;k++){(function(g){line(function(u){return [g,u]}); line(function(u){return [u,g]})})(k*R*.22)}
+  }
+  function fabric(zmin,zmax){
+    if(fabKey!==R+'|'+BEND) fabBuild();
+    fab.forEach(function(ln){
+      var pp=ln.pts.map(function(q){return P(q.x,q.y,q.z)});
+      ln.segs.forEach(function(sg){
+        var a=pp[sg.j],b=pp[sg.j+1],t=Math.max(0,Math.min(1,1-((a.z+b.z)/2-zmin)/((zmax-zmin)||1)));
+        ctx.strokeStyle='rgba('+sg.c+','+((.1+.5*sg.w)*(.3+.7*t)*Math.min(1,sg.e*2.2)).toFixed(3)+')'; ctx.lineWidth=.9+.8*t; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      });
+    });
+  }
+  // the orbit takes the colors of the tools it passes; the near side is brighter and thicker, the far side fainter and thinner
+  function drawRing(){
+    var N=96,pts=[],i,zmin=1e9,zmax=-1e9,n=toolN.length;
+    for(i=0;i<=N;i++){var a=i/N*Math.PI*2,q=P(Math.cos(a)*R,26+wy(Math.cos(a)*R,Math.sin(a)*R),Math.sin(a)*R); pts.push(q); zmin=Math.min(zmin,q.z); zmax=Math.max(zmax,q.z)}
+    ctx.lineCap='round'; ctx.lineJoin='round';
+    fabric(zmin,zmax);
+    for(i=0;i<N;i++){
+      var t=1-((pts[i].z+pts[i+1].z)/2-zmin)/((zmax-zmin)||1),u=((i+.5)/N*Math.PI*2-toolN[0].ang)/(Math.PI*2/n),k0=Math.floor(u),f=u-k0,
+          c1=parseInt(toolN[((k0%n)+n)%n].t.color.slice(1),16),c2=parseInt(toolN[(((k0+1)%n)+n)%n].t.color.slice(1),16),
+          c=[16,8,0].map(function(sh){var x=c1>>sh&255,y=c2>>sh&255; return Math.round(x+(y-x)*f)});
+      ctx.strokeStyle='rgba('+c.join(',')+','+(.15+.7*t).toFixed(3)+')'; ctx.lineWidth=1+2.4*t; ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[i+1].x,pts[i+1].y); ctx.stroke();
+    }
+  }
   function draw(){
     if(!W) return; // drawing follows the reader's actions and resizes, so nothing runs while the card is off screen
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
     var ink=css('--ink'),bg=css('--card2'),soft=css('--soft'),amber=css('--amber'),items=[],rel=related(),f=sel||hover;
     // the ring on the floor
-    ctx.strokeStyle='rgba(138,147,166,.2)'; ctx.lineWidth=1.2; ctx.beginPath();
-    for(var i=0;i<=80;i++){var a=i/80*Math.PI*2,p=P(Math.cos(a)*R,26,Math.sin(a)*R); i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)}
-    ctx.stroke();
+    drawRing();
     toolN.forEach(function(tn){
       var p=P(tn.x,0,tn.z), r=tn.r*p.s*1.35*NS, on=!rel||rel.tools[tn.t.id];
       tn.sx=p.x; tn.sy=p.y; tn.sr=r;
       items.push({z:p.z,draw:function(){
         ctx.save(); ctx.globalAlpha=(on?1:.3)*Math.max(.55,Math.min(1,1-p.z/700));
-        var sh=P(tn.x,26,tn.z); ctx.fillStyle='rgba(0,0,0,.22)'; ctx.beginPath(); ctx.ellipse(sh.x,sh.y,r*.95,r*.3,0,0,7); ctx.fill();
+        var sh=P(tn.x,26+wy(tn.x,tn.z),tn.z); ctx.fillStyle='rgba(0,0,0,.22)'; ctx.beginPath(); ctx.ellipse(sh.x,sh.y,r*.95,r*.3,0,0,7); ctx.fill();
         glass(p.x,p.y,r,tn.t.color);
         var tr=r*.62; ctx.fillStyle='rgba(255,255,255,.93)'; ctx.beginPath(); ctx.arc(p.x,p.y,tr,0,7); ctx.fill();
         if(tn.img.complete&&tn.img.naturalWidth){ctx.save(); ctx.beginPath(); ctx.arc(p.x,p.y,tr,0,7); ctx.clip(); var sz=tn.t.fill?tr*2:tr*1.3; ctx.drawImage(tn.img,p.x-sz/2,p.y-sz/2,sz,sz); ctx.restore()}

@@ -159,13 +159,6 @@
       }});
     });
     items.sort(function(a,b){return b.z-a.z}).forEach(function(it){it.draw()});
-    // the names go last, so no halo can cover them
-    toolN.forEach(function(tn){
-      var p=P(tn.x,0,tn.z), on=!rel||rel.tools[tn.t.id];
-      ctx.save(); ctx.globalAlpha=(on?1:.4)*Math.max(.6,Math.min(1,1-p.z/700));
-      ctx.font='700 12.5px '+FONT; ctx.textAlign='center'; ctx.textBaseline='top'; ctx.lineJoin='round'; ctx.lineWidth=5; ctx.strokeStyle=bg;
-      var lab=tn.t.short, ly=tn.sy+tn.sr+5; ctx.strokeText(lab,tn.sx,ly); ctx.fillStyle=tn.n?ink:soft; ctx.fillText(lab,tn.sx,ly); ctx.restore();
-    });
     placeSide();
   }
   // draw once per frame, whatever the number of events

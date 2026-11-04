@@ -1,7 +1,8 @@
 // Release boxes in the 7-day grid and the squares of the 30-day card (#m30): a tooltip on hover or focus
 // says which update explains each release, and a click (or Enter) jumps to the "Daily updates" entry that
 // first linked it. The way back says where the reader came from: the release grid or the last 30 days.
-// A release chip in the Latest brief jumps the same way, and its way back is the brief.
+// A release chip in the Latest brief jumps the same way, and its way back is the brief. The "This week at a
+// glance" card (assets/weekmap.js) opens an update through window.cadJump and names itself as the way back.
 // The entry gets a frame and a jump bar on top: "Back to the release grid", and for a box with
 // several releases "release 1 of 2" with Previous / Next to the other releases' entries.
 // The jump lasts while the URL points at the entry (#run-YYYYMMDDHHMM); going back ends it.
@@ -9,7 +10,7 @@
 (function(){
   var dataEl=document.getElementById('rpData'), box=document.getElementById('replay');
   if(!dataEl||!box) return;
-  var m30=document.getElementById('m30'), m30El=document.getElementById('m30Data');
+  var m30=document.getElementById('m30'), m30El=document.getElementById('m30Data'), wk=document.getElementById('wk');
   var cells=[].slice.call(box.querySelectorAll('.rg-c[data-tags]'));
   if(m30) cells=cells.concat([].slice.call(m30.querySelectorAll('.m30-c[data-tags]')));
   if(!cells.length) return;
@@ -64,7 +65,9 @@
   //         stack: entry addresses this jump added to the history, color}
   var jump=null, ours=null, quietTip=false;
 
-  function backText(){return jump&&jump.a?'↑ Back to what matters this week':jump&&jump.c&&srcOf(jump.c)===m30?'↑ Back to the last 30 days':'↑ Back to the release grid'}
+  // The block the reader came from: the card named in the jump (this week at a glance), the 30-day card or the grid
+  function srcFor(j){return j.o?j.o.el:j.c?srcOf(j.c):box}
+  function backText(){return jump&&jump.o?jump.o.back:jump&&jump.a?'↑ Back to what matters this week':jump&&jump.c&&srcOf(jump.c)===m30?'↑ Back to the last 30 days':'↑ Back to the release grid'}
 
   function showTip(c){
     if(quietTip) return;
@@ -138,14 +141,16 @@
   }
   // scroll = true when there is no history step back to the grid (a shared link)
   function end(scroll){
-    var c=jump&&(jump.a||jump.c), src=jump&&jump.c?srcOf(jump.c):box;
+    var o=jump&&jump.o, c=jump&&!o&&(jump.a||jump.c), src=jump?srcFor(jump):box;
     clear(); chip.hidden=true; jump=null;
     if(scroll){history.replaceState(null,'',location.pathname+location.search); src.scrollIntoView({block:'center'})}
     // Focus returns to the box (focus fires synchronously, so the flag only skips this one tooltip)
     if(c&&!location.hash){quietTip=true; c.focus({preventScroll:true}); quietTip=false}
+    else if(o&&!location.hash&&o.focus) o.focus();
   }
-  // a = the chip clicked in the Latest brief, for a jump to its own release of the box
-  function go(c,a){
+  // a = the chip clicked in the Latest brief, for a jump to its own release of the box;
+  // o = {back, el, tag, focus} when another card sends the reader (its way-back text, the card, the release)
+  function go(c,a,o){
     hideTip();
     var rel=list(c);
     // no update explains any release of this box (or its entry is not on the page): open the newest one on GitHub
@@ -157,8 +162,9 @@
     // A filter on another tool would hide the entry's lines: show all tools first
     var on=document.querySelector('#filters .chip.on');
     if(on&&on.dataset.f!=='all'&&on.dataset.f!==c.dataset.tool){var all=document.querySelector('#filters [data-f="all"]'); if(all) all.click()}
-    jump={c:c, a:a, rel:rel, idx:0, stack:[], color:c.style.getPropertyValue('--c')};
-    if(a) rel.forEach(function(r,i){if(r.tag===a.dataset.tag) jump.idx=i});
+    jump={c:c, a:a, o:o, rel:rel, idx:0, stack:[], color:c.style.getPropertyValue('--c')};
+    var want=a?a.dataset.tag:o&&o.tag;
+    if(want) rel.forEach(function(r,i){if(r.tag===want) jump.idx=i});
     setHash(idOf(rel[0].at),render());
     chip.hidden=false;
   }
@@ -187,9 +193,9 @@
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){vis[e.target.id]=e.isIntersecting});
-      if(jump) chip.hidden=!!vis[(jump.c?srcOf(jump.c):box).id];
+      if(jump) chip.hidden=!!vis[srcFor(jump).id];
     });
-    io.observe(box); if(m30) io.observe(m30);
+    io.observe(box); if(m30) io.observe(m30); if(wk) io.observe(wk);
   }
 
   cells.forEach(function(c){
@@ -221,4 +227,11 @@
     });
   });
   fromHash(false);
+  // What the "This week at a glance" card needs: which entry explains a release, and how to jump to it
+  window.cadJump={
+    firstAt:function(tag){return first[tag]||null},
+    explained:function(tag){var at=first[tag]; return !!(at&&document.getElementById(idOf(at)))},
+    cellFor:function(tool,tag){return cells.filter(function(x){return box.contains(x)&&x.dataset.tool===tool&&x.dataset.tags.split(' ').indexOf(tag)>-1})[0]},
+    go:go
+  };
 })();

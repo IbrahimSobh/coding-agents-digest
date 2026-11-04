@@ -127,7 +127,7 @@ a.tbtn:hover{border-color:var(--muted)}
 }
 .m30{padding:14px 16px 14px}
 /* the first three boxes (Release activity, Last 30 days, Last 7 days) sit closer together */
-#m30,#brief{margin-top:14px}
+#m30,#wk,#brief{margin-top:14px}
 .m30-head{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;flex-wrap:wrap;margin-bottom:10px}
 .m30-head .k{margin:0}
 /* Releases of the last 30 days: logo x day, a moving window ending on the latest check day (_includes/month.html) */
@@ -143,6 +143,55 @@ a.tbtn:hover{border-color:var(--muted)}
 .m30-c[data-tags]{cursor:pointer}
 .m30-c.nogo{cursor:default}
 .m30-c[data-tags]:hover,.m30-c[data-tags]:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
+/* This week at a glance: tools on a ring with their releases around them (_includes/week-map.html, assets/weekmap.js) */
+.wk{padding:14px 16px 16px}
+.wk-head{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;flex-wrap:wrap}
+.wk-sub{margin:4px 0 12px;font-size:13px;color:var(--soft)}
+.wk-stage{position:relative}
+.wk-cv{position:relative;height:540px;border:1px solid var(--line);border-radius:14px;background:var(--card2);overflow:hidden}
+.wk-cv canvas{display:block;width:100%;height:100%;cursor:grab;touch-action:pan-y}
+.wk-cv canvas.drag{cursor:grabbing}
+.wk-cv canvas.hit{cursor:pointer}
+.wk-cv canvas:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+.wk-reset{position:absolute;top:8px;right:8px;z-index:3;height:32px;padding:0 12px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.wk-reset:hover{border-color:var(--muted)}
+.wk-reset:focus-visible,.wk-x:focus-visible,.wk-btn:focus-visible,.wk-panel li button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.wk-hint{position:absolute;left:10px;bottom:8px;font-size:11.5px;color:var(--soft);pointer-events:none}
+.wk-tip{position:absolute;z-index:5;max-width:250px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:12.5px;line-height:1.4;box-shadow:0 6px 22px rgba(0,0,0,.28);pointer-events:none}
+.wk-tip .m,.wk-panel .m{color:var(--muted)}
+.wk-tip .w,.wk-panel .w{color:var(--amber);font-weight:700}
+.wk-tip .go{display:block;margin-top:4px;color:var(--soft);font-size:12px}
+.wk-side{position:absolute;left:0;top:0;width:290px;z-index:4;filter:drop-shadow(0 10px 22px rgba(0,0,0,.3))}
+.wk-side::before{content:"";position:absolute;top:var(--ay,30px);width:13px;height:13px;margin-top:-7px;background:var(--card2);border:1px solid var(--line);transform:rotate(45deg);z-index:3}
+.wk-side.r::before{left:-7px;border-right:0;border-top:0}
+.wk-side.l::before{right:-7px;border-left:0;border-bottom:0}
+.wk-panel{position:relative;z-index:2;border:1px solid var(--line);border-radius:14px;background:var(--card2);padding:12px 14px;font-size:13.5px}
+.wk-panel h3{display:flex;align-items:center;gap:8px;margin:0;font-size:16px;line-height:1.3}
+.wk-panel h3 img{width:24px;height:24px;border-radius:6px;background:#fff;padding:3px;box-sizing:border-box}
+.wk-panel .wk-t{margin:8px 0 4px}
+.wk-panel ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+.wk-panel li button{all:unset;box-sizing:border-box;display:flex;gap:8px;align-items:baseline;width:100%;padding:6px 8px;border-radius:9px;cursor:pointer}
+.wk-panel li button:hover{background:var(--card)}
+.wk-x{all:unset;cursor:pointer;display:inline-block;margin:0 0 8px;font-size:13px;font-weight:700;color:var(--muted)}
+.wk-x:hover{color:var(--ink)}
+.wk-btn{display:inline-block;margin-top:10px;padding:6px 12px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-weight:700;text-decoration:none;cursor:pointer}
+.wk-btn:hover{border-color:var(--muted)}
+.wk-legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:12.5px;color:var(--muted);align-items:center}
+.wk-lk{display:inline-flex;align-items:center;gap:6px}
+.wk-lk i{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--muted)}
+.wk-lk em{font-style:normal;color:var(--amber);font-weight:800}
+/* the list is the card's text version: plain without the script, read aloud (not shown) with it */
+.wk-list{list-style:none;margin:12px 0 0;padding:0;font-size:13.5px;color:var(--muted)}
+.wk-list li{margin:3px 0}
+.wk-list b{color:var(--ink)}
+.wk-on .wk-list{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:760px){
+  .wk-cv{height:400px}
+  .wk-hint{display:none}
+  .wk-side{position:static;width:auto;margin:10px 0 0;filter:none}
+  .wk-side::before{display:none}
+}
+@media (prefers-reduced-motion:reduce){.wk-cv canvas{cursor:default}}
 .m30-now{pointer-events:none;border:2px solid var(--green);border-radius:6px;margin:-3px;z-index:2}
 .score{margin-top:18px;display:grid;gap:6px;overflow-x:clip}
 .shead{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
@@ -300,7 +349,7 @@ a.tbtn:hover{border-color:var(--muted)}
 .run .rdot{position:absolute;left:-25px;top:15px;width:12px;height:12px;border-radius:50%}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:var(--shadow)}
 /* The boxes around the 7-day brief share its rounder corners */
-.card.hist,.card.latest,.card.m30{border-radius:20px}
+.card.hist,.card.latest,.card.m30,.card.wk{border-radius:20px}
 .rh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .rh .t{font-weight:800;font-size:15px;color:var(--ink);text-decoration:none}
 .rh .m{font-size:13px;color:var(--muted)}

@@ -20,7 +20,9 @@
   function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
   function rgba(hex,a){var n=parseInt(hex.slice(1),16);return 'rgba('+(n>>16)+','+(n>>8&255)+','+(n&255)+','+a+')'}
   // a glass bubble: see-through colored shell, a crescent of light, a thin rim
+  var gbase='#10151f';
   function glass(x,y,r,col,solid){
+    ctx.fillStyle=gbase; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill(); // opaque base: a node in front hides what is behind it
     var g=ctx.createRadialGradient(x,y+r*.15,r*.35,x,y,r);
     g.addColorStop(0,rgba(col,solid?.5:.18)); g.addColorStop(.75,rgba(col,solid?.85:.5)); g.addColorStop(1,rgba(col,.95));
     ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,7); ctx.fill();
@@ -72,11 +74,11 @@
 
   // ---- view and state ----
   var V0={yaw:0.35,pitch:-0.42}, V={yaw:V0.yaw,pitch:V0.pitch}, hover=null, sel=null, drag=null, vel=0, moved=0, anim=null, started=false, onscreen=false;
-  var W=0,H=0,dpr=1,D=1900,SCALE=1,picked=false,framePending=false;
+  var W=0,H=0,dpr=1,D=1900,SCALE=1,VS=1,picked=false,framePending=false; // VS = how much taller the ring is drawn than the view gives (phones)
   function P(x,y,z){
     var cy=Math.cos(V.yaw),sy=Math.sin(V.yaw),cp=Math.cos(V.pitch),sp=Math.sin(V.pitch);
     var X=x*cy+z*sy,Z=-x*sy+z*cy,Y=y*cp-Z*sp,Z2=y*sp+Z*cp,s=D/(D+Z2+230)*SCALE;
-    return {x:W/2+X*s,y:H/2+Y*s+10,s:s,z:Z2};
+    return {x:W/2+X*s,y:H/2+Y*s*VS+10,s:s,z:Z2};
   }
   // The starting angle where the fewest halos and names overlap
   function bestYaw(){
@@ -104,10 +106,10 @@
     var r=box.getBoundingClientRect(); if(r.width<50) return;
     W=r.width; H=r.height;
     // narrow screens: a tighter ring and larger nodes; the scale makes the ring and the halos fit the width and the height
-    var narrow=W<600; R=narrow?135:165; NS=narrow?1.45:1.3;
+    var narrow=W<600, pit=narrow?-0.9:-0.42; R=narrow?164:220; NS=narrow?1.45:1.3; VS=narrow?1.85:1;
     toolN.forEach(function(t){t.x=Math.cos(t.ang)*R; t.z=Math.sin(t.ang)*R});
-    SCALE=Math.min((W/2-6)/(R+102*NS),(H-20)/(150+150*NS+20));
-    if(!picked){picked=true; V0.pitch=narrow?-0.9:-0.42; V.pitch=V0.pitch; V0.yaw=bestYaw(); V.yaw=V0.yaw}
+    SCALE=Math.min((W/2-6)/(R+(narrow?80:70)*NS),(H-20)/(2*R*Math.abs(Math.sin(pit))*VS+60+110*NS));
+    if(!picked){picked=true; V0.pitch=pit; V.pitch=V0.pitch; V0.yaw=bestYaw(); V.yaw=V0.yaw}
     cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); draw();
   }
 
@@ -122,7 +124,7 @@
   function draw(){
     if(!W) return; // drawing follows the reader's actions and resizes, so nothing runs while the card is off screen
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    var ink=css('--ink'),bg=css('--card2'),soft=css('--soft'),amber=css('--amber'),items=[],rel=related(),f=sel||hover;
+    var ink=css('--ink'),bg=gbase=css('--card2'),soft=css('--soft'),amber=css('--amber'),items=[],rel=related(),f=sel||hover;
     // the ring on the floor
     ctx.strokeStyle='rgba(138,147,166,.2)'; ctx.lineWidth=1.2; ctx.beginPath();
     for(var i=0;i<=80;i++){var a=i/80*Math.PI*2,p=P(Math.cos(a)*R,26,Math.sin(a)*R); i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)}

@@ -153,7 +153,6 @@
         }
         if(f&&f.k==='dot'&&f.d===d){
           ctx.globalAlpha=1; ctx.strokeStyle=ink; ctx.lineWidth=sel&&sel.d===d?3:1.8; ctx.beginPath(); ctx.arc(d.sx,d.sy,r+3.5,0,7); ctx.stroke();
-          if(!d.more){ctx.fillStyle=ink; ctx.font='700 11.5px '+FONT; ctx.textAlign='center'; ctx.textBaseline='top'; ctx.lineJoin='round'; ctx.lineWidth=4; ctx.strokeStyle=bg; ctx.strokeText(d.r.tag,d.sx,d.sy+r+5); ctx.fillText(d.r.tag,d.sx,d.sy+r+5)}
         }
         ctx.restore();
       }});

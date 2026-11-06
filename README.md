@@ -116,7 +116,7 @@ text, and it gets no chip.
 Edit the scheduled task's schedule. Each run covers everything since the
 last digest, so the prompt does not change. Also update `RUNS` in
 `docs/_layouts/default.html` (run times in Cairo minutes), which drives the header's
-"next check in about N h".
+"Next check in about N h".
 
 ## Preview locally
 

@@ -11,12 +11,13 @@
   <link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
   <link rel="preload" href="{{ '/assets/fonts/schibsted-grotesk-latin-wght-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{{ '/assets/fonts/newsreader-latin-wght-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ '/assets/fonts/newsreader-latin-wght-italic.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
 </head>
 <body>
   <header class="site"><div class="wrap hbar">
-    <a class="brand" href="{{ '/' | relative_url }}"><img class="logo" src="{{ '/assets/favicon.svg' | relative_url }}" alt="" width="24" height="24">Coding Agents <span class="g">Digest</span></a>
+    <a class="brand" href="{{ '/' | relative_url }}"><img class="logo" src="{{ '/assets/favicon.svg' | relative_url }}" alt="" width="24" height="24">Coding Agents <em>Digest</em></a>
     <nav>
       <a {% if page.url contains '/briefs/' %}class="on" {% endif %}href="{{ '/briefs/' | relative_url }}">Archive</a>
     </nav>

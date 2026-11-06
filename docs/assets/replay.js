@@ -12,6 +12,14 @@
   var cur=over.querySelector('.rg-cur'), curLabel=cur.querySelector('em'), shade=over.querySelector('.rg-shade');
   var ghost=over.querySelector('.rg-ghost'), ghostLabel=ghost.querySelector('em');
   var head=document.getElementById('rpHead'), cap=document.getElementById('rpCap'), msg=document.getElementById('rpMsg'), back=document.getElementById('rpBack'), cdot=document.getElementById('rpCdot');
+  // The opening "tool name + version" of a headline is set in italic (names from data-tools); any other headline stays plain
+  var TRE=head&&head.dataset.tools?new RegExp('^(?:'+head.dataset.tools+')\\s+v?\\d[\\w.\\-]*'):null;
+  function setHead(t){
+    var m=TRE&&t.match(TRE); head.textContent='';
+    if(m){var e=document.createElement('em');e.textContent=m[0];head.appendChild(e);head.appendChild(document.createTextNode(t.slice(m[0].length)))}
+    else head.textContent=t;
+  }
+  if(head) setHead(head.textContent);
   var cells=[].slice.call(box.querySelectorAll('.rg-c[data-tags]')), totals=[].slice.call(box.querySelectorAll('.rg-t'));
   var still=matchMedia('(prefers-reduced-motion: reduce)');
   var DAYS=8, startMs=Date.parse(data.start+'T00:00:00Z'), last=runs.length-1, shown=last;
@@ -66,7 +74,7 @@
     shown=i;
     var latest=i===last, k=latest?null:known(i);
     if(head.textContent!==runs[i].h){
-      head.textContent=runs[i].h;
+      setHead(runs[i].h);
       if(changed&&!still.matches&&head.animate) head.animate(
         [{opacity:0,transform:'translateY(6px)',filter:'blur(3px)'},{opacity:1,transform:'none',filter:'blur(0)'}],
         {duration:260,easing:'cubic-bezier(.16,1,.3,1)'});
@@ -166,7 +174,7 @@
     var keep=head.textContent, max=0;
     head.style.minHeight='';
     runs.forEach(function(r){head.textContent=r.h;max=Math.max(max,head.offsetHeight)});
-    head.textContent=keep;
+    setHead(keep);
     head.style.minHeight=max+'px';
   }
   var rt;

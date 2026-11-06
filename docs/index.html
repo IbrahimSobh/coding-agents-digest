@@ -13,6 +13,7 @@ layout: default
 {% comment %} Entry text is shown here, outside /digests/. A short link to another entry (href="2026-10-24-0811.html") would give a 404, so it is made absolute. task/check-links.sh and PROMPT.md ask for the full address; this is the safety net. {% endcomment %}
 {% capture dfix %}href="{{ '/digests/' | relative_url }}20{% endcapture %}
 {% assign trk = site.data.tools | where: "tracked", true %}
+<p class="lede">What did every coding agent <em>ship</em> this week?</p>
 <p class="track"><span class="tk">Tracking</span>{% for t in trk %}<span class="trk">{% include tool-logo.html t=t %}{{ t.short | default: t.name }}</span>{% endfor %}</p>
 {% include board.html %}
 {% include history.html %}

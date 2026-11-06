@@ -188,8 +188,8 @@
         glass(d.sx,d.sy,r,d.tn.t.color,d.more);
         if(d.more){ctx.fillStyle='#0b0f17'; ctx.font='800 '+Math.max(11,r*.8)+'px '+FONT; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('+'+d.extra,d.sx,d.sy+.5)}
         else if(d.r.action){
-          var br=Math.max(5,r*.6); ctx.fillStyle=amber; ctx.beginPath(); ctx.arc(d.sx+r*.8,d.sy-r*.8,br,0,7); ctx.fill();
-          ctx.fillStyle='#0b0f17'; ctx.font='800 '+Math.max(8,br*1.3)+'px '+FONT; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('!',d.sx+r*.8,d.sy-r*.8+.5);
+          var br=Math.max(5,r*.6); ctx.fillStyle='#fbe1d1'; ctx.beginPath(); ctx.arc(d.sx+r*.8,d.sy-r*.8,br,0,7); ctx.fill(); ctx.strokeStyle='#5d2a1a'; ctx.lineWidth=1; ctx.stroke();
+          ctx.fillStyle='#5d2a1a'; ctx.font='800 '+Math.max(8,br*1.3)+'px '+FONT; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('!',d.sx+r*.8,d.sy-r*.8+.5);
         }
         if(f&&f.k==='dot'&&f.d===d){
           ctx.globalAlpha=1; ctx.strokeStyle=ink; ctx.lineWidth=sel&&sel.d===d?3:1.8; ctx.beginPath(); ctx.arc(d.sx,d.sy,r+3.5,0,7); ctx.stroke();

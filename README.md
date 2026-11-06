@@ -15,7 +15,8 @@ Not a list of changelogs: the changes that matter, one sentence each with a sour
 
 ## What is on the home page
 
-- **Tracking strip:** the five tools, under the header.
+- **Opening line and Tracking strip:** "What did every coding agent *ship* this week?" in the serif,
+  then the five tools with their logos.
 - **Release activity:** a chart of stable releases per tool, from 1 Day to all since 1 Oct 2026.
 - **Last 30 days:** a moving window of one square per day for each tool (shown by its logo), with a
   pill that counts the window's releases. It always ends on the day of the latest check. It does not follow the Release activity buttons or the replay line.
@@ -29,9 +30,10 @@ Not a list of changelogs: the changes that matter, one sentence each with a sour
   its update ("Back to this week at a glance"), or to GitHub when no update explains it. A text list
   of the same facts is under it for screen readers and for readers without JavaScript.
 - **Last 7 days:** the week's headline and the release grid (one row per tool, one column per
-  day; a box sits on the day a release was published).
-  - **Replay line:** click or drag along the line to see what each past check knew. The green
-    point is the latest check, and "Jump to latest" appears when a past check is selected.
+  day; a box sits on the day a release was published). When the headline starts with a tool name and
+  version, that part is set in italic.
+  - **Replay line:** click or drag along the line to see what each past check knew. The ringed
+    point marked "Latest" is the latest check, and "Jump to latest" appears when a past check is selected.
   - **Release boxes:** hover or focus shows each release and when a check reported it. A click
     jumps to the matching update in Daily updates, with a way back. A corner mark means the
     release was reported on a later day. A release that no update explains opens on GitHub.
@@ -40,7 +42,8 @@ Not a list of changelogs: the changes that matter, one sentence each with a sour
   shows with no click. A chip jumps to the release's update. A release older than the 7 days
   gets a dashed chip with its date, and "+1 older" under the map.
 - **Action board:** changes that need you to act (marked ⚠️), each with a category such as
-  Deadline or Breaks automation.
+  Deadline or Breaks automation. The most urgent one (the soonest deadline) is the page's one peach
+  card.
 - **Daily updates:** every check, newest first, quiet ones too, with a filter per tool.
 
 Links to other sites open in a new tab, marked ↗ in the text. Links inside the site stay in the
@@ -102,7 +105,8 @@ text, and it gets no chip.
 | `docs/_includes/month.html` | The Last 30 days card |
 | `docs/_includes/week-map.html`, `docs/assets/weekmap.js` | The This week at a glance card (data in Liquid, drawing in a plain canvas) |
 | `docs/_includes/theme-map.html` | A theme's release chips and week map |
-| `docs/assets/replay.js` | The replay line |
+| `docs/assets/replay.js` | The replay line, and the italic tool name at the start of the headline |
+| `docs/assets/fonts/` | Self-hosted fonts (SIL OFL): Schibsted Grotesk for text, Newsreader upright and italic for headings |
 | `docs/assets/jump.js` | Release box tooltips, and the jump from a box or chip to its update |
 | `docs/assets/logos/` | Tool logos (trademarks of their owners; the Codex logo is tinted to the site's Codex green) |
 | `prompt-process.html` | Source of the run diagram (`docs/assets/prompt-process.png`) |

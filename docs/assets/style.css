@@ -64,8 +64,8 @@ header.site{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--b
 #nextCheck{color:var(--muted)}
 .tagline{color:var(--muted)}
 header.site.scrolled .hsub{max-height:0;opacity:0;margin-top:0;padding-bottom:0}
-/* Hourglass before "next check": sand runs down, then it turns over (4 s loop) */
-.hg{width:17px;height:17px;vertical-align:-4px;margin:0 5px 0 2px;animation:hg-flip 4s ease-in-out infinite}
+/* Hourglass after "next check": sand runs down, then it turns over (4 s loop) */
+.hg{width:17px;height:17px;vertical-align:-4px;margin:0 0 0 6px;animation:hg-flip 4s ease-in-out infinite}
 .hg-frame{fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round}
 .hg-sand{fill:var(--cyan);transform-box:fill-box}
 .hg-sand.top{transform-origin:50% 100%;animation:hg-top 4s linear infinite}

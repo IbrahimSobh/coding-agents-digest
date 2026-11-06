@@ -2,7 +2,7 @@
 
 What is new in the popular AI coding tools, so you don't have to check each one yourself.
 
-<img alt="Coding Agents Digest home page: the Tracking strip with the five tool logos, the release chart, the 7-day box with the replay line and release grid, and the "What matters this week" card with release chips and week maps" src="docs/assets/home-light.png">
+<img alt="Coding Agents Digest home page in the light theme: the serif opening line, the Tracking strip with the five tool logos, the Release activity chart and the Last 30 days squares" src="docs/assets/home-paper-light.png">
 
 Site: https://ibrahimsobh.github.io/coding-agents-digest/
 
@@ -44,7 +44,8 @@ Not a list of changelogs: the changes that matter, one sentence each with a sour
 - **Daily updates:** every check, newest first, quiet ones too, with a filter per tool.
 
 Links to other sites open in a new tab, marked ↗ in the text. Links inside the site stay in the
-same tab. The site has light and dark themes, and all times are Cairo time.
+same tab. The site has a light (white paper) and a dark (plum-black) theme with serif headings, and all
+times are Cairo time. Each tool keeps its own color; peach marks only what needs action.
 
 ## How it works
 

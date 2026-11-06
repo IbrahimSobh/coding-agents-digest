@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-11-05T23:41+02:00",
-  "last_entry_file": "docs/digests/2026-11-05-2341.md",
+  "last_run": "2026-11-06T08:41+02:00",
+  "last_entry_file": "docs/digests/2026-11-06-0841.md",
   "last_snapshot": "2026-11-05",
   "timezone": "Africa/Cairo",
   "tools": {
@@ -9,12 +9,12 @@
       "last_release_date": "2026-11-04"
     },
     "antigravity-cli": {
-      "last_tag": "1.5.1",
-      "last_release_date": "2026-11-05"
+      "last_tag": "1.5.2",
+      "last_release_date": "2026-11-06"
     },
     "codex": {
-      "last_tag": "rust-v0.166.0",
-      "last_release_date": "2026-10-29"
+      "last_tag": "rust-v0.167.0",
+      "last_release_date": "2026-11-06"
     },
     "kilo-code": {
       "last_tag": "v7.8.27",

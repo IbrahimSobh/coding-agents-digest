@@ -43,5 +43,6 @@
  {"updated": "2026-11-04T23:41+02:00", "window": "Oct 28 to Nov 4, 2026", "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."},
  {"updated": "2026-11-05T08:41+02:00", "window": "Oct 29 to Nov 5, 2026", "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."},
  {"updated": "2026-11-05T23:41+02:00", "window": "Oct 29 to Nov 5, 2026", "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."},
- {"updated": "2026-11-06T08:41+02:00", "window": "Oct 30 to Nov 6, 2026", "headline": "Antigravity CLI 1.5.2 can deny headless runs under --dangerously-skip-permissions; Opus 4.8 fast mode ends Nov 30."}
+ {"updated": "2026-11-06T08:41+02:00", "window": "Oct 30 to Nov 6, 2026", "headline": "Antigravity CLI 1.5.2 can deny headless runs under --dangerously-skip-permissions; Opus 4.8 fast mode ends Nov 30."},
+ {"updated": "2026-11-06T23:41+02:00", "window": "Oct 30 to Nov 6, 2026", "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."}
 ]

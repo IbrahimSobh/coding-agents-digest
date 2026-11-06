@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-06T08:41+02:00",
- "updated_label": "Nov 6, 08:41",
+ "updated": "2026-11-06T23:41+02:00",
+ "updated_label": "Nov 6, 23:41",
  "window": "Oct 30 to Nov 6, 2026",
- "headline": "Antigravity CLI 1.5.2 can deny headless runs under --dangerously-skip-permissions; Opus 4.8 fast mode ends Nov 30.",
+ "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30.",
  "themes": [
   {
    "tag": "Headless",
    "title": "Scripts get clearer failure signals, and new denials",
-   "facts": "Claude Code 2.1.314 makes `claude -p` print the error and exit 1 when startup fails ([2.1.314](https://github.com/anthropics/claude-code/releases/tag/v2.1.314)). Antigravity CLI 1.5.0 exits with code `3` when `--print-timeout` cuts a run short ([1.5.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.0)), and 1.5.2 denies some requests in headless `-p` runs that use `--dangerously-skip-permissions` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
-   "so_what": "scripts that trust exit code 0 or the raw output should check these signals now, and skip-permission jobs may be denied more often."
+   "facts": "Claude Code 2.1.314 makes `claude -p` print the error and exit 1 when startup fails ([2.1.314](https://github.com/anthropics/claude-code/releases/tag/v2.1.314)). Claude Code 2.1.319 makes `claude -p` exit 1 when auto mode refuses actions, where it used to exit 0 ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.0 exits with code `3` when `--print-timeout` cuts a run short ([1.5.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.0)), and 1.5.2 denies some requests in headless `-p` runs that use `--dangerously-skip-permissions` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
+   "so_what": "scripts that trust exit 0 or the raw output should check these signals now, and skip-permission jobs may be denied more often."
   },
   {
    "tag": "Deadline",
@@ -18,10 +18,10 @@
   },
   {
    "tag": "Defaults",
-   "title": "Subagent effort and Mac shortcut defaults moved",
-   "facts": "Claude Code 2.1.317 makes subagents on a different model use that model's effort level, not the session's ([2.1.317](https://github.com/anthropics/claude-code/releases/tag/v2.1.317)). Antigravity CLI 1.5.2 makes macOS Option-key shortcuts work by default, reversible with `AGY_CLI_MAC_OPTION_AS_ALT=0` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
-   "so_what": "a subagent or a Mac terminal may behave differently than last week, so re-check any pinned setting."
+   "title": "Subagent effort, /loop and Mac shortcut defaults moved",
+   "facts": "Claude Code 2.1.317 makes subagents on a different model use that model's effort level, not the session's ([2.1.317](https://github.com/anthropics/claude-code/releases/tag/v2.1.317)). Claude Code 2.1.319 ends self-paced `/loop` when a turn finishes without rescheduling ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.2 makes macOS Option-key shortcuts work by default, reversible with `AGY_CLI_MAC_OPTION_AS_ALT=0` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
+   "so_what": "a subagent, a loop or a Mac terminal may behave differently than last week, so re-check any pinned setting."
   }
  ],
- "watch_next": "Test `agy -p` jobs with 1.5.2 before you upgrade, since skip-permission runs may now be denied, and move Opus 4.8 fast mode to Opus 5.5 before November 30."
+ "watch_next": "Test `agy -p` jobs with 1.5.2 and `claude -p` jobs with 2.1.319 before you upgrade, since refused runs may now exit 1 and skip-permission runs may be denied, and move Opus 4.8 fast mode to Opus 5.5 before November 30."
 }

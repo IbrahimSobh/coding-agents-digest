@@ -65,15 +65,23 @@ header.site{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--b
 .tagline{color:var(--muted)}
 header.site.scrolled .hsub{max-height:0;opacity:0;margin-top:0;padding-bottom:0}
 /* Hourglass after "next check": sand runs down, then it turns over (4 s loop) */
-.hg{width:17px;height:17px;vertical-align:-4px;margin:0 0 0 6px;animation:hg-flip 4s ease-in-out infinite}
-.hg-frame{fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round}
-.hg-sand{fill:var(--cyan);transform-box:fill-box}
-.hg-sand.top{transform-origin:50% 100%;animation:hg-top 4s linear infinite}
-.hg-sand.bot{transform-origin:50% 100%;animation:hg-bot 4s linear infinite}
-@keyframes hg-flip{0%,75%{transform:rotate(0)}100%{transform:rotate(180deg)}}
-@keyframes hg-top{0%{transform:scaleY(1)}75%,100%{transform:scaleY(0)}}
-@keyframes hg-bot{0%{transform:scaleY(0)}75%,100%{transform:scaleY(1)}}
-@media (prefers-reduced-motion:reduce){.hg,.hg-sand{animation:none}}
+.hg{width:17px;height:17px;vertical-align:-4px;margin:0 0 0 6px;animation:hg-flip 8s ease-in-out infinite}
+.hg-glass{fill:var(--bg)}
+.hg-frame{fill:none;stroke:var(--muted);stroke-width:11;stroke-linecap:round;stroke-linejoin:round}
+.hg-top,.hg-bot{transform-box:view-box}
+.hg-bot{transform-origin:64px 114px;transform:scaleY(0)}
+.hg-set.b{opacity:0}
+.hg-set.a{animation:hg-a 8s step-end infinite} .hg-set.b{animation:hg-b 8s step-end infinite}
+.a .hg-top{animation:hg-ta 8s linear infinite} .a .hg-bot{animation:hg-ba 8s linear infinite}
+.b .hg-top{animation:hg-tb 8s linear infinite} .b .hg-bot{animation:hg-bb 8s linear infinite}
+@keyframes hg-flip{0%,37.5%{transform:rotate(0)}50%{transform:rotate(180deg)}50.01%,87.5%{transform:rotate(0)}100%{transform:rotate(180deg)}}
+@keyframes hg-a{0%{opacity:1}50.01%{opacity:0}}
+@keyframes hg-b{0%{opacity:0}50.01%{opacity:1}}
+@keyframes hg-ta{0%{transform:translateY(0)}37.5%,100%{transform:translateY(44.5px)}}
+@keyframes hg-ba{0%{transform:scaleY(0)}37.5%,100%{transform:scaleY(1)}}
+@keyframes hg-tb{0%,50%{transform:translateY(0)}87.5%,100%{transform:translateY(44.5px)}}
+@keyframes hg-bb{0%,50%{transform:scaleY(0)}87.5%,100%{transform:scaleY(1)}}
+@media (prefers-reduced-motion:reduce){.hg,.hg-set,.hg-top,.hg-bot{animation:none}}
 .brand{font-size:25px;letter-spacing:-.3px;display:flex;gap:10px;align-items:center;white-space:nowrap;color:var(--ink);text-decoration:none}
 .logo{width:24px;height:24px;flex:none;display:block}
 nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}

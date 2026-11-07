@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-07T08:41+02:00",
- "updated_label": "Nov 7, 08:41",
+ "updated": "2026-11-07T23:41+02:00",
+ "updated_label": "Nov 7, 23:41",
  "window": "Oct 31 to Nov 7, 2026",
  "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30.",
  "themes": [
@@ -23,5 +23,5 @@
    "so_what": "a subagent, a loop or a Mac terminal may behave differently than last week, so re-check any pinned setting."
   }
  ],
- "watch_next": "Test `agy -p` jobs with 1.5.2 and `claude -p` jobs with 2.1.319 before you upgrade, since refused runs may now exit 1 and skip-permission runs may be denied, and move Opus 4.8 fast mode to Opus 5.5 before November 30."
+ "watch_next": "Update Antigravity CLI to 1.5.3 for its sandbox security fix, then test `agy -p` jobs with it and `claude -p` jobs with 2.1.319, since refused runs may now exit 1 and skip-permission runs may be denied. Move Opus 4.8 fast mode to Opus 5.5 before November 30."
 }

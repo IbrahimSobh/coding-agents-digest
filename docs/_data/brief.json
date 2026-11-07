@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-06T23:41+02:00",
- "updated_label": "Nov 6, 23:41",
- "window": "Oct 30 to Nov 6, 2026",
+ "updated": "2026-11-07T08:41+02:00",
+ "updated_label": "Nov 7, 08:41",
+ "window": "Oct 31 to Nov 7, 2026",
  "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30.",
  "themes": [
   {
    "tag": "Headless",
    "title": "Scripts get clearer failure signals, and new denials",
-   "facts": "Claude Code 2.1.314 makes `claude -p` print the error and exit 1 when startup fails ([2.1.314](https://github.com/anthropics/claude-code/releases/tag/v2.1.314)). Claude Code 2.1.319 makes `claude -p` exit 1 when auto mode refuses actions, where it used to exit 0 ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.0 exits with code `3` when `--print-timeout` cuts a run short ([1.5.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.0)), and 1.5.2 denies some requests in headless `-p` runs that use `--dangerously-skip-permissions` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
+   "facts": "Claude Code 2.1.319 makes `claude -p` exit 1 when auto mode refuses actions, where it used to exit 0 ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.0 exits with code `3` when `--print-timeout` cuts a run short ([1.5.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.0)), and 1.5.2 denies some requests in headless `-p` runs that use `--dangerously-skip-permissions` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
    "so_what": "scripts that trust exit 0 or the raw output should check these signals now, and skip-permission jobs may be denied more often."
   },
   {

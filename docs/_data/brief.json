@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-08T08:41+02:00",
- "updated_label": "Nov 8, 08:41",
+ "updated": "2026-11-08T23:41+02:00",
+ "updated_label": "Nov 8, 23:41",
  "window": "Nov 1 to Nov 8, 2026",
  "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short.",
  "themes": [

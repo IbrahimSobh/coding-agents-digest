@@ -47,5 +47,6 @@
  {"updated": "2026-11-06T23:41+02:00", "window": "Oct 30 to Nov 6, 2026", "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."},
  {"updated": "2026-11-07T08:41+02:00", "window": "Oct 31 to Nov 7, 2026", "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."},
  {"updated": "2026-11-07T23:41+02:00", "window": "Oct 31 to Nov 7, 2026", "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."},
- {"updated": "2026-11-08T08:41+02:00", "window": "Nov 1 to Nov 8, 2026", "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."}
+ {"updated": "2026-11-08T08:41+02:00", "window": "Nov 1 to Nov 8, 2026", "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."},
+ {"updated": "2026-11-08T23:41+02:00", "window": "Nov 1 to Nov 8, 2026", "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."}
 ]

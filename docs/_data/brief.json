@@ -1,20 +1,20 @@
 {
- "updated": "2026-11-07T23:41+02:00",
- "updated_label": "Nov 7, 23:41",
- "window": "Oct 31 to Nov 7, 2026",
- "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30.",
+ "updated": "2026-11-08T08:41+02:00",
+ "updated_label": "Nov 8, 08:41",
+ "window": "Nov 1 to Nov 8, 2026",
+ "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short.",
  "themes": [
+  {
+   "tag": "Security",
+   "title": "Permission and sandbox holes closed",
+   "facts": "Claude Code 2.1.319 closes a Bash permission bypass where a crafted environment prefix could hide part of a command, and a sandbox escape when creating a worktree ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.3 fixes a terminal sandbox issue where a sandboxed command could change environment state that later persistent terminal commands loaded ([1.5.3](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.3)).",
+   "so_what": "update Claude Code to 2.1.319 and Antigravity CLI to 1.5.3 or later."
+  },
   {
    "tag": "Headless",
    "title": "Scripts get clearer failure signals, and new denials",
    "facts": "Claude Code 2.1.319 makes `claude -p` exit 1 when auto mode refuses actions, where it used to exit 0 ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.0 exits with code `3` when `--print-timeout` cuts a run short ([1.5.0](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.0)), and 1.5.2 denies some requests in headless `-p` runs that use `--dangerously-skip-permissions` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
    "so_what": "scripts that trust exit 0 or the raw output should check these signals now, and skip-permission jobs may be denied more often."
-  },
-  {
-   "tag": "Deadline",
-   "title": "Opus 4.8 fast mode ends Nov 30",
-   "facts": "Claude Code 2.1.316 deprecates fast mode for Opus 4.8 and removes it on November 30, 2026 ([2.1.316](https://github.com/anthropics/claude-code/releases/tag/v2.1.316)). After that, its requests return an error instead of falling back.",
-   "so_what": "move fast mode to Opus 5.5 before the removal date, or those requests will fail."
   },
   {
    "tag": "Defaults",
@@ -23,5 +23,5 @@
    "so_what": "a subagent, a loop or a Mac terminal may behave differently than last week, so re-check any pinned setting."
   }
  ],
- "watch_next": "Update Antigravity CLI to 1.5.3 for its sandbox security fix, then test `agy -p` jobs with it and `claude -p` jobs with 2.1.319, since refused runs may now exit 1 and skip-permission runs may be denied. Move Opus 4.8 fast mode to Opus 5.5 before November 30."
+ "watch_next": "Check that scheduled `claude -p` and `agy -p` jobs still pass with Claude Code 2.1.319 and Antigravity CLI 1.5.3, since refused runs may now exit non-zero and skip-permission runs may be denied."
 }

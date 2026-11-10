@@ -51,5 +51,6 @@
  {"updated": "2026-11-08T23:41+02:00", "window": "Nov 1 to Nov 8, 2026", "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."},
  {"updated": "2026-11-09T08:41+02:00", "window": "Nov 2 to Nov 9, 2026", "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."},
  {"updated": "2026-11-09T23:41+02:00", "window": "Nov 2 to Nov 9, 2026", "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."},
- {"updated": "2026-11-10T08:42+02:00", "window": "Nov 3 to Nov 10, 2026", "headline": "Security fixes in Claude Code 2.1.319 and Antigravity 1.5.3 lead the week; 1.5.4 adds Auto mode for editors."}
+ {"updated": "2026-11-10T08:42+02:00", "window": "Nov 3 to Nov 10, 2026", "headline": "Security fixes in Claude Code 2.1.319 and Antigravity 1.5.3 lead the week; 1.5.4 adds Auto mode for editors."},
+ {"updated": "2026-11-10T23:41+02:00", "window": "Nov 3 to Nov 10, 2026", "headline": "Security fixes in Claude Code 2.1.319 and Antigravity 1.5.3 lead the week; 1.5.4 adds Auto mode for editors."}
 ]

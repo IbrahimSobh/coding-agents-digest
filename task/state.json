@@ -1,6 +1,6 @@
 {
-  "last_run": "2026-11-11T08:41+02:00",
-  "last_entry_file": "docs/digests/2026-11-11-0841.md",
+  "last_run": "2026-11-11T23:41+02:00",
+  "last_entry_file": "docs/digests/2026-11-11-2341.md",
   "last_snapshot": "2026-11-05",
   "timezone": "Africa/Cairo",
   "tools": {
@@ -9,8 +9,8 @@
       "last_release_date": "2026-11-10"
     },
     "antigravity-cli": {
-      "last_tag": "1.5.5",
-      "last_release_date": "2026-11-10"
+      "last_tag": "1.5.6",
+      "last_release_date": "2026-11-11"
     },
     "codex": {
       "last_tag": "rust-v0.167.1",

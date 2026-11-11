@@ -1,8 +1,8 @@
 {
- "updated": "2026-11-11T08:41+02:00",
- "updated_label": "Nov 11, 08:41",
+ "updated": "2026-11-11T23:41+02:00",
+ "updated_label": "Nov 11, 23:41",
  "window": "Nov 4 to Nov 11, 2026",
- "headline": "Security fixes in Claude Code 2.1.319 and Antigravity CLI 1.5.3 lead; Antigravity CLI 1.5.5 rejects plain-http remote gateways.",
+ "headline": "Security fixes in Claude Code 2.1.319 and Antigravity CLI 1.5.3 lead; Antigravity CLI 1.5.6 lets Auto mode ask less often.",
  "themes": [
   {
    "tag": "Security",

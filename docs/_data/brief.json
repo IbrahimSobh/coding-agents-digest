@@ -1,8 +1,8 @@
 {
- "updated": "2026-11-10T23:41+02:00",
- "updated_label": "Nov 10, 23:41",
- "window": "Nov 3 to Nov 10, 2026",
- "headline": "Security fixes in Claude Code 2.1.319 and Antigravity 1.5.3 lead the week; 1.5.4 adds Auto mode for editors.",
+ "updated": "2026-11-11T08:41+02:00",
+ "updated_label": "Nov 11, 08:41",
+ "window": "Nov 4 to Nov 11, 2026",
+ "headline": "Security fixes in Claude Code 2.1.319 and Antigravity CLI 1.5.3 lead; Antigravity CLI 1.5.5 rejects plain-http remote gateways.",
  "themes": [
   {
    "tag": "Security",
@@ -18,10 +18,10 @@
   },
   {
    "tag": "Defaults",
-   "title": "Subagent effort, /loop and Mac shortcut defaults moved",
-   "facts": "Claude Code 2.1.317 makes subagents on a different model use that model's effort level, not the session's ([2.1.317](https://github.com/anthropics/claude-code/releases/tag/v2.1.317)). Claude Code 2.1.319 ends self-paced `/loop` when a turn finishes without rescheduling ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.2 makes macOS Option-key shortcuts work by default, reversible with `AGY_CLI_MAC_OPTION_AS_ALT=0` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
-   "so_what": "a subagent, a loop or a Mac terminal may behave differently than last week, so re-check any pinned setting."
+   "title": "Loop and Mac shortcut defaults moved",
+   "facts": "Claude Code 2.1.319 ends self-paced `/loop` when a turn finishes without rescheduling ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.2 makes macOS Option-key shortcuts work by default, reversible with `AGY_CLI_MAC_OPTION_AS_ALT=0` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
+   "so_what": "a loop or a Mac terminal may behave differently than last week, so re-check any pinned setting."
   }
  ],
- "watch_next": "Check that scheduled `claude -p` and `agy -p` jobs still pass with Claude Code 2.1.319 and Antigravity CLI 1.5.3, since refused runs may now exit non-zero and skip-permission runs may be denied."
+ "watch_next": "Check that scheduled `claude -p` and `agy -p` jobs still pass with Claude Code 2.1.319 and Antigravity CLI 1.5.3, and switch any plain-http enterprise gateway URL to https before Antigravity CLI 1.5.5 rejects it."
 }

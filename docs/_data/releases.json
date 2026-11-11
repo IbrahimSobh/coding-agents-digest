@@ -281,5 +281,7 @@
  {"tool": "antigravity-cli", "tag": "1.5.3", "date": "2026-11-07"},
  {"tool": "claude-code", "tag": "v2.1.321", "date": "2026-11-09"},
  {"tool": "claude-code", "tag": "v2.1.322", "date": "2026-11-10"},
- {"tool": "antigravity-cli", "tag": "1.5.4", "date": "2026-11-10"}
+ {"tool": "antigravity-cli", "tag": "1.5.4", "date": "2026-11-10"},
+ {"tool": "antigravity-cli", "tag": "1.5.5", "date": "2026-11-10"},
+ {"tool": "codex", "tag": "rust-v0.167.1", "date": "2026-11-10"}
 ]

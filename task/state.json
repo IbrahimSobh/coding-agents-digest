@@ -1,7 +1,7 @@
 {
-  "last_run": "2026-11-11T23:41+02:00",
-  "last_entry_file": "docs/digests/2026-11-11-2341.md",
-  "last_snapshot": "2026-11-05",
+  "last_run": "2026-11-12T08:41+02:00",
+  "last_entry_file": "docs/digests/2026-11-12-0841.md",
+  "last_snapshot": "2026-11-12",
   "timezone": "Africa/Cairo",
   "tools": {
     "claude-code": {
@@ -13,8 +13,8 @@
       "last_release_date": "2026-11-11"
     },
     "codex": {
-      "last_tag": "rust-v0.167.1",
-      "last_release_date": "2026-11-10"
+      "last_tag": "rust-v0.167.2",
+      "last_release_date": "2026-11-11"
     },
     "kilo-code": {
       "last_tag": "v7.8.27",

@@ -249,40 +249,189 @@
   "tag": "v1.19.3",
   "date": "2026-10-16"
  },
-  {"tool": "antigravity-cli", "tag": "1.4.5", "date": "2026-10-22"},
-  {"tool": "opencode", "tag": "v1.19.4", "date": "2026-10-22"},
-  {"tool": "claude-code", "tag": "v2.1.309", "date": "2026-10-23"},
-  {"tool": "antigravity-cli", "tag": "1.4.6", "date": "2026-10-23"},
-  {"tool": "codex", "tag": "rust-v0.164.0", "date": "2026-10-23"},
-  {"tool": "kilo-code", "tag": "v7.8.17", "date": "2026-10-23"},
-  {"tool": "claude-code", "tag": "v2.1.310", "date": "2026-10-24"},
-  {"tool": "antigravity-cli", "tag": "1.4.7", "date": "2026-10-24"},
-  {"tool": "kilo-code", "tag": "v7.8.18", "date": "2026-10-26"},
-  {"tool": "claude-code", "tag": "v2.1.311", "date": "2026-10-27"},
-  {"tool": "antigravity-cli", "tag": "1.4.8", "date": "2026-10-27"},
-  {"tool": "claude-code", "tag": "v2.1.312", "date": "2026-10-27"},
-  {"tool": "codex", "tag": "rust-v0.165.0", "date": "2026-10-27"},
-  {"tool": "opencode", "tag": "v1.19.5", "date": "2026-10-28"},
- {"tool": "antigravity-cli", "tag": "1.4.9", "date": "2026-10-28"},
- {"tool": "antigravity-cli", "tag": "1.4.10", "date": "2026-10-29"},
- {"tool": "claude-code", "tag": "v2.1.314", "date": "2026-10-30"},
- {"tool": "antigravity-cli", "tag": "1.4.11", "date": "2026-10-30"},
- {"tool": "codex", "tag": "rust-v0.166.0", "date": "2026-10-29"},
- {"tool": "antigravity-cli", "tag": "1.4.12", "date": "2026-10-30"},
- {"tool": "claude-code", "tag": "v2.1.316", "date": "2026-10-31"},
- {"tool": "claude-code", "tag": "v2.1.317", "date": "2026-11-03"},
- {"tool": "claude-code", "tag": "v2.1.318", "date": "2026-11-04"},
- {"tool": "antigravity-cli", "tag": "1.5.0", "date": "2026-11-04"},
- {"tool": "antigravity-cli", "tag": "1.5.1", "date": "2026-11-05"},
- {"tool": "kilo-code", "tag": "v7.8.27", "date": "2026-11-05"},
- {"tool": "antigravity-cli", "tag": "1.5.2", "date": "2026-11-06"},
- {"tool": "codex", "tag": "rust-v0.167.0", "date": "2026-11-06"},
- {"tool": "claude-code", "tag": "v2.1.319", "date": "2026-11-06"},
- {"tool": "antigravity-cli", "tag": "1.5.3", "date": "2026-11-07"},
- {"tool": "claude-code", "tag": "v2.1.321", "date": "2026-11-09"},
- {"tool": "claude-code", "tag": "v2.1.322", "date": "2026-11-10"},
- {"tool": "antigravity-cli", "tag": "1.5.4", "date": "2026-11-10"},
- {"tool": "antigravity-cli", "tag": "1.5.5", "date": "2026-11-10"},
- {"tool": "codex", "tag": "rust-v0.167.1", "date": "2026-11-10"},
- {"tool": "antigravity-cli", "tag": "1.5.6", "date": "2026-11-11"}
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.4.5",
+  "date": "2026-10-22"
+ },
+ {
+  "tool": "opencode",
+  "tag": "v1.19.4",
+  "date": "2026-10-22"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.309",
+  "date": "2026-10-23"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.4.6",
+  "date": "2026-10-23"
+ },
+ {
+  "tool": "codex",
+  "tag": "rust-v0.164.0",
+  "date": "2026-10-23"
+ },
+ {
+  "tool": "kilo-code",
+  "tag": "v7.8.17",
+  "date": "2026-10-23"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.310",
+  "date": "2026-10-24"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.4.7",
+  "date": "2026-10-24"
+ },
+ {
+  "tool": "kilo-code",
+  "tag": "v7.8.18",
+  "date": "2026-10-26"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.311",
+  "date": "2026-10-27"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.4.8",
+  "date": "2026-10-27"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.312",
+  "date": "2026-10-27"
+ },
+ {
+  "tool": "codex",
+  "tag": "rust-v0.165.0",
+  "date": "2026-10-27"
+ },
+ {
+  "tool": "opencode",
+  "tag": "v1.19.5",
+  "date": "2026-10-28"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.4.9",
+  "date": "2026-10-28"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.4.10",
+  "date": "2026-10-29"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.314",
+  "date": "2026-10-30"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.4.11",
+  "date": "2026-10-30"
+ },
+ {
+  "tool": "codex",
+  "tag": "rust-v0.166.0",
+  "date": "2026-10-29"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.4.12",
+  "date": "2026-10-30"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.316",
+  "date": "2026-10-31"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.317",
+  "date": "2026-11-03"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.318",
+  "date": "2026-11-04"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.5.0",
+  "date": "2026-11-04"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.5.1",
+  "date": "2026-11-05"
+ },
+ {
+  "tool": "kilo-code",
+  "tag": "v7.8.27",
+  "date": "2026-11-05"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.5.2",
+  "date": "2026-11-06"
+ },
+ {
+  "tool": "codex",
+  "tag": "rust-v0.167.0",
+  "date": "2026-11-06"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.319",
+  "date": "2026-11-06"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.5.3",
+  "date": "2026-11-07"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.321",
+  "date": "2026-11-09"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.322",
+  "date": "2026-11-10"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.5.4",
+  "date": "2026-11-10"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.5.5",
+  "date": "2026-11-10"
+ },
+ {
+  "tool": "codex",
+  "tag": "rust-v0.167.1",
+  "date": "2026-11-10"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.5.6",
+  "date": "2026-11-11"
+ },
+ {
+  "tool": "codex",
+  "tag": "rust-v0.167.2",
+  "date": "2026-11-11"
+ }
 ]

@@ -1,227 +1,232 @@
 [
- {
-  "updated": "2026-10-22T07:42+03:00",
-  "window": "Oct 15 to Oct 22, 2026",
-  "headline": "The agents got more autonomous and more careful, and their plugin systems got stricter."
- },
- {
-  "updated": "2026-10-22T17:18+03:00",
-  "window": "Oct 15 to Oct 22, 2026",
-  "headline": "The agents got more autonomous and more careful, and their plugin systems got stricter."
- },
- {
-  "updated": "2026-10-22T20:08+03:00",
-  "window": "Oct 15 to Oct 22, 2026",
-  "headline": "The agents got more autonomous and more careful, and their plugin systems got stricter."
- },
- {
-  "updated": "2026-10-23T08:12+03:00",
-  "window": "Oct 16 to Oct 23, 2026",
-  "headline": "Coding agents tightened sandboxes and MCP handling this week, and some defaults now behave differently."
- },
- {
-  "updated": "2026-10-23T20:11+03:00",
-  "window": "Oct 16 to Oct 23, 2026",
-  "headline": "Coding agents tightened sandboxes and MCP handling this week, and some defaults now behave differently."
- },
- {
-  "updated": "2026-10-23T22:09+03:00",
-  "window": "Oct 16 to Oct 23, 2026",
-  "headline": "Coding agents tightened sandboxes and MCP handling this week, and some defaults now behave differently."
- },
- {
-  "updated": "2026-10-24T08:11+03:00",
-  "window": "Oct 17 to Oct 24, 2026",
-  "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
- },
- {
-  "updated": "2026-10-24T22:11+03:00",
-  "window": "Oct 17 to Oct 24, 2026",
-  "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
- },
- {
-  "updated": "2026-10-25T08:11+03:00",
-  "window": "Oct 18 to Oct 25, 2026",
-  "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
- },
- {
-  "updated": "2026-10-25T22:11+03:00",
-  "window": "Oct 18 to Oct 25, 2026",
-  "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
- },
- {
-  "updated": "2026-10-26T08:12+03:00",
-  "window": "Oct 19 to Oct 26, 2026",
-  "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
- },
- {
-  "updated": "2026-10-26T22:12+03:00",
-  "window": "Oct 19 to Oct 26, 2026",
-  "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
- },
- {
-  "updated": "2026-10-27T08:12+03:00",
-  "window": "Oct 20 to Oct 27, 2026",
-  "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs."
- },
- {
-  "updated": "2026-10-27T22:12+03:00",
-  "window": "Oct 20 to Oct 27, 2026",
-  "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs."
- },
- {
-  "updated": "2026-10-28T08:11+03:00",
-  "window": "Oct 21 to Oct 28, 2026",
-  "headline": "Claude Code 2.1.312 and Codex 0.165.0 shipped, and both now change defaults, so check the model-switch and memory settings."
- },
- {
-  "updated": "2026-10-28T22:12+03:00",
-  "window": "Oct 21 to Oct 28, 2026",
-  "headline": "Claude Code 2.1.312 and Codex 0.165.0 changed defaults, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."
- },
- {
-  "updated": "2026-10-29T08:11+03:00",
-  "window": "Oct 22 to Oct 29, 2026",
-  "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."
- },
- {
-  "updated": "2026-10-29T22:13+03:00",
-  "window": "Oct 22 to Oct 29, 2026",
-  "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."
- },
- {
-  "updated": "2026-10-30T08:38+02:00",
-  "window": "Oct 23 to Oct 30, 2026",
-  "headline": "Codex drops detached review/start, and headless runs in Claude Code and Antigravity CLI now report failures more clearly."
- },
- {
-  "updated": "2026-10-30T23:41+02:00",
-  "window": "Oct 23 to Oct 30, 2026",
-  "headline": "Codex drops detached review/start, and Antigravity CLI 1.4.12 lets plugins run without an API key set."
- },
- {
-  "updated": "2026-10-31T08:41+02:00",
-  "window": "Oct 24 to Oct 31, 2026",
-  "headline": "Codex drops detached review/start, and Antigravity CLI 1.4.12 lets plugins run without an API key set."
- },
- {
-  "updated": "2026-10-31T23:41+02:00",
-  "window": "Oct 24 to Oct 31, 2026",
-  "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
- },
- {
-  "updated": "2026-11-01T08:41+02:00",
-  "window": "Oct 25 to Nov 1, 2026",
-  "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
- },
- {
-  "updated": "2026-11-01T23:41+02:00",
-  "window": "Oct 25 to Nov 1, 2026",
-  "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
- },
- {
-  "updated": "2026-11-02T08:42+02:00",
-  "window": "Oct 26 to Nov 2, 2026",
-  "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
- },
- {
-  "updated": "2026-11-02T23:41+02:00",
-  "window": "Oct 26 to Nov 2, 2026",
-  "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
- },
- {
-  "updated": "2026-11-03T08:41+02:00",
-  "window": "Oct 27 to Nov 3, 2026",
-  "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
- },
- {
-  "updated": "2026-11-03T23:42+02:00",
-  "window": "Oct 27 to Nov 3, 2026",
-  "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
- },
- {
-  "updated": "2026-11-04T08:41+02:00",
-  "window": "Oct 28 to Nov 4, 2026",
-  "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
- },
- {
-  "updated": "2026-11-04T23:41+02:00",
-  "window": "Oct 28 to Nov 4, 2026",
-  "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
- },
- {
-  "updated": "2026-11-05T08:41+02:00",
-  "window": "Oct 29 to Nov 5, 2026",
-  "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
- },
- {
-  "updated": "2026-11-05T23:41+02:00",
-  "window": "Oct 29 to Nov 5, 2026",
-  "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
- },
- {
-  "updated": "2026-11-06T08:41+02:00",
-  "window": "Oct 30 to Nov 6, 2026",
-  "headline": "Antigravity CLI 1.5.2 can deny headless runs under --dangerously-skip-permissions; Opus 4.8 fast mode ends Nov 30."
- },
- {
-  "updated": "2026-11-06T23:41+02:00",
-  "window": "Oct 30 to Nov 6, 2026",
-  "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
- },
- {
-  "updated": "2026-11-07T08:41+02:00",
-  "window": "Oct 31 to Nov 7, 2026",
-  "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
- },
- {
-  "updated": "2026-11-07T23:41+02:00",
-  "window": "Oct 31 to Nov 7, 2026",
-  "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
- },
- {
-  "updated": "2026-11-08T08:41+02:00",
-  "window": "Nov 1 to Nov 8, 2026",
-  "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."
- },
- {
-  "updated": "2026-11-08T23:41+02:00",
-  "window": "Nov 1 to Nov 8, 2026",
-  "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."
- },
- {
-  "updated": "2026-11-09T08:41+02:00",
-  "window": "Nov 2 to Nov 9, 2026",
-  "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."
- },
- {
-  "updated": "2026-11-09T23:41+02:00",
-  "window": "Nov 2 to Nov 9, 2026",
-  "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."
- },
- {
-  "updated": "2026-11-10T08:42+02:00",
-  "window": "Nov 3 to Nov 10, 2026",
-  "headline": "Security fixes in Claude Code 2.1.319 and Antigravity 1.5.3 lead the week; 1.5.4 adds Auto mode for editors."
- },
- {
-  "updated": "2026-11-10T23:41+02:00",
-  "window": "Nov 3 to Nov 10, 2026",
-  "headline": "Security fixes in Claude Code 2.1.319 and Antigravity 1.5.3 lead the week; 1.5.4 adds Auto mode for editors."
- },
- {
-  "updated": "2026-11-11T08:41+02:00",
-  "window": "Nov 4 to Nov 11, 2026",
-  "headline": "Security fixes in Claude Code 2.1.319 and Antigravity CLI 1.5.3 lead; Antigravity CLI 1.5.5 rejects plain-http remote gateways."
- },
- {
-  "updated": "2026-11-11T23:41+02:00",
-  "window": "Nov 4 to Nov 11, 2026",
-  "headline": "Security fixes in Claude Code 2.1.319 and Antigravity CLI 1.5.3 lead; Antigravity CLI 1.5.6 lets Auto mode ask less often."
- },
- {
-  "updated": "2026-11-12T08:41+02:00",
-  "window": "Nov 5 to Nov 12, 2026",
-  "headline": "Claude Code 2.1.319 security fixes and exit-code changes lead; Fable 5.2 became the default and Codex 0.167.2 changed Vertex tool updates."
- }
+  {
+    "updated": "2026-10-22T07:42+03:00",
+    "window": "Oct 15 to Oct 22, 2026",
+    "headline": "The agents got more autonomous and more careful, and their plugin systems got stricter."
+  },
+  {
+    "updated": "2026-10-22T17:18+03:00",
+    "window": "Oct 15 to Oct 22, 2026",
+    "headline": "The agents got more autonomous and more careful, and their plugin systems got stricter."
+  },
+  {
+    "updated": "2026-10-22T20:08+03:00",
+    "window": "Oct 15 to Oct 22, 2026",
+    "headline": "The agents got more autonomous and more careful, and their plugin systems got stricter."
+  },
+  {
+    "updated": "2026-10-23T08:12+03:00",
+    "window": "Oct 16 to Oct 23, 2026",
+    "headline": "Coding agents tightened sandboxes and MCP handling this week, and some defaults now behave differently."
+  },
+  {
+    "updated": "2026-10-23T20:11+03:00",
+    "window": "Oct 16 to Oct 23, 2026",
+    "headline": "Coding agents tightened sandboxes and MCP handling this week, and some defaults now behave differently."
+  },
+  {
+    "updated": "2026-10-23T22:09+03:00",
+    "window": "Oct 16 to Oct 23, 2026",
+    "headline": "Coding agents tightened sandboxes and MCP handling this week, and some defaults now behave differently."
+  },
+  {
+    "updated": "2026-10-24T08:11+03:00",
+    "window": "Oct 17 to Oct 24, 2026",
+    "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
+  },
+  {
+    "updated": "2026-10-24T22:11+03:00",
+    "window": "Oct 17 to Oct 24, 2026",
+    "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
+  },
+  {
+    "updated": "2026-10-25T08:11+03:00",
+    "window": "Oct 18 to Oct 25, 2026",
+    "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
+  },
+  {
+    "updated": "2026-10-25T22:11+03:00",
+    "window": "Oct 18 to Oct 25, 2026",
+    "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
+  },
+  {
+    "updated": "2026-10-26T08:12+03:00",
+    "window": "Oct 19 to Oct 26, 2026",
+    "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
+  },
+  {
+    "updated": "2026-10-26T22:12+03:00",
+    "window": "Oct 19 to Oct 26, 2026",
+    "headline": "Claude Code 2.1.310 and Antigravity CLI 1.4.7 shipped, and agy's plugin sign-in change needs one action."
+  },
+  {
+    "updated": "2026-10-27T08:12+03:00",
+    "window": "Oct 20 to Oct 27, 2026",
+    "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs."
+  },
+  {
+    "updated": "2026-10-27T22:12+03:00",
+    "window": "Oct 20 to Oct 27, 2026",
+    "headline": "Claude Code 2.1.311 and Kilo Code 7.8.18 shipped, and Kilo's MCP update breaks remote servers that redirect, so check their URLs."
+  },
+  {
+    "updated": "2026-10-28T08:11+03:00",
+    "window": "Oct 21 to Oct 28, 2026",
+    "headline": "Claude Code 2.1.312 and Codex 0.165.0 shipped, and both now change defaults, so check the model-switch and memory settings."
+  },
+  {
+    "updated": "2026-10-28T22:12+03:00",
+    "window": "Oct 21 to Oct 28, 2026",
+    "headline": "Claude Code 2.1.312 and Codex 0.165.0 changed defaults, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."
+  },
+  {
+    "updated": "2026-10-29T08:11+03:00",
+    "window": "Oct 22 to Oct 29, 2026",
+    "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."
+  },
+  {
+    "updated": "2026-10-29T22:13+03:00",
+    "window": "Oct 22 to Oct 29, 2026",
+    "headline": "Claude Code and Codex changed defaults this week, and Antigravity CLI 1.4.9 now needs separate approval for Google apps."
+  },
+  {
+    "updated": "2026-10-30T08:38+02:00",
+    "window": "Oct 23 to Oct 30, 2026",
+    "headline": "Codex drops detached review/start, and headless runs in Claude Code and Antigravity CLI now report failures more clearly."
+  },
+  {
+    "updated": "2026-10-30T23:41+02:00",
+    "window": "Oct 23 to Oct 30, 2026",
+    "headline": "Codex drops detached review/start, and Antigravity CLI 1.4.12 lets plugins run without an API key set."
+  },
+  {
+    "updated": "2026-10-31T08:41+02:00",
+    "window": "Oct 24 to Oct 31, 2026",
+    "headline": "Codex drops detached review/start, and Antigravity CLI 1.4.12 lets plugins run without an API key set."
+  },
+  {
+    "updated": "2026-10-31T23:41+02:00",
+    "window": "Oct 24 to Oct 31, 2026",
+    "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
+  },
+  {
+    "updated": "2026-11-01T08:41+02:00",
+    "window": "Oct 25 to Nov 1, 2026",
+    "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
+  },
+  {
+    "updated": "2026-11-01T23:41+02:00",
+    "window": "Oct 25 to Nov 1, 2026",
+    "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
+  },
+  {
+    "updated": "2026-11-02T08:42+02:00",
+    "window": "Oct 26 to Nov 2, 2026",
+    "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
+  },
+  {
+    "updated": "2026-11-02T23:41+02:00",
+    "window": "Oct 26 to Nov 2, 2026",
+    "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
+  },
+  {
+    "updated": "2026-11-03T08:41+02:00",
+    "window": "Oct 27 to Nov 3, 2026",
+    "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
+  },
+  {
+    "updated": "2026-11-03T23:42+02:00",
+    "window": "Oct 27 to Nov 3, 2026",
+    "headline": "Claude Code 2.1.316 ends Opus 4.8 fast mode on November 30, and Codex drops detached review/start."
+  },
+  {
+    "updated": "2026-11-04T08:41+02:00",
+    "window": "Oct 28 to Nov 4, 2026",
+    "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
+  },
+  {
+    "updated": "2026-11-04T23:41+02:00",
+    "window": "Oct 28 to Nov 4, 2026",
+    "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
+  },
+  {
+    "updated": "2026-11-05T08:41+02:00",
+    "window": "Oct 29 to Nov 5, 2026",
+    "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
+  },
+  {
+    "updated": "2026-11-05T23:41+02:00",
+    "window": "Oct 29 to Nov 5, 2026",
+    "headline": "Antigravity CLI 1.5.0 adds an ACP editor server and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
+  },
+  {
+    "updated": "2026-11-06T08:41+02:00",
+    "window": "Oct 30 to Nov 6, 2026",
+    "headline": "Antigravity CLI 1.5.2 can deny headless runs under --dangerously-skip-permissions; Opus 4.8 fast mode ends Nov 30."
+  },
+  {
+    "updated": "2026-11-06T23:41+02:00",
+    "window": "Oct 30 to Nov 6, 2026",
+    "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
+  },
+  {
+    "updated": "2026-11-07T08:41+02:00",
+    "window": "Oct 31 to Nov 7, 2026",
+    "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
+  },
+  {
+    "updated": "2026-11-07T23:41+02:00",
+    "window": "Oct 31 to Nov 7, 2026",
+    "headline": "Claude Code 2.1.319 fixes a Bash permission bypass and changes headless exit codes; Opus 4.8 fast mode ends Nov 30."
+  },
+  {
+    "updated": "2026-11-08T08:41+02:00",
+    "window": "Nov 1 to Nov 8, 2026",
+    "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."
+  },
+  {
+    "updated": "2026-11-08T23:41+02:00",
+    "window": "Nov 1 to Nov 8, 2026",
+    "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."
+  },
+  {
+    "updated": "2026-11-09T08:41+02:00",
+    "window": "Nov 2 to Nov 9, 2026",
+    "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."
+  },
+  {
+    "updated": "2026-11-09T23:41+02:00",
+    "window": "Nov 2 to Nov 9, 2026",
+    "headline": "Claude Code 2.1.319 and Antigravity CLI 1.5.3 fix security holes; headless runs now exit non-zero when refused or cut short."
+  },
+  {
+    "updated": "2026-11-10T08:42+02:00",
+    "window": "Nov 3 to Nov 10, 2026",
+    "headline": "Security fixes in Claude Code 2.1.319 and Antigravity 1.5.3 lead the week; 1.5.4 adds Auto mode for editors."
+  },
+  {
+    "updated": "2026-11-10T23:41+02:00",
+    "window": "Nov 3 to Nov 10, 2026",
+    "headline": "Security fixes in Claude Code 2.1.319 and Antigravity 1.5.3 lead the week; 1.5.4 adds Auto mode for editors."
+  },
+  {
+    "updated": "2026-11-11T08:41+02:00",
+    "window": "Nov 4 to Nov 11, 2026",
+    "headline": "Security fixes in Claude Code 2.1.319 and Antigravity CLI 1.5.3 lead; Antigravity CLI 1.5.5 rejects plain-http remote gateways."
+  },
+  {
+    "updated": "2026-11-11T23:41+02:00",
+    "window": "Nov 4 to Nov 11, 2026",
+    "headline": "Security fixes in Claude Code 2.1.319 and Antigravity CLI 1.5.3 lead; Antigravity CLI 1.5.6 lets Auto mode ask less often."
+  },
+  {
+    "updated": "2026-11-12T08:41+02:00",
+    "window": "Nov 5 to Nov 12, 2026",
+    "headline": "Claude Code 2.1.319 security fixes and exit-code changes lead; Fable 5.2 became the default and Codex 0.167.2 changed Vertex tool updates."
+  },
+  {
+    "updated": "2026-11-12T23:41+02:00",
+    "window": "Nov 5 to Nov 12, 2026",
+    "headline": "Antigravity CLI 1.5.7 makes Auto the default Agent Mode and closes an admin-review bypass, after Claude Code 2.1.319's security fixes."
+  }
 ]

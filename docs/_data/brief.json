@@ -1,20 +1,20 @@
 {
- "updated": "2026-11-12T08:41+02:00",
- "updated_label": "Nov 12, 08:41",
+ "updated": "2026-11-12T23:41+02:00",
+ "updated_label": "Nov 12, 23:41",
  "window": "Nov 5 to Nov 12, 2026",
- "headline": "Claude Code 2.1.319 security fixes and exit-code changes lead; Fable 5.2 became the default and Codex 0.167.2 changed Vertex tool updates.",
+ "headline": "Antigravity CLI 1.5.7 makes Auto the default Agent Mode and closes an admin-review bypass, after Claude Code 2.1.319's security fixes.",
  "themes": [
   {
    "tag": "Security",
    "title": "Permission and sandbox holes closed",
-   "facts": "Claude Code 2.1.319 closes a Bash permission bypass where a crafted environment prefix could hide part of a command, and a sandbox escape when creating a worktree ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.3 fixes a terminal sandbox issue where a sandboxed command could change environment state that later persistent terminal commands loaded ([1.5.3](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.3)).",
-   "so_what": "update Claude Code to 2.1.319 and Antigravity CLI to 1.5.3 or later."
+   "facts": "Claude Code 2.1.319 closes a Bash permission bypass and a sandbox escape when creating a worktree ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.3 fixes a sandbox state leak ([1.5.3](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.3)), and 1.5.7 stops `PreToolUse` `auto_approve` hooks and wildcard `command(*)` rules from skipping admin review ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7)).",
+   "so_what": "update Claude Code to 2.1.319 and Antigravity CLI to 1.5.7 or later."
   },
   {
    "tag": "Headless",
-   "title": "Scripts get clearer failure signals, and new denials",
-   "facts": "Claude Code 2.1.319 makes `claude -p` exit 1 when auto mode refuses actions, where it used to exit 0 ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.2 denies some requests in headless `-p` runs that use `--dangerously-skip-permissions` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)), and 1.5.5 stops a stuck background task from keeping `agy -p` running ([1.5.5](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.5)).",
-   "so_what": "scripts that trust exit 0 or the raw output should check these signals now, and skip-permission jobs may be denied more often."
+   "title": "Headless runs get new exit codes, denials and defaults",
+   "facts": "Claude Code 2.1.319 makes `claude -p` exit 1 when auto mode refuses actions, where it used to exit 0 ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.2 denies some `-p` requests that use `--dangerously-skip-permissions` ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)), and 1.5.7 makes headless runs start in Auto when no mode is saved ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7)).",
+   "so_what": "scripts that trust exit 0 or the raw output should check these signals now, and any `agy -p` job without a saved mode now runs in Auto."
   },
   {
    "tag": "Defaults",
@@ -23,5 +23,5 @@
    "so_what": "check the price of the Fable default before you rely on it, and re-check any pinned terminal or Vertex setting."
   }
  ],
- "watch_next": "Check that scheduled `claude -p` and `agy -p` jobs still pass with Claude Code 2.1.319 and Antigravity CLI 1.5.3, since 1.5.2 denies more skip-permission requests. Watch whether Kilo Code v7.8.28 becomes a stable release, since it is still marked pre-release."
+ "watch_next": "Check that scheduled `claude -p` and `agy -p` jobs still pass with Claude Code 2.1.319 and Antigravity CLI 1.5.7, since 1.5.7 starts headless runs in Auto. Watch for the notes of Codex 0.168.0, and whether Kilo Code v7.8.28 becomes a stable release, since it is still marked pre-release."
 }

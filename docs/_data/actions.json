@@ -375,5 +375,57 @@
   "flagged": "2026-11-13",
   "category": "default-change",
   "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.325-zstd-security-fix",
+  "tool": "claude-code",
+  "version": "2.1.325",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.325",
+  "title": "Security fix in zstd response decoding",
+  "affects": "anyone running Claude Code.",
+  "do": "update Claude Code to 2.1.325 or later.",
+  "deadline": null,
+  "flagged": "2026-11-13",
+  "category": "security",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.325-sandbox-bash-prompts",
+  "tool": "claude-code",
+  "version": "2.1.325",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.325",
+  "title": "Sandboxed Bash asks for permission by default",
+  "affects": "unattended or scheduled jobs that run sandboxed Bash commands.",
+  "do": "set `sandbox.autoAllowBashIfSandboxed: true` to keep them running without prompts.",
+  "deadline": null,
+  "flagged": "2026-11-13",
+  "category": "breaks-automation",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.325-scheduled-skill-prompts",
+  "tool": "claude-code",
+  "version": "2.1.325",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.325",
+  "title": "Scheduled tasks and `/loop` ask before some skills",
+  "affects": "scheduled tasks and `/loop` runs that use skills declaring `allowed-tools` or hooks.",
+  "do": "add `Skill(name)` to `permissions.allow` so those skills run unattended.",
+  "deadline": null,
+  "flagged": "2026-11-13",
+  "category": "breaks-automation",
+  "dismissed": false
+ },
+ {
+  "id": "codex-rust-v0.169.0-exec-trust-flag",
+  "tool": "codex",
+  "version": "rust-v0.169.0",
+  "url": "https://github.com/openai/codex/releases/tag/rust-v0.169.0",
+  "title": "`codex exec` needs `--trust` for project config",
+  "affects": "scripts and CI jobs that run `codex exec` in untrusted directories and need project config or MCP servers.",
+  "do": "add `--trust` to those `codex exec` runs.",
+  "deadline": null,
+  "flagged": "2026-11-13",
+  "category": "breaks-automation",
+  "dismissed": false
  }
 ]

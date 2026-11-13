@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-12T23:41+02:00",
- "updated_label": "Nov 12, 23:41",
- "window": "Nov 5 to Nov 12, 2026",
- "headline": "Antigravity CLI 1.5.7 makes Auto the default Agent Mode and closes an admin-review bypass, after Claude Code 2.1.319's security fixes.",
+ "updated": "2026-11-13T08:42+02:00",
+ "updated_label": "Nov 13, 08:42",
+ "window": "Nov 6 to Nov 13, 2026",
+ "headline": "Claude Code 2.1.323 and Antigravity CLI 1.5.8 close more permission and sandbox gaps, on top of a week of new defaults.",
  "themes": [
   {
    "tag": "Security",
    "title": "Permission and sandbox holes closed",
-   "facts": "Claude Code 2.1.319 closes a Bash permission bypass and a sandbox escape when creating a worktree ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)). Antigravity CLI 1.5.3 fixes a sandbox state leak ([1.5.3](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.3)), and 1.5.7 stops `PreToolUse` `auto_approve` hooks and wildcard `command(*)` rules from skipping admin review ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7)).",
-   "so_what": "update Claude Code to 2.1.319 and Antigravity CLI to 1.5.7 or later."
+   "facts": "Claude Code 2.1.319 closes a Bash permission bypass and a sandbox escape when creating a worktree ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)), and 2.1.323 fixes a Bash `rm` check that skipped the dangerous-removal prompt ([2.1.323](https://github.com/anthropics/claude-code/releases/tag/v2.1.323)). Antigravity CLI 1.5.8 closes a terminal sandbox proxy path bypass and makes Windows `cmd` and PowerShell allow rules exact ([1.5.8](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.8)).",
+   "so_what": "update Claude Code to 2.1.323 and Antigravity CLI to 1.5.8 or later."
   },
   {
    "tag": "Headless",
@@ -23,5 +23,5 @@
    "so_what": "check the price of the Fable default before you rely on it, and re-check any pinned terminal or Vertex setting."
   }
  ],
- "watch_next": "Check that scheduled `claude -p` and `agy -p` jobs still pass with Claude Code 2.1.319 and Antigravity CLI 1.5.7, since 1.5.7 starts headless runs in Auto. Watch for the notes of Codex 0.168.0, and whether Kilo Code v7.8.28 becomes a stable release, since it is still marked pre-release."
+ "watch_next": "Check that scheduled `claude -p` and `agy -p` jobs still pass with Claude Code 2.1.323 and Antigravity CLI 1.5.8, since 1.5.7 starts headless runs in Auto. Watch for the notes of Codex 0.168.0 and 0.169.0, and whether Kilo Code v7.8.28 becomes a stable release, since it is still marked pre-release."
 }

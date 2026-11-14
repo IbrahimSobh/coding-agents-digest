@@ -427,5 +427,18 @@
   "flagged": "2026-11-13",
   "category": "breaks-automation",
   "dismissed": false
+ },
+ {
+  "id": "antigravity-cli-1.5.9-mcp-header-redirect",
+  "tool": "antigravity-cli",
+  "version": "1.5.9",
+  "url": "https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.9",
+  "title": "HTTP MCP headers stay on their own server",
+  "affects": "people who use HTTP MCP servers with custom headers such as API keys.",
+  "do": "update Antigravity CLI to 1.5.9 or later.",
+  "deadline": null,
+  "flagged": "2026-11-14",
+  "category": "security",
+  "dismissed": false
  }
 ]

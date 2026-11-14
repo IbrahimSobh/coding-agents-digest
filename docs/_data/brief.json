@@ -1,27 +1,27 @@
 {
- "updated": "2026-11-13T23:41+02:00",
- "updated_label": "Nov 13, 23:41",
- "window": "Nov 6 to Nov 13, 2026",
- "headline": "Claude Code 2.1.325 fixes a security issue and asks before sandboxed Bash; Codex 0.169.0 needs --trust for exec runs.",
+ "updated": "2026-11-14T08:41+02:00",
+ "updated_label": "Nov 14, 08:41",
+ "window": "Nov 7 to Nov 14, 2026",
+ "headline": "Claude Code 2.1.325 and Antigravity CLI 1.5.8 close security gaps; unattended runs now need explicit trust settings.",
  "themes": [
   {
    "tag": "Security",
    "title": "Permission and sandbox holes closed",
-   "facts": "Claude Code 2.1.319 closes a Bash permission bypass and a sandbox escape when creating a worktree ([2.1.319](https://github.com/anthropics/claude-code/releases/tag/v2.1.319)), 2.1.323 fixes a Bash `rm` check that skipped the dangerous-removal prompt ([2.1.323](https://github.com/anthropics/claude-code/releases/tag/v2.1.323)), and 2.1.325 fixes a security issue in zstd response decoding ([2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Antigravity CLI 1.5.8 closes a terminal sandbox proxy path bypass and makes Windows `cmd` and PowerShell allow rules exact ([1.5.8](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.8)).",
+   "facts": "Claude Code 2.1.323 fixes a Bash `rm` check that could skip the dangerous-removal prompt ([2.1.323](https://github.com/anthropics/claude-code/releases/tag/v2.1.323)), and 2.1.325 fixes a security issue in zstd response decoding ([2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Antigravity CLI 1.5.3 fixes a terminal sandbox issue where sandboxed commands could change environment state for later terminal commands ([1.5.3](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.3)), 1.5.7 closes a `PreToolUse` hook path that could skip admin review ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7)), and 1.5.8 closes a sandbox proxy path bypass ([1.5.8](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.8)).",
    "so_what": "update Claude Code to 2.1.325 and Antigravity CLI to 1.5.8 or later."
   },
   {
    "tag": "Unattended",
    "title": "Unattended runs now need explicit trust",
-   "facts": "Claude Code 2.1.325 makes scheduled tasks and `/loop` ask before running a skill with `allowed-tools` or hooks, and sandboxed Bash asks by default ([2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Codex 0.169.0 keeps project config and MCP servers off in untrusted directories for `codex exec` unless `--trust` is passed ([rust-v0.169.0](https://github.com/openai/codex/releases/tag/rust-v0.169.0)), and Antigravity CLI 1.5.7 starts headless runs in Auto when no mode is saved ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7)).",
-   "so_what": "add `Skill(name)`, the sandbox setting and `--trust` to unattended jobs, or they may wait for approval or lose their config."
+   "facts": "Claude Code 2.1.325 makes scheduled tasks and `/loop` ask before running a skill with `allowed-tools` or hooks, and sandboxed Bash asks by default ([2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Codex 0.169.0 keeps project config and MCP servers off in untrusted directories for `codex exec` unless `--trust` is passed ([rust-v0.169.0](https://github.com/openai/codex/releases/tag/rust-v0.169.0)).",
+   "so_what": "add `Skill(name)`, the `sandbox.autoAllowBashIfSandboxed` setting and `--trust` to unattended jobs, or they may wait for approval or lose their config."
   },
   {
    "tag": "Defaults",
    "title": "New defaults change cost and behavior",
-   "facts": "Claude Code 2.1.321 makes `claude-fable-5-2` the new default Fable model, with 1M context at $8/$40 per Mtok ([2.1.321](https://github.com/anthropics/claude-code/releases/tag/v2.1.321)). Codex 0.167.2 sends tool updates incrementally by default on Google Cloud Vertex AI ([rust-v0.167.2](https://github.com/openai/codex/releases/tag/rust-v0.167.2)), and Antigravity CLI 1.5.2 makes macOS Option-key shortcuts work by default ([1.5.2](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.2)).",
-   "so_what": "check the price of the Fable default before you rely on it, and re-check any pinned terminal or Vertex setting."
+   "facts": "Claude Code 2.1.321 makes `claude-fable-5-2` the new default Fable model, with 1M context at $8/$40 per Mtok ([2.1.321](https://github.com/anthropics/claude-code/releases/tag/v2.1.321)). Codex 0.167.2 sends tool updates incrementally by default on Google Cloud Vertex AI ([rust-v0.167.2](https://github.com/openai/codex/releases/tag/rust-v0.167.2)), and Antigravity CLI 1.5.7 makes Auto the default Agent Mode, even for headless runs ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7)).",
+   "so_what": "check the price of the Fable default before you rely on it, and re-check any pinned Vertex setting or Agent Mode."
   }
  ],
- "watch_next": "Check that unattended Claude Code and Codex jobs still pass with the new prompts and `--trust` rule. Watch whether Kilo Code v7.8.28 becomes a stable release, since it is still marked pre-release."
+ "watch_next": "Check that unattended Claude Code and Codex jobs still pass with the new prompts and `--trust` rule. Antigravity CLI 1.5.9 and Kilo Code v7.8.28 were not checked this run, because their release pages could not be read."
 }

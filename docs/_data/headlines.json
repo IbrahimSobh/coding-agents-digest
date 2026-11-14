@@ -238,5 +238,10 @@
   "updated": "2026-11-13T23:41+02:00",
   "window": "Nov 6 to Nov 13, 2026",
   "headline": "Claude Code 2.1.325 fixes a security issue and asks before sandboxed Bash; Codex 0.169.0 needs --trust for exec runs."
+ },
+ {
+   "updated": "2026-11-14T08:41+02:00",
+   "window": "Nov 7 to Nov 14, 2026",
+   "headline": "Claude Code 2.1.325 and Antigravity CLI 1.5.8 close security gaps; unattended runs now need explicit trust settings."
  }
 ]

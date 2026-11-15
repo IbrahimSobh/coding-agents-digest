@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-14T23:41+02:00",
- "updated_label": "Nov 14, 23:41",
- "window": "Nov 7 to Nov 14, 2026",
+ "updated": "2026-11-15T08:41+02:00",
+ "updated_label": "Nov 15, 08:41",
+ "window": "Nov 8 to Nov 15, 2026",
  "headline": "Antigravity CLI 1.5.9 and Claude Code 2.1.325 close security gaps; unattended runs now need explicit trust settings.",
  "themes": [
   {
    "tag": "Security",
    "title": "Permission and sandbox holes closed",
-   "facts": "Claude Code 2.1.323 fixes a Bash `rm` check that could skip the dangerous-removal prompt ([2.1.323](https://github.com/anthropics/claude-code/releases/tag/v2.1.323)), and 2.1.325 fixes a security issue in zstd response decoding ([2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Antigravity CLI 1.5.3 fixes a terminal sandbox issue where sandboxed commands could change environment state for later terminal commands ([1.5.3](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.3)), 1.5.7 closes a `PreToolUse` hook path that could skip admin review ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7)), 1.5.8 closes a sandbox proxy path bypass ([1.5.8](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.8)), and 1.5.9 stops custom MCP headers, such as API keys, from being forwarded to another host after a redirect ([1.5.9](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.9)).",
+   "facts": "Claude Code 2.1.323 fixes a Bash `rm` check that could skip the dangerous-removal prompt ([2.1.323](https://github.com/anthropics/claude-code/releases/tag/v2.1.323)), and 2.1.325 fixes a security issue in zstd response decoding ([2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Antigravity CLI 1.5.7 closes a `PreToolUse` hook path that could skip admin review ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7)), 1.5.8 closes a sandbox proxy path bypass ([1.5.8](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.8)), and 1.5.9 stops custom MCP headers, such as API keys, from being forwarded to another host after a redirect ([1.5.9](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.9)).",
    "so_what": "update Claude Code to 2.1.325 and Antigravity CLI to 1.5.9 or later."
   },
   {

@@ -263,5 +263,10 @@
   "updated": "2026-11-16T08:41+02:00",
   "window": "Nov 9 to Nov 16, 2026",
   "headline": "Antigravity CLI 1.5.9 and Claude Code 2.1.325 close security gaps; unattended runs now need explicit trust settings."
+ },
+ {
+  "updated": "2026-11-16T23:41+02:00",
+  "window": "Nov 9 to Nov 16, 2026",
+  "headline": "Antigravity CLI 1.5.9 and Claude Code 2.1.325 close security gaps; unattended runs now need explicit trust settings."
  }
 ]

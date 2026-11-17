@@ -440,5 +440,57 @@
   "flagged": "2026-11-14",
   "category": "security",
   "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.326-hook-block-decision",
+  "tool": "claude-code",
+  "version": "2.1.326",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.326",
+  "title": "Hook decision block holds in more cases",
+  "affects": "scripts and hooks that print `\"decision\": \"block\"` on calls they should let through.",
+  "do": "remove the block output from those hooks, or make them block only the calls they mean to stop.",
+  "deadline": null,
+  "flagged": "2026-11-17",
+  "category": "breaks-automation",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.326-sandbox-home-writes",
+  "tool": "claude-code",
+  "version": "2.1.326",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.326",
+  "title": "Sandbox blocks writes to some home folders",
+  "affects": "jobs whose sandboxed Bash commands write to some sensitive home folders.",
+  "do": "add the folder to `sandbox.filesystem.allowWrite` in user or managed settings.",
+  "deadline": null,
+  "flagged": "2026-11-17",
+  "category": "default-change",
+  "dismissed": false
+ },
+ {
+  "id": "antigravity-cli-1.5.10-remote-edit-prompts",
+  "tool": "antigravity-cli",
+  "version": "1.5.10",
+  "url": "https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.10",
+  "title": "Remote agent asks before each edit",
+  "affects": "unattended `--remote-agent` sessions that edit files.",
+  "do": "press `Shift+Tab` to switch to `accept-edits`, or edits will wait for approval.",
+  "deadline": null,
+  "flagged": "2026-11-17",
+  "category": "breaks-automation",
+  "dismissed": false
+ },
+ {
+  "id": "antigravity-cli-1.5.10-sandbox-config-reads",
+  "tool": "antigravity-cli",
+  "version": "1.5.10",
+  "url": "https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.10",
+  "title": "Sandbox blocks reads of ~/.config",
+  "affects": "sandboxed commands that read `~/.config` or `XDG_CONFIG_HOME`.",
+  "do": "allow the path the command needs in your sandbox rules.",
+  "deadline": null,
+  "flagged": "2026-11-17",
+  "category": "default-change",
+  "dismissed": false
  }
 ]

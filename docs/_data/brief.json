@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-17T08:41+02:00",
- "updated_label": "Nov 17, 08:41",
+ "updated": "2026-11-17T23:41+02:00",
+ "updated_label": "Nov 17, 23:41",
  "window": "Nov 10 to Nov 17, 2026",
  "headline": "Claude Code 2.1.326 and Antigravity CLI 1.5.10 change sandbox and approval defaults, so unattended jobs may need settings.",
  "themes": [
@@ -23,5 +23,5 @@
    "so_what": "re-check sandboxed jobs for blocked paths, and re-check any pinned Vertex setting or Agent Mode."
   }
  ],
- "watch_next": "Check that unattended Claude Code and Codex jobs still pass with the new prompts and `--trust` rule, and that sandboxed jobs are not blocked from home folders or `~/.config`. Kilo Code v7.8.28 and v7.8.30 are pre-releases, so the stable line stays at v7.8.27 until a stable tag appears."
+ "watch_next": "Codex rust-v0.169.1 and OpenCode v1.19.6 are new tags whose notes could not be read this run, and Kilo Code's stable line could not be checked. Also check that unattended Claude Code and Codex jobs pass with the new prompts and `--trust` rule."
 }

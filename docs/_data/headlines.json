@@ -273,5 +273,10 @@
   "updated": "2026-11-17T08:41+02:00",
   "window": "Nov 10 to Nov 17, 2026",
   "headline": "Claude Code 2.1.326 and Antigravity CLI 1.5.10 change sandbox and approval defaults, so unattended jobs may need settings."
+ },
+ {
+  "updated": "2026-11-17T23:41+02:00",
+  "window": "Nov 10 to Nov 17, 2026",
+  "headline": "Claude Code 2.1.326 and Antigravity CLI 1.5.10 change sandbox and approval defaults, so unattended jobs may need settings."
  }
 ]

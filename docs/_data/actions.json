@@ -492,5 +492,44 @@
   "flagged": "2026-11-17",
   "category": "default-change",
   "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.327-mcp-add-scope",
+  "tool": "claude-code",
+  "version": "2.1.327",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.327",
+  "title": "`mcp add` stops on a top-level `.mcp.json`",
+  "affects": "scripts that run `claude mcp add --scope project` on a `.mcp.json` whose servers sit at the top level.",
+  "do": "move the servers under an `mcpServers` key in `.mcp.json` before the command runs.",
+  "deadline": null,
+  "flagged": "2026-11-18",
+  "category": "breaks-automation",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.327-auto-mode-allow-rules",
+  "tool": "claude-code",
+  "version": "2.1.327",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.327",
+  "title": "Auto mode ignores broad allow rules",
+  "affects": "auto mode users with allow rules that run any package, like `Bash(pnpm dlx *)`.",
+  "do": "run the job once in auto mode and add an exact rule for each command it still asks about.",
+  "deadline": null,
+  "flagged": "2026-11-18",
+  "category": "default-change",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.327-shell-head-start",
+  "tool": "claude-code",
+  "version": "2.1.327",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.327",
+  "title": "Shell startup files run before approval",
+  "affects": "users whose shell startup files print, prompt or change state.",
+  "do": "set `CLAUDE_CODE_DISABLE_SHELL_HEAD_START=1` to keep startup files from running before approval.",
+  "deadline": null,
+  "flagged": "2026-11-18",
+  "category": "default-change",
+  "dismissed": false
  }
 ]

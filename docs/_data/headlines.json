@@ -278,5 +278,10 @@
   "updated": "2026-11-17T23:41+02:00",
   "window": "Nov 10 to Nov 17, 2026",
   "headline": "Claude Code 2.1.326 and Antigravity CLI 1.5.10 change sandbox and approval defaults, so unattended jobs may need settings."
+ },
+ {
+  "updated": "2026-11-18T08:41+02:00",
+  "window": "Nov 11 to Nov 18, 2026",
+  "headline": "Claude Code 2.1.327 changes auto-mode allow rules and shell startup timing, and Codex 0.170.0 adds realtime WebRTC voice."
  }
 ]

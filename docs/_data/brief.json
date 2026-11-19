@@ -1,7 +1,7 @@
 {
- "updated": "2026-11-18T23:41+02:00",
- "updated_label": "Nov 18, 23:41",
- "window": "Nov 11 to Nov 18, 2026",
+ "updated": "2026-11-19T08:41+02:00",
+ "updated_label": "Nov 19, 08:41",
+ "window": "Nov 12 to Nov 19, 2026",
  "headline": "Claude Code 2.1.327 changes auto-mode allow rules and shell startup timing, and Codex 0.170.0 adds realtime WebRTC voice.",
  "themes": [
   {
@@ -23,5 +23,5 @@
    "so_what": "re-check sandboxed jobs for blocked paths, and set `CLAUDE_CODE_DISABLE_SHELL_HEAD_START=1` if startup files must wait for approval."
   }
  ],
- "watch_next": "The next stable Kilo Code release will repeat the notes of the pre-releases v7.8.28 and v7.8.30. Also check that unattended jobs still pass with the new auto-mode and `mcp add` rules."
+ "watch_next": "Watch the next Claude Code and Antigravity CLI notes for changes to auto mode and sandbox defaults, and check that unattended jobs still pass with the new `mcp add` and allow-rule behavior."
 }

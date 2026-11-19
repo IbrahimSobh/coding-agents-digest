@@ -531,5 +531,44 @@
   "flagged": "2026-11-18",
   "category": "default-change",
   "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.328-mcp-header-redirect",
+  "tool": "claude-code",
+  "version": "2.1.328",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.328",
+  "title": "MCP headers no longer follow a redirect",
+  "affects": "anyone with an HTTP MCP server that takes API keys or other secrets in custom headers.",
+  "do": "update Claude Code to 2.1.328.",
+  "deadline": null,
+  "flagged": "2026-11-19",
+  "category": "security",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.328-sandbox-network-bypass",
+  "tool": "claude-code",
+  "version": "2.1.328",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.328",
+  "title": "Sandbox network rules could be bypassed",
+  "affects": "users who rely on sandbox network rules to limit where credentials are sent or which Git and API paths are allowed.",
+  "do": "update Claude Code to 2.1.328.",
+  "deadline": null,
+  "flagged": "2026-11-19",
+  "category": "security",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.328-code-mode-userprompt-hooks",
+  "tool": "claude-code",
+  "version": "2.1.328",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.328",
+  "title": "UserPromptSubmit hooks no longer see Code Mode output",
+  "affects": "users with a UserPromptSubmit hook that redacts or changes Code Mode script output.",
+  "do": "move that step to a PostToolUse hook that returns `updatedToolOutput`.",
+  "deadline": null,
+  "flagged": "2026-11-19",
+  "category": "removed",
+  "dismissed": false
  }
 ]

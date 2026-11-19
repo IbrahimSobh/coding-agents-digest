@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-19T08:41+02:00",
- "updated_label": "Nov 19, 08:41",
+ "updated": "2026-11-19T23:41+02:00",
+ "updated_label": "Nov 19, 23:41",
  "window": "Nov 12 to Nov 19, 2026",
- "headline": "Claude Code 2.1.327 changes auto-mode allow rules and shell startup timing, and Codex 0.170.0 adds realtime WebRTC voice.",
+ "headline": "Claude Code 2.1.328 fixes two security issues, and Antigravity CLI 1.5.12 adds Gemini 4 Neon and split view.",
  "themes": [
   {
    "tag": "Security",
    "title": "Permission and sandbox holes closed",
-   "facts": "Claude Code 2.1.323 and 2.1.325 close a Bash `rm` check that could be skipped and a zstd decoding issue ([v2.1.323](https://github.com/anthropics/claude-code/releases/tag/v2.1.323), [v2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Antigravity CLI 1.5.7 to 1.5.9 close a hook path that could skip admin review, a sandbox proxy bypass, and a leak of MCP headers after a redirect ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7), [1.5.8](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.8), [1.5.9](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.9)). Codex 0.170.0 keeps sandbox restrictions through permission updates and child threads ([rust-v0.170.0](https://github.com/openai/codex/releases/tag/rust-v0.170.0)).",
-   "so_what": "update Claude Code to 2.1.327 and Antigravity CLI to 1.5.10 or later."
+   "facts": "Claude Code 2.1.328 closes an MCP header leak on redirect and a sandbox network-rule bypass ([v2.1.328](https://github.com/anthropics/claude-code/releases/tag/v2.1.328)). Earlier, Claude Code 2.1.323 and 2.1.325 close a Bash `rm` check that could be skipped and a zstd decoding issue ([v2.1.323](https://github.com/anthropics/claude-code/releases/tag/v2.1.323), [v2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Antigravity CLI 1.5.7 to 1.5.9 close a hook path that could skip admin review, a sandbox proxy bypass, and a leak of MCP headers after a redirect ([1.5.7](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.7), [1.5.8](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.8), [1.5.9](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.9)). Codex 0.170.0 keeps sandbox restrictions through permission updates and child threads ([rust-v0.170.0](https://github.com/openai/codex/releases/tag/rust-v0.170.0)).",
+   "so_what": "update Claude Code to 2.1.328 and Antigravity CLI to 1.5.10 or later."
   },
   {
    "tag": "Unattended",
@@ -23,5 +23,5 @@
    "so_what": "re-check sandboxed jobs for blocked paths, and set `CLAUDE_CODE_DISABLE_SHELL_HEAD_START=1` if startup files must wait for approval."
   }
  ],
- "watch_next": "Watch the next Claude Code and Antigravity CLI notes for changes to auto mode and sandbox defaults, and check that unattended jobs still pass with the new `mcp add` and allow-rule behavior."
+ "watch_next": "Watch the next Claude Code notes for how the new auto mode default on Bedrock, Foundry and the other third-party platforms behaves, and check that unattended jobs still pass with the new `mcp add` and allow-rule behavior."
 }

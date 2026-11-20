@@ -570,5 +570,44 @@
   "flagged": "2026-11-19",
   "category": "removed",
   "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.329-scheduled-tasks-again",
+  "tool": "claude-code",
+  "version": "2.1.329",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.329",
+  "title": "Saved scheduled tasks need scheduling again",
+  "affects": "your scheduled tasks saved by an earlier Claude Code version, in new signed-in sessions.",
+  "do": "schedule each one again, or resume its own session with `--resume`, which still runs it.",
+  "deadline": null,
+  "flagged": "2026-11-20",
+  "category": "breaks-automation",
+  "dismissed": false
+ },
+ {
+  "id": "claude-code-2.1.329-code-mode-hooks",
+  "tool": "claude-code",
+  "version": "2.1.329",
+  "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.329",
+  "title": "Code Mode hooks no longer block on error",
+  "affects": "you use Code Mode with PreToolUse hooks that must refuse a tool call.",
+  "do": "add `\"onFailure\": \"block\"` to each command, HTTP or MCP tool hook that must refuse.",
+  "deadline": null,
+  "flagged": "2026-11-20",
+  "category": "breaks-automation",
+  "dismissed": false
+ },
+ {
+  "id": "codex-rust-v0.171.0-sol-default",
+  "tool": "codex",
+  "version": "rust-v0.171.0",
+  "url": "https://github.com/openai/codex/releases/tag/rust-v0.171.0",
+  "title": "GPT-6.2 Sol is the new default model",
+  "affects": "you rely on the default model in Codex CLI.",
+  "do": "set the model you rely on in your config so the default change does not alter your results (setting name to verify).",
+  "deadline": null,
+  "flagged": "2026-11-20",
+  "category": "default-change",
+  "dismissed": false
  }
 ]

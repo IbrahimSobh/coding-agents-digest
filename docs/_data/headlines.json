@@ -298,5 +298,10 @@
   "updated": "2026-11-19T23:41+02:00",
   "window": "Nov 12 to Nov 19, 2026",
   "headline": "Claude Code 2.1.328 fixes two security issues, and Antigravity CLI 1.5.12 adds Gemini 4 Neon and split view."
+ },
+ {
+  "updated": "2026-11-20T08:42+02:00",
+  "window": "Nov 13 to Nov 20, 2026",
+  "headline": "Claude Code 2.1.329 changes scheduled tasks and Code Mode hooks, and Codex 0.171.0 makes GPT-6.2 Sol the default model."
  }
 ]

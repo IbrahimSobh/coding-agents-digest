@@ -609,5 +609,44 @@
   "flagged": "2026-11-20",
   "category": "default-change",
   "dismissed": false
+ },
+ {
+  "id": "kilo-code-v7.8.30-codestral-default-autocomplete",
+  "tool": "kilo-code",
+  "version": "v7.8.30",
+  "url": "https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.30",
+  "title": "Codestral is now the default autocomplete model",
+  "affects": "you use Mercury or Inception autocomplete in Kilo Code.",
+  "do": "re-select your autocomplete model if you want another one than Codestral.",
+  "deadline": null,
+  "flagged": "2026-11-20",
+  "category": "default-change",
+  "dismissed": false
+ },
+ {
+  "id": "kilo-code-v7.8.30-sdk-edit-removed",
+  "tool": "kilo-code",
+  "version": "v7.8.30",
+  "url": "https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.30",
+  "title": "client.kilo.edit is removed from the SDK",
+  "affects": "your code calls `client.kilo.edit` or imports `./edit` or `./edit-prompt` from `@kilocode/kilo-gateway`.",
+  "do": "remove those calls and imports before you update, since they no longer exist.",
+  "deadline": null,
+  "flagged": "2026-11-20",
+  "category": "removed",
+  "dismissed": false
+ },
+ {
+  "id": "kilo-code-v7.8.30-security-hono-forge",
+  "tool": "kilo-code",
+  "version": "v7.8.30",
+  "url": "https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.30",
+  "title": "Security updates for hono and node-forge",
+  "affects": "you run the Kilo CLI on a version older than v7.8.32.",
+  "do": "update Kilo Code to v7.8.32 or later, which carries the hono and node-forge updates.",
+  "deadline": null,
+  "flagged": "2026-11-20",
+  "category": "security",
+  "dismissed": false
  }
 ]

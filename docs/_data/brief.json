@@ -1,27 +1,27 @@
 {
- "updated": "2026-11-20T23:41+02:00",
- "updated_label": "Nov 20, 23:41",
- "window": "Nov 13 to Nov 20, 2026",
- "headline": "Claude Code 2.1.329 changes scheduled tasks and Code Mode hooks, and Codex 0.171.0 makes GPT-6.2 Sol the default model.",
+ "updated": "2026-11-21T08:41+02:00",
+ "updated_label": "Nov 21, 08:41",
+ "window": "Nov 14 to Nov 21, 2026",
+ "headline": "Claude Code 2.1.329 resets saved scheduled tasks, and Codex 0.171.0 makes GPT-6.2 Sol the default model.",
  "themes": [
   {
    "tag": "Defaults",
    "title": "New defaults change model and sandbox behavior",
-   "facts": "Codex 0.171.0 makes GPT-6.2 Sol the default model ([rust-v0.171.0](https://github.com/openai/codex/releases/tag/rust-v0.171.0)). Claude Code 2.1.326 stops sandboxed commands from writing to some sensitive home folders by default, and Antigravity CLI 1.5.10 blocks sandboxed reads of `~/.config` by default ([v2.1.326](https://github.com/anthropics/claude-code/releases/tag/v2.1.326), [1.5.10](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.10)). Claude Code 2.1.327 lets shell startup files run before a Bash command is approved ([v2.1.327](https://github.com/anthropics/claude-code/releases/tag/v2.1.327)).",
+   "facts": "Claude Code 2.1.326 stops sandboxed commands from writing to some home folders by default, and Antigravity CLI 1.5.10 blocks sandboxed reads of `~/.config` by default ([v2.1.326](https://github.com/anthropics/claude-code/releases/tag/v2.1.326), [1.5.10](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.10)). Codex 0.171.0 makes GPT-6.2 Sol the default model ([rust-v0.171.0](https://github.com/openai/codex/releases/tag/rust-v0.171.0)).",
    "so_what": "re-check unattended jobs for blocked paths and the default model, and pin the settings you rely on."
   },
   {
    "tag": "Unattended",
-   "title": "Unattended runs need explicit setup",
-   "facts": "Claude Code 2.1.329 makes most saved scheduled tasks need scheduling again in new signed-in sessions, though `--resume` of their own session still runs them ([v2.1.329](https://github.com/anthropics/claude-code/releases/tag/v2.1.329)). Claude Code 2.1.325 makes scheduled tasks and `/loop` ask before running a skill with `allowed-tools` or hooks ([v2.1.325](https://github.com/anthropics/claude-code/releases/tag/v2.1.325)). Codex 0.169.0 keeps project config and MCP servers off in untrusted directories for `codex exec` unless `--trust` is passed ([rust-v0.169.0](https://github.com/openai/codex/releases/tag/rust-v0.169.0)).",
-   "so_what": "schedule saved tasks again and add the trust settings the notes name, or jobs may wait for approval or lose their config."
+   "title": "Saved scheduled tasks need a new schedule",
+   "facts": "Claude Code 2.1.329 makes most scheduled tasks saved by earlier versions need scheduling again in new signed-in sessions, though `--resume` of their own session still runs them ([v2.1.329](https://github.com/anthropics/claude-code/releases/tag/v2.1.329)).",
+   "so_what": "schedule saved tasks again, or they may not run in new sessions."
   },
   {
    "tag": "Security",
    "title": "Permission and sandbox holes closed",
-   "facts": "Claude Code 2.1.328 closes an MCP header leak on redirect and a sandbox network-rule bypass ([v2.1.328](https://github.com/anthropics/claude-code/releases/tag/v2.1.328)). Antigravity CLI 1.5.8 and 1.5.9 close a sandbox proxy bypass and a leak of MCP headers after a redirect ([1.5.8](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.8), [1.5.9](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.9)). Codex 0.170.0 keeps sandbox restrictions through permission updates and child threads ([rust-v0.170.0](https://github.com/openai/codex/releases/tag/rust-v0.170.0)). Kilo Code v7.8.32 carries the hono and node-forge security updates first shipped in pre-release v7.8.30 ([v7.8.32](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.32)).",
-   "so_what": "update Claude Code to 2.1.328, Antigravity CLI to 1.5.10 or later and Kilo Code to 7.8.32 or later."
+   "facts": "Claude Code 2.1.328 closes an MCP header leak on redirect and a sandbox network-rule bypass ([v2.1.328](https://github.com/anthropics/claude-code/releases/tag/v2.1.328)). Antigravity CLI 1.5.9 closes a sandbox proxy bypass and a leak of MCP headers after a redirect ([1.5.9](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.9)). Codex 0.170.0 keeps sandbox restrictions through permission updates and child threads ([rust-v0.170.0](https://github.com/openai/codex/releases/tag/rust-v0.170.0)). Kilo Code v7.8.32 carries the hono and node-forge security updates ([v7.8.32](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.32)).",
+   "so_what": "update Claude Code to 2.1.328 or later, Antigravity CLI to 1.5.10 or later and Kilo Code to 7.8.32 or later."
   }
  ],
- "watch_next": "Watch the next Codex notes for whether the GPT-6.2 Sol default changes results, and the next Claude Code notes for how scheduled tasks behave after the re-scheduling change."
+ "watch_next": "Watch the next Claude Code notes for how scheduled tasks behave after the re-scheduling change, and the next Codex notes for whether the GPT-6.2 Sol default changes results."
 }

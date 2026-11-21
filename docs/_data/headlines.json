@@ -308,5 +308,10 @@
   "updated": "2026-11-20T23:41+02:00",
   "window": "Nov 13 to Nov 20, 2026",
   "headline": "Claude Code 2.1.329 changes scheduled tasks and Code Mode hooks, and Codex 0.171.0 makes GPT-6.2 Sol the default model."
+ },
+ {
+  "updated": "2026-11-21T08:41+02:00",
+  "window": "Nov 14 to Nov 21, 2026",
+  "headline": "Claude Code 2.1.329 resets saved scheduled tasks, and Codex 0.171.0 makes GPT-6.2 Sol the default model."
  }
 ]

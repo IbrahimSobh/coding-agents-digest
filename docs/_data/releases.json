@@ -528,5 +528,15 @@
   "tool": "kilo-code",
   "tag": "v7.8.32",
   "date": "2026-11-20"
+ },
+ {
+  "tool": "claude-code",
+  "tag": "v2.1.330",
+  "date": "2026-11-21"
+ },
+ {
+  "tool": "antigravity-cli",
+  "tag": "1.5.14",
+  "date": "2026-11-21"
  }
 ]

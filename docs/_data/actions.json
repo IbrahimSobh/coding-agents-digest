@@ -648,5 +648,18 @@
   "flagged": "2026-11-20",
   "category": "security",
   "dismissed": false
+ },
+ {
+  "id": "antigravity-cli-1.5.14-windows-unc-leak",
+  "tool": "antigravity-cli",
+  "version": "1.5.14",
+  "url": "https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.14",
+  "title": "Windows credential leak through UNC paths fixed",
+  "affects": "you run Antigravity CLI on Windows with a version older than 1.5.14.",
+  "do": "update Antigravity CLI to 1.5.14 or later.",
+  "deadline": null,
+  "flagged": "2026-11-21",
+  "category": "security",
+  "dismissed": false
  }
 ]

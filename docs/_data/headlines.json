@@ -313,5 +313,10 @@
   "updated": "2026-11-21T08:41+02:00",
   "window": "Nov 14 to Nov 21, 2026",
   "headline": "Claude Code 2.1.329 resets saved scheduled tasks, and Codex 0.171.0 makes GPT-6.2 Sol the default model."
+ },
+ {
+  "updated": "2026-11-21T23:41+02:00",
+  "window": "Nov 14 to Nov 21, 2026",
+  "headline": "Antigravity CLI 1.5.14 fixes a Windows credential leak, and Claude Code 2.1.330 adds the easel chart mod."
  }
 ]

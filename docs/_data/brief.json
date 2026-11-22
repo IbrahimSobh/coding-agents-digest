@@ -1,7 +1,7 @@
 {
- "updated": "2026-11-21T23:41+02:00",
- "updated_label": "Nov 21, 23:41",
- "window": "Nov 14 to Nov 21, 2026",
+ "updated": "2026-11-22T08:41+02:00",
+ "updated_label": "Nov 22, 08:41",
+ "window": "Nov 15 to Nov 22, 2026",
  "headline": "Antigravity CLI 1.5.14 fixes a Windows credential leak, and Claude Code 2.1.330 adds the easel chart mod.",
  "themes": [
   {

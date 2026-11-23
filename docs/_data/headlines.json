@@ -324,14 +324,19 @@
   "window": "Nov 15 to Nov 22, 2026",
   "headline": "Antigravity CLI 1.5.14 fixes a Windows credential leak, and Claude Code 2.1.330 adds the easel chart mod."
  },
-  {
+ {
   "updated": "2026-11-22T23:41+02:00",
   "window": "Nov 15 to Nov 22, 2026",
   "headline": "Antigravity CLI 1.5.14 fixes a Windows credential leak, and Claude Code 2.1.330 adds the easel chart mod."
  },
-  {
-    "updated": "2026-11-23T08:41+02:00",
-    "window": "Nov 16 to Nov 23, 2026",
-    "headline": "Antigravity CLI 1.5.14 fixes a Windows credential leak, and Claude Code 2.1.330 adds the easel chart mod."
-  }
+ {
+  "updated": "2026-11-23T08:41+02:00",
+  "window": "Nov 16 to Nov 23, 2026",
+  "headline": "Antigravity CLI 1.5.14 fixes a Windows credential leak, and Claude Code 2.1.330 adds the easel chart mod."
+ },
+ {
+  "updated": "2026-11-23T23:41+02:00",
+  "window": "Nov 16 to Nov 23, 2026",
+  "headline": "Claude Code 2.1.331 turns on marketplace auto-update from November 30, and Antigravity CLI 1.5.15 lowers the default Orchestrator effort."
+ }
 ]

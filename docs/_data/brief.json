@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-23T23:41+02:00",
- "updated_label": "Nov 23, 23:41",
- "window": "Nov 16 to Nov 23, 2026",
- "headline": "Claude Code 2.1.331 turns on marketplace auto-update from November 30, and Antigravity CLI 1.5.15 lowers the default Orchestrator effort.",
+ "updated": "2026-11-24T08:41+02:00",
+ "updated_label": "Nov 24, 08:41",
+ "window": "Nov 17 to Nov 24, 2026",
+ "headline": "Claude Code marketplace auto-update starts November 30, while Antigravity CLI 1.5.16 and Codex 0.172.0 add resume and MCP startup changes.",
  "themes": [
   {
    "tag": "Defaults",
    "title": "New defaults change model, sandbox and effort behavior",
-   "facts": "Claude Code 2.1.326 stops sandboxed commands from writing to some home folders by default, and Claude Code 2.1.331 auto-updates managed plugin marketplaces from November 30 unless you set `autoUpdate` to false ([v2.1.326](https://github.com/anthropics/claude-code/releases/tag/v2.1.326), [v2.1.331](https://github.com/anthropics/claude-code/releases/tag/v2.1.331)). Antigravity CLI 1.5.15 defaults Orchestrator effort to high, and Codex 0.171.0 makes GPT-6.2 Sol the default model ([1.5.15](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.15), [rust-v0.171.0](https://github.com/openai/codex/releases/tag/rust-v0.171.0)).",
-   "so_what": "pin the marketplace and effort settings you rely on, and re-check unattended jobs for blocked paths and the default model."
+   "facts": "Claude Code 2.1.326 stops sandboxed commands from writing to some home folders by default, and Claude Code 2.1.331 auto-updates managed plugin marketplaces from November 30 unless you set `autoUpdate` to false ([v2.1.326](https://github.com/anthropics/claude-code/releases/tag/v2.1.326), [v2.1.331](https://github.com/anthropics/claude-code/releases/tag/v2.1.331)). Antigravity CLI 1.5.15 defaults Orchestrator effort to high, Codex 0.171.0 makes GPT-6.2 Sol the default model, and Codex 0.172.0 starts optional stdio MCP servers on their first tool call ([1.5.15](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.15), [rust-v0.171.0](https://github.com/openai/codex/releases/tag/rust-v0.171.0), [rust-v0.172.0](https://github.com/openai/codex/releases/tag/rust-v0.172.0)).",
+   "so_what": "pin the marketplace and effort settings you rely on, and re-check unattended jobs for blocked paths, MCP startup order and the default model."
   },
   {
    "tag": "Unattended",
@@ -23,5 +23,5 @@
    "so_what": "update Claude Code to 2.1.328 or later, Antigravity CLI to 1.5.14 or later and Kilo Code to 7.8.32 or later."
   }
  ],
- "watch_next": "Watch the next Claude Code notes for how scheduled tasks behave after the re-scheduling change, and the next Antigravity CLI notes for any change to auto mode reading files outside the workspace."
+ "watch_next": "Watch the next Antigravity CLI notes for how Auto mode's outside-workspace writes behave, and the next Codex CLI notes for the Code Mode gRPC change and any removal of code_mode_host_grpc."
 }

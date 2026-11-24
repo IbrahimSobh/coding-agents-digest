@@ -338,5 +338,10 @@
   "updated": "2026-11-23T23:41+02:00",
   "window": "Nov 16 to Nov 23, 2026",
   "headline": "Claude Code 2.1.331 turns on marketplace auto-update from November 30, and Antigravity CLI 1.5.15 lowers the default Orchestrator effort."
+ },
+ {
+  "updated": "2026-11-24T08:41+02:00",
+  "window": "Nov 17 to Nov 24, 2026",
+  "headline": "Claude Code marketplace auto-update starts November 30, while Antigravity CLI 1.5.16 and Codex 0.172.0 add resume and MCP startup changes."
  }
 ]

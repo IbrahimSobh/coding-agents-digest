@@ -687,5 +687,18 @@
   "flagged": "2026-11-23",
   "category": "default-change",
   "dismissed": false
+ },
+ {
+   "id": "claude-code-2.1.332-auto-mode-cloud",
+   "tool": "claude-code",
+   "version": "2.1.332",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.332",
+   "title": "Terminal and VS Code start in auto mode on some clouds",
+   "affects": "you run Claude Code through Bedrock Mantle, Agent Platform or Foundry.",
+   "do": "set `disableAutoMode` to `\"disable\"` to stop sessions starting in auto mode.",
+   "deadline": null,
+   "flagged": "2026-11-25",
+   "category": "default-change",
+   "dismissed": false
  }
 ]

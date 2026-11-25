@@ -700,5 +700,18 @@
    "flagged": "2026-11-25",
    "category": "default-change",
    "dismissed": false
+ },
+ {
+   "id": "antigravity-cli-1.5.17-sensitive-file-bypass",
+   "tool": "antigravity-cli",
+   "version": "1.5.17",
+   "url": "https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.17",
+   "title": "Sensitive files bypassed approval in enterprise sessions",
+   "affects": "you use Antigravity CLI through Gemini Enterprise or an enterprise model gateway with non-workspace file access allowed.",
+   "do": "update Antigravity CLI to 1.5.17 or later.",
+   "deadline": null,
+   "flagged": "2026-11-25",
+   "category": "security",
+   "dismissed": false
  }
 ]

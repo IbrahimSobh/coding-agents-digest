@@ -1,27 +1,27 @@
 {
- "updated": "2026-11-25T23:41+02:00",
- "updated_label": "Nov 25, 23:41",
- "window": "Nov 18 to Nov 25, 2026",
- "headline": "Antigravity CLI 1.5.17 closes a sensitive-file approval bypass, and marketplace auto-update starts November 30 unless you opt out.",
+ "updated": "2026-11-26T08:41+02:00",
+ "updated_label": "Nov 26, 08:41",
+ "window": "Nov 19 to Nov 26, 2026",
+ "headline": "Security fixes led the week, and new defaults in Codex, Kilo Code and Claude Code changed what runs out of the box.",
  "themes": [
-  {
-   "tag": "Defaults",
-   "title": "New defaults change permissions, effort and models",
-   "facts": "Claude Code 2.1.331 auto-updates managed plugin marketplaces from November 30 unless you set `autoUpdate` to false, and 2.1.332 starts terminal and VS Code sessions in auto mode on Bedrock Mantle, Agent Platform and Foundry ([v2.1.331](https://github.com/anthropics/claude-code/releases/tag/v2.1.331), [v2.1.332](https://github.com/anthropics/claude-code/releases/tag/v2.1.332)). Antigravity CLI 1.5.15 defaults Orchestrator effort to high, Codex 0.171.0 makes GPT-6.2 Sol the default model, and Codex 0.172.0 starts optional stdio MCP servers on their first tool call ([1.5.15](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.15), [rust-v0.171.0](https://github.com/openai/codex/releases/tag/rust-v0.171.0), [rust-v0.172.0](https://github.com/openai/codex/releases/tag/rust-v0.172.0)).",
-   "so_what": "pin the marketplace, effort and permission-mode settings you rely on, and re-check unattended jobs for MCP startup order and the default model."
-  },
-  {
-   "tag": "Unattended",
-   "title": "Saved scheduled tasks need a new schedule",
-   "facts": "Claude Code 2.1.329 makes most scheduled tasks saved by earlier versions need scheduling again in new signed-in sessions, though `--resume` of their own session still runs them ([v2.1.329](https://github.com/anthropics/claude-code/releases/tag/v2.1.329)).",
-   "so_what": "schedule saved tasks again, or they may not run in new sessions."
-  },
   {
    "tag": "Security",
    "title": "Permission and sandbox holes closed",
-   "facts": "Claude Code 2.1.328 closes an MCP header leak on redirect and a sandbox network-rule bypass ([v2.1.328](https://github.com/anthropics/claude-code/releases/tag/v2.1.328)). Antigravity CLI 1.5.17 closes a bypass of approval and deny rules on sensitive files in Gemini Enterprise sessions, and 1.5.14 fixed a Windows credential leak through UNC paths ([1.5.17](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.17), [1.5.14](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.14)). Codex 0.170.0 keeps sandbox restrictions through permission updates and child threads ([rust-v0.170.0](https://github.com/openai/codex/releases/tag/rust-v0.170.0)). Kilo Code v7.8.32 carries the hono and node-forge security updates ([v7.8.32](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.32)).",
+   "facts": "Claude Code 2.1.328 closes an MCP header leak on redirect and a sandbox network-rule bypass ([v2.1.328](https://github.com/anthropics/claude-code/releases/tag/v2.1.328)). Antigravity CLI 1.5.14 fixed a Windows credential leak through UNC paths, and 1.5.17 closes a bypass of approval and deny rules on sensitive files in Gemini Enterprise sessions ([1.5.14](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.14), [1.5.17](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.17)). Kilo Code v7.8.32 carries the hono and node-forge security updates ([v7.8.32](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.32)).",
    "so_what": "update Claude Code to 2.1.328 or later, Antigravity CLI to 1.5.17 or later and Kilo Code to 7.8.32 or later."
+  },
+  {
+   "tag": "Defaults",
+   "title": "New defaults change models, effort and updates",
+   "facts": "Codex CLI [rust-v0.171.0](https://github.com/openai/codex/releases/tag/rust-v0.171.0) made GPT-6.2 Sol the default model, and Antigravity CLI [1.5.15](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.15) defaults Orchestrator effort to high when unset. Claude Code [2.1.331](https://github.com/anthropics/claude-code/releases/tag/v2.1.331) auto-updates managed plugin marketplaces from November 30 unless you set `autoUpdate` to false.",
+   "so_what": "pin the model, effort and marketplace settings you rely on before the defaults apply to your jobs."
+  },
+  {
+   "tag": "Auto mode",
+   "title": "Auto mode runs more steps without asking",
+   "facts": "Claude Code [2.1.328](https://github.com/anthropics/claude-code/releases/tag/v2.1.328) added auto mode for Opus 4.6 and Sonnet 4.6 on more cloud providers, and [2.1.332](https://github.com/anthropics/claude-code/releases/tag/v2.1.332) starts sessions in auto mode on some clouds. Antigravity CLI [1.5.14](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.14) stopped asking before reads outside the workspace, and [1.5.16](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.16) asks less often before edits inside Git, Jujutsu or Mercurial repositories.",
+   "so_what": "fewer prompts also means fewer checkpoints, so keep your ask and deny rules current."
   }
  ],
- "watch_next": "Watch whether the Claude Code 2.1.332 auto-mode default on cloud providers stays in later notes, and the next Codex CLI notes for any removal of code_mode_host_grpc."
+ "watch_next": "Claude Code's marketplace auto-update starts on November 30, so review managed marketplace settings before then. Also watch whether the new Codex default model changes results in your sessions."
 }

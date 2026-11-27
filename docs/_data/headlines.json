@@ -368,5 +368,10 @@
   "updated": "2026-11-26T23:41+02:00",
   "window": "Nov 19 to Nov 26, 2026",
   "headline": "Security fixes led the week, and new defaults in Codex, Kilo Code and Claude Code changed what runs out of the box."
+ },
+ {
+  "updated": "2026-11-27T08:40+02:00",
+  "window": "Nov 20 to Nov 27, 2026",
+  "headline": "Security fixes and new defaults led the week, and auto mode now asks less in Antigravity CLI and Claude Code."
  }
 ]

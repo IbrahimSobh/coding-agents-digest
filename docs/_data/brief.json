@@ -1,6 +1,6 @@
 {
- "updated": "2026-11-27T08:40+02:00",
- "updated_label": "Nov 27, 08:40",
+ "updated": "2026-11-27T23:41+02:00",
+ "updated_label": "Nov 27, 23:41",
  "window": "Nov 20 to Nov 27, 2026",
  "headline": "Security fixes and new defaults led the week, and auto mode now asks less in Antigravity CLI and Claude Code.",
  "themes": [
@@ -23,5 +23,5 @@
    "so_what": "fewer prompts also means fewer checkpoints, so keep your ask and deny rules current."
   }
  ],
- "watch_next": "Claude Code's managed marketplace auto-update starts on November 30, so review those settings before then. Kilo Code's newest tag could not be checked this run, so look at its next release notes."
+ "watch_next": "Claude Code's managed marketplace auto-update starts on November 30, so review those settings before then. Kilo Code v7.8.40 is the newest stable release, so check its auto-approve change on your next update."
 }

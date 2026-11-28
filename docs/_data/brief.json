@@ -1,20 +1,20 @@
 {
- "updated": "2026-11-27T23:41+02:00",
- "updated_label": "Nov 27, 23:41",
- "window": "Nov 20 to Nov 27, 2026",
+ "updated": "2026-11-28T08:41+02:00",
+ "updated_label": "Nov 28, 08:41",
+ "window": "Nov 21 to Nov 28, 2026",
  "headline": "Security fixes and new defaults led the week, and auto mode now asks less in Antigravity CLI and Claude Code.",
  "themes": [
   {
    "tag": "Security",
-   "title": "Security fixes in three tools",
-   "facts": "Antigravity CLI [1.5.14](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.14) fixed a Windows credential leak through UNC paths, and [1.5.17](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.17) closes a bypass of approval and deny rules on sensitive files in enterprise sessions. Kilo Code [v7.8.32](https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.32) carries the hono and node-forge security updates.",
-   "so_what": "update Antigravity CLI to 1.5.17 or later and Kilo Code to v7.8.32 or later."
+   "title": "Security fixes in Antigravity CLI",
+   "facts": "Antigravity CLI [1.5.14](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.14) fixed a Windows credential leak through UNC paths, and [1.5.17](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.17) closes a bypass of approval and deny rules on sensitive files in enterprise sessions.",
+   "so_what": "update Antigravity CLI to 1.5.17 or later."
   },
   {
    "tag": "Defaults",
-   "title": "New defaults change models, effort and updates",
-   "facts": "Codex CLI [rust-v0.171.0](https://github.com/openai/codex/releases/tag/rust-v0.171.0) made GPT-6.2 Sol the default model, and Antigravity CLI [1.5.15](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.15) defaults Orchestrator effort to high when unset. Claude Code [2.1.331](https://github.com/anthropics/claude-code/releases/tag/v2.1.331) auto-updates managed plugin marketplaces from November 30 unless you set `autoUpdate` to false.",
-   "so_what": "pin the model, effort and marketplace settings you rely on before the defaults apply to your jobs."
+   "title": "New defaults change effort and marketplace updates",
+   "facts": "Antigravity CLI [1.5.15](https://github.com/google-antigravity/antigravity-cli/releases/tag/1.5.15) defaults Orchestrator effort to high when unset. Claude Code [2.1.331](https://github.com/anthropics/claude-code/releases/tag/v2.1.331) auto-updates managed plugin marketplaces from November 30 unless you set `autoUpdate` to false.",
+   "so_what": "pin the effort and marketplace settings you rely on before the defaults apply to your jobs."
   },
   {
    "tag": "Auto mode",
@@ -23,5 +23,5 @@
    "so_what": "fewer prompts also means fewer checkpoints, so keep your ask and deny rules current."
   }
  ],
- "watch_next": "Claude Code's managed marketplace auto-update starts on November 30, so review those settings before then. Kilo Code v7.8.40 is the newest stable release, so check its auto-approve change on your next update."
+ "watch_next": "Claude Code's managed marketplace auto-update starts on November 30, so review those settings before then. Kilo Code v7.8.40 moved auto-approve to a user-level setting, so check your rules after updating."
 }
